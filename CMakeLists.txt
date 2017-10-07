@@ -1,4 +1,4 @@
-cmake_minimum_required (VERSION 2.6)
+cmake_minimum_required (VERSION 2.7.1)
 project (LedController)
 
 set (${PROJECT_NAME}_VERSION_MAJOR 0)
