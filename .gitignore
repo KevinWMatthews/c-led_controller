@@ -1,0 +1,10 @@
+# Ignore Cmake files
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Config.h
+Makefile
+
+# Ignore build output
+build/
+install/
