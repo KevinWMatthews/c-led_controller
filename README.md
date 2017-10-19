@@ -2,6 +2,11 @@
 Welcome! This is a simple LED controller.
 It is intended to be an example of design patterns as a simple project grows to be complex.
 
+# Requirements
+CMake
+cmake-gui
+CppUTest
+
 ## Build Setup
 This project was designed to be built with CMake.
 This is primarily so that it is compatible with CLion and secondarily because I'm sick of using autotools.
@@ -10,7 +15,10 @@ To configure an out-of-tree build, run
 
     * mkdir build
     * cd build
-    * cmake ..
+    * cmake-gui ..
+        - Define CPPUTEST_HOME as location where CppUTest is installed
+        - Configure
+        - Generate
 
 Various make commands can be run from within build/ and will not clutter up the source directory.
 
