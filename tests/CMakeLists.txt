@@ -9,7 +9,10 @@ add_library(libCppUTest STATIC IMPORTED)
 # TARGET means we will operate on a target, not a directory or source file
 set_property(TARGET libCppUTest PROPERTY IMPORTED_LOCATION "${CPPUTEST_HOME}/lib/libCppUTest.a")
 
-add_executable("Test_LedController" RunAllTests.cpp Test_LedController.cpp)
+# Add library of project source code
+add_library(LedControllerLib "${PROJECT_SOURCE_DIR}/src/Led.c")
+
+add_executable("Test_LedController" RunAllTests.cpp Test_Led.cpp)
 target_link_libraries("Test_LedController" libCppUTest)
 
 install (TARGETS "Test_LedController" DESTINATION "bin")
