@@ -10,7 +10,11 @@ set_property(TARGET libCppUTest PROPERTY IMPORTED_LOCATION "${CPPUTEST_HOME}/lib
 add_library(LedControllerLib "${PROJECT_SOURCE_DIR}/src/Led.c")
 target_include_directories(LedControllerLib PUBLIC "${PROJECT_SOURCE_DIR}/include")
 
-add_executable(Test_LedController RunAllTests.cpp Test_Led.cpp)
+add_executable(Test_LedController
+    RunAllTests.cpp
+    Test_Led.cpp
+    "${PROJECT_SOURCE_DIR}/mocks/Mock_LedHw.c"
+)
 target_link_libraries(Test_LedController libCppUTest LedControllerLib)
 
 install (TARGETS Test_LedController DESTINATION bin)

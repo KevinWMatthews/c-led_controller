@@ -11,4 +11,8 @@ typedef enum
     LEDHW_LED_OFF = 0
 } LEDHW_STATE;
 
+// Initialize the physical hardware so it can control an LED.
+// Verify that the LED is off.
+void LedHw_Init(LEDHW_GPIO);
+
 #endif

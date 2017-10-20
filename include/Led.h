@@ -5,6 +5,7 @@
 
 typedef struct LedStruct * Led;
 
+// Create a software abstraction for an LED
 Led Led_Create(LEDHW_GPIO);
 void Led_Destroy(Led);
 

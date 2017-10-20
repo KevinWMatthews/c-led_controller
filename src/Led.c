@@ -3,6 +3,7 @@
 
 Led Led_Create(LEDHW_GPIO gpio)
 {
+    LedHw_Init(gpio);
     return NULL;
 }
 
