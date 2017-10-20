@@ -1,2 +1,6 @@
 Check the LED state against the 'hardware' - set up a mock and get its status.
     We need to ensure that the hardware LED is turned off when a software Led is created.
+
+        CMake:
+Can CMake get link-time substitution right for mocks?
+Do we need to install LedControllerConfig.h in install/include? It works when I don't.
