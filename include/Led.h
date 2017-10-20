@@ -1,15 +1,13 @@
 #ifndef LED_H_INCLUDED
 #define LED_H_INCLUDED
 
+#include "LedHw.h"
+
 typedef struct LedStruct * Led;
 
-Led Led_Create(void);
+Led Led_Create(LEDHW_GPIO);
 void Led_Destroy(Led);
 
-typedef enum
-{
-    LED_OFF = 0
-} LED_STATE;
-LED_STATE Led_GetState(Led);
+LEDHW_STATE Led_GetState(Led);
 
 #endif

@@ -12,7 +12,7 @@ TEST_GROUP(Led)
 
     void setup()
     {
-        led = Led_Create();
+        led = Led_Create(LEDHW_GPIO_1);
     }
 
     void teardown()
@@ -27,5 +27,5 @@ TEST(Led, create_an_led)
 
 TEST(Led, led_is_off_after_create)
 {
-    CHECK_EQUAL(LED_OFF, Led_GetState(led));
+    CHECK_EQUAL(LEDHW_LED_OFF, Led_GetState(led));
 }

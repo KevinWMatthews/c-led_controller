@@ -1,3 +1,5 @@
+Can't return a NULL Led struct any longer....
+
 Check the LED state against the 'hardware' - set up a mock and get its status.
     We need to ensure that the hardware LED is turned off when a software Led is created.
 
