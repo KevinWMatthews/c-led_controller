@@ -10,7 +10,8 @@ TEST_GROUP(Led)
 {
 };
 
-TEST(Led, wiring_check)
+TEST(Led, create_an_led)
 {
-    FAIL("Start here!");
+    Led led = Led_Create();
+    Led_Destroy(led);
 }

@@ -13,6 +13,6 @@ set_property(TARGET libCppUTest PROPERTY IMPORTED_LOCATION "${CPPUTEST_HOME}/lib
 add_library(LedControllerLib "${PROJECT_SOURCE_DIR}/src/Led.c")
 
 add_executable("Test_LedController" RunAllTests.cpp Test_Led.cpp)
-target_link_libraries("Test_LedController" libCppUTest)
+target_link_libraries("Test_LedController" libCppUTest LedControllerLib)
 
 install (TARGETS "Test_LedController" DESTINATION "bin")
