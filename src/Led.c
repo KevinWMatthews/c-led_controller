@@ -14,9 +14,13 @@ Led Led_Create(LEDHW_GPIO gpio)
     return self;
 }
 
-void Led_Destroy(Led self)
+void Led_Destroy(Led *self)
 {
-    free(self);
+    if (self)
+    {
+        free(*self);
+        *self = 0;      // Trying to avoid a double-free
+    }
     return;
 }
 
