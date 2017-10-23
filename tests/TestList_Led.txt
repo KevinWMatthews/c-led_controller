@@ -1,3 +1,5 @@
+Turn on multiple LEDs. This will require a more complex mock.
+
 Hardware mock:
     Check the LED state against the 'hardware' - set up a mock and get its status.
 

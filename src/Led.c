@@ -37,3 +37,12 @@ LED_RETURN_CODE Led_TurnOn(Led self)
     LedHw_TurnOn(self->gpio);
     return LED_SUCCESS;
 }
+
+LED_RETURN_CODE Led_TurnOff(Led self)
+{
+    if (!self)
+        return LED_NULL_POINTER;
+
+    LedHw_TurnOff(self->gpio);
+    return LED_SUCCESS;
+}

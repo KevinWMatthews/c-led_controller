@@ -25,3 +25,8 @@ void LedHw_TurnOn(LEDHW_GPIO gpio)
 {
     dummy_led_register = LEDHW_LED_ON;
 }
+
+void LedHw_TurnOff(LEDHW_GPIO gpio)
+{
+    dummy_led_register = LEDHW_LED_OFF;
+}

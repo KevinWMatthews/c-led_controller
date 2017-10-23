@@ -23,4 +23,7 @@ uint8_t LedHw_GetState(LEDHW_GPIO);
 // Turn an LED on.
 void LedHw_TurnOn(LEDHW_GPIO);
 
+// Turn an LED on.
+void LedHw_TurnOff(LEDHW_GPIO);
+
 #endif

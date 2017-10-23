@@ -21,4 +21,8 @@ LEDHW_STATE Led_GetState(Led);
 // Returns 0 on success, < 0 on failure
 LED_RETURN_CODE Led_TurnOn(Led);
 
+// Turn an LED off.
+// Returns 0 on success, < 0 on failure
+LED_RETURN_CODE Led_TurnOff(Led);
+
 #endif

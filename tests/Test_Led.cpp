@@ -47,7 +47,19 @@ TEST(Led, can_turn_led_on)
     CHECK_EQUAL(LEDHW_LED_ON, Led_GetState(led));
 }
 
-TEST(Led, can_handle_null_pointer)
+TEST(Led, can_turn_led_off)
+{
+    LED_SUCCESS, Led_TurnOn(led);
+    CHECK_EQUAL(LED_SUCCESS, Led_TurnOff(led));
+    CHECK_EQUAL(LEDHW_LED_OFF, Led_GetState(led));
+}
+
+TEST(Led, turn_on_can_handle_null_pointer)
 {
     POINTERS_EQUAL(LED_NULL_POINTER, Led_TurnOn(NULL));
+}
+
+TEST(Led, turn_off_can_handle_null_pointer)
+{
+    POINTERS_EQUAL(LED_NULL_POINTER, Led_TurnOff(NULL));
 }
