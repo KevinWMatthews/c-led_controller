@@ -26,5 +26,14 @@ void Led_Destroy(Led *self)
 
 LEDHW_STATE Led_GetState(Led self)
 {
-    return LEDHW_LED_OFF;//LedHw_GetState(/*gpio*/);
+    return LedHw_GetState(self->gpio);
+}
+
+LED_RETURN_CODE Led_TurnOn(Led self)
+{
+    if (!self)
+        return LED_NULL_POINTER;
+
+    LedHw_TurnOn(self->gpio);
+    return LED_SUCCESS;
 }

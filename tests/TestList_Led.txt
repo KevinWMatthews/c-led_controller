@@ -1,7 +1,18 @@
-Can't return a NULL Led struct any longer....
+Hardware mock:
+    Check the LED state against the 'hardware' - set up a mock and get its status.
 
-Check the LED state against the 'hardware' - set up a mock and get its status.
-    We need to ensure that the hardware LED is turned off when a software Led is created.
+    The actual hardware mock requires (well, is more useful if it has) some knowledge of how the hardware works, I think.
+    For example, we will create a dummy hardware register rather than implement, say, an I2C call.
+    For the short term, let's implement a very basic mock so I don't need to research how the hardware works.
+
+    We will use this to:
+        verify initialization
+        verify state
+        change state
+
+Null checks:
+    Led_GetState()
+    Led_TurnOn()
 
         CMake:
 Can CMake get link-time substitution right for mocks?
