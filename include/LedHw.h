@@ -5,7 +5,9 @@
 
 typedef enum
 {
-    LEDHW_GPIO_1  = 0
+    LEDHW_GPIO_1    = 0,
+    LEDHW_GPIO_2    = 1,
+    LEDHW_GPIO_MAX  = 2
 } LEDHW_GPIO; //TODO Revise this to correspond to actual hardware.
 
 typedef enum

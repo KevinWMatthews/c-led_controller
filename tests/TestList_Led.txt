@@ -12,6 +12,10 @@ Hardware mock:
         verify state
         change state
 
+Actual HW:
+    Verify that HW is properly initialized:
+        LED is off
+
 Null checks:
     Led_GetState()
     Led_TurnOn()

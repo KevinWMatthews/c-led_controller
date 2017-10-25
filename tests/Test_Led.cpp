@@ -8,16 +8,18 @@ extern "C"
 
 TEST_GROUP(Led)
 {
-    Led led;
+    Led led, led2;
 
     void setup()
     {
         led = Led_Create(LEDHW_GPIO_1);
+        led2 = Led_Create(LEDHW_GPIO_2);
     }
 
     void teardown()
     {
         Led_Destroy(&led);
+        Led_Destroy(&led2);
     }
 };
 
@@ -62,4 +64,24 @@ TEST(Led, turn_on_can_handle_null_pointer)
 TEST(Led, turn_off_can_handle_null_pointer)
 {
     POINTERS_EQUAL(LED_NULL_POINTER, Led_TurnOff(NULL));
+}
+
+TEST(Led, can_turn_a_second_led_on)
+{
+    CHECK_EQUAL(LED_SUCCESS, Led_TurnOn(led2));
+
+    CHECK_EQUAL(LEDHW_LED_OFF, Led_GetState(led));
+    CHECK_EQUAL(LEDHW_LED_ON, Led_GetState(led2));
+
+    Led_Destroy(&led2);
+}
+
+TEST(Led, can_turn_a_second_led_off)
+{
+    Led_TurnOn(led);
+    Led_TurnOn(led2);
+    CHECK_EQUAL(LED_SUCCESS, Led_TurnOff(led2));
+
+    CHECK_EQUAL(LEDHW_LED_ON, Led_GetState(led));
+    CHECK_EQUAL(LEDHW_LED_OFF, Led_GetState(led2));
 }

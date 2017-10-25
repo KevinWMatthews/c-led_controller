@@ -9,24 +9,26 @@
 //          specific initialization registers are set
 //          specific status/control registers are set and read
 
-static uint8_t dummy_led_register;
+//TODO add sanity checks on gpio - don't access off the end of the array!
+
+static uint8_t dummy_led_registers[LEDHW_GPIO_MAX];
 
 void LedHw_Init(LEDHW_GPIO gpio)
 {
-    dummy_led_register = LEDHW_LED_OFF;
+    dummy_led_registers[gpio] = LEDHW_LED_OFF;
 }
 
 uint8_t LedHw_GetState(LEDHW_GPIO gpio)
 {
-    return dummy_led_register;
+    return dummy_led_registers[gpio];
 }
 
 void LedHw_TurnOn(LEDHW_GPIO gpio)
 {
-    dummy_led_register = LEDHW_LED_ON;
+    dummy_led_registers[gpio] = LEDHW_LED_ON;
 }
 
 void LedHw_TurnOff(LEDHW_GPIO gpio)
 {
-    dummy_led_register = LEDHW_LED_OFF;
+    dummy_led_registers[gpio] = LEDHW_LED_OFF;
 }
