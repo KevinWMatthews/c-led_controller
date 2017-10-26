@@ -12,8 +12,8 @@ TEST_GROUP(Led)
 
     void setup()
     {
-        led = Led_Create(LEDHW_GPIO_1);
-        led2 = Led_Create(LEDHW_GPIO_2);
+        led = Led_Create(LEDHW_LED_1);
+        led2 = Led_Create(LEDHW_LED_2);
     }
 
     void teardown()
