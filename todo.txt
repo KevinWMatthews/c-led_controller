@@ -1,0 +1,7 @@
+CMake is configured to override anything that the user specifies for CMAKE_INSTALL_PREFIX.
+Rewrite CMakeLists to provide a default but give user flexibility?
+
+Cross-compile production code.
+
+Cross-compile test code.
+Run cross-compiled unit tests in QEMU (can we run them on the chip itself?).
