@@ -5,3 +5,5 @@ Cross-compile production code.
 
 Cross-compile test code.
 Run cross-compiled unit tests in QEMU (can we run them on the chip itself?).
+
+Rethink how hw source code and mock source code is arranged. It's rather like it's own project, or at least I think it should be.

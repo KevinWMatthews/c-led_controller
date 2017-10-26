@@ -19,3 +19,4 @@ set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 
 add_subdirectory(src)
 add_subdirectory(tests)
+add_subdirectory(hw_attiny861/tests)
