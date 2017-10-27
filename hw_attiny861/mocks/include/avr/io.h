@@ -3,6 +3,7 @@
 
 // These registers are mapped to specific memory registers in chip-specific avr/io*.h files.
 // Mock registers are declared here to enable testing.
+// See avr/io.h and avr/iotnx61.h.
 
 #include <stdint.h>
 
@@ -54,6 +55,5 @@ extern uint8_t PORTB;
 #define PORTB5 5
 #define PORTB6 6
 #define PORTB7 7
-
 
 #endif

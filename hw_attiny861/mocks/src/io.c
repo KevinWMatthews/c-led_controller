@@ -6,5 +6,8 @@
 // GPIO
 uint8_t DDRA;
 uint8_t PORTA;
+uint8_t PINA;
+
 uint8_t DDRB;
 uint8_t PORTB;
+uint8_t PINB;
