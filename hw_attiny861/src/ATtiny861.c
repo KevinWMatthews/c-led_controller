@@ -29,20 +29,82 @@ static ATtiny861_Gpio gpios[16] = {
         .port_bit = PORTA2
     },
     {   // PA3
+        .ddr = &DDRA,
+        .port = &PORTA,
+        .ddr_bit = DDA3,
+        .port_bit = PORTA3
     },
     {   // PA4
+        .ddr = &DDRA,
+        .port = &PORTA,
+        .ddr_bit = DDA4,
+        .port_bit = PORTA4
     },
     {   // PA5
+        .ddr = &DDRA,
+        .port = &PORTA,
+        .ddr_bit = DDA5,
+        .port_bit = PORTA5
     },
     {   // PA6
+        .ddr = &DDRA,
+        .port = &PORTA,
+        .ddr_bit = DDA6,
+        .port_bit = PORTA6
     },
     {   // PA7
+        .ddr = &DDRA,
+        .port = &PORTA,
+        .ddr_bit = DDA7,
+        .port_bit = PORTA7
     },
     {   // PB0
         .ddr = &DDRB,
         .port = &PORTB,
         .ddr_bit = DDB0,
         .port_bit = PORTB0
+    },
+    {   // PB1
+        .ddr = &DDRB,
+        .port = &PORTB,
+        .ddr_bit = DDB1,
+        .port_bit = PORTB1
+    },
+    {   // PB2
+        .ddr = &DDRB,
+        .port = &PORTB,
+        .ddr_bit = DDB2,
+        .port_bit = PORTB2
+    },
+    {   // PB3
+        .ddr = &DDRB,
+        .port = &PORTB,
+        .ddr_bit = DDB3,
+        .port_bit = PORTB3
+    },
+    {   // PB4
+        .ddr = &DDRB,
+        .port = &PORTB,
+        .ddr_bit = DDB4,
+        .port_bit = PORTB4
+    },
+    {   // PB5
+        .ddr = &DDRB,
+        .port = &PORTB,
+        .ddr_bit = DDB5,
+        .port_bit = PORTB5
+    },
+    {   // PB6
+        .ddr = &DDRB,
+        .port = &PORTB,
+        .ddr_bit = DDB6,
+        .port_bit = PORTB6
+    },
+    {   // PB7
+        .ddr = &DDRB,
+        .port = &PORTB,
+        .ddr_bit = DDB7,
+        .port_bit = PORTB7
     }
 };
 
@@ -84,6 +146,10 @@ static void set_gpio_state(ATtiny861_Gpio *gpio, GPIO_STATE state)
 
 void ATtiny861_GpioSetAsOutput(ATTN861_GPIO gpio, GPIO_STATE initial_state)
 {
+    if (gpio >= ATTN861_GPIO_MAX)
+    {
+        return;
+    }
     set_gpio_as_output(&gpios[gpio]);
     set_gpio_state(&gpios[gpio], initial_state);
 }
