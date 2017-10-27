@@ -5,3 +5,5 @@ Set outputs high!
 
 Can we change ATtiny861.h to use defines from io.h? No, we get mixed up with PORTB.
 Set up tests that ensure that the mock is properly cleared....
+
+Can we get away with registers as uint8_t and using pointers?
