@@ -1,5 +1,9 @@
 Figure out a more elegant way to set pins!
 
+ATtiny861_GpioSetAsOutput()
+    Handle invalid pins
+
+Create a set of defines that correspond to the pin numbers? That would be nice!
 Finish all pins.
 Set outputs high!
 
@@ -7,3 +11,5 @@ Can we change ATtiny861.h to use defines from io.h? No, we get mixed up with POR
 Set up tests that ensure that the mock is properly cleared....
 
 Can we get away with registers as uint8_t and using pointers?
+
+I'm creating a chip interface. Test it!

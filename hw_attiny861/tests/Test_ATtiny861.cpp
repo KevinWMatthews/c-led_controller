@@ -63,5 +63,5 @@ TEST(ATtiny861, set_gpio_PB0_as_output_low)
 {
     ATtiny861_GpioSetAsOutput(ATTN861_PB0, GPIO_LOW);
     BYTES_EQUAL((1<<DDB0), DDRB);
-    BYTES_EQUAL(0xff, PORTB);
+    BYTES_EQUAL(0xff & ~(1<<PORTB0), PORTB);
 }

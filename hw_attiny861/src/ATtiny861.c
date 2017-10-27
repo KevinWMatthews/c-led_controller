@@ -1,6 +1,51 @@
 #include "ATtiny861.h"
 #include "BitManip.h"
 
+typedef struct ATtiny861_Gpio
+{
+    uint8_t * ddr;      // Data Direction Register
+    uint8_t ddr_bit;
+    uint8_t * port;     // Port register
+    uint8_t port_bit;
+} ATtiny861_Gpio;
+
+static ATtiny861_Gpio gpios[16] = {
+    {   // PA0
+        .ddr = &DDRA,
+        .port = &PORTA,
+        .ddr_bit = DDA0,
+        .port_bit = PORTA0
+    },
+    {   // PA1
+        .ddr = &DDRA,
+        .port = &PORTA,
+        .ddr_bit = DDA1,
+        .port_bit = PORTA1
+    },
+    {   // PA2
+        .ddr = &DDRA,
+        .port = &PORTA,
+        .ddr_bit = DDA2,
+        .port_bit = PORTA2
+    },
+    {   // PA3
+    },
+    {   // PA4
+    },
+    {   // PA5
+    },
+    {   // PA6
+    },
+    {   // PA7
+    },
+    {   // PB0
+        .ddr = &DDRB,
+        .port = &PORTB,
+        .ddr_bit = DDB0,
+        .port_bit = PORTB0
+    }
+};
+
 void ATtiny861_GpioInit(void)
 {
     // Pins should default to inputs on power-up.
@@ -11,45 +56,34 @@ void ATtiny861_GpioInit(void)
     PORTB = 0xff;
 }
 
-static void set_gpio_as_output(uint8_t * port, uint8_t pin)
+static void set_gpio_as_output(ATtiny861_Gpio *gpio)
 {
-    SBI(*port, pin);
+    if (!gpio)
+        return;
+
+    // To set a GPIO as an output, set the Data Direction Register (DDR) bit.
+    SBI( *(gpio->ddr), gpio->ddr_bit );
 }
 
-static void set_gpio_high(uint8_t * port, uint8_t pin)
+static void set_gpio_state(ATtiny861_Gpio *gpio, GPIO_STATE state)
 {
-    SBI(*port, pin);
+    if (!gpio)
+        return;
+
+    if (state == GPIO_HIGH)
+    {
+        // To drive an output high, set the PORT bit
+        SBI( *(gpio->port), gpio->port_bit );
+    }
+    else if (state == GPIO_LOW)
+    {
+        // To drive an output high, clear the PORT bit
+        CBI( *(gpio->port), gpio->port_bit );
+    }
 }
 
 void ATtiny861_GpioSetAsOutput(ATTN861_GPIO gpio, GPIO_STATE initial_state)
 {
-    switch (gpio)
-    {
-    case ATTN861_PA0:
-        // This provides useful information
-        set_gpio_as_output(&DDRA, DDA0);
-        if (initial_state == GPIO_LOW)
-            CBI(PORTA, PORTA0);
-        else
-            // This doesn't gain us much; SBI is pretty clear
-            set_gpio_high(&PORTA, PORTA0);
-        break;
-    case ATTN861_PA1:
-        set_gpio_as_output(&DDRA, DDA1);
-        if (initial_state == GPIO_LOW)
-            CBI(PORTA, PORTA1);
-        else
-            set_gpio_high(&PORTA, PORTA1);
-        break;
-    case ATTN861_PA2:
-        set_gpio_as_output(&DDRA, DDA2);
-        if (initial_state == GPIO_LOW)
-            CBI(PORTA, PORTA2);
-        else
-            set_gpio_high(&PORTA, PORTA1);
-        break;
-    case ATTN861_PB0:
-        set_gpio_as_output(&DDRB, DDB0);
-        break;
-    }
+    set_gpio_as_output(&gpios[gpio]);
+    set_gpio_state(&gpios[gpio], initial_state);
 }
