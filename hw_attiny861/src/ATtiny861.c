@@ -1,4 +1,5 @@
 #include "ATtiny861.h"
+#include "BitManip.h"
 
 void ATtiny861_GpioInit(void)
 {
@@ -15,28 +16,28 @@ void ATtiny861_GpioSetAsOutput(ATTN861_GPIO gpio, GPIO_STATE initial_state)
     switch (gpio)
     {
     case ATTN861_PA0:
-        DDRA |= (1<<DDA0);
+        SBI(DDRA, DDA0);
         if (initial_state == GPIO_LOW)
-            PORTA &= ~(1<<PORTA0);
+            CBI(PORTA, PORTA0);
         else
-            PORTA |= (1<<PORTA0);
+            SBI(PORTA, PORTA0);
         break;
     case ATTN861_PA1:
-        DDRA |= (1<<DDA1);
+        SBI(DDRA, DDA1);
         if (initial_state == GPIO_LOW)
-            PORTA &= ~(1<<PORTA1);
+            CBI(PORTA, PORTA1);
         else
-            PORTA |= (1<<PORTA1);
+            SBI(PORTA, PORTA1);
         break;
     case ATTN861_PA2:
-        DDRA |= (1<<DDA2);
+        SBI(DDRA, DDA2);
         if (initial_state == GPIO_LOW)
-            PORTA &= ~(1<<PORTA2);
+            CBI(PORTA, PORTA2);
         else
-            PORTA |= (1<<PORTA2);
+            SBI(PORTA, PORTA2);
         break;
     case ATTN861_PB0:
-        DDRB |= (1<<DDB0);
+        SBI(DDRB, DDB0);
         break;
     }
 }
