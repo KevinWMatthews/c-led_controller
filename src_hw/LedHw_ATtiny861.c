@@ -15,13 +15,24 @@ static ATTN861_GPIO convert_gpio(LEDHW_LED_NUMBER led_number)
 
 void LedHw_Init(LEDHW_LED_NUMBER led_number)
 {
+    ATTN861_GPIO gpio;
+
     if (led_number >= LEDHW_LED_MAX)
+    {
         return;
-    ATTN861_GPIO gpio = convert_gpio(led_number);
+    }
+    gpio = convert_gpio(led_number);
     ATtiny861_GpioSetAsOutput(gpio, GPIO_LOW);
 }
 
 void LedHw_TurnOn(LEDHW_LED_NUMBER led_number)
 {
-    // ATtiny861_GpioSetState(gpio, GPIO_HIGH);
+    ATTN861_GPIO gpio;
+
+    if (led_number >= LEDHW_LED_MAX)
+    {
+        return;
+    }
+    gpio = convert_gpio(led_number);
+    ATtiny861_GpioSetState(gpio, GPIO_HIGH);
 }
