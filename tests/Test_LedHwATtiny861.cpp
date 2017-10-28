@@ -36,3 +36,11 @@ TEST(LedHw_ATtiny861, initialize_led_2)
         .withParameter("initial_state", GPIO_LOW);
     LedHw_Init(LEDHW_LED_2);
 }
+
+IGNORE_TEST(LedHw_ATtiny861, turn_led_on)
+{
+    mock().expectOneCall("ATtiny861_GpioSetState")
+        .withParameter("gpio", ATTN861_PA0)
+        .withParameter("state", GPIO_HIGH);
+    LedHw_TurnOn(LEDHW_LED_1);
+}
