@@ -6,9 +6,9 @@ static ATTN861_GPIO convert_gpio(LEDHW_LED_NUMBER led_number)
     switch (led_number)
     {
     case LEDHW_LED_1:
-        return ATTN861_PA0;
+        return ATTN861_PA7;
     case LEDHW_LED_2:
-        return ATTN861_PA1;
+        return ATTN861_PA6;
     }
     return ATTN861_GPIO_MAX;    // Error!
 }
