@@ -37,6 +37,11 @@ TEST(LedHw_ATtiny861, initialize_led_2)
     LedHw_Init(LEDHW_LED_2);
 }
 
+TEST(LedHw_ATtiny861, initialize_invalid_led)
+{
+    LedHw_Init(LEDHW_LED_MAX);
+}
+
 IGNORE_TEST(LedHw_ATtiny861, turn_led_on)
 {
     mock().expectOneCall("ATtiny861_GpioSetState")

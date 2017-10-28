@@ -15,6 +15,8 @@ static ATTN861_GPIO convert_gpio(LEDHW_LED_NUMBER led_number)
 
 void LedHw_Init(LEDHW_LED_NUMBER led_number)
 {
+    if (led_number >= LEDHW_LED_MAX)
+        return;
     ATTN861_GPIO gpio = convert_gpio(led_number);
     ATtiny861_GpioSetAsOutput(gpio, GPIO_LOW);
 }
