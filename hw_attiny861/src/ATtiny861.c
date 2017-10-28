@@ -1,5 +1,6 @@
 #include "ATtiny861.h"
 #include "BitManip.h"
+#include <avr/io.h>
 
 typedef struct ATtiny861_Gpio
 {

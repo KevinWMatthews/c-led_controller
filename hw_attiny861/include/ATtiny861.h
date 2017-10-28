@@ -2,7 +2,6 @@
 #define ATTINY861_H_INCLUDED
 
 #include <stdint.h>
-#include <avr/io.h>
 
 typedef enum
 {
