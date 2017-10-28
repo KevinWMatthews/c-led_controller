@@ -7,8 +7,8 @@ typedef enum
 {
     LEDHW_LED_1     = 0,
     LEDHW_LED_2     = 1,
-    LEDHW_GPIO_MAX  = 2
-} LEDHW_GPIO; //TODO Revise this to correspond to actual hardware.
+    LEDHW_LED_MAX   = 2
+} LEDHW_LED_NUMBER;
 
 typedef enum
 {
@@ -18,14 +18,14 @@ typedef enum
 
 // Initialize the physical hardware so it can control an LED.
 // Verify that the LED is off.
-void LedHw_Init(LEDHW_GPIO);
+void LedHw_Init(LEDHW_LED_NUMBER led_number);
 
-uint8_t LedHw_GetState(LEDHW_GPIO);
-
-// Turn an LED on.
-void LedHw_TurnOn(LEDHW_GPIO);
+uint8_t LedHw_GetState(LEDHW_LED_NUMBER led_number);
 
 // Turn an LED on.
-void LedHw_TurnOff(LEDHW_GPIO);
+void LedHw_TurnOn(LEDHW_LED_NUMBER led_number);
+
+// Turn an LED on.
+void LedHw_TurnOff(LEDHW_LED_NUMBER led_number);
 
 #endif

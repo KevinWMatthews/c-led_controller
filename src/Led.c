@@ -4,10 +4,10 @@
 
 typedef struct LedStruct
 {
-    LEDHW_GPIO gpio;
+    LEDHW_LED_NUMBER gpio;
 } LedStruct;
 
-Led Led_Create(LEDHW_GPIO gpio)
+Led Led_Create(LEDHW_LED_NUMBER gpio)
 {
     Led self = calloc( 1, sizeof(*self) );
     self->gpio = gpio;

@@ -12,7 +12,7 @@ typedef enum
 } LED_RETURN_CODE;
 
 // Create a software abstraction for an LED
-Led Led_Create(LEDHW_GPIO);
+Led Led_Create(LEDHW_LED_NUMBER);
 void Led_Destroy(Led *);
 
 LEDHW_STATE Led_GetState(Led);

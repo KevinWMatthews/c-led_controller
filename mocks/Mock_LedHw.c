@@ -11,24 +11,24 @@
 
 //TODO add sanity checks on gpio - don't access off the end of the array!
 
-static uint8_t dummy_led_registers[LEDHW_GPIO_MAX];
+static uint8_t dummy_led_registers[LEDHW_LED_MAX];
 
-void LedHw_Init(LEDHW_GPIO gpio)
+void LedHw_Init(LEDHW_LED_NUMBER gpio)
 {
     dummy_led_registers[gpio] = LEDHW_LED_OFF;
 }
 
-uint8_t LedHw_GetState(LEDHW_GPIO gpio)
+uint8_t LedHw_GetState(LEDHW_LED_NUMBER gpio)
 {
     return dummy_led_registers[gpio];
 }
 
-void LedHw_TurnOn(LEDHW_GPIO gpio)
+void LedHw_TurnOn(LEDHW_LED_NUMBER gpio)
 {
     dummy_led_registers[gpio] = LEDHW_LED_ON;
 }
 
-void LedHw_TurnOff(LEDHW_GPIO gpio)
+void LedHw_TurnOff(LEDHW_LED_NUMBER gpio)
 {
     dummy_led_registers[gpio] = LEDHW_LED_OFF;
 }
