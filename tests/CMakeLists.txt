@@ -12,6 +12,7 @@ add_library(LedControllerLib
 )
 target_link_libraries(LedControllerLib libCppUTest)
 target_include_directories(LedControllerLib PUBLIC "${PROJECT_SOURCE_DIR}/include")
+target_include_directories(LedControllerLib PRIVATE "${PROJECT_SOURCE_DIR}/include_hw")
 # Do NOT put '-include' inside the double quotes
 target_compile_options(LedControllerLib PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorMallocMacros.h")
 
@@ -20,8 +21,18 @@ add_executable(Test_LedController
     Test_Led.cpp
     "${PROJECT_SOURCE_DIR}/mocks/Mock_LedHw.c"
 )
+target_include_directories(Test_LedController PRIVATE "${PROJECT_SOURCE_DIR}/include_hw")
 # Do NOT put '-include' inside the double quotes
 target_compile_options(Test_LedController PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorNewMacros.h")
 target_link_libraries(Test_LedController libCppUTest LedControllerLib)
+
+add_executable(Test_LedHwATtiny861
+    RunAllTests.cpp
+    Test_LedHwATtiny861.cpp
+    "${PROJECT_SOURCE_DIR}/src_hw/LedHw_ATtiny861.c"
+)
+target_include_directories(Test_LedHwATtiny861 PRIVATE "${PROJECT_SOURCE_DIR}/include_hw")
+target_compile_options(Test_LedHwATtiny861 PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorNewMacros.h")
+target_link_libraries(Test_LedHwATtiny861 libCppUTest LedControllerLib)
 
 install (TARGETS Test_LedController DESTINATION bin)
