@@ -62,3 +62,24 @@ TEST(LedHw_ATtiny861, turn_on_can_handle_invalid_led)
 {
     LedHw_TurnOn(LEDHW_LED_MAX);
 }
+
+TEST(LedHw_ATtiny861, turn_led_off)
+{
+    mock().expectOneCall("ATtiny861_GpioSetState")
+        .withParameter("gpio", ATTN861_PA7)
+        .withParameter("state", GPIO_LOW);
+    LedHw_TurnOff(LEDHW_LED_1);
+}
+
+TEST(LedHw_ATtiny861, turn_second_led_off)
+{
+    mock().expectOneCall("ATtiny861_GpioSetState")
+        .withParameter("gpio", ATTN861_PA6)
+        .withParameter("state", GPIO_LOW);
+    LedHw_TurnOff(LEDHW_LED_2);
+}
+
+TEST(LedHw_ATtiny861, turn_off_can_handle_invalid_led)
+{
+    LedHw_TurnOff(LEDHW_LED_MAX);
+}
