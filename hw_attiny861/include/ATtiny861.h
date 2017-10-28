@@ -34,6 +34,6 @@ typedef enum
     ATTN861_PB7         = 15,
     ATTN861_GPIO_MAX    = 16
 } ATTN861_GPIO;
-void ATtiny861_GpioSetAsOutput(ATTN861_GPIO, GPIO_STATE);
+void ATtiny861_GpioSetAsOutput(ATTN861_GPIO gpio, GPIO_STATE initial_state);
 
 #endif

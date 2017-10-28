@@ -6,6 +6,9 @@ add_library(libCppUTest STATIC IMPORTED)
 # TARGET means we will operate on a target, not a directory or source file
 set_property(TARGET libCppUTest PROPERTY IMPORTED_LOCATION "${CPPUTEST_HOME}/lib/libCppUTest.a")
 
+add_library(libCppUTestExt STATIC IMPORTED)
+set_property(TARGET libCppUTestExt PROPERTY IMPORTED_LOCATION "${CPPUTEST_HOME}/lib/libCppUTestExt.a")
+
 # Link against library of project source code
 add_library(LedControllerLib
     "${PROJECT_SOURCE_DIR}/src/Led.c"
@@ -30,9 +33,11 @@ add_executable(Test_LedHwATtiny861
     RunAllTests.cpp
     Test_LedHwATtiny861.cpp
     "${PROJECT_SOURCE_DIR}/src_hw/LedHw_ATtiny861.c"
+    "${PROJECT_SOURCE_DIR}/mocks/Mock_ATtiny861.cpp"
 )
 target_include_directories(Test_LedHwATtiny861 PRIVATE "${PROJECT_SOURCE_DIR}/include_hw")
+target_include_directories(Test_LedHwATtiny861 PRIVATE "${PROJECT_SOURCE_DIR}/hw_attiny861/include")
 target_compile_options(Test_LedHwATtiny861 PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorNewMacros.h")
-target_link_libraries(Test_LedHwATtiny861 libCppUTest LedControllerLib)
+target_link_libraries(Test_LedHwATtiny861 libCppUTest libCppUTestExt LedControllerLib)
 
 install (TARGETS Test_LedController DESTINATION bin)
