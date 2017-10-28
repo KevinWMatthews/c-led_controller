@@ -36,4 +36,8 @@ typedef enum
 } ATTN861_GPIO;
 void ATtiny861_GpioSetAsOutput(ATTN861_GPIO gpio, GPIO_STATE initial_state);
 
+// Set the given pin to a new state.
+// If an invalid pin or state is passed, does nothing.
+void ATtiny861_GpioSetState(ATTN861_GPIO gpio, GPIO_STATE state);
+
 #endif

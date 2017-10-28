@@ -197,3 +197,39 @@ TEST(ATtiny861, set_gpio_as_output_can_handle_invalid_gpio)
     BYTES_EQUAL(0x00, DDRB);
     BYTES_EQUAL(0xff, PORTB);
 }
+
+// TEST(ATtiny861, set_gpio_as_output_can_handle_invalid_state)
+// {
+    // C++ won't allow this. What about C?
+    // ATtiny861_GpioSetAsOutput(ATTN861_GPIO_MAX, 0);
+// }
+
+TEST(ATtiny861, set_output_can_handle_invalid_gpio)
+{
+    ATtiny861_GpioSetState(ATTN861_GPIO_MAX, GPIO_HIGH);
+    BYTES_EQUAL(0x00, DDRA);
+    BYTES_EQUAL(0xff, PORTA);
+    BYTES_EQUAL(0x00, DDRB);
+    BYTES_EQUAL(0xff, PORTB);
+}
+
+TEST(ATtiny861, set_output_can_set_PA0_high)
+{
+    ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_LOW);
+    ATtiny861_GpioSetState(ATTN861_PA0, GPIO_HIGH);
+    BYTES_EQUAL((1<<DDA0), DDRA);
+    BYTES_EQUAL(0xff, PORTA);
+    BYTES_EQUAL(0x00, DDRB);
+    BYTES_EQUAL(0xff, PORTB);
+}
+
+TEST(ATtiny861, set_output_can_set_PA0_low)
+{
+    ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_HIGH);
+    ATtiny861_GpioSetState(ATTN861_PA0, GPIO_LOW);
+
+    BYTES_EQUAL((1<<DDA0), DDRA);
+    BYTES_EQUAL(0xff & ~(1<<PORTA0), PORTA);
+    BYTES_EQUAL(0x00, DDRB);
+    BYTES_EQUAL(0xff, PORTB);
+}
