@@ -7,4 +7,5 @@ Makefile
 
 # Ignore build output
 build/
+build_avr/
 install/

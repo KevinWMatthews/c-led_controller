@@ -12,11 +12,12 @@ set (LedController_VERSION_MAJOR 0)
 set (LedController_VERSION_MINOR 1)
 
 # Add installation targets
-set (CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/install")
+set (CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/install")          # overrides what the user sets using cmake-gui
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 set (CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 
 add_subdirectory(src)
-add_subdirectory(tests)
-add_subdirectory(hw_attiny861/tests)
+# Break testing while I'm learning to cross-compile
+#add_subdirectory(tests)
+#add_subdirectory(hw_attiny861/tests)

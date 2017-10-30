@@ -22,6 +22,19 @@ To configure an out-of-tree build, run
 
 Various make commands can be run from within build/ and will not clutter up the source directory.
 
+To configure an out-of-tree build for cross-compilation,
+
+    * Edit the Toolchain file to be specific to your system.
+        -- CMake expects Toolchain files to be system-specific and are processed before CMake Cache variables are read.
+    * mkdir build-arch
+    * cd build-arch
+    * cmake-guil -DCMAKE\_TOOLCHAIN\_FILE=../Toolchain-avr-ATtiny.cmake ..
+        - Define AVR_TOOLCHAIN_HOME as location where the AVR toolchain is installed
+        - Configure
+        - Generate
+
+Again, various make commands can be run within build-arch/ and will not conflict with builds for the host system or other target architectures.
+
 # Installation
 This project designed to run on an embedded platform rather than be installed on a desktop system.
 Despite this, it is very useful to run a mock application in a desktop environment.
