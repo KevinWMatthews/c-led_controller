@@ -1,3 +1,29 @@
 http://www.atmel.com/tools/atmelavrtoolchainforlinux.aspx
 Sign in (you need to create an account).
 tar -xvf avr8-gnu-toolchain-3.5.4.1709-linux.any.x86_64.tar.gz
+
+Downloaded BeagleBoneBlack toolchain:
+wget https://releases.linaro.org/components/toolchain/binaries/6.2-2016.11/arm-linux-gnueabihf/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf.tar.xz
+
+If you re-run
+    cmake -DCMAKE_TOOLCHAIN_FILE=<Toolchain-*.cmake> ..
+from the command line, you will get the warning:
+    Make Warning:
+      Manually-specified variables were not used by the project:
+
+        CMAKE_TOOLCHAIN_FILE
+
+Sometimes.
+[This is because the file has already been used/processed. If there are changes to the Toolchain file, then this warning will not appear.] Maybe not...
+
+Does CppUTest need to be cross-compiled for the target??
+cd cpputest-3.8/cpputest_build/
+cpputest_build/
+../configure --prefix=/home/kevin/coding/install --build=x86_64 --host=arm-linux-gnueabihf
+make
+make check
+make tdd
+make install
+
+Cross-compiling CppUTest for AVR may not work; it requires cstdlib, which doesn't seem to exist. :/
+As an experiment, move on to the Sitara. I know that CppUTest can be run and compiled for this.

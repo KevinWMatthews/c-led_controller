@@ -1,7 +1,16 @@
+# See https://cmake.org/Wiki/CMake_Cross_Compiling
+# for details on how to flags specific to this cross comiplation:
+    # # this one is important
+    # SET(CMAKE_SYSTEM_NAME eCos)
+    #
+    # # specify the cross compiler
+    # CMAKE_FORCE_C_COMPILER(arm-elf-gcc GNU)
+    # CMAKE_FORCE_CXX_COMPILER(arm-elf-g++ GNU)
+
 # Cache variables have not been read when the Toolchain file is processed.
 # Toolchain files are meant to be specific to the system on which they are run.
-# set (AVR_TOOLCHAIN_HOME /home/kevin/coding/Setup/avr8-gnu-toolchain-linux_x86_64)
-set (AVR_TOOLCHAIN_HOME /home/kmatthews/coding/toolchains/avr8-gnu-toolchain-linux_x86_64)
+set (AVR_TOOLCHAIN_HOME /home/kevin/coding/toolchains/avr8-gnu-toolchain-linux_x86_64)
+# set (AVR_TOOLCHAIN_HOME /home/kmatthews/coding/toolchains/avr8-gnu-toolchain-linux_x86_64)
 
 # Target settings - what we are building for
 # Name of the system: Linux, Windows, Generic
@@ -28,6 +37,6 @@ set (CMAKE_FIND_ROOT_PATH ${AVR_TOOLCHAIN_HOME})
 # Programs are typically used only by the host to build the executable
 set (CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 # Libraries are linked into the executable so they must run on the target
-set (CMAKE_FIND_ROOT_PATH_LIBRARY ONLY)
+set (CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 # Like libraries, these are used in/by the target executable
-set (CMAKE_FIND_ROOT_PATH_INCLUDE ONLY)
+set (CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)

@@ -18,6 +18,11 @@ set (CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 
 add_subdirectory(src)
-# Break testing while I'm learning to cross-compile
-#add_subdirectory(tests)
-#add_subdirectory(hw_attiny861/tests)
+
+# For now, use this to compile tests only on the local PC.
+# In the long run, we'll want to be able to cross-compile tests for,
+# say, a BeagleBone Black. However, this is a lot to figure out.
+#if (${CMAKE_CROSSCOMPILING} STREQUAL "FALSE")
+add_subdirectory(tests)
+add_subdirectory(hw_attiny861/tests)
+#endif()

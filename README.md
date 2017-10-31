@@ -30,7 +30,7 @@ To configure an out-of-tree build for cross-compilation,
     * cd build-arch
     * cmake-gui ..
         - Define CPPUTEST_HOME
-        - Define CMAKE_TOOLCHAIN_FILE=../Toolchain-avr-ATtiny.cmake
+        - Define CMAKE_TOOLCHAIN_FILE=Toolchain-avr-ATtiny.cmake
         - Configure
         - Generate
 

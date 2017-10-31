@@ -1,3 +1,6 @@
+Can't get autotools to compile CppUTest for the sitara; the libraries' .o files are still x86_64.
+Try CMake? I think this requires setting up a Toolchain.cmake file? Eeep.
+
 Finish setting up cross-compilation:
     https://cmake.org/cmake/help/v3.3/manual/cmake-toolchains.7.html
     https://cmake.org/Wiki/CMake_Cross_Compiling
