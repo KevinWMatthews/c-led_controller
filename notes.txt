@@ -1,0 +1,3 @@
+http://www.atmel.com/tools/atmelavrtoolchainforlinux.aspx
+Sign in (you need to create an account).
+tar -xvf avr8-gnu-toolchain-3.5.4.1709-linux.any.x86_64.tar.gz

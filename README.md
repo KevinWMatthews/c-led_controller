@@ -28,8 +28,9 @@ To configure an out-of-tree build for cross-compilation,
         -- CMake expects Toolchain files to be system-specific and are processed before CMake Cache variables are read.
     * mkdir build-arch
     * cd build-arch
-    * cmake-guil -DCMAKE\_TOOLCHAIN\_FILE=../Toolchain-avr-ATtiny.cmake ..
-        - Define AVR_TOOLCHAIN_HOME as location where the AVR toolchain is installed
+    * cmake-gui ..
+        - Define CPPUTEST_HOME
+        - Define CMAKE_TOOLCHAIN_FILE=../Toolchain-avr-ATtiny.cmake
         - Configure
         - Generate
 

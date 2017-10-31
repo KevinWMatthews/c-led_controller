@@ -1,6 +1,7 @@
 # Cache variables have not been read when the Toolchain file is processed.
 # Toolchain files are meant to be specific to the system on which they are run.
-set (AVR_TOOLCHAIN_HOME /home/kevin/coding/Setup/avr8-gnu-toolchain-linux_x86_64)
+# set (AVR_TOOLCHAIN_HOME /home/kevin/coding/Setup/avr8-gnu-toolchain-linux_x86_64)
+set (AVR_TOOLCHAIN_HOME /home/kmatthews/coding/toolchains/avr8-gnu-toolchain-linux_x86_64)
 
 # Target settings - what we are building for
 # Name of the system: Linux, Windows, Generic
