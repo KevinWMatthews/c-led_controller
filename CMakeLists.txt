@@ -2,9 +2,7 @@ cmake_minimum_required (VERSION 2.7.1)
 project (LedController)
 
 # Check that CppUTest is installed on the build system
-if(DEFINED CPPUTEST_HOME)
-    message(STATUS "Using CppUTest found in: ${CPPUTEST_HOME}")
-else()
+if(NOT DEFINED CPPUTEST_HOME)
     message(FATAL_ERROR "CPPUTEST_HOME is not set. You must tell CMake where CppUTest is installed.")
 endif()
 
@@ -26,3 +24,15 @@ add_subdirectory(src)
 add_subdirectory(tests)
 add_subdirectory(hw_attiny861/tests)
 #endif()
+
+message(STATUS "
+-------------------------------------------------------
+Current project options:
+    CMAKE_INSTALL_PREFIX:               ${CMAKE_INSTALL_PREFIX}
+    CPPUTEST_HOME:                      ${CPPUTEST_HOME}
+
+Current compiler options:
+    CC:                                 ${CMAKE_C_COMPILER}
+    CXX:                                ${CMAKE_CXX_COMPILER}
+-------------------------------------------------------"
+)

@@ -13,6 +13,27 @@ from the command line, you will get the warning:
 
         CMAKE_TOOLCHAIN_FILE
 
+
+~~~~~~~~~~~~~~~~~~~~~~~
+Cross-compiling just my app for the BBB:
+    cmake -DCMAKE_TOOLCHAIN_FILE=../Toolchain-beagleboneblack.cmake -DCPPUTEST_HOME=/home/kmatthews/coding/c/install ..
+Be careful about needing to regenerate the cache.
+Does cmake-gui throw all error messages? I put in a bad toolchain and didn't notice....
+
+For CppUTest, trying:
+cmake -DCMAKE_TOOLCHAIN_FILE=../Toolchain-beagleboneblack.cmake -DCPPUTEST_HOME=/home/kmatthews/coding/install -DTESTS=OFF -DCMAKE_INSTALL_PREFIX=/home/kmatthews/coding/c/install ..
+make
+make install
+# make check and make tdd are not available - we'd need to run all of this on the target.
+~~~~~~~~~~~~~~~~~~~~~~~
+#TODO experiment with cmake-gui
+Make sure that you set up the right makefile options! Don't select the default system Unix makefiles... you need to cross compile.
+It gives you a prompt to create a toolchain file.
+Experiment with using cmake-gui when building CPPUTEST. That would be convenient....
+Uncheck tests, enter your cross-compiler details.
+
+
+
 Sometimes.
 [This is because the file has already been used/processed. If there are changes to the Toolchain file, then this warning will not appear.] Maybe not...
 
@@ -26,4 +47,39 @@ make tdd
 make install
 
 Cross-compiling CppUTest for AVR may not work; it requires cstdlib, which doesn't seem to exist. :/
+    Features configured in CppUTest:
+       Using Standard C++ Library:          yes
+       Using Standard C Library:            yes
+
 As an experiment, move on to the Sitara. I know that CppUTest can be run and compiled for this.
+
+
+../configure --prefix=/home/kmatthews/coding/c/install --build=x86_64 --host=arm-linux-gnueabihf CXX=/home/kmatthews/coding/toolchains/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-g++
+Current compiler options:
+   CC:                                  arm-linux-gnueabihf-gcc
+   CXX:                                 /home/kmatthews/coding/toolchains/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-g++
+   LD:                                  /usr/arm-linux-gnueabihf/bin/ld
+    lib_libCppUTest_a-JUnitTestOutput.o: ELF 32-bit LSB relocatable, ARM, EABI5 version 1 (SYSV), not stripped
+
+
+../configure --prefix=/home/kmatthews/coding/c/install --build=x86_64 --host=arm-linux-gnueabihf CXX=/home/kmatthews/coding/toolchains/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-g++ CC=/home/kmatthews/coding/toolchains/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc
+Current compiler options:
+   CC:                                  /home/kmatthews/coding/toolchains/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc
+   CXX:                                 /home/kmatthews/coding/toolchains/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-g++
+   LD:                                  /home/kmatthews/coding/toolchains/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/arm-linux-gnueabihf/bin/ld
+    lib_libCppUTest_a-JUnitTestOutput.o: ELF 32-bit LSB relocatable, ARM, EABI5 version 1 (SYSV), not stripped
+
+
+../configure --prefix=/home/kmatthews/coding/c/install --build=x86_64 --host=arm-linux-gnueabihf CXX=/home/kmatthews/coding/toolchains/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-g++ LD=/home/kmatthews/coding/toolchains/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-ld CC=/home/kmatthews/coding/toolchains/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc
+Current compiler options:
+   CC:                                  /home/kmatthews/coding/toolchains/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc
+   CXX:                                 /home/kmatthews/coding/toolchains/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-g++
+   LD:                                  /home/kmatthews/coding/toolchains/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-ld
+    lib_libCppUTest_a-JUnitTestOutput.o: ELF 32-bit LSB relocatable, ARM, EABI5 version 1 (SYSV), not stripped
+
+../configure --prefix=/home/kmatthews/coding/c/install --build=x86_64 --host=arm-linux-gnueabihf CXX=/home/kmatthews/coding/toolchains/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-g++ LD=/home/kmatthews/coding/toolchains/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-g++ CC=/home/kmatthews/coding/toolchains/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc
+Current compiler options:
+   CC:                                  /home/kmatthews/coding/toolchains/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc
+   CXX:                                 /home/kmatthews/coding/toolchains/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-g++
+   LD:                                  /home/kmatthews/coding/toolchains/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-g++
+    lib_libCppUTest_a-JUnitTestOutput.o: ELF 32-bit LSB relocatable, ARM, EABI5 version 1 (SYSV), not stripped

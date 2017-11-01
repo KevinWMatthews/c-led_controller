@@ -1,4 +1,8 @@
-set (BBB_TOOLCHAIN_HOME /home/kevin/coding/toolchains/avr8-gnu-toolchain-linux_x86_64)#_cpputest)
+# set (BBB_TOOLCHAIN_HOME /home/kevin/coding/toolchains/avr8-gnu-toolchain-linux_x86_64)#_cpputest)
+set (BBB_TOOLCHAIN_HOME /home/kmatthews/coding/toolchains/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf)
+
+message(STATUS "Setting up cross-compiler using toolchain found in:
+${BBB_TOOLCHAIN_HOME}")
 
 set (CMAKE_SYSTEM_NAME Linux)
 
