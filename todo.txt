@@ -6,7 +6,7 @@ Finish setting up cross-compilation:
     https://cmake.org/Wiki/CMake_Cross_Compiling
     https://github.com/danielotero/Generic-avr.cmake/blob/master/Generic-avr.cmake
     https://github.com/mkleemann/cmake-avr/blob/master/generic-gcc-avr.cmake
-    http://nnarain.github.io/2016/03/29/AVR-CMake-Toolchain.htm
+    http://nnarain.github.io/2016/03/29/AVR-CMake-Toolchain.html
 
 CMake is configured to override anything that the user specifies for CMAKE_INSTALL_PREFIX.
 Rewrite CMakeLists to provide a default but give user flexibility?
