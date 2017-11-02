@@ -10,20 +10,15 @@ set (LedController_VERSION_MAJOR 0)
 set (LedController_VERSION_MINOR 1)
 
 # Add installation targets
-set (CMAKE_INSTALL_PREFIX "${PROJECT_SOURCE_DIR}/install")          # overrides user options!
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 set (CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 
 add_subdirectory(src)
 
-# For now, use this to compile tests only on the local PC.
-# In the long run, we'll want to be able to cross-compile tests for,
-# say, a BeagleBone Black. However, this is a lot to figure out.
-#if (${CMAKE_CROSSCOMPILING} STREQUAL "FALSE")
+# Tests can currently be compiled for x86_64 and BeagleBoneBlack. The AVR ATtiny861 (actual target) is a work in progress.
 add_subdirectory(tests)
 add_subdirectory(hw_attiny861/tests)
-#endif()
 
 message(STATUS "
 -------------------------------------------------------

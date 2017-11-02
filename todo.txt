@@ -1,5 +1,4 @@
-Can't get autotools to compile CppUTest for the sitara; the libraries' .o files are still x86_64.
-Try CMake? I think this requires setting up a Toolchain.cmake file? Eeep.
+How to run tests all at once? Hijack CMake's 'make test' target? Create a tew target?
 
 Finish setting up cross-compilation:
     https://cmake.org/cmake/help/v3.3/manual/cmake-toolchains.7.html
@@ -21,3 +20,6 @@ Rethink how hw source code and mock source code is arranged. It's rather like it
 Does C throw an -fpermissive warning?
 
 Test SetState() for all other ATtiny861 GPIOs.
+
+Can't get autotools to compile CppUTest for the sitara; the libraries' .o files are still x86_64.
+Cmake works.

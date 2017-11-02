@@ -10,4 +10,7 @@ build/
 build_avr/
 build_bbb/
 install/
-install_cpputest/
+install_bbb/
+
+# Ignore directories used for CppUTest
+CppUTest/
