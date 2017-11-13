@@ -26,6 +26,3 @@ target_include_directories(Test_ATtiny861 PRIVATE "${PROJECT_SOURCE_DIR}/hw_atti
 target_include_directories(Test_ATtiny861 PRIVATE "${CPPUTEST_HOME}/include")
 target_compile_options(Test_ATtiny861 PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorNewMacros.h")
 target_link_libraries(Test_ATtiny861 libCppUTest ATtiny861Lib)
-
-
-install (TARGETS Test_ATtiny861 DESTINATION bin)

@@ -40,5 +40,3 @@ target_include_directories(Test_LedHwATtiny861 PRIVATE "${PROJECT_SOURCE_DIR}/hw
 target_include_directories(Test_LedHwATtiny861 PRIVATE "${CPPUTEST_HOME}/include")
 target_compile_options(Test_LedHwATtiny861 PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorNewMacros.h")
 target_link_libraries(Test_LedHwATtiny861 libCppUTest libCppUTestExt LedControllerLib)
-
-install (TARGETS Test_LedController DESTINATION bin)
