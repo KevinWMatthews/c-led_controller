@@ -15,6 +15,18 @@ set (CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 
 add_subdirectory(src)
+#TODO the production code will need to compile hw_attiny861, doesn't it?
+# if cross-compiling,
+#   build main app
+#   link against hw_attiny861 library
+# else
+#   do not build main app
+#   link against mock attiny861 hw
+# Both options should build all app tests and hw tests.
+# The difference is that the x86 build links against dummy HW.
+# Remember that the LedHw app uses mock LedHw while the hw_attiny861 library uses mock registers.
+# This is a design decision: should LedHw tests actual registers or should it test function calls
+# to set particular pins?
 
 # Tests can currently be compiled for x86_64 and BeagleBoneBlack. The AVR ATtiny861 (actual target) is a work in progress.
 # I'd like to remove support for the BBB and focus on x86 and ATtiny861 instead.
