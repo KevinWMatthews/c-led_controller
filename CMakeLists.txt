@@ -17,8 +17,9 @@ set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 add_subdirectory(src)
 
 # Tests can currently be compiled for x86_64 and BeagleBoneBlack. The AVR ATtiny861 (actual target) is a work in progress.
+# I'd like to remove support for the BBB and focus on x86 and ATtiny861 instead.
 add_subdirectory(tests)
-add_subdirectory(hw_attiny861/tests)
+add_subdirectory(hw_attiny861/tests)        # This will be a separate library in the long run.
 
 message(STATUS "
 -------------------------------------------------------

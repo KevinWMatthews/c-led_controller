@@ -2,14 +2,28 @@
 #include "BitManip.h"
 #include <avr/io.h>
 
+// ddr: Data Direction Register (DDR)
+//      Set for output, clear for input
+// ddr_bit:
+//      Which bit in DDR control this GPIO.
+// port: Data register (PORT)
+//  When input:
+//      1       Enable internal pull-up
+//      0       Disable internal pull-up
+//  When output:
+//      1       Drive pin high
+//      0       Drive pin low
+// port_bit:
+//      Which port bit controls this gpio.
 typedef struct ATtiny861_Gpio
 {
-    uint8_t * ddr;      // Data Direction Register
+    uint8_t * ddr;
     uint8_t ddr_bit;
-    uint8_t * port;     // Port register
+    uint8_t * port;
     uint8_t port_bit;
 } ATtiny861_Gpio;
 
+// Specify all GPIOs
 static ATtiny861_Gpio gpios[16] = {
     {   // PA0
         .ddr = &DDRA,

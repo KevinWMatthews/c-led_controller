@@ -1,6 +1,7 @@
 #include "LedHw.h"
 #include "ATtiny861.h"
 
+// This function maps schematic LED labels (LEDHW) to pins on the specific chip.
 static ATTN861_GPIO convert_gpio(LEDHW_LED_NUMBER led_number)
 {
     switch (led_number)

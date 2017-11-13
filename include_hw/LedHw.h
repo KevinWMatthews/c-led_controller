@@ -3,6 +3,8 @@
 
 #include <stdint.h>
 
+// This enum specifies LED numbers according to the end-user's perspective.
+// This should match the schematic labels.
 typedef enum
 {
     LEDHW_LED_1     = 0,
