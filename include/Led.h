@@ -15,7 +15,12 @@ typedef enum
 Led Led_Create(LEDHW_LED_NUMBER);
 void Led_Destroy(Led *);
 
-LEDHW_STATE Led_GetState(Led);
+typedef enum
+{
+    LED_OFF = 0,
+    LED_ON  = 1
+} LED_STATE;
+LED_STATE Led_GetState(Led);
 
 // Turn an LED on.
 // Returns 0 on success, < 0 on failure

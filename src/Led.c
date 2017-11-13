@@ -27,9 +27,9 @@ void Led_Destroy(Led *self)
     return;
 }
 
-LEDHW_STATE Led_GetState(Led self)
+LED_STATE Led_GetState(Led self)
 {
-    return LedHw_GetState(self->hw_led);
+    return (LED_STATE)LedHw_GetState(self->hw_led);
 }
 
 LED_RETURN_CODE Led_TurnOn(Led self)
