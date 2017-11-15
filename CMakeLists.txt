@@ -10,11 +10,11 @@ set (LedController_VERSION_MAJOR 0)
 set (LedController_VERSION_MINOR 1)
 
 # Add installation targets
-set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
+#set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 set (CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 
-add_subdirectory(src)
+
 #TODO the production code will need to compile hw_attiny861, doesn't it?
 # if cross-compiling,
 #   build main app
@@ -30,8 +30,13 @@ add_subdirectory(src)
 
 # Tests can currently be compiled for x86_64 and BeagleBoneBlack. The AVR ATtiny861 (actual target) is a work in progress.
 # I'd like to remove support for the BBB and focus on x86 and ATtiny861 instead.
-add_subdirectory(tests)
-add_subdirectory(hw_attiny861/tests)        # This will be a separate library in the long run.
+if (CMAKE_CROSSCOMPILING)
+    add_subdirectory(src)
+else()
+    add_subdirectory(src)
+    add_subdirectory(tests)
+    add_subdirectory(hw_attiny861/tests)        # This will be a separate library in the long run.
+endif()
 
 message(STATUS "
 -------------------------------------------------------
