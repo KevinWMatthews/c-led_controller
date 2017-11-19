@@ -20,7 +20,7 @@ add_executable(Test_ATtiny861
     RunAllTests.cpp
     Test_ATtiny861.cpp
     "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/src/MockHw_ATtiny861.c"
-    "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/src/io.c"
+    "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/src/mock_io.c"
 )
 target_include_directories(Test_ATtiny861 PRIVATE "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/include")
 target_include_directories(Test_ATtiny861 PRIVATE "${CPPUTEST_HOME}/include")
