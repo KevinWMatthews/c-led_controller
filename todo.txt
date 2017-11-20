@@ -1,3 +1,6 @@
+Flash something to the ATtiny!
+Create a Makefile target that will do this.
+
 How to run tests all at once? Hijack CMake's 'make test' target? Create a tew target?
 
 Finish setting up cross-compilation:
