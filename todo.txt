@@ -1,3 +1,5 @@
+Learn the difference between add_custom_target and add_custom_command.
+
 Flash something to the ATtiny!
 Create a Makefile target that will do this.
 
