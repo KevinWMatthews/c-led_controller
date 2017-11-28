@@ -14,6 +14,14 @@ set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 set (CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 
+# Create a Config.h file for this project
+# configure_file(<input> <output>)
+# Copy input file to output file and perform variable substitution.
+configure_file (
+    "${PROJECT_SOURCE_DIR}/include/LedControllerConfig.h.in"
+    "${PROJECT_BINARY_DIR}/include/LedControllerConfig.h"
+    )
+
 
 #TODO the production code will need to compile hw_attiny861, doesn't it?
 # if cross-compiling,

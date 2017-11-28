@@ -50,6 +50,7 @@ add_executable(Test_LedController
 target_include_directories(Test_LedController PRIVATE "${PROJECT_SOURCE_DIR}/include_hw")
 target_compile_options(Test_LedController PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorNewMacros.h")
 target_link_libraries(Test_LedController libCppUTest LedControllerLib)
+install (TARGETS Test_LedController DESTINATION bin)
 
 
 

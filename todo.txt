@@ -4,6 +4,7 @@ Create a Makefile target that will do this.
 How to run tests all at once? Hijack CMake's 'make test' target? Create a tew target?
 
 Finish setting up cross-compilation:
+    https://github.com/davisford/cmake-cpputest
     https://cmake.org/cmake/help/v3.3/manual/cmake-toolchains.7.html
     https://cmake.org/Wiki/CMake_Cross_Compiling
     https://github.com/danielotero/Generic-avr.cmake/blob/master/Generic-avr.cmake
