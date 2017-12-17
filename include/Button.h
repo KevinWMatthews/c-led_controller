@@ -10,7 +10,9 @@ void Button_Destroy(Button * self);
 
 typedef enum
 {
-    BUTTON_RELEASED = 0
+    BUTTON_INVALID  = -1,
+    BUTTON_RELEASED = 0,
+    BUTTON_PRESSED  = 1
 } BUTTON_STATE;
 BUTTON_STATE Button_GetState(Button self);
 

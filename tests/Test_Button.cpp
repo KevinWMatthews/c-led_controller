@@ -1,6 +1,7 @@
 extern "C"
 {
 #include "Button.h"
+#include "Mock_ButtonHw.h"
 }
 
 #include "CppUTest/TestHarness.h"
@@ -11,6 +12,7 @@ TEST_GROUP(Button)
 
     void setup()
     {
+        MockButtonHw_Init();
         button = Button_Create(BUTTONHW_BUTTON_1);
     }
 
@@ -24,10 +26,15 @@ TEST(Button, create_and_destroy_a_button)
 {
 }
 
-// High by default?
 TEST(Button, by_default_button_is_released)
 {
-    CHECK_EQUAL( BUTTON_RELEASED, Button_GetState(button) );
+    LONGS_EQUAL( BUTTON_RELEASED, Button_GetState(button) );
+}
+
+TEST(Button, button_can_be_pressed)
+{
+    MockButtonHw_SetState(BUTTONHW_BUTTON_1, BUTTONHW_PRESSED);
+    LONGS_EQUAL( BUTTON_PRESSED, Button_GetState(button) );
 }
 
 // TEST(Button, can_destroy_a_null_led)

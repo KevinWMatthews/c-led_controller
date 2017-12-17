@@ -2,6 +2,8 @@ Create button interface.
 Toggle LED state with button press.
     -> I think we need to create a ButtonHW interface.
 
+Are buttons high by default? Design the hardware to ensure that this is the case.
+
 Should Test_Led verify that calls were made to the abstraction layer? Or to the HW?
 I'll bet that is should check on some mock HW. Don't we want to verify that the LED state actually changes?
 
