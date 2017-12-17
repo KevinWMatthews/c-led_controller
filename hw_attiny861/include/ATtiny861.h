@@ -48,6 +48,7 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput(ATTN861_GPIO gpio, GPIO_STATE in
 
 // Set the given pin to a new state.
 // If an invalid pin or state is passed, does nothing.
-void ATtiny861_GpioSetState(ATTN861_GPIO gpio, GPIO_STATE state);
+//TODO what does this do if the gpio is an input? Re-read the manual....
+ATTINY861_STATUS_CODE ATtiny861_GpioSetState(ATTN861_GPIO gpio, GPIO_STATE state);
 
 #endif
