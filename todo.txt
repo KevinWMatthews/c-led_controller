@@ -1,3 +1,8 @@
+Create button interface.
+Toggle LED state with button press.
+
+Rename HW library from ATtiny861 to HwATtiny861
+
 Learn the difference between add_custom_target and add_custom_command.
 
 Flash something to the ATtiny!
@@ -29,3 +34,7 @@ Test SetState() for all other ATtiny861 GPIOs.
 
 Can't get autotools to compile CppUTest for the sitara; the libraries' .o files are still x86_64.
 Cmake works.
+
+Expand tests is HW library - test all GPIO.
+
+Double-check tests in LedHw layer. Did we get everything?
