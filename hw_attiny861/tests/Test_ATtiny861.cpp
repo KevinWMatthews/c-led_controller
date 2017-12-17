@@ -27,7 +27,7 @@ TEST(ATtiny861, after_init_pins_set_to_input_with_pullup_high)
     BYTES_EQUAL(0xff, PORTB);
 }
 
-TEST(ATtiny861, set_gpio_PA0_as_output_low)
+TEST(ATtiny861, set_PA0_as_output_low)
 {
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_LOW) );
     BYTES_EQUAL((1<<DDA0), DDRA);
@@ -36,7 +36,7 @@ TEST(ATtiny861, set_gpio_PA0_as_output_low)
     BYTES_EQUAL(0xff, PORTB);
 }
 
-TEST(ATtiny861, set_gpio_PA1_as_output_low)
+TEST(ATtiny861, set_PA1_as_output_low)
 {
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PA1, GPIO_LOW) );
     BYTES_EQUAL((1<<DDA1), DDRA);
@@ -45,7 +45,7 @@ TEST(ATtiny861, set_gpio_PA1_as_output_low)
     BYTES_EQUAL(0xff, PORTB);
 }
 
-TEST(ATtiny861, set_gpio_PA2_as_output_low)
+TEST(ATtiny861, set_PA2_as_output_low)
 {
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PA2, GPIO_LOW) );
     BYTES_EQUAL((1<<DDA2), DDRA);
@@ -54,7 +54,7 @@ TEST(ATtiny861, set_gpio_PA2_as_output_low)
     BYTES_EQUAL(0xff, PORTB);
 }
 
-TEST(ATtiny861, set_gpio_PA3_as_output_low)
+TEST(ATtiny861, set_PA3_as_output_low)
 {
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PA3, GPIO_LOW) );
     BYTES_EQUAL((1<<DDA3), DDRA);
@@ -63,7 +63,7 @@ TEST(ATtiny861, set_gpio_PA3_as_output_low)
     BYTES_EQUAL(0xff, PORTB);
 }
 
-TEST(ATtiny861, set_gpio_PA4_as_output_low)
+TEST(ATtiny861, set_PA4_as_output_low)
 {
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PA4, GPIO_LOW) );
     BYTES_EQUAL((1<<DDA4), DDRA);
@@ -72,7 +72,7 @@ TEST(ATtiny861, set_gpio_PA4_as_output_low)
     BYTES_EQUAL(0xff, PORTB);
 }
 
-TEST(ATtiny861, set_gpio_PA5_as_output_low)
+TEST(ATtiny861, set_PA5_as_output_low)
 {
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PA5, GPIO_LOW) );
     BYTES_EQUAL((1<<DDA5), DDRA);
@@ -81,7 +81,7 @@ TEST(ATtiny861, set_gpio_PA5_as_output_low)
     BYTES_EQUAL(0xff, PORTB);
 }
 
-TEST(ATtiny861, set_gpio_PA6_as_output_low)
+TEST(ATtiny861, set_PA6_as_output_low)
 {
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PA6, GPIO_LOW) );
     BYTES_EQUAL((1<<DDA6), DDRA);
@@ -90,7 +90,7 @@ TEST(ATtiny861, set_gpio_PA6_as_output_low)
     BYTES_EQUAL(0xff, PORTB);
 }
 
-TEST(ATtiny861, set_gpio_PA7_as_output_low)
+TEST(ATtiny861, set_PA7_as_output_low)
 {
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PA7, GPIO_LOW) );
     BYTES_EQUAL((1<<DDA7), DDRA);
@@ -99,7 +99,7 @@ TEST(ATtiny861, set_gpio_PA7_as_output_low)
     BYTES_EQUAL(0xff, PORTB);
 }
 
-TEST(ATtiny861, set_gpio_PA0_as_output_high)
+TEST(ATtiny861, set_PA0_as_output_high)
 {
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_HIGH) );
     BYTES_EQUAL((1<<DDA0), DDRA);
@@ -108,7 +108,7 @@ TEST(ATtiny861, set_gpio_PA0_as_output_high)
     BYTES_EQUAL(0xff, PORTB);
 }
 
-TEST(ATtiny861, set_gpio_PB0_as_output_low)
+TEST(ATtiny861, set_PB0_as_output_low)
 {
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PB0, GPIO_LOW) );
     BYTES_EQUAL(0x00, DDRA);
@@ -117,7 +117,7 @@ TEST(ATtiny861, set_gpio_PB0_as_output_low)
     BYTES_EQUAL(0xff & ~(1<<PORTB0), PORTB);
 }
 
-TEST(ATtiny861, set_gpio_PB1_as_output_low)
+TEST(ATtiny861, set_PB1_as_output_low)
 {
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PB1, GPIO_LOW) );
     BYTES_EQUAL(0x00, DDRA);
@@ -126,7 +126,7 @@ TEST(ATtiny861, set_gpio_PB1_as_output_low)
     BYTES_EQUAL(0xff & ~(1<<PORTB1), PORTB);
 }
 
-TEST(ATtiny861, set_gpio_PB2_as_output_low)
+TEST(ATtiny861, set_PB2_as_output_low)
 {
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PB2, GPIO_LOW) );
     BYTES_EQUAL(0x00, DDRA);
@@ -135,7 +135,7 @@ TEST(ATtiny861, set_gpio_PB2_as_output_low)
     BYTES_EQUAL(0xff & ~(1<<PORTB2), PORTB);
 }
 
-TEST(ATtiny861, set_gpio_PB3_as_output_low)
+TEST(ATtiny861, set_PB3_as_output_low)
 {
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PB3, GPIO_LOW) );
     BYTES_EQUAL(0x00, DDRA);
@@ -144,7 +144,7 @@ TEST(ATtiny861, set_gpio_PB3_as_output_low)
     BYTES_EQUAL(0xff & ~(1<<PORTB3), PORTB);
 }
 
-TEST(ATtiny861, set_gpio_PB4_as_output_low)
+TEST(ATtiny861, set_PB4_as_output_low)
 {
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PB4, GPIO_LOW) );
     BYTES_EQUAL(0x00, DDRA);
@@ -153,7 +153,7 @@ TEST(ATtiny861, set_gpio_PB4_as_output_low)
     BYTES_EQUAL(0xff & ~(1<<PORTB4), PORTB);
 }
 
-TEST(ATtiny861, set_gpio_PB5_as_output_low)
+TEST(ATtiny861, set_PB5_as_output_low)
 {
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PB5, GPIO_LOW) );
     BYTES_EQUAL(0x00, DDRA);
@@ -162,7 +162,7 @@ TEST(ATtiny861, set_gpio_PB5_as_output_low)
     BYTES_EQUAL(0xff & ~(1<<PORTB5), PORTB);
 }
 
-TEST(ATtiny861, set_gpio_PB6_as_output_low)
+TEST(ATtiny861, set_PB6_as_output_low)
 {
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PB6, GPIO_LOW) );
     BYTES_EQUAL(0x00, DDRA);
@@ -171,7 +171,7 @@ TEST(ATtiny861, set_gpio_PB6_as_output_low)
     BYTES_EQUAL(0xff & ~(1<<PORTB6), PORTB);
 }
 
-TEST(ATtiny861, set_gpio_PB7_as_output_low)
+TEST(ATtiny861, set_PB7_as_output_low)
 {
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PB7, GPIO_LOW) );
     BYTES_EQUAL(0x00, DDRA);
@@ -180,7 +180,7 @@ TEST(ATtiny861, set_gpio_PB7_as_output_low)
     BYTES_EQUAL(0xff & ~(1<<PORTB7), PORTB);
 }
 
-TEST(ATtiny861, set_gpio_PB0_as_output_high)
+TEST(ATtiny861, set_PB0_as_output_high)
 {
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PB0, GPIO_HIGH) );
     BYTES_EQUAL(0x00, DDRA);
@@ -189,7 +189,7 @@ TEST(ATtiny861, set_gpio_PB0_as_output_high)
     BYTES_EQUAL(0xff, PORTB);
 }
 
-TEST(ATtiny861, set_gpio_as_output_will_not_set_invalid_gpio)
+TEST(ATtiny861, will_not_set_invalid_gpio_as_output)
 {
     LONGS_EQUAL( ATTINY861_GPIO_INVALID, ATtiny861_GpioSetAsOutput(ATTN861_GPIO_MAX, GPIO_LOW) );
     BYTES_EQUAL(0x00, DDRA);
@@ -204,7 +204,7 @@ TEST(ATtiny861, set_gpio_as_output_will_not_set_invalid_gpio)
     // LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_GPIO_MAX, 0) );
 // }
 
-TEST(ATtiny861, set_output_can_set_PA0_high)
+TEST(ATtiny861, set_PA0_state_high)
 {
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_LOW) );
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetState(ATTN861_PA0, GPIO_HIGH) );
@@ -214,7 +214,7 @@ TEST(ATtiny861, set_output_can_set_PA0_high)
     BYTES_EQUAL(0xff, PORTB);
 }
 
-TEST(ATtiny861, set_output_can_set_PA0_low)
+TEST(ATtiny861, set_PA0_state_low)
 {
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_HIGH) );
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetState(ATTN861_PA0, GPIO_LOW) );
