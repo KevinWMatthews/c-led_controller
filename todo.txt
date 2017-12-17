@@ -1,5 +1,11 @@
 Create button interface.
 Toggle LED state with button press.
+    -> I think we need to create a ButtonHW interface.
+
+Should Test_Led verify that calls were made to the abstraction layer? Or to the HW?
+I'll bet that is should check on some mock HW. Don't we want to verify that the LED state actually changes?
+
+Later on we'll need to verify that a single GPIO is not used twice!!
 
 Rename HW library from ATtiny861 to HwATtiny861
 

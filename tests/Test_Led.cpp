@@ -51,7 +51,7 @@ TEST(Led, can_turn_led_on)
 
 TEST(Led, can_turn_led_off)
 {
-    LED_SUCCESS, Led_TurnOn(led);
+    Led_TurnOn(led);
     CHECK_EQUAL(LED_SUCCESS, Led_TurnOff(led));
     CHECK_EQUAL(LED_OFF, Led_GetState(led));
 }

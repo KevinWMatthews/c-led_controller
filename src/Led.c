@@ -29,6 +29,7 @@ void Led_Destroy(Led *self)
 
 LED_STATE Led_GetState(Led self)
 {
+    // LED_STATE is mapped directly to LEDHW_STATE.
     return (LED_STATE)LedHw_GetState(self->hw_led);
 }
 
