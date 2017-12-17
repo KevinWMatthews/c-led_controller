@@ -224,3 +224,13 @@ TEST(ATtiny861, set_output_can_set_PA0_low)
     BYTES_EQUAL(0x00, DDRB);
     BYTES_EQUAL(0xff, PORTB);
 }
+
+TEST(ATtiny861, will_not_set_state_of_invalid_gpio)
+{
+    LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_HIGH) );
+    LONGS_EQUAL( ATTINY861_GPIO_INVALID, ATtiny861_GpioSetState(ATTN861_GPIO_MAX, GPIO_LOW) );
+    BYTES_EQUAL((1<<DDA0), DDRA);
+    BYTES_EQUAL(0xff, PORTA);
+    BYTES_EQUAL(0x00, DDRB);
+    BYTES_EQUAL(0xff, PORTB);
+}

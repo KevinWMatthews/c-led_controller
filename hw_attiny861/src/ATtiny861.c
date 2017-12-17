@@ -172,10 +172,10 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput(ATTN861_GPIO gpio, GPIO_STATE in
 
 ATTINY861_STATUS_CODE ATtiny861_GpioSetState(ATTN861_GPIO gpio, GPIO_STATE state)
 {
-    // if (gpio >= ATTN861_GPIO_MAX)
-    // {
-        // return;
-    // }
+    if (gpio >= ATTN861_GPIO_MAX)
+    {
+        return ATTINY861_GPIO_INVALID;
+    }
     set_gpio_state(&gpios[gpio], state);
     return ATTINY861_SUCCESS;
 }
