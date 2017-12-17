@@ -31,6 +31,7 @@ set_property(TARGET libCppUTestExt PROPERTY IMPORTED_LOCATION "${CPPUTEST_HOME}/
 # This enables us to use link-time substitution to swap in mock hardware modules.
 add_library(LedControllerLib
     "${PROJECT_SOURCE_DIR}/src/Led.c"
+    "${PROJECT_SOURCE_DIR}/src/Button.c"
 )
 target_include_directories(LedControllerLib PUBLIC "${PROJECT_SOURCE_DIR}/include")
 target_include_directories(LedControllerLib PRIVATE "${PROJECT_SOURCE_DIR}/include_hw")
@@ -42,16 +43,24 @@ target_link_libraries(LedControllerLib libCppUTest)
 ###################################################################
 # Create test executable for hardware-independent production code #
 ###################################################################
+# I am not sure if we would rather compile all LedController tests
+# into a single executable or if we would rather have separate
+# executables for each module.
+# At the moment I will use a monolithic executable for hardware-independent
+# production code and run tests for a specific module using CppUTest flags:
+#   -g <group>      contains group
+#   -sg <group>     matches group exactly
+#   -lg             print all group names
 add_executable(Test_LedController
     RunAllTests.cpp
     Test_Led.cpp
+    Test_Button.cpp
     "${PROJECT_SOURCE_DIR}/mocks/Mock_LedHw.c"
 )
 target_include_directories(Test_LedController PRIVATE "${PROJECT_SOURCE_DIR}/include_hw")
 target_compile_options(Test_LedController PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorNewMacros.h")
 target_link_libraries(Test_LedController libCppUTest LedControllerLib)
 install (TARGETS Test_LedController DESTINATION bin)
-
 
 
 #######################################################
