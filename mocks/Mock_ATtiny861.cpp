@@ -5,11 +5,12 @@ extern "C"
 
 #include "CppUTestExt/MockSupport.h"
 
-void ATtiny861_GpioSetAsOutput(ATTN861_GPIO gpio, GPIO_STATE initial_state)
+ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput(ATTN861_GPIO gpio, GPIO_STATE initial_state)
 {
     mock().actualCall("ATtiny861_GpioSetAsOutput")
         .withParameter("gpio", gpio)
         .withParameter("initial_state", initial_state);
+    return (ATTINY861_STATUS_CODE)mock().intReturnValue();
 }
 
 void ATtiny861_GpioSetState(ATTN861_GPIO gpio, GPIO_STATE state)

@@ -159,14 +159,15 @@ static void set_gpio_state(ATtiny861_Gpio *gpio, GPIO_STATE state)
     }
 }
 
-void ATtiny861_GpioSetAsOutput(ATTN861_GPIO gpio, GPIO_STATE initial_state)
+ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput(ATTN861_GPIO gpio, GPIO_STATE initial_state)
 {
     if (gpio >= ATTN861_GPIO_MAX)
     {
-        return;
+        return ATTINY861_GPIO_INVALID;
     }
     set_gpio_as_output(&gpios[gpio]);
     set_gpio_state(&gpios[gpio], initial_state);
+    return ATTINY861_SUCCESS;
 }
 
 void ATtiny861_GpioSetState(ATTN861_GPIO gpio, GPIO_STATE state)

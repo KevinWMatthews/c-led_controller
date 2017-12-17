@@ -34,7 +34,17 @@ typedef enum
     ATTN861_PB7         = 15,
     ATTN861_GPIO_MAX    = 16
 } ATTN861_GPIO;
-void ATtiny861_GpioSetAsOutput(ATTN861_GPIO gpio, GPIO_STATE initial_state);
+
+typedef enum
+{
+    ATTINY861_GPIO_INVALID  = -1,
+    ATTINY861_SUCCESS       = 0
+} ATTINY861_STATUS_CODE;
+
+// Set the given gpio as an output.
+// Specify if gpio should be driven high or low after initialization.
+// If an invalid pin or state is passed, does nothing.
+ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput(ATTN861_GPIO gpio, GPIO_STATE initial_state);
 
 // Set the given pin to a new state.
 // If an invalid pin or state is passed, does nothing.
