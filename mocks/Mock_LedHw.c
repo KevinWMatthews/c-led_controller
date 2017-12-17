@@ -13,7 +13,7 @@
 
 static uint8_t dummy_led_registers[LEDHW_LED_MAX];
 
-void LedHw_Init(LEDHW_LED_NUMBER gpio)
+LEDHW_STATUS_CODE LedHw_Init(LEDHW_LED_NUMBER gpio)
 {
     dummy_led_registers[gpio] = LEDHW_LED_OFF;
 }
@@ -23,12 +23,12 @@ uint8_t LedHw_GetState(LEDHW_LED_NUMBER gpio)
     return dummy_led_registers[gpio];
 }
 
-void LedHw_TurnOn(LEDHW_LED_NUMBER gpio)
+LEDHW_STATUS_CODE LedHw_TurnOn(LEDHW_LED_NUMBER gpio)
 {
     dummy_led_registers[gpio] = LEDHW_LED_ON;
 }
 
-void LedHw_TurnOff(LEDHW_LED_NUMBER gpio)
+LEDHW_STATUS_CODE LedHw_TurnOff(LEDHW_LED_NUMBER gpio)
 {
     dummy_led_registers[gpio] = LEDHW_LED_OFF;
 }

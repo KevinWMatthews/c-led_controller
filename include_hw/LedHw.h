@@ -18,16 +18,22 @@ typedef enum
     LEDHW_LED_ON  = 1
 } LEDHW_STATE;
 
+typedef enum
+{
+    LEDHW_INVALID_LED   = -1,
+    LEDHW_SUCCESS       = 0
+} LEDHW_STATUS_CODE;
+
 // Initialize the physical hardware so it can control an LED.
 // Verify that the LED is off.
-void LedHw_Init(LEDHW_LED_NUMBER led_number);
+LEDHW_STATUS_CODE LedHw_Init(LEDHW_LED_NUMBER led_number);
 
 uint8_t LedHw_GetState(LEDHW_LED_NUMBER led_number);
 
 // Turn an LED on.
-void LedHw_TurnOn(LEDHW_LED_NUMBER led_number);
+LEDHW_STATUS_CODE LedHw_TurnOn(LEDHW_LED_NUMBER led_number);
 
 // Turn an LED on.
-void LedHw_TurnOff(LEDHW_LED_NUMBER led_number);
+LEDHW_STATUS_CODE LedHw_TurnOff(LEDHW_LED_NUMBER led_number);
 
 #endif
