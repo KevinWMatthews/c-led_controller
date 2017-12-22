@@ -14,7 +14,11 @@ Button Button_Create(BUTTONHW_BUTTON_NUMBER button_number)
 
 void Button_Destroy(Button * self)
 {
-    free(*self);
+    if (self)
+    {
+        free(*self);
+        *self = NULL;
+    }
 }
 
 BUTTON_STATE Button_GetState(Button self)
