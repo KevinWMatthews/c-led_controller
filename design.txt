@@ -26,6 +26,25 @@ LedController:
 Drop this function within a thread.
 Should the LedController do this?
 
+Should the ButtonObserver have a thread? Possibly. This would mean that we would have a thread for each button.
+Hey, my hardware may not even support threads?
+Let's have the LedController specify the loop/thread/detection timing mechanism.
+It will use a loop.
+    Create Led
+    Create Button
+    Register callbacks
+
+    Every n milliseconds,
+        ButtonObserver_CheckState
+            This will check the button state and execute the appropriate callbacks.
+
+We will test the callbacks.
+We will not test the loop? I don't know how to test code that is in an infinite loop.
+This is to specifically check that the Button is wired to the LED.
+    When the button is not pressed, the LED is off.
+    When button is pressed, the LED turns on.
+    When button is released, the LED turns off.
+    And again.
 
 
 
