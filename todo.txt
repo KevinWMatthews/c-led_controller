@@ -46,3 +46,7 @@ Cmake works.
 Expand tests is HW library - test all GPIO.
 
 Double-check tests in LedHw layer. Did we get everything?
+
+Add CppUTestExt to all test executables. This enables malloc Memory checking!!
+
+How to check for calloc fail?

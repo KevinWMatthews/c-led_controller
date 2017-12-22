@@ -10,6 +10,7 @@ typedef enum
 
 typedef enum
 {
+    BUTTONHW_INVALID    = -1,
     BUTTONHW_RELEASED   = 0,
     BUTTONHW_PRESSED    = 1
 } BUTTONHW_STATE;
