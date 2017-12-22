@@ -30,6 +30,7 @@ set_property(TARGET libCppUTestExt PROPERTY IMPORTED_LOCATION "${CPPUTEST_HOME}/
 ##########################################################
 # This enables us to use link-time substitution to swap in mock hardware modules.
 add_library(LedControllerLib
+    "${PROJECT_SOURCE_DIR}/src/LedController.c"
     "${PROJECT_SOURCE_DIR}/src/Led.c"
     "${PROJECT_SOURCE_DIR}/src/Button.c"
 )
@@ -53,6 +54,7 @@ target_link_libraries(LedControllerLib libCppUTest)
 #   -lg             print all group names
 add_executable(Test_LedController
     RunAllTests.cpp
+    Test_LedController.cpp
     Test_Led.cpp
     Test_Button.cpp
     "${PROJECT_SOURCE_DIR}/mocks/Mock_LedHw.c"
