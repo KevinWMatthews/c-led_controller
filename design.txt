@@ -1,6 +1,35 @@
 Brainstorming on what this program could do.
 
-Let's start simple: push a button and toggle the LED's state.
+Let's start simple: turn an LED on when a button is pushed. Turn the LED off when the button is released.
+We want to be able to test this independent of the hardware; use the mock interfaces.
+
+Push button             -> LED on
+Release button          -> LED off
+
+ButtonObserver:
+    Create a function that monitors a button press:
+        If button released,
+            check for button press.
+        If button pressed,
+            check for button release.
+
+    This requires knowledge of the button state!
+    Either that or if the existing state has already been processed, that is, have callbacks already been executed.
+
+    Rather than toggling the LED within this thread, provide a callback.
+        We could have one callback that provides state or have two callbacks, one for press and the other for release:
+            on_button_press(void)
+            on_button_release(void)
+
+LedController:
+    Register callbacks with ButtonObserver
+Drop this function within a thread.
+Should the LedController do this?
+
+
+
+
+Now let's get more complex: push a button and toggle the LED's state.
 We could drop this directly into main but then we can't test it except on the hardware.
 Create an abstraction layer so we can run tests.
 
@@ -22,7 +51,7 @@ How to detect button state change? Must be real-time and track press/release:
     Store button initial state (released?).
     When a button press is detected,
         Set a flag that this button press has been processed.
-            If the LED state change encounteres an error, tough; the button press has been processed.
+            If the LED state change encounters an error, tough; the button press has been processed.
         Change the LED state.
     While the button is still pressed,
         do nothing.

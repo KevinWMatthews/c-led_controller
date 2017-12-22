@@ -1,0 +1,10 @@
+ButtonObserver can be created and destroyed.
+
+ButtonObserver does not register state change on init:
+    button is released by default?
+    perhaps we should allow the default state to be configured
+
+Detect a state change and call a callback:
+    When button is pressed, callback.
+    When button is released, callback.
+    etc.
