@@ -1,5 +1,7 @@
 Test LedController module
 
+Remove initial state from ButtonObserver. It is unneeded in the foreseeable future.
+
 Create button interface.
 Toggle LED state with button press.
     -> I think we need to create a ButtonHW interface.
