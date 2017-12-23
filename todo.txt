@@ -54,3 +54,6 @@ Double-check tests in LedHw layer. Did we get everything?
 Add CppUTestExt to all test executables. This enables malloc Memory checking!!
 
 How to check for calloc fail?
+
+Why doesn't the Makefile throw an error if I forget to return a value?
+    This is when a C++ function is calling C code.
