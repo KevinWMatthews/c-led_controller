@@ -6,13 +6,15 @@
 
 typedef struct LedControllerStruct * LedController;
 
-LedController LedController_Create(ButtonObserver observer, Led led);
-void LedController_Destroy(LedController * self);
-
 typedef enum
 {
     LEDCONTROLLER_SUCCESS   = 0
 } LEDCONTROLLER_STATUS;
-LEDCONTROLLER_STATUS LedController_Update(LedController self);
+
+// This is a single-instance module!
+LEDCONTROLLER_STATUS LedController_Create(ButtonObserver observer, Led led);
+void LedController_Destroy(void);
+
+LEDCONTROLLER_STATUS LedController_Update(void);
 
 #endif

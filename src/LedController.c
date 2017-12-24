@@ -13,28 +13,24 @@ static LedControllerStruct led_controller;
  */
 static void on_button_press(void)
 {
-    //TODO this has to reference a file-scope variable!
-    //This means that it is/will be tricky to have multiple LedControllers.
-    //Should we have one controller monitor several buttons? Probably.
-    //I guess that we want this object to controll all Led's
     Led_TurnOn(led_controller.led);
 }
 
-LedController LedController_Create(ButtonObserver observer, Led led)
+LEDCONTROLLER_STATUS LedController_Create(ButtonObserver observer, Led led)
 {
     led_controller.led = led;
     led_controller.observer = observer;
     ButtonObserver_RegisterOnPressCallback(led_controller.observer, on_button_press);
-    return &led_controller;
+    return LEDCONTROLLER_SUCCESS;
 }
 
-void LedController_Destroy(LedController * self)
+void LedController_Destroy(void)
 {
     return;
 }
 
-LEDCONTROLLER_STATUS LedController_Update(LedController self)
+LEDCONTROLLER_STATUS LedController_Update(void)
 {
-    ButtonObserver_CheckState(self->observer);
+    ButtonObserver_CheckState(led_controller.observer);
     return LEDCONTROLLER_SUCCESS;
 }
