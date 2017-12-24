@@ -16,11 +16,17 @@ static void on_button_press(void)
     Led_TurnOn(led_controller.led);
 }
 
+static void on_button_release(void)
+{
+    Led_TurnOff(led_controller.led);
+}
+
 LEDCONTROLLER_STATUS LedController_Create(ButtonObserver observer, Led led)
 {
     led_controller.led = led;
     led_controller.observer = observer;
     ButtonObserver_RegisterOnPressCallback(led_controller.observer, on_button_press);
+    ButtonObserver_RegisterOnReleaseCallback(led_controller.observer, on_button_release);
     return LEDCONTROLLER_SUCCESS;
 }
 

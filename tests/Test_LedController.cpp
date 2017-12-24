@@ -55,3 +55,14 @@ TEST(LedController, turn_led_on_when_button_is_pressed)
 
     LONGS_EQUAL( LED_ON, Led_GetState(led) );
 }
+
+TEST(LedController, turn_led_off_when_button_is_released)
+{
+    MockButtonHw_SetState(BUTTONHW_BUTTON_1, BUTTONHW_PRESSED);
+    LedController_Update();     // Turn LED on.
+
+    MockButtonHw_SetState(BUTTONHW_BUTTON_1, BUTTONHW_RELEASED);
+    LedController_Update();     // Turn LED off
+
+    LONGS_EQUAL( LED_OFF, Led_GetState(led) );
+}
