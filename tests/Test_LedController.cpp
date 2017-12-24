@@ -66,3 +66,24 @@ TEST(LedController, turn_led_off_when_button_is_released)
 
     LONGS_EQUAL( LED_OFF, Led_GetState(led) );
 }
+
+TEST(LedController, keep_led_on_when_button_is_kept_pressed)
+{
+    MockButtonHw_SetState(BUTTONHW_BUTTON_1, BUTTONHW_PRESSED);
+    LedController_Update();
+    LedController_Update();
+
+    LONGS_EQUAL( LED_ON, Led_GetState(led) );
+}
+
+TEST(LedController, keep_led_off_when_button_is_kept_released)
+{
+    MockButtonHw_SetState(BUTTONHW_BUTTON_1, BUTTONHW_PRESSED);
+    LedController_Update();     // Turn LED on.
+
+    MockButtonHw_SetState(BUTTONHW_BUTTON_1, BUTTONHW_RELEASED);
+    LedController_Update();     // Turn LED off
+    LedController_Update();
+
+    LONGS_EQUAL( LED_OFF, Led_GetState(led) );
+}
