@@ -8,7 +8,8 @@ typedef struct LedControllerStruct * LedController;
 
 typedef enum
 {
-    LEDCONTROLLER_SUCCESS   = 0
+    LEDCONTROLLER_ALREADY_CREATED   = -1,
+    LEDCONTROLLER_SUCCESS           = 0
 } LEDCONTROLLER_STATUS;
 
 // This is a single-instance module!

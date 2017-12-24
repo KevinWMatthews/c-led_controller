@@ -20,7 +20,7 @@ TEST_GROUP(LedController)
         led = Led_Create(LEDHW_LED_1);
         button = Button_Create(BUTTONHW_BUTTON_1);
         observer = ButtonObserver_Create(button, BUTTON_RELEASED);
-        LedController_Create(observer, led);
+        ret = LedController_Create(observer, led);
     }
 
     void teardown()
@@ -32,8 +32,24 @@ TEST_GROUP(LedController)
     }
 };
 
+/*
+ * Create and destroy
+ */
 TEST(LedController, can_be_created_and_destroyed)
 {
+    LONGS_EQUAL( LEDCONTROLLER_SUCCESS, ret );
+}
+
+TEST(LedController, can_not_be_created_twice)
+{
+    ret = LedController_Create(observer, led);
+
+    LONGS_EQUAL( LEDCONTROLLER_ALREADY_CREATED, ret );
+}
+
+TEST(LedController, can_be_destroyed_twice)
+{
+    LedController_Destroy();
 }
 
 TEST(LedController, do_nothing_when_button_is_not_pressed)
