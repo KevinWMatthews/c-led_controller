@@ -8,10 +8,10 @@ extern "C"
 
 TEST_GROUP(LedController)
 {
-    LEDCONTROLLER_STATUS ret;
     Led led;
     Button button;
     ButtonObserver observer;
+    LEDCONTROLLER_STATUS ret;
 
     void setup()
     {
@@ -41,22 +41,17 @@ TEST(LedController, do_nothing_when_button_is_not_pressed)
     MockButtonHw_SetState(BUTTONHW_BUTTON_1, BUTTONHW_RELEASED);
 
     ret = LedController_Update();
+
     LONGS_EQUAL( LEDCONTROLLER_SUCCESS, ret );
     LONGS_EQUAL( LED_OFF, Led_GetState(led) );
 }
 
-TEST(LedController, turn_on_led_when_button_is_pressed)
+TEST(LedController, turn_led_on_when_button_is_pressed)
 {
-    LED_STATE led_state_1, led_state_2;
     // ButtonHw initial state is released.
-
-    LedController_Update();
-    led_state_1 = Led_GetState(led);
 
     MockButtonHw_SetState(BUTTONHW_BUTTON_1, BUTTONHW_PRESSED);
     LedController_Update();
-    led_state_2 = Led_GetState(led);
 
-    LONGS_EQUAL( LED_OFF, led_state_1 );
-    LONGS_EQUAL( LED_ON, led_state_2 );
+    LONGS_EQUAL( LED_ON, Led_GetState(led) );
 }
