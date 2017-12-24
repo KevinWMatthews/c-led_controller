@@ -52,6 +52,9 @@ TEST(LedController, can_be_destroyed_twice)
     LedController_Destroy();
 }
 
+/*
+ * Button/LED behavior
+ */
 TEST(LedController, do_nothing_when_button_is_not_pressed)
 {
     MockButtonHw_SetState(BUTTONHW_BUTTON_1, BUTTONHW_RELEASED);
@@ -99,6 +102,15 @@ TEST(LedController, keep_led_off_when_button_is_kept_released)
 
     MockButtonHw_SetState(BUTTONHW_BUTTON_1, BUTTONHW_RELEASED);
     LedController_Update();     // Turn LED off
+    LedController_Update();
+
+    LONGS_EQUAL( LED_OFF, Led_GetState(led) );
+}
+
+TEST(LedController, do_nothing_on_button_failure)
+{
+    // LED is initially off.
+    MockButtonHw_SetState(BUTTONHW_BUTTON_1, BUTTONHW_INVALID);
     LedController_Update();
 
     LONGS_EQUAL( LED_OFF, Led_GetState(led) );
