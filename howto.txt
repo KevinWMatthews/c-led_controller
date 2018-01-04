@@ -45,12 +45,23 @@ Build CppUTest:
         make install
         # Run tests manually, at the moment.
 
-    Cross-compilation for the AVR ATtiny861 is not yet complete.
-        Must compile with out C stdlib (and C++ stdlib?).
-        Tests are overflowing .text
-        Mocks need to be removed - can't find all dependencies. However, they shouldn't be needed; use real memory registers.
-        Remove CppUTestExt as well?
-        Learn how to pass correct compiler options.
+    Cross-compilation for the AVR ATtiny861:
+        Not yet compiling unit tests.
+
+        cd led_controller
+        mkdir build_avr
+        cd build_avr
+        Configure CMake from the command line:
+            #TODO install prefix is overridden?
+            # kevin vs kmatthews !
+            cmake -DCMAKE_TOOLCHAIN_FILE=/home/kevin/coding/c/led_controller/Toolchain-avr-ATtiny.cmake -DCMAKE_INSTALL_PREFIX=/home/kevin/coding/c/led_controller/install_avr ..
+
+        Unit tests:
+            Must compile with out C stdlib (and C++ stdlib?).
+            Tests are overflowing .text
+            Mocks need to be removed - can't find all dependencies. However, they shouldn't be needed; use real memory registers.
+            Remove CppUTestExt as well?
+            Learn how to pass correct compiler options.
 
 autotools creates targes for:
     make check

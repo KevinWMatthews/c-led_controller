@@ -39,7 +39,7 @@ configure_file (
 # Tests can currently be compiled for x86_64 and BeagleBoneBlack. The AVR ATtiny861 (actual target) is a work in progress.
 # I'd like to remove support for the BBB and focus on x86 and ATtiny861 instead.
 if (CMAKE_CROSSCOMPILING)
-    add_subdirectory(src)
+    add_subdirectory(led_with_button)
 else()
     add_subdirectory(src)
     add_subdirectory(tests)

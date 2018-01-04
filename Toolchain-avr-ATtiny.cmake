@@ -12,7 +12,7 @@ set (CMAKE_C_COMPILER ${AVR_TOOLCHAIN_HOME}/bin/avr-gcc)
 set (CMAKE_CXX_COMPILER ${AVR_TOOLCHAIN_HOME}/bin/avr-g++)
 set (AVR_SIZE ${AVR_TOOLCHAIN_HOME}/bin/avr-size)
 
-set (CMAKE_STAGING_PREFIX ${PROJECT_BINARY_DIR}/staging)
+#set (CMAKE_STAGING_PREFIX ${PROJECT_BINARY_DIR}/staging)
 set (CMAKE_FIND_ROOT_PATH ${AVR_TOOLCHAIN_HOME})
 set (CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set (CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
@@ -32,7 +32,7 @@ function(avr_cross_compile)
         LedController
         PROPERTIES
             COMPILE_FLAGS "-mmcu=${AVR_MCU} -Wall -Wstrict-prototypes -funsigned-bitfields -funsigned-char -fpack-struct -fshort-enums"
-            LINK_FLAGS "-mmcu=${AVR_MCU} -Wl,-Map,LedController.map"
+            LINK_FLAGS "-mmcu=${AVR_MCU} -Wl,-Map,${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.map"
     )
 
     #TODO I broke this somehow... before I started editing this time around.
@@ -42,7 +42,7 @@ function(avr_cross_compile)
             # avr-objdump <option(s)> <file(s)>
             # -h, --[section-]headers  Display the contents of the section headers
             # -S, --source             Intermix source code with disassembly
-            ${CMAKE_OBJDUMP} -h -S LedController > LedController.lst
+            ${CMAKE_OBJDUMP} -h -S "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController" > "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.lst"
         DEPENDS
             LedController
     )
@@ -51,7 +51,7 @@ function(avr_cross_compile)
     add_custom_target(
         size
         COMMAND
-            ${AVR_SIZE} LedController
+            ${AVR_SIZE} "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController"
         DEPENDS
             LedController
     )
@@ -65,7 +65,7 @@ function(avr_cross_compile)
             # avr-objcopy [option(s)] in-file [out-file]
             # -j --only-section <name>         Only copy section <name> into the output
             # -O --output-target <bfdname>     Create an output file in format <bfdname>
-            ${CMAKE_OBJCOPY} -j .text -j .data -O ihex LedController LedController.hex
+            ${CMAKE_OBJCOPY} -j .text -j .data -O ihex "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.hex"
         DEPENDS
             LedController
     )
