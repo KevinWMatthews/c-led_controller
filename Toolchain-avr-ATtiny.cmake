@@ -73,11 +73,10 @@ function(avr_cross_compile)
             ${elf_file}
     )
 
-    # This should actually be a custom_command? This works for now.
-    # custom targets can be made directly (make hex)
-    # but they are always considered out-of-date; the hex image will be rebuilt every time!
-    add_custom_target(
-        hex
+    # custom commands can not be invoked from the command line - 'make ${hex_file}' will not work.
+    add_custom_command(
+        OUTPUT ${hex_file}
+
         COMMAND
             # avr-objcopy [option(s)] in-file [out-file]
             # -j --only-section <name>         Only copy section <name> into the output
@@ -85,6 +84,18 @@ function(avr_cross_compile)
             ${CMAKE_OBJCOPY} -j .text -j .data -O ihex "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${elf_file}" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${hex_file}"
         DEPENDS
             ${elf_file}
+    )
+
+    # custom targets can be made directly ('make hex' works)
+    # but they are always considered out-of-date; the hex image will be rebuilt every time!
+    add_custom_target(
+        hex
+
+        COMMAND
+            # build the dependency
+
+        DEPENDS
+            ${hex_file}
     )
 
     install (TARGETS ${elf_file} DESTINATION bin)
