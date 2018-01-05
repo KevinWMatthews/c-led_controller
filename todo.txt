@@ -1,3 +1,14 @@
+AVR compilation:
+    If we can't get unit tests working for the AVR, remove/move the requirement for CppUTest.
+    Compile CppUTest for AVR? How will we work around chip size?
+
+    Clean: hex, lst, map.
+
+
+
+
+
+
 Test LedController module
 
 Remove initial state from ButtonObserver. It is unneeded in the foreseeable future.
