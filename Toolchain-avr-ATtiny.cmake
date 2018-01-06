@@ -24,13 +24,16 @@ set (CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 #TODO make sure that we can find the toolchain - use find_path()? use find_program?
 
 function(avr_cross_compile)
+    ###################
+    # Set up elf file #
+    ###################
     add_executable(LedController.elf main.c)
 
-    # Include source code header files
-    target_include_directories(LedController.elf PRIVATE "${PROJECT_SOURCE_DIR}/include")
-    # Include generated Config.h file
-    target_include_directories(LedController.elf PRIVATE "${PROJECT_BINARY_DIR}/include")
-
+    target_include_directories(LedController.elf
+        PRIVATE
+            "${PROJECT_SOURCE_DIR}/include"     # Include source code header files
+            "${PROJECT_BINARY_DIR}/include"     # Include generated Config.h file
+    )
 
     set_target_properties(LedController.elf
         PROPERTIES
@@ -38,29 +41,27 @@ function(avr_cross_compile)
             LINK_FLAGS "-mmcu=${AVR_MCU} -Wl,-Map,${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.map"
     )
 
-    add_custom_target(
-        disassemble
+
+
+    ###################
+    # Set up hex file #
+    ###################
+    # Custom targets can be made directly ('make hex' works) but
+    # they are always considered out-of-date; the hex image will be rebuilt every time!
+    # Cutsom targets to not generate output?
+    # This is ok for now but I do wonder about it.
+    add_custom_target(hex
         COMMAND
-            # avr-objdump <option(s)> <file(s)>
-            # -h, --[section-]headers  Display the contents of the section headers
-            # -S, --source             Intermix source code with disassembly
-            ${CMAKE_OBJDUMP} -h -S "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.elf" > "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.lst"
+            # build the dependency
         DEPENDS
-            LedController.elf
+            LedController.hex
     )
 
-    add_custom_target(
-        size
-        COMMAND
-            ${AVR_SIZE} "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.elf"
-        DEPENDS
-            LedController.elf
-    )
-
-    # custom commands can not be invoked from the command line - 'make hex' will not work.
+    # Custom commands can not be invoked from the command line - 'make hex' will not work.
+    # Does/can generate output
     add_custom_command(
-        OUTPUT LedController.hex
-
+        OUTPUT
+            LedController.hex
         COMMAND
             # avr-objcopy [option(s)] in-file [out-file]
             # -j --only-section <name>         Only copy section <name> into the output
@@ -70,17 +71,37 @@ function(avr_cross_compile)
             LedController.elf
     )
 
-    # custom targets can be made directly ('make hex' works)
-    # but they are always considered out-of-date; the hex image will be rebuilt every time!
-    add_custom_target(
-        hex
 
+
+    #############################
+    # Set up disassemble target #
+    #############################
+    add_custom_target(disassemble
         COMMAND
-            # build the dependency
-
+            # avr-objdump <option(s)> <file(s)>
+            # -h, --[section-]headers  Display the contents of the section headers
+            # -S, --source             Intermix source code with disassembly
+            ${CMAKE_OBJDUMP} -h -S "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.elf" > "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.lst"
         DEPENDS
-            LedController.hex
+            LedController.elf
     )
 
-install (TARGETS LedController.elf DESTINATION bin)
+
+
+    ######################
+    # Set up size target #
+    ######################
+    add_custom_target(size
+        COMMAND
+            ${AVR_SIZE} "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.elf"
+        DEPENDS
+            LedController.elf
+    )
+
+    install(
+        TARGETS
+            LedController.elf
+        DESTINATION
+            bin
+    )
 endfunction()
