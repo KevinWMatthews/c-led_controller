@@ -23,35 +23,19 @@ set (CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 
 #TODO make sure that we can find the toolchain - use find_path()? use find_program?
 
-macro(create_avr_targets target_name)
-    #TODO Re-watch the CMake tutorial and see if they like this. Aren't they anti-variable?
-    set(elf_file ${target_name}.elf)
-    set(map_file ${target_name}.map)
-    set(hex_file ${target_name}.hex)
-    set(lst_file ${target_name}.lst)
-    message(STATUS "Set executables:
-    elf_file: ${elf_file}
-    map_file: ${map_file}
-    hex_file: ${hex_file}
-    lst_file: ${lst_file}")
-endmacro()
-
 function(avr_cross_compile)
-    create_avr_targets(LedController)
-
-    add_executable(${elf_file} main.c)
+    add_executable(LedController.elf main.c)
 
     # Include source code header files
-    target_include_directories(${elf_file} PRIVATE "${PROJECT_SOURCE_DIR}/include")
+    target_include_directories(LedController.elf PRIVATE "${PROJECT_SOURCE_DIR}/include")
     # Include generated Config.h file
-    target_include_directories(${elf_file} PRIVATE "${PROJECT_BINARY_DIR}/include")
+    target_include_directories(LedController.elf PRIVATE "${PROJECT_BINARY_DIR}/include")
 
 
-    set_target_properties(
-        ${elf_file}
+    set_target_properties(LedController.elf
         PROPERTIES
             COMPILE_FLAGS "-mmcu=${AVR_MCU} -Wall -Wstrict-prototypes -funsigned-bitfields -funsigned-char -fpack-struct -fshort-enums"
-            LINK_FLAGS "-mmcu=${AVR_MCU} -Wl,-Map,${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${map_file}"
+            LINK_FLAGS "-mmcu=${AVR_MCU} -Wl,-Map,${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.map"
     )
 
     add_custom_target(
@@ -60,30 +44,30 @@ function(avr_cross_compile)
             # avr-objdump <option(s)> <file(s)>
             # -h, --[section-]headers  Display the contents of the section headers
             # -S, --source             Intermix source code with disassembly
-            ${CMAKE_OBJDUMP} -h -S "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${elf_file}" > "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${lst_file}"
+            ${CMAKE_OBJDUMP} -h -S "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.elf" > "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.lst"
         DEPENDS
-            ${elf_file}
+            LedController.elf
     )
 
     add_custom_target(
         size
         COMMAND
-            ${AVR_SIZE} "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${elf_file}"
+            ${AVR_SIZE} "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.elf"
         DEPENDS
-            ${elf_file}
+            LedController.elf
     )
 
-    # custom commands can not be invoked from the command line - 'make ${hex_file}' will not work.
+    # custom commands can not be invoked from the command line - 'make hex' will not work.
     add_custom_command(
-        OUTPUT ${hex_file}
+        OUTPUT LedController.hex
 
         COMMAND
             # avr-objcopy [option(s)] in-file [out-file]
             # -j --only-section <name>         Only copy section <name> into the output
             # -O --output-target <bfdname>     Create an output file in format <bfdname>
-            ${CMAKE_OBJCOPY} -j .text -j .data -O ihex "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${elf_file}" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${hex_file}"
+            ${CMAKE_OBJCOPY} -j .text -j .data -O ihex "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.elf" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.hex"
         DEPENDS
-            ${elf_file}
+            LedController.elf
     )
 
     # custom targets can be made directly ('make hex' works)
@@ -95,8 +79,8 @@ function(avr_cross_compile)
             # build the dependency
 
         DEPENDS
-            ${hex_file}
+            LedController.hex
     )
 
-    install (TARGETS ${elf_file} DESTINATION bin)
+install (TARGETS LedController.elf DESTINATION bin)
 endfunction()
