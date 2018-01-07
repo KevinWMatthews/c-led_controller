@@ -1,5 +1,5 @@
 add_library(ATtiny861Lib
-    "${PROJECT_SOURCE_DIR}/hw_attiny861/src/ATtiny861.c"
+    "${PROJECT_SOURCE_DIR}/hw_attiny861/src/ATtiny861_gpio.c"
 )
 target_include_directories(ATtiny861Lib PUBLIC "${PROJECT_SOURCE_DIR}/hw_attiny861/include")
 target_include_directories(ATtiny861Lib PRIVATE "${AVR_TOOLCHAIN_HOME}/avr")
