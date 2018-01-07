@@ -1,3 +1,9 @@
+Need to be able to read pin state.
+    Should we add an invalid state? Test for this.
+
+Determine behavior of GPIOs for input and output pins.
+Does this affect the behavior of GetState() and SetState()?
+
 Figure out a more elegant way to set pins!
 
 ATtiny861_GpioSetAsOutput()

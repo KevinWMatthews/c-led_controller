@@ -56,4 +56,26 @@ extern uint8_t PORTB;
 #define PORTB6 6
 #define PORTB7 7
 
+extern uint8_t PINA;
+// #define PINA    _SFR_IO8(0x19)
+#define PINA0   0
+#define PINA1   1
+#define PINA2   2
+#define PINA3   3
+#define PINA4   4
+#define PINA5   5
+#define PINA6   6
+#define PINA7   7
+
+extern uint8_t PINB;
+// #define PINB    _SFR_IO8(0x16)
+#define PINB0   0
+#define PINB1   1
+#define PINB2   2
+#define PINB3   3
+#define PINB4   4
+#define PINB5   5
+#define PINB6   6
+#define PINB7   7
+
 #endif

@@ -1,32 +1,47 @@
-There are two banks of pins on the ATtiny61. These are referred to as PORTA and PORTB. Conveniently, there are 16 pins so two 8-bit registers is enough to provide complete control.
+There are two banks of pins on the ATtiny61. These are referred to as PORTA and PORTB. Conveniently, there are 16 pins so two 8-bit registers is enough to provide access to all gpio.
 
 Each GPIO is controlled with three registers:
-    Address     Name                            Description
-    PORTx       Data Register                   Drive output pin high or low; control input pin's internal pull-up resistor
-    DDRx        Data Direction Register         Set GPIO as input (0) or output (1)
-    PINx        Port Input Pins                 Read the value of the pin or write the value of PORTx
+    Register    Name                            Description
+    PORTx       Data Register                   Drive output pin high or low/control input pin's internal pull-up resistor
+    DDRx        Data Direction Register         Set GPIO direction: input (0) or output (1)
+    PINx        Port Input Pin Address          Read the value of the pin/write the value of PORTx
 
 
 DDRx        Data Direction Register
-    Configure the direction of a pin
-    0       input
-    1       output
+    Write:
+        Configure the direction of a pin:
+            0       input
+            1       output
+    Read:
+        ?
 
 PORTx       Data Register
-    When input:
-        1       Enable internal pull-up
-        0       Disable internal pull-up
-    When output:
-        1       Drive pin high
-        0       Drive pin low
+    Write:
+        When input:
+            1       Enable internal pull-up
+            0       Disable internal pull-up
+        When output:
+            1       Drive pin high
+            0       Drive pin low
+    Read:
+        When input:
+            ?
+        When output:
+            ?
 
-PINx        Port Input Pins
+PINx        Port Input Pin Address
     Read:
         Read the value of PINxn. Can be read regardless of the pin direction (DDRxn).
     Write:
         Writing a value of 1 to PINxn toggles the value of PORTxn regardless of the state of DDRxn (!).
+        This will:
+            for an input, change the state of the internal pull-up
+            for an output, change the pin state
         See ATtiny861 datasheet, 10.1.2.
+        Does writing 0 do anything?
 
+It is possible to override the state of any pin. See Table 10.2
+There is also a pull-up disable bit in MCUCR, the MCU Control Register. See section 10.3.1.
 
 Unconnected pins (10.1.6):
     Set unused pins as an input with an internal pull-up.

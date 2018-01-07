@@ -5,8 +5,9 @@
 
 typedef enum
 {
-    GPIO_LOW    = 0,
-    GPIO_HIGH   = 1
+    GPIO_INVALID    = -1,
+    GPIO_LOW        = 0,
+    GPIO_HIGH       = 1
 } GPIO_STATE;
 
 // Initialize all GPIO on the ATtiny861.
@@ -50,5 +51,9 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput(ATTN861_GPIO gpio, GPIO_STATE in
 // If an invalid pin or state is passed, does nothing.
 //TODO what does this do if the gpio is an input? Re-read the manual....
 ATTINY861_STATUS_CODE ATtiny861_GpioSetState(ATTN861_GPIO gpio, GPIO_STATE state);
+
+// Get the state of the given pin.
+//TODO does it matter if the pin is an input or an output? Re-read the manual.
+GPIO_STATE ATtiny861_GpioGetState(ATTN861_GPIO gpio);
 
 #endif
