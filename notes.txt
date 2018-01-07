@@ -34,6 +34,50 @@ Uncheck tests, enter your cross-compiler details.
 
 
 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Install avrdude
+
+Screw everyting below and just use:
+    sudo apt install avrdude
+    sudo apt install avrdude-doc
+
+Otherwise you can try:
+    http://www.ladyada.net/learn/avr/setup-unix.html
+
+    You'll need:
+         flex, byacc, bison, gcc, libusb and libusb-dev
+            I installed libusb-dev and it provided it and libusb.
+            ./configure reports that I:
+                Configuration summary:
+                ----------------------
+                DON'T HAVE libelf
+                DO HAVE    libusb
+                DON'T HAVE libusb_1_0
+                DON'T HAVE libftdi1
+                DON'T HAVE libftdi
+                DON'T HAVE libhid
+                DO HAVE    pthread
+                ENABLED    doc
+                ENABLED    parport
+                DISABLED   linuxgpio
+
+                warning: #warning No libftdi or libusb support. Install libftdi1/libusb-1.0 or libftdi/libusb and run configure/make again.
+                sudo apt install libftdi1       # That's a 'one'
+
+
+         Download and install binutils
+         Donwload and install gcc
+            Configure for avr  (?!)
+        Download and install avr-libc
+
+        Download and install avrdude itself (v5.5 or higher):
+            http://download.savannah.gnu.org/releases/avrdude/
+            http://download.savannah.gnu.org/releases/avrdude/avrdude-6.3.tar.gz
+            http://download.savannah.gnu.org/releases/avrdude/avrdude-6.3.tar.gz.sig
+
+        Extract to a folder for building.
+            ./configure --enable-doc
+
 Sometimes.
 [This is because the file has already been used/processed. If there are changes to the Toolchain file, then this warning will not appear.] Maybe not...
 

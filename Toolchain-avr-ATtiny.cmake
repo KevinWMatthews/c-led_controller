@@ -15,11 +15,19 @@ set (AVR_SIZE ${AVR_TOOLCHAIN_HOME}/bin/avr-size)
 #TODO set CMAKE_AR=ar, CMAKE_LINKER=ld, CMAKE_NM=nm, CMAKE_OBJCOPY=objcopy, CMAKE_OBJDUMP=objdump, CMAKE_STRIP=strip, CMAKE_RANLIB=ranlib.
 #TODO "set avr linker libs: -lc -lm -lgcc" ?
 
+# Build and install setup
 #set (CMAKE_STAGING_PREFIX ${PROJECT_BINARY_DIR}/staging)
 set (CMAKE_FIND_ROOT_PATH ${AVR_TOOLCHAIN_HOME})
 set (CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
 set (CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
 set (CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+
+# avrdude programming options
+set (AVRDUDE avrdude)
+set (AVRDUDE_PORT usb)
+set (AVRDUDE_MCU t861)
+set (AVRDUDE_PROGRAMMERID avrispmkII)
+
 
 #TODO make sure that we can find the toolchain - use find_path()? use find_program?
 
@@ -135,14 +143,27 @@ function(avr_cross_compile)
 
 
 
-    ###################
-    # Install targets #
-    ###################
+    #######################################
+    # Install targets on local filesystem #
+    #######################################
+    # Keep everything organized in the build directory
     install(
         TARGETS
             LedController.elf
         DESTINATION
             bin
+    )
+
+
+
+    ##############################
+    # Add target to program chip #
+    ##############################
+    add_custom_target(writeflash
+        COMMAND
+            sudo ${AVRDUDE} -c ${AVRDUDE_PROGRAMMERID} -p ${AVR_MCU} -P ${AVRDUDE_PORT} -e -U flash:w:"${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.hex"
+        DEPENDS
+            LedController.hex
     )
 
 
