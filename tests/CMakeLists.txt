@@ -41,14 +41,14 @@ target_compile_options(LedControllerTestLib PRIVATE -include "${CPPUTEST_HOME}/i
 target_link_libraries(LedControllerTestLib libCppUTest)
 
 
-
-
 add_library(LedControllerTestLib2
     "${PROJECT_SOURCE_DIR}/src_hw/Led_ATtiny861.c"
+    "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/include"
 )
 target_include_directories(LedControllerTestLib2 PUBLIC "${PROJECT_SOURCE_DIR}/include")
+target_include_directories(LedControllerTestLib2 PRIVATE "${PROJECT_SOURCE_DIR}/hw_attiny861/include")
 target_compile_options(LedControllerTestLib2 PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorMallocMacros.h")
-target_link_libraries(LedControllerTestLib2 libCppUTest)
+target_link_libraries(LedControllerTestLib2 libCppUTest ATtiny861TestLib)
 
 add_executable(Test_Led2
     RunAllTests.cpp

@@ -40,9 +40,8 @@ TEST(Led, led_is_off_after_create)
     LONGS_EQUAL(LED_OFF, Led_GetState(led));
 }
 
-IGNORE_TEST(Led, can_turn_led_on)
+TEST(Led, can_turn_led_on)
 {
     LONGS_EQUAL(LED_SUCCESS, Led_TurnOn(led));
     LONGS_EQUAL(LED_ON, Led_GetState(led));
 }
-

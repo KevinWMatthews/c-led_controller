@@ -21,6 +21,7 @@ set_property(TARGET libCppUTest PROPERTY IMPORTED_LOCATION "${CPPUTEST_HOME}/lib
 add_library(ATtiny861TestLib
     "${PROJECT_SOURCE_DIR}/hw_attiny861/src/ATtiny861_gpio.c"
     "${PROJECT_SOURCE_DIR}/hw_attiny861/src/ATtiny861_gpio_map.c"
+    "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/src/mock_io.c"
 )
 target_include_directories(ATtiny861TestLib PUBLIC "${PROJECT_SOURCE_DIR}/hw_attiny861/include")
 target_include_directories(ATtiny861TestLib PRIVATE "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/include")
@@ -35,7 +36,6 @@ add_executable(Test_ATtiny861Gpio
     RunAllTests.cpp
     Test_ATtiny861Gpio.cpp
     "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/src/MockHw_ATtiny861.c"
-    "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/src/mock_io.c"
 )
 target_include_directories(Test_ATtiny861Gpio PRIVATE "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/include")
 target_compile_options(Test_ATtiny861Gpio PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorNewMacros.h")

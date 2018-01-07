@@ -87,6 +87,25 @@ void ATtiny861_GpioInit(void)
     //TODO I wonder if these references could/should be extracted?
 }
 
+ATTINY861_STATUS_CODE ATtiny861_GpioSetState(ATTN861_GPIO gpio, GPIO_STATE state)
+{
+    volatile uint8_t *port;
+    int8_t port_bit;
+
+    ATTINY861_STATUS_CODE ret;
+
+    port = ATtiny861GpioMap_GetPortRegister(gpio);
+    port_bit = ATtiny861GpioMap_GetPortBit(gpio);
+
+    ret = set_gpio_state(port, port_bit, state);
+    if (ret < 0)
+    {
+        return ret;     // Uh oh.
+    }
+
+    return ATTINY861_SUCCESS;
+}
+
 GPIO_STATE ATtiny861_GpioGetState(ATTN861_GPIO gpio)
 {
     //TODO need to rewrite to use PIN bit!!

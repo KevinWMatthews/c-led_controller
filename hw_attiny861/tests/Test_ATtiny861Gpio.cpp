@@ -333,7 +333,7 @@ TEST(ATtiny861Gpio, set_PB5_as_output_high)
     BYTES_EQUAL(0xff, PORTB);
 }
 
-TEST(ATtiny861Gpio, set_PB6_as_output_high)
+TEST(ATtiny861Gpio, initialize_PB6_as_output_high)
 {
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PB6, GPIO_HIGH) );
     BYTES_EQUAL(0x00, DDRA);
@@ -342,7 +342,7 @@ TEST(ATtiny861Gpio, set_PB6_as_output_high)
     BYTES_EQUAL(0xff, PORTB);
 }
 
-TEST(ATtiny861Gpio, set_PB7_as_output_high)
+TEST(ATtiny861Gpio, initialize_PB7_as_output_high)
 {
     LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PB7, GPIO_HIGH) );
     BYTES_EQUAL(0x00, DDRA);
@@ -370,4 +370,16 @@ IGNORE_TEST(ATtiny861Gpio, will_not_set_invalid_gpio_as_output)
 
 
 
-//TODO Test SetState()
+// Test SetState(). Direction must have already been set.
+TEST(ATtiny861Gpio, set_output_gpio_PA0_low)
+{
+    ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_HIGH);
+
+    LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetState(ATTN861_PA0, GPIO_LOW) );
+
+    LONGS_EQUAL( GPIO_LOW, ATtiny861_GpioGetState(ATTN861_PA0) );
+    BYTES_EQUAL((1<<DDA0), DDRA);
+    BYTES_EQUAL(0xff & ~(1<<PORTA0), PORTA);
+    BYTES_EQUAL(0x00, DDRB);
+    BYTES_EQUAL(0xff, PORTB);
+}

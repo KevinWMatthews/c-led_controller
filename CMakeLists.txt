@@ -43,8 +43,8 @@ if (CMAKE_CROSSCOMPILING)
     add_subdirectory(hw_demo)
     #add_subdirectory(led_with_button)
 else()
-    add_subdirectory(tests)
     add_subdirectory(hw_attiny861/tests)        # This will be a separate library in the long run.
+    add_subdirectory(tests)
 endif()
 
 message(STATUS "
