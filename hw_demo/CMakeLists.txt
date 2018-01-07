@@ -110,8 +110,13 @@ list(APPEND avr_clean_files
 # Configure size target #
 #########################
 add_custom_target(size
+    # avr-size [option(s)] [file(s)]
+    #   --format: sysv, berkeley, avr
+    #   --mcu=<avr_mcu>
     COMMAND
-        ${AVR_SIZE} ${target_path}.elf
+        ${AVR_SIZE} --format=sysv ${target_path}.elf
+    COMMAND
+        ${AVR_SIZE} --mcu=${AVR_MCU} --format=avr ${target_path}.elf
     DEPENDS
         ${target}.elf
 )
