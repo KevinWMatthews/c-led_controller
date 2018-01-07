@@ -20,6 +20,7 @@ set_property(TARGET libCppUTest PROPERTY IMPORTED_LOCATION "${CPPUTEST_HOME}/lib
 # When compiling for ATtiny, the header files are included with the toolchain. Do not use this library.
 add_library(ATtiny861TestLib
     "${PROJECT_SOURCE_DIR}/hw_attiny861/src/ATtiny861_gpio.c"
+    "${PROJECT_SOURCE_DIR}/hw_attiny861/src/ATtiny861_gpio_map.c"
 )
 target_include_directories(ATtiny861TestLib PUBLIC "${PROJECT_SOURCE_DIR}/hw_attiny861/include")
 target_include_directories(ATtiny861TestLib PRIVATE "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/include")
