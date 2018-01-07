@@ -25,6 +25,8 @@ TEST(ATtiny861, after_init_pins_set_to_input_with_pullup_high)
     BYTES_EQUAL(0x00, DDRB);
     BYTES_EQUAL(0xff, PORTA);
     BYTES_EQUAL(0xff, PORTB);
+    BYTES_EQUAL(0x00, PINA);
+    BYTES_EQUAL(0x00, PINB);
 }
 
 TEST(ATtiny861, set_PA0_as_output_low)
