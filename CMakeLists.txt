@@ -41,7 +41,7 @@ configure_file (
 if (CMAKE_CROSSCOMPILING)
     add_subdirectory(hw_attiny861)
     #add_subdirectory(hw_demo)
-    add_subdirectory(led_with_button)
+    add_subdirectory(led_blink)
 else()
     add_subdirectory(hw_attiny861/tests)        # This will be a separate library in the long run.
     add_subdirectory(tests)

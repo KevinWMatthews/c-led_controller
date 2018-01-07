@@ -4,6 +4,11 @@ Led.h should have no hardware references.
 
 Can not make multiple targets: disassemble, size, etc. How will we handle several executables?
 
+Move compiler flags out of toolchain file?
+
+Wrap delays?
+avr/delay.h requires compiler optimization. Huh?
+
 Make something actually run on the hardware!
     What should the LedHw layer actually do?
     I wonder if we can take it out and have the Led initialize directly from the chip.

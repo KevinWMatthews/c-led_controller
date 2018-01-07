@@ -7,7 +7,7 @@
 
 set (AVR_MCU "attiny861")
 set (AVR_TOOLCHAIN_HOME /home/kevin/coding/toolchains/avr8-gnu-toolchain-linux_x86_64) 
-set (AVR_COMPILE_FLAGS "-mmcu=${AVR_MCU} -Wall -Wstrict-prototypes -funsigned-bitfields -funsigned-char -fpack-struct -fshort-enums")
+set (AVR_COMPILE_FLAGS "-mmcu=${AVR_MCU} -Os -Wall -Wstrict-prototypes -funsigned-bitfields -funsigned-char -fpack-struct -fshort-enums")
 set (AVR_LINK_FLAGS "-mmcu=${AVR_MCU} -Wl,-Map,${target_path}.map")
 
 set (CMAKE_SYSTEM_NAME Generic)
