@@ -21,19 +21,19 @@
  */
 
 // Returns a pointer to memory on success, NULL on failure.
-volatile uint8_t * get_ddr_register(ATTN861_GPIO gpio);
+volatile uint8_t * ATtiny861GpioMap_GetDdrRegister(ATTN861_GPIO gpio);
 
 // Returns 0-indexed bit number (0-7) on success, -1 on failure.
 // You **MUST** check the return code!
 // If the pin is invalid, you *will* set an undefined bit in memory.
-int8_t get_ddr_bit(ATTN861_GPIO gpio);
+int8_t ATtiny861GpioMap_GetDdrBit(ATTN861_GPIO gpio);
 
 // Returns a pointer to memory on success, NULL on failure.
-volatile uint8_t * get_port_register(ATTN861_GPIO gpio);
+volatile uint8_t * ATtiny861GpioMap_GetPortRegister(ATTN861_GPIO gpio);
 
 // Returns 0-indexed bit number (0-7) on success, -1 on failure.
 // You **MUST** check the return code!
 // If the pin is invalid, you *will* set an undefined bit in memory.
-int8_t get_port_bit(ATTN861_GPIO gpio);
+int8_t ATtiny861GpioMap_GetPortBit(ATTN861_GPIO gpio);
 
 #endif

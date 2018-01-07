@@ -2,7 +2,7 @@
 #include <avr/io.h>
 #include <stddef.h>
 
-volatile uint8_t * get_ddr_register(ATTN861_GPIO gpio)
+volatile uint8_t * ATtiny861GpioMap_GetDdrRegister(ATTN861_GPIO gpio)
 {
     switch (gpio)
     {
@@ -32,7 +32,7 @@ volatile uint8_t * get_ddr_register(ATTN861_GPIO gpio)
     return NULL;
 }
 
-volatile uint8_t * get_port_register(ATTN861_GPIO gpio)
+volatile uint8_t * ATtiny861GpioMap_GetPortRegister(ATTN861_GPIO gpio)
 {
     switch (gpio)
     {
@@ -60,7 +60,7 @@ volatile uint8_t * get_port_register(ATTN861_GPIO gpio)
     return NULL;
 }
 
-int8_t get_ddr_bit(ATTN861_GPIO gpio)
+int8_t ATtiny861GpioMap_GetDdrBit(ATTN861_GPIO gpio)
 {
     switch (gpio)
     {
@@ -107,7 +107,7 @@ int8_t get_ddr_bit(ATTN861_GPIO gpio)
 // Returns < 0 on error.
 // You **MUST** check the return code!
 // If the pin is invalid, you *will* set an undefined bit in memory.
-int8_t get_port_bit(ATTN861_GPIO gpio)
+int8_t ATtiny861GpioMap_GetPortBit(ATTN861_GPIO gpio)
 {
     switch (gpio)
     {

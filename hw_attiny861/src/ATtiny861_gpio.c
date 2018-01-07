@@ -55,11 +55,11 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput(ATTN861_GPIO gpio, GPIO_STATE in
 
     ATTINY861_STATUS_CODE ret;
 
-    ddr = get_ddr_register(gpio);
-    ddr_bit = get_ddr_bit(gpio);
+    ddr = ATtiny861GpioMap_GetDdrRegister(gpio);
+    ddr_bit = ATtiny861GpioMap_GetDdrBit(gpio);
 
-    port = get_port_register(gpio);
-    port_bit = get_port_bit(gpio);
+    port = ATtiny861GpioMap_GetPortRegister(gpio);
+    port_bit = ATtiny861GpioMap_GetPortBit(gpio);
 
     //TODO Extract this.
     ret = set_gpio_direction(ddr, ddr_bit);
@@ -84,6 +84,7 @@ void ATtiny861_GpioInit(void)
     // should be left as inputs and have their internal pull-up resistor driven high.
     PORTA = 0xff;
     PORTB = 0xff;
+    //TODO I wonder if these references could/should be extracted?
 }
 
 GPIO_STATE ATtiny861_GpioGetState(ATTN861_GPIO gpio)
@@ -93,12 +94,12 @@ GPIO_STATE ATtiny861_GpioGetState(ATTN861_GPIO gpio)
     volatile uint8_t * port_reg;
     int8_t port_bit;
 
-    port_reg = get_port_register(gpio);
+    port_reg = ATtiny861GpioMap_GetPortRegister(gpio);
     if (port_reg == NULL)
     {
         return GPIO_INVALID;
     }
-    port_bit = get_port_bit(gpio);
+    port_bit = ATtiny861GpioMap_GetPortBit(gpio);
     if (port_bit < 0)
     {
         return GPIO_INVALID;
