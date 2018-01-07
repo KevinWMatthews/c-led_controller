@@ -46,6 +46,7 @@ typedef enum
 // Specify if gpio should be driven high or low after initialization.
 // If an invalid pin or state is passed, does nothing.
 ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput(ATTN861_GPIO gpio, GPIO_STATE initial_state);
+ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput2(ATTN861_GPIO gpio, GPIO_STATE initial_state);
 
 // Set the given pin to a new state.
 // If an invalid pin or state is passed, does nothing.

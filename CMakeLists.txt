@@ -40,7 +40,8 @@ configure_file (
 # I'd like to remove support for the BBB and focus on x86 and ATtiny861 instead.
 if (CMAKE_CROSSCOMPILING)
     add_subdirectory(hw_attiny861)
-    add_subdirectory(led_with_button)
+    add_subdirectory(hw_demo)
+    #add_subdirectory(led_with_button)
 else()
     add_subdirectory(tests)
     add_subdirectory(hw_attiny861/tests)        # This will be a separate library in the long run.

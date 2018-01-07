@@ -3,6 +3,28 @@
 #include <avr/io.h>
 
 /*
+ * We need to know:
+ *  DDRxn
+ *      x is the byte
+ *      n is the bit
+ *  PORTxn
+ *      byte x
+ *      bit n
+ *  PINxn
+ *      byte x
+ *      bit n
+ *
+ * Can use a switch statement or structures.
+ */
+
+ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput2(ATTN861_GPIO gpio, GPIO_STATE initial_state)
+{
+    // hard-coded for pa0, output, low
+    SBI(DDRA, DDA0);
+    CBI(PORTA, PORTA0);
+    return ATTINY861_SUCCESS;
+}
+/*
  * ddr: Data Direction Register (DDR)
  *      Set for output (1), clear for input (0)
  * ddr_bit:
