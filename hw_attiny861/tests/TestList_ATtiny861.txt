@@ -3,10 +3,17 @@ Need to be able to read pin state.
     Yes. Check for an invalid state.
     Test SetState() functions.
 
+Extract GPIO map.
+Extract functions that set gpio?
+
 Determine behavior of GPIOs for input and output pins.
 Does this affect the behavior of GetState() and SetState()?
 
-Figure out a more elegant way to set pins!
+
+Properly read pins. We need to read PIN and not PORT but my mock
+isn't smart enough to have different behavior for test and production code.
+
+
 
 ATtiny861_GpioSetAsOutput()
     Handle invalid pins
