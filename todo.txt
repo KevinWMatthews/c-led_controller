@@ -1,8 +1,15 @@
+Can not make multiple targets: disassemble, size, etc.
+Figure this out so that we can create multiple executables!
+
+Create a second executable that toggles multiple LEDs.
+
+Remove old LedHw interface. It is no longer needed.
+
+
+
 Where should led/gpio mapping be defined? In Led.h or LedMapping.h?
 Similarly for GPIO.
 Led.h should have no hardware references.
-
-Can not make multiple targets: disassemble, size, etc. How will we handle several executables?
 
 Move compiler flags out of toolchain file?
 
