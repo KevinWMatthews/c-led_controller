@@ -42,6 +42,24 @@ target_link_libraries(LedControllerTestLib libCppUTest)
 
 
 
+
+add_library(LedControllerTestLib2
+    "${PROJECT_SOURCE_DIR}/src_hw/Led_ATtiny861.c"
+)
+target_include_directories(LedControllerTestLib2 PUBLIC "${PROJECT_SOURCE_DIR}/include")
+target_compile_options(LedControllerTestLib2 PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorMallocMacros.h")
+target_link_libraries(LedControllerTestLib2 libCppUTest)
+
+add_executable(Test_Led2
+    RunAllTests.cpp
+    Test_Led2.cpp
+)
+target_include_directories(Test_Led2 PRIVATE "${PROJECT_SOURCE_DIR}/include")
+target_compile_options(Test_Led2 PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorNewMacros.h")
+target_link_libraries(Test_Led2 libCppUTest libCppUTestExt LedControllerTestLib2)
+install (TARGETS Test_Led2 DESTINATION bin)
+
+
 ###################################################################
 # Create test executable for hardware-independent production code #
 ###################################################################
@@ -67,7 +85,6 @@ target_include_directories(Test_LedController PRIVATE "${PROJECT_SOURCE_DIR}/moc
 target_compile_options(Test_LedController PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorNewMacros.h")
 target_link_libraries(Test_LedController libCppUTest libCppUTestExt LedControllerTestLib)
 install (TARGETS Test_LedController DESTINATION bin)
-
 
 #######################################################
 # Create test executable for hardware interface layer #
