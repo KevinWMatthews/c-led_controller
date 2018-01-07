@@ -23,3 +23,9 @@ LED_RETURN_CODE Led_TurnOn(Led self)
     ATtiny861_GpioSetState(ATTN861_PB0, GPIO_HIGH);
     return LED_SUCCESS;
 }
+
+LED_RETURN_CODE Led_TurnOff(Led self)
+{
+    ATtiny861_GpioSetState(ATTN861_PB0, GPIO_LOW);
+    return LED_SUCCESS;
+}

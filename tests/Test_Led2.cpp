@@ -45,3 +45,10 @@ TEST(Led, can_turn_led_on)
     LONGS_EQUAL(LED_SUCCESS, Led_TurnOn(led));
     LONGS_EQUAL(LED_ON, Led_GetState(led));
 }
+
+TEST(Led, can_turn_led_off)
+{
+    Led_TurnOn(led);
+    CHECK_EQUAL(LED_SUCCESS, Led_TurnOff(led));
+    CHECK_EQUAL(LED_OFF, Led_GetState(led));
+}

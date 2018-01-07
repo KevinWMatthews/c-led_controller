@@ -26,5 +26,7 @@ typedef enum
 // Turn an LED on.
 LED_RETURN_CODE Led_TurnOn(Led self);
 
+// Turn an LED off.
+LED_RETURN_CODE Led_TurnOff(Led self);
 
 #endif
