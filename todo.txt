@@ -17,6 +17,8 @@ Extract setting gpio direction.
 Replace set_gpio_state() with a function pointer.
 This will allow us to set the PORT register on a production build and the PORT and PIN registers on a local/test build.
 
+Can we remove ATTN861_GPIO_MAX?
+
 I think stddef.h in the mock hw is defining NULL... or something?
 
 Look into RESET pin and Brown Out Detection.

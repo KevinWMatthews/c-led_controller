@@ -33,7 +33,7 @@ typedef enum
     ATTN861_PB5         = 13,
     ATTN861_PB6         = 14,
     ATTN861_PB7         = 15,
-    ATTN861_GPIO_MAX    = 16
+    ATTN861_GPIO_MAX    = 16        // Do we still need this?
 } ATTN861_GPIO;
 
 typedef enum

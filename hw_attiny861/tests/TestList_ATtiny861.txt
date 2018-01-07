@@ -1,6 +1,7 @@
 Need to be able to read pin state.
     Should we add an invalid state? Test for this.
     Yes. Check for an invalid state.
+    Test SetState() functions.
 
 Determine behavior of GPIOs for input and output pins.
 Does this affect the behavior of GetState() and SetState()?
