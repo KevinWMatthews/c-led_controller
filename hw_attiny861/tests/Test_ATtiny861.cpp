@@ -39,7 +39,7 @@ TEST(ATtiny861, set_PA0_as_output_low)
 
 TEST(ATtiny861, set_PA0_as_output_high)
 {
-    LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_HIGH) );
+    LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput2(ATTN861_PA0, GPIO_HIGH) );
     // LONGS_EQUAL( GPIO_HIGH, ATtiny861_GpioGetState(ATTN861_PA0) );
     BYTES_EQUAL((1<<DDA0), DDRA);
     BYTES_EQUAL(0xff, PORTA);

@@ -12,6 +12,7 @@ Make something actually run on the hardware!
         Perhaps I should pull out the specific wiring details into a separate header file.
         Don't want to be searching through source code! Unfortunately, I don't know how to do that.
 
+I think stddef.h in the mock hw is defining NULL...
 
 Look into RESET pin and Brown Out Detection.
 

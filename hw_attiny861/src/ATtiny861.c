@@ -1,6 +1,7 @@
 #include "ATtiny861.h"
 #include "BitManip.h"
 #include <avr/io.h>
+#include <stddef.h>
 
 /*
  * We need to know:
@@ -17,11 +18,95 @@
  * Can use a switch statement or structures.
  */
 
+static volatile uint8_t * get_ddr_register(ATTN861_GPIO gpio)
+{
+    switch (gpio)
+    {
+        case ATTN861_PA0:
+            return &DDRA;
+    }
+    return NULL;
+}
+
+static volatile uint8_t * get_port_register(ATTN861_GPIO gpio)
+{
+    switch (gpio)
+    {
+        case ATTN861_PA0:
+            return &PORTA;
+    }
+    return NULL;
+}
+
+// Returns < 0 on error.
+// You **MUST** check the return code!
+// If the pin is invalid, you *will* set an undefined bit in memory.
+static int8_t get_ddr_bit(ATTN861_GPIO gpio)
+{
+    switch (gpio)
+    {
+        case ATTN861_PA0:
+            return DDA0;
+    }
+    return -1;
+}
+
+// Returns < 0 on error.
+// You **MUST** check the return code!
+// If the pin is invalid, you *will* set an undefined bit in memory.
+int8_t get_port_bit(ATTN861_GPIO gpio)
+{
+    switch (gpio)
+    {
+        case ATTN861_PA0:
+            return PORTA0;
+    }
+    return -1;
+}
+
 ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput2(ATTN861_GPIO gpio, GPIO_STATE initial_state)
 {
-    // hard-coded for pa0, output, low
-    SBI(DDRA, DDA0);
-    CBI(PORTA, PORTA0);
+    volatile uint8_t *ddr;
+    int8_t ddr_bit;
+
+    volatile uint8_t *port;
+    int8_t port_bit;
+
+    ddr = get_ddr_register(gpio);
+    if (ddr == NULL)
+    {
+        return ATTINY861_GPIO_INVALID;
+    }
+
+    ddr_bit = get_ddr_bit(gpio);
+    if (ddr_bit < 0)
+    {
+        return ATTINY861_GPIO_INVALID;
+    }
+
+    port = get_port_register(gpio);
+    if (port == NULL)
+    {
+        return ATTINY861_GPIO_INVALID;
+    }
+
+    port_bit = get_port_bit(gpio);
+    if (port_bit < 0)
+    {
+        return ATTINY861_GPIO_INVALID;
+    }
+
+    SBI(*ddr, DDA0);
+
+    if (initial_state == GPIO_HIGH)
+    {
+        SBI(*port, port_bit);
+    }
+    else if (initial_state == GPIO_LOW)
+    {
+        CBI(PORTA, port_bit);
+    }
+
     return ATTINY861_SUCCESS;
 }
 /*
