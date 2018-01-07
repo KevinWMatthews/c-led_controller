@@ -17,10 +17,10 @@
 //      Which port bit controls this gpio.
 typedef struct ATtiny861_Gpio
 {
-    uint8_t * ddr;
-    uint8_t ddr_bit;
-    uint8_t * port;
-    uint8_t port_bit;
+    volatile uint8_t * ddr;
+    volatile uint8_t ddr_bit;
+    volatile uint8_t * port;
+    volatile uint8_t port_bit;
 } ATtiny861_Gpio;
 
 // Specify all GPIOs
