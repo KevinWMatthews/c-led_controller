@@ -31,26 +31,30 @@ set (AVRDUDE_PROGRAMMERID avrispmkII)
 
 #TODO make sure that we can find the toolchain - use find_path()? use find_program?
 
-function(avr_cross_compile)
+function(avr_cross_compile target)
+    set (target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
+
     ######################
     # Configure elf file #
     ######################
-    add_executable(LedController.elf main.c)
+    #TODO does this belong in the toolchain file? Hmmm...
+    add_executable(${target}.elf main.c)
 
-    target_include_directories(LedController.elf
+    target_include_directories(${target}.elf
         PRIVATE
-            "${PROJECT_SOURCE_DIR}/include"     # Include source code header files
+            "${PROJECT_SOURCE_DIR}/include"     # Include header files for application
+            "${PROJECT_SOURCE_DIR}/include_hw"  # Include header files for hardware layer
             "${PROJECT_BINARY_DIR}/include"     # Include generated Config.h file
     )
 
-    set_target_properties(LedController.elf
+    set_target_properties(${target}.elf
         PROPERTIES
             COMPILE_FLAGS "-mmcu=${AVR_MCU} -Wall -Wstrict-prototypes -funsigned-bitfields -funsigned-char -fpack-struct -fshort-enums"
-            LINK_FLAGS "-mmcu=${AVR_MCU} -Wl,-Map,${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.map"
+            LINK_FLAGS "-mmcu=${AVR_MCU} -Wl,-Map,${target_path}.map"
     )
 
     # Create a list of files that we need to clean.
-    set(avr_clean_files "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.map")
+    set(avr_clean_files ${target_path}.map)
 
 
 
@@ -64,34 +68,34 @@ function(avr_cross_compile)
         COMMAND
             # build the dependency
         DEPENDS
-            LedController.hex
+            ${target}.hex
     )
 
     # Custom commands can not be invoked from the command line - 'make hex' will not work.
     # Instead, they specify how to build the OUTPUT file.
     add_custom_command(
         OUTPUT
-            LedController.hex
+            ${target}.hex
         COMMAND
             # avr-objcopy [option(s)] in-file [out-file]
             # -j --only-section <name>         Only copy section <name> into the output
             # -O --output-target <bfdname>     Create an output file in format <bfdname>
-            ${CMAKE_OBJCOPY} -j .text -j .data -O ihex "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.elf" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.hex"
+            ${CMAKE_OBJCOPY} -j .text -j .data -O ihex ${target_path}.elf ${target_path}.hex
         DEPENDS
-            LedController.elf
+            ${target}.elf
         COMMENT
             "hex: Generating .hex file"
     )
 
     list(APPEND avr_clean_files
-        "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.hex"
+        ${target_path}.hex
     )
 
     ###
     # Alternatively, we can create a custom target and then attach a custom command to it.
     #add_custom_target(hex
     #    DEPENDS
-    #        LedController.elf
+    #        ${target_name}.elf
     #    COMMENT
     #        "hex target"
     #)
@@ -103,7 +107,7 @@ function(avr_cross_compile)
     #        # avr-objcopy [option(s)] in-file [out-file]
     #        # -j --only-section <name>         Only copy section <name> into the output
     #        # -O --output-target <bfdname>     Create an output file in format <bfdname>
-    #        ${CMAKE_OBJCOPY} -j .text -j .data -O ihex "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.elf" "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.hex"
+    #        ${CMAKE_OBJCOPY} -j .text -j .data -O ihex ${target}.elf ${target}.hex
     #    COMMENT
     #        "hex command"
     #)
@@ -118,15 +122,15 @@ function(avr_cross_compile)
             # avr-objdump <option(s)> <file(s)>
             # -h, --[section-]headers  Display the contents of the section headers
             # -S, --source             Intermix source code with disassembly
-            ${CMAKE_OBJDUMP} -h -S "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.elf" > "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.lst"
+            ${CMAKE_OBJDUMP} -h -S ${target_path}.elf > ${target_path}.lst
         DEPENDS
-            LedController.elf
+            ${target}.elf
         COMMENT
             "disassemble: Generating .lst file"
     )
 
     list(APPEND avr_clean_files
-        "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.lst"
+        ${target_path}.lst
     )
 
 
@@ -136,9 +140,9 @@ function(avr_cross_compile)
     #########################
     add_custom_target(size
         COMMAND
-            ${AVR_SIZE} "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.elf"
+            ${AVR_SIZE} ${target_path}.elf
         DEPENDS
-            LedController.elf
+            ${target}.elf
     )
 
 
@@ -149,7 +153,7 @@ function(avr_cross_compile)
     # Keep everything organized in the build directory
     install(
         TARGETS
-            LedController.elf
+            ${target}.elf
         DESTINATION
             bin
     )
@@ -161,9 +165,9 @@ function(avr_cross_compile)
     ##############################
     add_custom_target(writeflash
         COMMAND
-            sudo ${AVRDUDE} -c ${AVRDUDE_PROGRAMMERID} -p ${AVR_MCU} -P ${AVRDUDE_PORT} -e -U flash:w:"${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/LedController.hex"
+            sudo ${AVRDUDE} -c ${AVRDUDE_PROGRAMMERID} -p ${AVR_MCU} -P ${AVRDUDE_PORT} -e -U flash:w:${target_path}.hex
         DEPENDS
-            LedController.hex
+            ${target}.hex
     )
 
 
