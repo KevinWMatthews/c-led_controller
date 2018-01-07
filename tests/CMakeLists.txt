@@ -29,16 +29,16 @@ set_property(TARGET libCppUTestExt PROPERTY IMPORTED_LOCATION "${CPPUTEST_HOME}/
 # Create library of hardware-independent production code #
 ##########################################################
 # This enables us to use link-time substitution to swap in mock hardware modules.
-add_library(LedControllerLib
+add_library(LedControllerTestLib
     "${PROJECT_SOURCE_DIR}/src/LedController.c"
     "${PROJECT_SOURCE_DIR}/src/ButtonObserver.c"
     "${PROJECT_SOURCE_DIR}/src/Led.c"
     "${PROJECT_SOURCE_DIR}/src/Button.c"
 )
-target_include_directories(LedControllerLib PUBLIC "${PROJECT_SOURCE_DIR}/include")
-target_include_directories(LedControllerLib PRIVATE "${PROJECT_SOURCE_DIR}/include_hw")
-target_compile_options(LedControllerLib PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorMallocMacros.h")
-target_link_libraries(LedControllerLib libCppUTest)
+target_include_directories(LedControllerTestLib PUBLIC "${PROJECT_SOURCE_DIR}/include")
+target_include_directories(LedControllerTestLib PRIVATE "${PROJECT_SOURCE_DIR}/include_hw")
+target_compile_options(LedControllerTestLib PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorMallocMacros.h")
+target_link_libraries(LedControllerTestLib libCppUTest)
 
 
 
@@ -65,7 +65,7 @@ add_executable(Test_LedController
 target_include_directories(Test_LedController PRIVATE "${PROJECT_SOURCE_DIR}/include_hw")
 target_include_directories(Test_LedController PRIVATE "${PROJECT_SOURCE_DIR}/mocks")
 target_compile_options(Test_LedController PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorNewMacros.h")
-target_link_libraries(Test_LedController libCppUTest libCppUTestExt LedControllerLib)
+target_link_libraries(Test_LedController libCppUTest libCppUTestExt LedControllerTestLib)
 install (TARGETS Test_LedController DESTINATION bin)
 
 
@@ -81,4 +81,4 @@ add_executable(Test_LedHwATtiny861
 target_include_directories(Test_LedHwATtiny861 PRIVATE "${PROJECT_SOURCE_DIR}/include_hw")
 target_include_directories(Test_LedHwATtiny861 PRIVATE "${PROJECT_SOURCE_DIR}/hw_attiny861/include")
 target_compile_options(Test_LedHwATtiny861 PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorNewMacros.h")
-target_link_libraries(Test_LedHwATtiny861 libCppUTest libCppUTestExt LedControllerLib)
+target_link_libraries(Test_LedHwATtiny861 libCppUTest libCppUTestExt LedControllerTestLib)

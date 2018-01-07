@@ -7,6 +7,8 @@
 
 set (AVR_MCU "attiny861")
 set (AVR_TOOLCHAIN_HOME /home/kevin/coding/toolchains/avr8-gnu-toolchain-linux_x86_64) 
+set (AVR_COMPILE_FLAGS "-mmcu=${AVR_MCU} -Wall -Wstrict-prototypes -funsigned-bitfields -funsigned-char -fpack-struct -fshort-enums")
+set (AVR_LINK_FLAGS "-mmcu=${AVR_MCU} -Wl,-Map,${target_path}.map")
 
 set (CMAKE_SYSTEM_NAME Generic)
 set (CMAKE_C_COMPILER ${AVR_TOOLCHAIN_HOME}/bin/avr-gcc)
@@ -27,6 +29,5 @@ set (AVRDUDE avrdude)
 set (AVRDUDE_PORT usb)
 set (AVRDUDE_MCU t861)
 set (AVRDUDE_PROGRAMMERID avrispmkII)
-
 
 #TODO make sure that we can find the toolchain - use find_path()? use find_program?

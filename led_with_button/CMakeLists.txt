@@ -1,3 +1,16 @@
+add_library(LedControllerLib
+    "${PROJECT_SOURCE_DIR}/src/LedController.c"
+    "${PROJECT_SOURCE_DIR}/src/ButtonObserver.c"
+    "${PROJECT_SOURCE_DIR}/src/Led.c"
+    "${PROJECT_SOURCE_DIR}/src/Button.c"
+    "${PROJECT_SOURCE_DIR}/src_hw/LedHw_ATtiny861.c"
+)
+target_include_directories(LedControllerLib PUBLIC "${PROJECT_SOURCE_DIR}/include")
+target_include_directories(LedControllerLib PUBLIC "${PROJECT_SOURCE_DIR}/include_hw")
+target_include_directories(LedControllerLib PRIVATE "${PROJECT_SOURCE_DIR}/hw_attiny861/include")
+target_link_libraries(LedControllerLib ATtiny861Lib)
+
+
 if (CMAKE_CROSSCOMPILING)
     set (target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
 
@@ -5,20 +18,23 @@ if (CMAKE_CROSSCOMPILING)
     # Configure elf file #
     ######################
     #TODO does this belong in the toolchain file? Hmmm...
-    add_executable(${target}.elf main.c)
+    add_executable(${target}.elf
+        main.c
+    )
 
     target_include_directories(${target}.elf
         PRIVATE
-            "${PROJECT_SOURCE_DIR}/include"     # Include header files for application
-            "${PROJECT_SOURCE_DIR}/include_hw"  # Include header files for hardware layer
-            "${PROJECT_BINARY_DIR}/include"     # Include generated Config.h file
+            "${PROJECT_SOURCE_DIR}/include"         # Include header files for application
+            "${PROJECT_BINARY_DIR}/include"         # Include generated Config.h file
     )
 
     set_target_properties(${target}.elf
         PROPERTIES
-            COMPILE_FLAGS "-mmcu=${AVR_MCU} -Wall -Wstrict-prototypes -funsigned-bitfields -funsigned-char -fpack-struct -fshort-enums"
-            LINK_FLAGS "-mmcu=${AVR_MCU} -Wl,-Map,${target_path}.map"
+            COMPILE_FLAGS ${AVR_COMPILE_FLAGS}
+            LINK_FLAGS ${AVR_LINK_FLAGS}
     )
+
+    target_link_libraries(${target}.elf LedControllerLib)
 
     # Create a list of files that we need to clean.
     set(avr_clean_files ${target_path}.map)

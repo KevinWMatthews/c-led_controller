@@ -1,4 +1,5 @@
 #include "LedController.h"
+#include <stddef.h>
 
 typedef struct LedControllerStruct
 {

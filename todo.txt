@@ -1,4 +1,17 @@
 Make something actually run on the hardware!
+    What should the LedHw layer actually do?
+    I wonder if we can take it out and have the Led initialize directly from the chip.
+    This could work but then we're stuck with that specific cpu.
+    How about this:
+        All chips use the general LedHw interface.
+        Each schematic/product can/will implement its own interface. So,
+        rather than having LedHw_ATtiny861.c, we'll have
+            LedHw_led_with_button_ATtiny861.c
+            LedHw_<another_product>_ATtiny861.c
+        This will allow us to account for differing schematics.
+        Perhaps I should pull out the specific wiring details into a separate header file.
+        Don't want to be searching through source code! Unfortunately, I don't know how to do that.
+
 
 Look into RESET pin and Brown Out Detection.
 
