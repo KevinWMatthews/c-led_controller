@@ -1,13 +1,8 @@
 add_library(LedControllerLib
-    "${PROJECT_SOURCE_DIR}/src/LedController.c"
-    "${PROJECT_SOURCE_DIR}/src/ButtonObserver.c"
-    "${PROJECT_SOURCE_DIR}/src/Led.c"
-    "${PROJECT_SOURCE_DIR}/src/Button.c"
-    "${PROJECT_SOURCE_DIR}/src_hw/LedHw_ATtiny861.c"
+    "${PROJECT_SOURCE_DIR}/src_hw/Led_ATtiny861.c"
 )
 target_include_directories(LedControllerLib PUBLIC "${PROJECT_SOURCE_DIR}/include")
-target_include_directories(LedControllerLib PUBLIC "${PROJECT_SOURCE_DIR}/include_hw")
-target_include_directories(LedControllerLib PRIVATE "${PROJECT_SOURCE_DIR}/hw_attiny861/include")
+#target_include_directories(LedControllerLib PRIVATE "${PROJECT_SOURCE_DIR}/hw_attiny861/include")
 target_link_libraries(LedControllerLib ATtiny861Lib)
 
 

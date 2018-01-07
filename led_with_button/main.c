@@ -1,11 +1,11 @@
 #include "LedControllerConfig.h"
-#include "Led.h"
+#include "Led2.h"
 #include <stddef.h>
 
 int main(void)
 {
     Led led = NULL;
-    Led_Create(LEDHW_LED_1);
-    // Led_TurnOn(led);
+    led = Led_Create(LED_1);
+    Led_TurnOn(led);
     return 0;
 }
