@@ -38,7 +38,8 @@ typedef enum
 
 typedef enum
 {
-    ATTINY861_GPIO_INVALID  = -1,
+    ATTINY861_GPIO_INVALID  = -2,
+    ATTINY861_NULL_POINTER  = -1,
     ATTINY861_SUCCESS       = 0
 } ATTINY861_STATUS_CODE;
 

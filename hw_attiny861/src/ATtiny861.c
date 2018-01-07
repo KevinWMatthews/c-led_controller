@@ -64,6 +64,47 @@ int8_t get_port_bit(ATTN861_GPIO gpio)
     return -1;
 }
 
+//TODO add a direction parameter
+static ATTINY861_STATUS_CODE set_gpio_direction(volatile uint8_t * ddr, int8_t bit)
+{
+    if (ddr == NULL)
+    {
+        return ATTINY861_NULL_POINTER;
+    }
+    if (bit < 0)
+    {
+        return ATTINY861_GPIO_INVALID;
+    }
+
+    SBI(*ddr, bit);
+
+    return ATTINY861_SUCCESS;
+}
+
+static ATTINY861_STATUS_CODE set_gpio_state(volatile uint8_t * port, int8_t bit, GPIO_STATE state)
+{
+    if (port == NULL)
+    {
+        return ATTINY861_NULL_POINTER;
+    }
+    if (bit < 0)
+    {
+        return ATTINY861_GPIO_INVALID;
+    }
+    //TODO check for invalid state
+
+    if (state == GPIO_HIGH)
+    {
+        SBI(*port, bit);
+    }
+    else if (state == GPIO_LOW)
+    {
+        CBI(*port, bit);
+    }
+
+    return ATTINY861_SUCCESS;
+}
+
 ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput(ATTN861_GPIO gpio, GPIO_STATE initial_state)
 {
     volatile uint8_t *ddr;
@@ -72,39 +113,25 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput(ATTN861_GPIO gpio, GPIO_STATE in
     volatile uint8_t *port;
     int8_t port_bit;
 
-    ddr = get_ddr_register(gpio);
-    if (ddr == NULL)
-    {
-        return ATTINY861_GPIO_INVALID;
-    }
+    ATTINY861_STATUS_CODE ret;
 
+    ddr = get_ddr_register(gpio);
     ddr_bit = get_ddr_bit(gpio);
-    if (ddr_bit < 0)
-    {
-        return ATTINY861_GPIO_INVALID;
-    }
 
     port = get_port_register(gpio);
-    if (port == NULL)
-    {
-        return ATTINY861_GPIO_INVALID;
-    }
-
     port_bit = get_port_bit(gpio);
-    if (port_bit < 0)
+
+    //TODO Extract this.
+    ret = set_gpio_direction(ddr, ddr_bit);
+    if (ret < 0)
     {
-        return ATTINY861_GPIO_INVALID;
+        return ret;
     }
 
-    SBI(*ddr, ddr_bit);
-
-    if (initial_state == GPIO_HIGH)
+    ret = set_gpio_state(port, port_bit, initial_state);
+    if (ret < 0)
     {
-        SBI(*port, port_bit);
-    }
-    else if (initial_state == GPIO_LOW)
-    {
-        CBI(*port, port_bit);
+        return ret;     // Uh oh.
     }
 
     return ATTINY861_SUCCESS;
