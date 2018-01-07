@@ -1,5 +1,5 @@
-#ifndef ATTINY861_H_INCLUDED
-#define ATTINY861_H_INCLUDED
+#ifndef ATTINY861GPIO_H_INCLUDED
+#define ATTINY861GPIO_H_INCLUDED
 
 #include <stdint.h>
 

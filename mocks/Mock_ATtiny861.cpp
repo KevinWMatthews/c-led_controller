@@ -1,6 +1,6 @@
 extern "C"
 {
-#include "ATtiny861.h"
+#include "ATtiny861Gpio.h"
 }
 
 #include "CppUTestExt/MockSupport.h"

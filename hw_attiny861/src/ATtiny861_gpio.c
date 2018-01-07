@@ -1,8 +1,8 @@
-#include "ATtiny861.h"
+#include "ATtiny861Gpio.h"
+#include "ATtiny861_gpio_map.h"
 #include "BitManip.h"
 #include <avr/io.h>
 #include <stddef.h>
-#include "ATtiny861_gpio_map.h"
 
 //TODO add a direction parameter
 static ATTINY861_STATUS_CODE set_gpio_direction(volatile uint8_t * ddr, int8_t bit)

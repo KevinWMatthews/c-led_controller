@@ -1,7 +1,7 @@
 extern "C"
 {
 #include "LedHw.h"
-#include "ATtiny861.h"
+#include "ATtiny861Gpio.h"
 }
 
 #include "CppUTest/TestHarness.h"
