@@ -10,11 +10,10 @@ add_executable(${target}.elf
     main.c
 )
 
-target_include_directories(${target}.elf
-    PRIVATE
-        "${PROJECT_SOURCE_DIR}/hw_attiny861/include/"         # Include header files for application
-)
-#TODO "${PROJECT_BINARY_DIR}/include"         # Include generated Config.h file
+#TODO Do we want the Config.h file here? Perhaps we need a config file per project.
+#target_include_directories(${target}.elf
+#    "${PROJECT_BINARY_DIR}/include"         # Include generated Config.h file
+#)
 
 set_target_properties(${target}.elf
     PROPERTIES

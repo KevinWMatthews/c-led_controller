@@ -5,6 +5,7 @@ Create a second executable that toggles multiple LEDs.
 
 Remove old LedHw interface. It is no longer needed.
 
+Add Config.h file per project?
 
 
 Where should led/gpio mapping be defined? In Led.h or LedMapping.h?
