@@ -1,8 +1,8 @@
-add_library(LedControllerLib
+add_library(LedBlink
     "${PROJECT_SOURCE_DIR}/src_hw/Led_ATtiny861.c"
 )
-target_include_directories(LedControllerLib PRIVATE "${PROJECT_SOURCE_DIR}/include")
-target_link_libraries(LedControllerLib PRIVATE ATtiny861::Gpio)
+target_include_directories(LedBlink PRIVATE "${PROJECT_SOURCE_DIR}/include")
+target_link_libraries(LedBlink PRIVATE ATtiny861::Gpio)
 
 
 if (CMAKE_CROSSCOMPILING)
@@ -28,7 +28,7 @@ if (CMAKE_CROSSCOMPILING)
             LINK_FLAGS ${AVR_LINK_FLAGS}
     )
 
-    target_link_libraries(${target}.elf LedControllerLib)
+    target_link_libraries(${target}.elf LedBlink)
 
     # Create a list of files that we need to clean.
     set(avr_clean_files ${target_path}.map)
