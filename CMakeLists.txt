@@ -1,5 +1,9 @@
-cmake_minimum_required (VERSION 2.7.1)
+cmake_minimum_required (VERSION 3.5)
 project (LedController)
+
+# Specify CMake version 3.5 to enable:
+#   CMP0028 - Double colon in target name means ALIAS or IMPORTED target.
+cmake_policy(VERSION 3.5)
 
 # Check that CppUTest is installed on the build system
 if(NOT DEFINED CPPUTEST_HOME)

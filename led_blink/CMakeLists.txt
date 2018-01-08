@@ -2,8 +2,7 @@ add_library(LedControllerLib
     "${PROJECT_SOURCE_DIR}/src_hw/Led_ATtiny861.c"
 )
 target_include_directories(LedControllerLib PUBLIC "${PROJECT_SOURCE_DIR}/include")
-#target_include_directories(LedControllerLib PRIVATE "${PROJECT_SOURCE_DIR}/hw_attiny861/include")
-target_link_libraries(LedControllerLib ATtiny861Lib)
+target_link_libraries(LedControllerLib ATtiny861::Gpio)
 
 
 if (CMAKE_CROSSCOMPILING)
