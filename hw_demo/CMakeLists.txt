@@ -21,7 +21,7 @@ set_target_properties(${target}.elf
         LINK_FLAGS ${AVR_LINK_FLAGS}
 )
 
-target_link_libraries(${target}.elf ATtiny861::Gpio)
+target_link_libraries(${target}.elf PRIVATE ATtiny861::Gpio)
 
 # Create a list of files that we need to clean.
 set(avr_clean_files ${target_path}.map)
