@@ -1,3 +1,9 @@
+Can we use a double-colon for other libraries in this project?
+Can we use it for the IMPORTED libCppUTest? I think so.
+    The double colon forces the library to be a target and causes errors during
+    CMake generation instead of during link time.
+    (see video about 26:20)
+
 Can not make multiple targets: disassemble, size, etc.
 Figure this out so that we can create multiple executables!
 
@@ -6,10 +12,6 @@ Create a second executable that toggles multiple LEDs.
 Remove old LedHw interface. It is no longer needed.
 
 Add Config.h file per project?
-Learn to use target_link_library(Foo PUBLIC bar::bar)
-The double colon forces the library to be a target and causes errors during
-CMake generation instead of during link time.
-(see video about 26:20)
 
 Where should led/gpio mapping be defined? In Led.h or LedMapping.h?
 Similarly for GPIO.
