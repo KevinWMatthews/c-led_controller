@@ -15,6 +15,10 @@ enable_language(CXX)
 #############################
 # Set up CppUTest libraries #
 #############################
+find_package(CppUTest 3.8 REQUIRED)
+#TODO edit here! Go look at the slides and check that we've found this.
+# We probably need to rework how libraries are included - use the package file instead of CPPUTEST_HOME.
+
 # Link against system CppUTest library for unit tests
 add_library(libCppUTest STATIC IMPORTED)
 set_property(TARGET libCppUTest PROPERTY IMPORTED_LOCATION "${CPPUTEST_HOME}/lib/libCppUTest.a")

@@ -6,9 +6,9 @@ project (LedController)
 cmake_policy(VERSION 3.5)
 
 # Check that CppUTest is installed on the build system
-if(NOT DEFINED CPPUTEST_HOME)
-    message(FATAL_ERROR "CPPUTEST_HOME is not set. You must tell CMake where CppUTest is installed.")
-endif()
+#if(NOT DEFINED CPPUTEST_HOME)
+#    message(FATAL_ERROR "CPPUTEST_HOME is not set. You must tell CMake where CppUTest is installed.")
+#endif()
 
 set (LedController_VERSION_MAJOR 0)
 set (LedController_VERSION_MINOR 1)
@@ -21,10 +21,11 @@ set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 # Create a Config.h file for this project
 # configure_file(<input> <output>)
 # Copy input file to output file and perform variable substitution.
+# Should I move the output to "generated"?
 configure_file (
     "${PROJECT_SOURCE_DIR}/include/LedControllerConfig.h.in"
     "${PROJECT_BINARY_DIR}/include/LedControllerConfig.h"
-    )
+)
 
 
 #TODO the production code will need to compile hw_attiny861, doesn't it?

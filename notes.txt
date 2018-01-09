@@ -1,3 +1,32 @@
+# Clone source:
+git clone https://github.com/cpputest/cpputest.git CppUTest
+cd CppUTest/
+
+# Configure out-of-tree build:
+cd cpputest_build/          # They kindly provided this folder for us!
+cmake .. -DCMAKE_INSTALL_PREFIX=/home/kevin/coding/c/led_controller/install
+# This generates:
+#    cpputest.pc
+#    Makefile
+# in the CppUTest directory.
+
+# You can easily check on the build options using:
+cmake-gui ..
+
+# Wow; they install the package stuff. Go learn about this!
+
+# Build
+make
+
+# Test
+make test
+
+# Install
+make install
+
+cmake -DCMAKE_TOOLCHAIN_FILE=../Toolchain-avr-ATtiny.cmake -DCPPUTEST_HOME=/home/kmatthews/coding/c/led_controller/install -DCMAKE_INSTALL_PREFIX=/home/kevin/coding/c/led_controller/install ..
+
+# avr toolchain
 http://www.atmel.com/tools/atmelavrtoolchainforlinux.aspx
 Sign in (you need to create an account).
 tar -xvf avr8-gnu-toolchain-3.5.4.1709-linux.any.x86_64.tar.gz

@@ -1,3 +1,16 @@
+Figure out how to edit the cache or whatever. What variables have I set?
+
+Learn to use find_package(). Can I use this for CppUTest?
+    Compile/cross-compile CppUTest.
+    See if the package stuff works.
+
+Consider creating a build directory with a .gitignore in the style of CppUTest. Good idea, Mr. Grenning.
+
+
+Holy crap! Check out the 'make help' target for CppUTest. I have much to learn.
+
+
+
 Can we use a double-colon for other libraries in this project?
 Can we use it for the IMPORTED libCppUTest? I think so.
     The double colon forces the library to be a target and causes errors during
