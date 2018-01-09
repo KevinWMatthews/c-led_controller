@@ -11,6 +11,7 @@ build_avr/
 build_bbb/
 install/
 install_bbb/
+install_avr/
 
 # Ignore directories used for CppUTest
 CppUTest/
