@@ -9,6 +9,7 @@ cmake_policy(VERSION 3.5)
 #if(NOT DEFINED CPPUTEST_HOME)
 #    message(FATAL_ERROR "CPPUTEST_HOME is not set. You must tell CMake where CppUTest is installed.")
 #endif()
+set (CMAKE_MODULE_PATH "${CMAKE_INSTALL_PREFIX}")
 
 set (LedController_VERSION_MAJOR 0)
 set (LedController_VERSION_MINOR 1)
