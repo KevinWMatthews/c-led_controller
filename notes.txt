@@ -24,7 +24,8 @@ make test
 # Install
 make install
 
-cmake -DCMAKE_TOOLCHAIN_FILE=../Toolchain-avr-ATtiny.cmake -DCPPUTEST_HOME=/home/kmatthews/coding/c/led_controller/install -DCMAKE_INSTALL_PREFIX=/home/kevin/coding/c/led_controller/install ..
+# To compile tests for the PC,
+cmake -DCPPUTEST_HOME=/home/kmatthews/coding/c/led_controller/install -DCMAKE_INSTALL_PREFIX=/home/kevin/coding/c/led_controller/install ..
 
 # avr toolchain
 http://www.atmel.com/tools/atmelavrtoolchainforlinux.aspx

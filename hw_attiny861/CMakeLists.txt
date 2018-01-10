@@ -4,6 +4,8 @@ add_library(ATtiny861Gpio
 )
 target_include_directories(ATtiny861Gpio PUBLIC "${PROJECT_SOURCE_DIR}/hw_attiny861/include")
 target_include_directories(ATtiny861Gpio PRIVATE "${AVR_TOOLCHAIN_HOME}/avr")
+target_link_libraries(ATtiny861Gpio CppUTest)
+target_link_libraries(ATtiny861Gpio CppUTestExt)
 
 set_target_properties(ATtiny861Gpio
     PROPERTIES

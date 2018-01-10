@@ -7,8 +7,10 @@ enable_language(CXX)
 # Set up CppUTest libraries #
 #############################
 # Link against system CppUTest library for unit tests
-add_library(libCppUTest STATIC IMPORTED)
-set_property(TARGET libCppUTest PROPERTY IMPORTED_LOCATION "${CPPUTEST_HOME}/lib/libCppUTest.a")
+find_package(CppUTest 3.8 REQUIRED)
+
+#add_library(libCppUTest STATIC IMPORTED)
+#set_property(TARGET libCppUTest PROPERTY IMPORTED_LOCATION "${CPPUTEST_HOME}/lib/libCppUTest.a")
 
 
 
@@ -25,7 +27,8 @@ add_library(ATtiny861TestLib
 )
 target_include_directories(ATtiny861TestLib PUBLIC "${PROJECT_SOURCE_DIR}/hw_attiny861/include")
 target_include_directories(ATtiny861TestLib PRIVATE "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/include")
-target_compile_options(ATtiny861TestLib PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorMallocMacros.h")
+#target_link_libraries(ATtiny861TestLib CppUTest)
+#target_compile_options(ATtiny861TestLib PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorMallocMacros.h")
 
 
 
@@ -38,5 +41,5 @@ add_executable(Test_ATtiny861Gpio
     "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/src/MockHw_ATtiny861.c"
 )
 target_include_directories(Test_ATtiny861Gpio PRIVATE "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/include")
-target_compile_options(Test_ATtiny861Gpio PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorNewMacros.h")
-target_link_libraries(Test_ATtiny861Gpio libCppUTest ATtiny861TestLib)
+#target_compile_options(Test_ATtiny861Gpio PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorNewMacros.h")
+target_link_libraries(Test_ATtiny861Gpio CppUTest ATtiny861TestLib)
