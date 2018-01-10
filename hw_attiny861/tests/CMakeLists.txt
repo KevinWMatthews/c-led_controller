@@ -20,15 +20,15 @@ find_package(CppUTest 3.8 REQUIRED)
 # Create target for ATtiny861 hardware library. Tests only!
 # When compiling for x86, link against mock hardware header files. The tests refer to memory registers, and these must be mocked.
 # When compiling for ATtiny, the header files are included with the toolchain. Do not use this library.
-add_library(ATtiny861TestLib
+add_library(ATtiny861Test
     "${PROJECT_SOURCE_DIR}/hw_attiny861/src/ATtiny861_gpio.c"
     "${PROJECT_SOURCE_DIR}/hw_attiny861/src/ATtiny861_gpio_map.c"
     "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/src/mock_io.c"
 )
-target_include_directories(ATtiny861TestLib PUBLIC "${PROJECT_SOURCE_DIR}/hw_attiny861/include")
-target_include_directories(ATtiny861TestLib PRIVATE "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/include")
-#target_link_libraries(ATtiny861TestLib CppUTest)
-#target_compile_options(ATtiny861TestLib PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorMallocMacros.h")
+target_include_directories(ATtiny861Test PUBLIC "${PROJECT_SOURCE_DIR}/hw_attiny861/include")
+target_include_directories(ATtiny861Test PRIVATE "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/include")
+#target_link_libraries(ATtiny861Test CppUTest)
+#target_compile_options(ATtiny861Test PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorMallocMacros.h")
 
 
 
@@ -42,4 +42,4 @@ add_executable(Test_ATtiny861Gpio
 )
 target_include_directories(Test_ATtiny861Gpio PRIVATE "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/include")
 #target_compile_options(Test_ATtiny861Gpio PRIVATE -include "${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorNewMacros.h")
-target_link_libraries(Test_ATtiny861Gpio CppUTest ATtiny861TestLib)
+target_link_libraries(Test_ATtiny861Gpio CppUTest ATtiny861Test)
