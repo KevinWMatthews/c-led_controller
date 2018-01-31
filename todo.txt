@@ -1,3 +1,12 @@
+Add this into hw_attiny861/CMakeLists.txt:
+    if (CMAKE_CROSSCOMPILING)
+        set_target_properties(ATtiny861Gpio
+            PROPERTIES
+                COMPILE_FLAGS ${AVR_COMPILE_FLAGS}
+                LINK_FLAGS ${AVR_LINK_FLAGS}
+        )
+    endif
+
 Figure out how to edit the cache or whatever. What variables have I set?
 
 Learn to use find_package(). Can I use this for CppUTest?

@@ -1,6 +1,6 @@
 enable_language(CXX)
 
-set(CMAKE_PREFIX_PATH "/home/kevin/coding/c/CppUTest/install_v3-8")
+set(CMAKE_PREFIX_PATH ${CPPUTEST_HOME})
 #set(CMAKE_PREFIX_PATH "/home/kevin/coding/c/CppUTest/install_master")
 
 message(STATUS "CMAKE_PREFIX_PATH: ${CMAKE_PREFIX_PATH}")
