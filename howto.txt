@@ -7,9 +7,9 @@ Build CppUTest:
 
     Build CppUTest for the PC (I struggled with autotools):
         cd cpputest_build
-        cmake -DCMAKE_INSTALL_PREFIX=${PROJECT_SOURCE_DIR}/CppUTset/install ..
+        #cmake -DCMAKE_INSTALL_PREFIX=${PROJECT_SOURCE_DIR}/CppUTest/install ..
         Configure CMake from the command line:
-            cmake -DCMAKE_INSTALL_PREFIX=/home/kmatthews/coding/c/led_controller/CppUTest/install ..
+            #cmake -DCMAKE_INSTALL_PREFIX=/home/kmatthews/coding/c/led_controller/CppUTest/install ..
         Configure Cmake using cmake-gui:
             TODO
         make

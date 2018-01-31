@@ -6,13 +6,24 @@ extern "C"
 
 #include "CppUTest/TestHarness.h"
 
+
+TEST_GROUP(dummy)
+{
+};
+
+TEST(dummy, wiring_check)
+{
+    FAIL("A successful failure.");
+}
+
+#if 0
 TEST_GROUP(ATtiny861Gpio)
 {
     // void setup()
-    // {
+    //{
         // MockHw_ATtiny861_Reset();
         // ATtiny861_GpioInit();
-    // }
+    //}
 
     // void teardown()
     // {
@@ -21,8 +32,9 @@ TEST_GROUP(ATtiny861Gpio)
 
 TEST(ATtiny861Gpio, wiring_check)
 {
-    // FAIL("It works!");
+    FAIL("It works!");
 }
+#endif
 
 #if 0
 TEST(ATtiny861Gpio, after_init_pins_set_to_input_with_pullup_high)
