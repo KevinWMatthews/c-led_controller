@@ -5,8 +5,10 @@ add_library(ATtiny861Gpio
 target_include_directories(ATtiny861Gpio PUBLIC "${PROJECT_SOURCE_DIR}/hw_attiny861/include")
 target_include_directories(ATtiny861Gpio PRIVATE "${PROJECT_BINARY_DIR}/include")
 target_include_directories(ATtiny861Gpio PRIVATE "${AVR_TOOLCHAIN_HOME}/avr")
-target_link_libraries(ATtiny861Gpio CppUTest)
-target_link_libraries(ATtiny861Gpio CppUTestExt)
+
+# I think we need this for test compilation - allows malloc check
+#target_link_libraries(ATtiny861Gpio CppUTest)
+#target_link_libraries(ATtiny861Gpio CppUTestExt)
 
 # Specify an alias library for other targets to link against.
 # This is not required but enables to CMake to throw an error while it

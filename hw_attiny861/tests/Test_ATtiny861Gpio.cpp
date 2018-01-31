@@ -4,7 +4,9 @@ extern "C"
 // #include "MockHw_ATtiny861.h"
 }
 
-#include "CppUTest/TestHarness.h"
+// #include "CppUTest/TestHarness.h"
+#include "TestHarness.h"
+// #include "MockSupport.h"
 
 
 TEST_GROUP(dummy)

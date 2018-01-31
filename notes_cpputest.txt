@@ -1,12 +1,18 @@
 # Build and install CppUTest locally.
 git clone https://github.com/cpputest/cpputest.git CppUTest
 cd CppUTest
-mkdir install_v3-8
-mkdir build_v3-8
-cd build_v3-8
-cmake -DCMAKE_INSTALL_PREFIX=/home/kevin/coding/c/led_controller/CppUTest/install_v3-8
+cd cpputest_build       # They provide this build directory.
+cmake -DCMAKE_INSTALL_PREFIX=/home/kevin/coding/c/led_controller/install/ ..
 TODO should we customize? can use
 make edit_cache
 make
 make test
 make install
+
+
+# Now configure my project:
+mkdir build
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=/home/kevin/coding/c/led_controller/install -DCPPUTEST_HOME=/home/kevin/coding/c/led_controller/install ..
+make
+#Fails
