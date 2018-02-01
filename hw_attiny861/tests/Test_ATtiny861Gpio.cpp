@@ -2,6 +2,7 @@ extern "C"
 {
 #include "ATtiny861Gpio.h"
 #include "MockHw_ATtiny861.h"
+#include "avr/io.h"
 }
 
 #include "CppUTest/TestHarness.h"
@@ -9,23 +10,17 @@ extern "C"
 
 TEST_GROUP(ATtiny861Gpio)
 {
-    // void setup()
-    //{
-        // MockHw_ATtiny861_Reset();
-        // ATtiny861_GpioInit();
-    //}
+    void setup()
+    {
+        MockHw_ATtiny861_Reset();
+        ATtiny861_GpioInit();
+    }
 
-    // void teardown()
-    // {
-    // }
+    void teardown()
+    {
+    }
 };
 
-TEST(ATtiny861Gpio, wiring_check)
-{
-    FAIL("It works!");
-}
-
-#if 0
 TEST(ATtiny861Gpio, after_init_pins_set_to_input_with_pullup_high)
 {
     BYTES_EQUAL(0x00, DDRA);
@@ -390,4 +385,3 @@ TEST(ATtiny861Gpio, set_output_gpio_PA0_low)
     BYTES_EQUAL(0x00, DDRB);
     BYTES_EQUAL(0xff, PORTB);
 }
-#endif

@@ -18,3 +18,9 @@ make
 #Fails
 It's searching for libraryies in install/CppUTest
 and the source code includes <CppUTest/some_header.h>
+
+
+The documentation states that we need to add:
+    CXXFLAGS += -include $(CPPUTEST_HOME)/include/CppUTest/MemoryLeakDetectorNewMacros.h
+    CFLAGS += -include $(CPPUTEST_HOME)/include/CppUTest/MemoryLeakDetectorMallocMacros.h
+However, I'm only adding MallocMacros and it works.

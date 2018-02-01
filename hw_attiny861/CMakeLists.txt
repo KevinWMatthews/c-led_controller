@@ -9,9 +9,10 @@ target_include_directories(ATtiny861Gpio PRIVATE "${PROJECT_SOURCE_DIR}/hw_attin
 # May need to be used for production firmware.
 #target_include_directories(ATtiny861Gpio PRIVATE "${AVR_TOOLCHAIN_HOME}/avr")
 
-# I think we need this for test compilation - allows malloc check
-#target_link_libraries(ATtiny861Gpio CppUTest)
-#target_link_libraries(ATtiny861Gpio CppUTestExt)
+set_target_properties(ATtiny861Gpio PROPERTIES
+    COMPILE_FLAGS "-include ${CPPUTEST_HOME}/include/CppUTest/MemoryLeakDetectorMallocMacros.h"
+    )
+target_link_libraries(ATtiny861Gpio CppUTest)
 
 # Specify an alias library for other targets to link against.
 # This is not required but enables to CMake to throw an error while it

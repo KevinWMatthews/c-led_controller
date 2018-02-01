@@ -19,6 +19,10 @@ configure_file (
     "${PROJECT_BINARY_DIR}/include/LedControllerConfig.h"
 )
 
+# When compiling test code, production code library requires CppUTest for memory leak detection.
+set(CMAKE_PREFIX_PATH "${CPPUTEST_HOME}")
+find_package(CppUTest 3.8 REQUIRED)
+
 add_subdirectory(hw_attiny861)
 add_subdirectory(hw_attiny861/tests)
 

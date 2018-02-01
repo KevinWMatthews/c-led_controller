@@ -76,6 +76,7 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput(ATTN861_GPIO gpio, GPIO_STATE in
 
     return ATTINY861_SUCCESS;
 }
+
 void ATtiny861_GpioInit(void)
 {
     // Pins should default to inputs on power-up.
