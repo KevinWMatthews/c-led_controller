@@ -13,7 +13,10 @@ make install
 # Now configure my project:
 mkdir build
 cd build
-cmake -DCMAKE_INSTALL_PREFIX=/home/kevin/coding/c/led_controller/install -DCPPUTEST_HOME=/home/kevin/coding/c/led_controller/install ..
+cmake -DCMAKE_INSTALL_PREFIX=/home/kevin/coding/c/led_controller/install -DCPPUTEST_HOME=/home/kevin/coding/c/led_controller/install -DCOMPILE_TESTS=ON ..
+# Toolchain file must come first?
+cmake -DCMAKE_TOOLCHAIN_FILE=/home/kevin/coding/c/led_controller/Toolchain-avr-ATtiny.cmake -DCMAKE_INSTALL_PREFIX=/home/kevin/coding/c/led_controller/install -DCPPUTEST_HOME=/home/kevin/coding/c/led_controller/install -DCOMPILE_TESTS=OFF ..
+
 make
 #Fails
 It's searching for libraryies in install/CppUTest

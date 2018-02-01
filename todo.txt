@@ -1,3 +1,10 @@
+Figure out how to add AVR-specific makefile targets.
+See commit 9c78390; I removed these targets while flailing about.
+Try to support tests during cross-compilation.
+    Will run into the bug that the chip is too small!
+
+Must you specify the toolchain file first on the command line?
+
 Make tests optional - see randomguy's blog.
 
 CMake will search the install prefix for libraries!
