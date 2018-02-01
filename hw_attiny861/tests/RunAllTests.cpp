@@ -1,5 +1,4 @@
-// #include "CppUTest/CommandLineTestRunner.h"
-#include "CommandLineTestRunner.h"
+#include "CppUTest/CommandLineTestRunner.h"
 
 int main(int ac, char** av)
 {

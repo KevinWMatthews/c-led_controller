@@ -1,3 +1,11 @@
+CppUTest link error:
+    INTERFACE_INCLUDE_DIRECTORIES is getting set improperly in CppUTesTargets.cmake
+    If I shorten /include/CppUTest to /include, then the library will link properly using
+    find_package().
+Figure out where and how this is getting set!
+
+Consider setting CPPUTEST_HOME as an environment variable rather than a preprocessor (-D) option.
+
 Add this into hw_attiny861/CMakeLists.txt:
     if (CMAKE_CROSSCOMPILING)
         set_target_properties(ATtiny861Gpio

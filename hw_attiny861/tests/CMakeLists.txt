@@ -1,6 +1,7 @@
 enable_language(CXX)
 
 set(CMAKE_PREFIX_PATH ${CPPUTEST_HOME})
+#set(CMAKE_MODULE_PATH ${CPPUTEST_HOME})
 
 message(STATUS "CMAKE_PREFIX_PATH: ${CMAKE_PREFIX_PATH}")
 message(STATUS "CMAKE_MODULE_PATH: ${CMAKE_MODULE_PATH}")
@@ -12,5 +13,3 @@ add_executable(Test_ATtiny861Gpio
     Test_ATtiny861Gpio.cpp
 )
 target_link_libraries(Test_ATtiny861Gpio CppUTest)
-#target_link_libraries(Test_ATtiny861Gpio CppUTestExt)
-#target_include_directories(Test_ATtiny861Gpio PRIVATE ${CPPUTEST_HOME}/include)

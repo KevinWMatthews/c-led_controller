@@ -16,3 +16,5 @@ cd build
 cmake -DCMAKE_INSTALL_PREFIX=/home/kevin/coding/c/led_controller/install -DCPPUTEST_HOME=/home/kevin/coding/c/led_controller/install ..
 make
 #Fails
+It's searching for libraryies in install/CppUTest
+and the source code includes <CppUTest/some_header.h>
