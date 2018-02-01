@@ -24,15 +24,21 @@ set(CMAKE_PREFIX_PATH "${CPPUTEST_HOME}")
 find_package(CppUTest 3.8 REQUIRED)
 
 add_subdirectory(hw_attiny861)
-add_subdirectory(hw_attiny861/tests)
+
+option(COMPILE_TESTS "Compile the tests" OFF)
+if(COMPILE_TESTS)
+    add_subdirectory(hw_attiny861/tests)
+endif(COMPILE_TESTS)
+
 
 message(STATUS "
 -------------------------------------------------------
-Current project options:
+Project options:
     CPPUTEST_HOME:                      ${CPPUTEST_HOME}
     CMAKE_INSTALL_PREFIX:               ${CMAKE_INSTALL_PREFIX}
+    COMPILE_TESTS:                      ${COMPILE_TESTS}
 
-Current compiler options:
+Compiler options:
     CC:                                 ${CMAKE_C_COMPILER}
     CXX:                                ${CMAKE_CXX_COMPILER}
 -------------------------------------------------------"
