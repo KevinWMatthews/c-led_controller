@@ -13,12 +13,13 @@ set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 set (CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 
-# Create a Config.h file for this project
+# Create a header file with project information
 configure_file (
     "${PROJECT_SOURCE_DIR}/include/LedControllerConfig.h.in"
     "${PROJECT_BINARY_DIR}/include/LedControllerConfig.h"
 )
 
+add_subdirectory(hw_attiny861)
 add_subdirectory(hw_attiny861/tests)
 
 message(STATUS "

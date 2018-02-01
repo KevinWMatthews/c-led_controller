@@ -1,22 +1,12 @@
 extern "C"
 {
-// #include "ATtiny861Gpio.h"
-// #include "MockHw_ATtiny861.h"
+#include "ATtiny861Gpio.h"
+#include "MockHw_ATtiny861.h"
 }
 
 #include "CppUTest/TestHarness.h"
 
 
-TEST_GROUP(dummy)
-{
-};
-
-TEST(dummy, wiring_check)
-{
-    FAIL("A successful failure.");
-}
-
-#if 0
 TEST_GROUP(ATtiny861Gpio)
 {
     // void setup()
@@ -34,7 +24,6 @@ TEST(ATtiny861Gpio, wiring_check)
 {
     FAIL("It works!");
 }
-#endif
 
 #if 0
 TEST(ATtiny861Gpio, after_init_pins_set_to_input_with_pullup_high)
