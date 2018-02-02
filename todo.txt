@@ -1,3 +1,6 @@
+Experiment with installation targets.
+    Do we need to use ${target} or ${target_path}?
+
 Figure out how to add AVR-specific makefile targets.
 See commit 9c78390; I removed these targets while flailing about.
 Try to support tests during cross-compilation.
