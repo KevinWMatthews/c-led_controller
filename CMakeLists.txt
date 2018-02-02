@@ -20,7 +20,6 @@ configure_file (
 )
 
 add_subdirectory(hw_attiny861)
-add_subdirectory(hw_demo)
 
 option(COMPILE_TESTS "Compile unit tests" OFF)
 if(COMPILE_TESTS)
@@ -31,6 +30,7 @@ if(COMPILE_TESTS)
     add_subdirectory(hw_attiny861/tests)
 endif(COMPILE_TESTS)
 
+add_subdirectory(hw_attiny861/products/leds_on)
 
 message(STATUS "
 -------------------------------------------------------
