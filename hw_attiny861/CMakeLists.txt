@@ -23,8 +23,6 @@ if(COMPILE_TESTS)
         COMPILE_FLAGS "-include CppUTest/MemoryLeakDetectorMallocMacros.h"
     )
     target_link_libraries(ATtiny861Gpio CppUTest)
-else()
-    #TODO should we check if we're cross-compiling? We need to be.
 endif(COMPILE_TESTS)
 
 # Specify an alias library for other targets to link against.

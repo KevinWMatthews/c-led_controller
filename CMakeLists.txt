@@ -30,7 +30,7 @@ if(COMPILE_TESTS)
     add_subdirectory(hw_attiny861/tests)
 endif(COMPILE_TESTS)
 
-add_subdirectory(hw_attiny861/products/leds_on)
+#add_subdirectory(hw_attiny861/products/leds_on)
 
 message(STATUS "
 -------------------------------------------------------
