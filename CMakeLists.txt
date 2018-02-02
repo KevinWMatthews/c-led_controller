@@ -20,6 +20,7 @@ configure_file (
 )
 
 add_subdirectory(hw_attiny861)
+add_subdirectory(hw_demo)
 
 option(COMPILE_TESTS "Compile unit tests" OFF)
 if(COMPILE_TESTS)
