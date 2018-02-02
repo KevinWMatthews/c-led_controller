@@ -159,3 +159,85 @@ Current compiler options:
    CXX:                                 /home/kmatthews/coding/toolchains/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-g++
    LD:                                  /home/kmatthews/coding/toolchains/gcc-linaro-6.2.1-2016.11-x86_64_arm-linux-gnueabihf/bin/arm-linux-gnueabihf-g++
     lib_libCppUTest_a-JUnitTestOutput.o: ELF 32-bit LSB relocatable, ARM, EABI5 version 1 (SYSV), not stripped
+
+
+
+
+
+
+
+# Custom targets can be made directly ('make ${target}.hex' works) but
+# they are always considered out-of-date; the hex image will be rebuilt every time!
+# Custom targets do not build an OUTPUT file.
+#add_custom_target(${target}.hex
+#    COMMAND
+#        # build the dependency
+#    DEPENDS
+#        ${target}.hex
+#)
+#
+## Custom commands can not be invoked from the command line - 'make hex' will not work.
+## Instead, they specify how to build the OUTPUT file.
+#add_custom_command(
+#    OUTPUT
+#        ${target}.hex
+#    COMMAND
+#        # avr-objcopy [option(s)] in-file [out-file]
+#        # -j --only-section <name>         Only copy section <name> into the output
+#        # -O --output-target <bfdname>     Create an output file in format <bfdname>
+#        ${CMAKE_OBJCOPY} -j .text -j .data -O ihex ${target_path}.elf ${target_path}.hex
+#    DEPENDS
+#        ${target}.elf
+#    COMMENT
+#        "hex: Generating .hex file"
+#)
+
+###
+# Alternatively, we can create a custom target and then attach a custom command to it.
+add_custom_target(${target}.hex
+    DEPENDS
+        ${target}.elf
+    COMMENT
+        "hex target"
+)
+
+add_custom_command(
+    TARGET              # Attach this command to the specified target
+        ${target}.hex
+    COMMAND
+        # avr-objcopy [option(s)] in-file [out-file]
+        # -j --only-section <name>         Only copy section <name> into the output
+        # -O --output-target <bfdname>     Create an output file in format <bfdname>
+        ${CMAKE_OBJCOPY} -j .text -j .data -O ihex ${target_path}.elf ${target_path}.hex
+    COMMENT
+        "hex command"
+)
+
+
+
+####################### make good notes! ##################
+# Custom targets can be made directly from the command line.
+# They are always considered out-of-date, so any commands that they specify will always be run.
+# Custom targets can not build an OUTPUT file, though they can create BYPRODUCTS.
+# This target depends on ${target_path}.hex. It will rebuild it if needed.
+add_custom_target(${target}-hex
+    DEPENDS
+        ${target_path}.hex
+)
+
+add_custom_command(
+    # OUTPUT will be cleaned with make clean
+    OUTPUT
+        ${target_path}.hex
+    DEPENDS
+        ${target}.elf
+    COMMAND
+        # avr-objcopy [option(s)] in-file [out-file]
+        # -j --only-section <name>         Only copy section <name> into the output
+        # -O --output-target <bfdname>     Create an output file in format <bfdname>
+        ${CMAKE_OBJCOPY} -j .text -j .data -O ihex ${target_path}.elf ${target_path}.hex
+    COMMENT
+        "Generating hex file ${target}.hex"
+)
+
+
