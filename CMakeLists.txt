@@ -19,18 +19,24 @@ configure_file (
     "${PROJECT_BINARY_DIR}/include/LedControllerConfig.h"
 )
 
-add_subdirectory(hw_attiny861)
-
+# Enable project options
 option(COMPILE_TESTS "Compile unit tests" OFF)
+
+# Search for libraries
 if(COMPILE_TESTS)
     set(CMAKE_PREFIX_PATH "${CPPUTEST_HOME}")
     message(STATUS ${CMAKE_PREFIX_PATH})
     find_package(CppUTest 3.8 REQUIRED)
+endif(COMPILE_TESTS)
 
+# Add subdirectories
+add_subdirectory(hw_attiny861)
+
+if(COMPILE_TESTS)
     add_subdirectory(hw_attiny861/tests)
 endif(COMPILE_TESTS)
 
-#add_subdirectory(hw_attiny861/products/leds_on)
+add_subdirectory(hw_attiny861/products/leds_on)
 
 message(STATUS "
 -------------------------------------------------------

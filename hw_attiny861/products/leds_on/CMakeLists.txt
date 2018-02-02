@@ -9,11 +9,19 @@ set (target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
 add_executable(${target}.elf
     main.c
 )
+target_link_libraries(${target}.elf ATtiny861::Gpio)
 
 #TODO Do we want the Config.h file here? Perhaps we need a config file per project.
 #target_include_directories(${target}.elf
 #    "${PROJECT_BINARY_DIR}/include"         # Include generated Config.h file
 #)
+
+if (COMPILE_TESTS)
+    set_target_properties(${target}.elf PROPERTIES
+        COMPILE_FLAGS "-include CppUTest/MemoryLeakDetectorMallocMacros.h"
+    )
+    target_link_libraries(${target}.elf CppUTest)
+endif (COMPILE_TESTS)
 
 if (CMAKE_CROSS_COMPILING)
     set_target_properties(${target}.elf
@@ -21,8 +29,6 @@ if (CMAKE_CROSS_COMPILING)
             COMPILE_FLAGS ${AVR_COMPILE_FLAGS}
             LINK_FLAGS "${AVR_LINK_FLAGS} -Wl,-Map,${target_path}.map"
     )
-
-    target_link_libraries(${target}.elf PRIVATE ATtiny861::Gpio)
 
     # Create a list of files that we need to clean.
     #TODO I don't know how to get add_executable to clean extra generated files.
@@ -139,11 +145,15 @@ if (CMAKE_CROSS_COMPILING)
         PROPERTY ADDITIONAL_MAKE_CLEAN_FILES
             "${avr_clean_files}"
     )
-endif (CMAKE_CROSS_COMPILING)
+else()
+    set (source_list 
+            main.c;"${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/src/mock_io.c";"${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/src/MockHw_ATtiny861.c")
 
-if (COMPILE_TESTS)
     set_target_properties(${target}.elf PROPERTIES
-        COMPILE_FLAGS "-include CppUTest/MemoryLeakDetectorMallocMacros.h"
+        SOURCES
+            ${source_list}
     )
-    target_link_libraries(${target}.elf CppUTest)
-endif (COMPILE_TESTS)
+    message(STATUS "hi get_target_properties(${target}.elf SOURCES)")
+
+    target_include_directories(${target}.elf PRIVATE "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/include")
+endif (CMAKE_CROSS_COMPILING)
