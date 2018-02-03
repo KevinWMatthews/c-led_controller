@@ -14,10 +14,18 @@ CMake will search the install prefix for libraries!
     "The installation prefix is also added to CMAKE_SYSTEM_PREFIX_PATH so that find_package(), find_program(), find_library(), find_path(), and find_file() will search the prefix for other software."
 
 CppUTest link error:
-    INTERFACE_INCLUDE_DIRECTORIES is getting set improperly in CppUTesTargets.cmake
+    INTERFACE_INCLUDE_DIRECTORIES is getting set improperly in CppUTestTargets.cmake
     If I shorten /include/CppUTest to /include, then the library will link properly using
     find_package().
-Figure out where and how this is getting set!
+
+    I am not sure how this gets set during the CppUTest build.
+    I am not sure if I am linking against the library properly.
+    If I answer both of these questions I'd like to fix the error.
+
+    See install/lib/CppUTest/cmake/CppUTestTargets.cmake
+        set_target_properties(CppUTest PROPERTIES
+          INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/CppUTest"
+        )
 
 Consider setting CPPUTEST_HOME as an environment variable rather than a preprocessor (-D) option.
 
