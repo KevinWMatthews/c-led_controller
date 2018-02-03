@@ -31,19 +31,19 @@ endif(COMPILE_TESTS)
 
 # Add subdirectories
 # Compile source code libraries
-add_subdirectory(hw_attiny861)
+add_subdirectory(libhw_attiny861)
 
 # Compile unit tests
 if(COMPILE_TESTS)
-    add_subdirectory(hw_attiny861/tests)
+    add_subdirectory(libhw_attiny861/tests)
 endif(COMPILE_TESTS)
 
 # Create executables
 # Cross-compilation only until/unless I get the build straightened out.
 if(CMAKE_CROSSCOMPILING)
-add_subdirectory(hw_attiny861/products/pin_a0_high)
-add_subdirectory(hw_attiny861/products/pin_a1_high)
-add_subdirectory(hw_attiny861/products/pin_a2_high)
+add_subdirectory(libhw_attiny861/products/pin_a0_high)
+add_subdirectory(libhw_attiny861/products/pin_a1_high)
+add_subdirectory(libhw_attiny861/products/pin_a2_high)
 endif(CMAKE_CROSSCOMPILING)
 
 message(STATUS "
