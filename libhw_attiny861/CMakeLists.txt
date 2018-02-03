@@ -15,6 +15,10 @@ if(CMAKE_CROSSCOMPILING)
     )
 else()
     target_include_directories(ATtiny861Gpio PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/mocks/include")
+    # Extend the source list of the target.
+    # Populate the PRIVATE SOURCES property of the target.
+    # If you populate PUBLIC SOURCES, the file could/will be linked against twice.
+    target_sources(ATtiny861Gpio PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/mocks/src/mock_io.c")
 endif(CMAKE_CROSSCOMPILING)
 
 
