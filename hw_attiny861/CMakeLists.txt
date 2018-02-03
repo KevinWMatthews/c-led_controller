@@ -1,10 +1,12 @@
+message(STATUS "libhw ${CMAKE_CURRENT_SOURCE_DIR}")
+
 add_library(ATtiny861Gpio
-    "${PROJECT_SOURCE_DIR}/hw_attiny861/src/ATtiny861_gpio.c"
-    "${PROJECT_SOURCE_DIR}/hw_attiny861/src/ATtiny861_gpio_map.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/ATtiny861_gpio.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/ATtiny861_gpio_map.c"
 )
 target_include_directories(ATtiny861Gpio PRIVATE "${PROJECT_BINARY_DIR}/include")
-target_include_directories(ATtiny861Gpio PUBLIC "${PROJECT_SOURCE_DIR}/hw_attiny861/include")
-target_include_directories(ATtiny861Gpio PRIVATE "${PROJECT_SOURCE_DIR}/hw_attiny861/src")
+target_include_directories(ATtiny861Gpio PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
+target_include_directories(ATtiny861Gpio PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src")
 
 if(CMAKE_CROSSCOMPILING)
     target_include_directories(ATtiny861Gpio PRIVATE "${AVR_TOOLCHAIN_HOME}/avr")
@@ -14,7 +16,7 @@ if(CMAKE_CROSSCOMPILING)
             LINK_FLAGS ${AVR_LINK_FLAGS}
     )
 else()
-    target_include_directories(ATtiny861Gpio PRIVATE "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/include")
+    target_include_directories(ATtiny861Gpio PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/mocks/include")
 endif(CMAKE_CROSSCOMPILING)
 
 
