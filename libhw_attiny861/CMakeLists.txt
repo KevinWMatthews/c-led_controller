@@ -1,5 +1,3 @@
-message(STATUS "libhw ${CMAKE_CURRENT_SOURCE_DIR}")
-
 add_library(ATtiny861Gpio
     "${CMAKE_CURRENT_SOURCE_DIR}/src/ATtiny861_gpio.c"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/ATtiny861_gpio_map.c"
