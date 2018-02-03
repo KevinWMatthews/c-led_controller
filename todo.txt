@@ -1,5 +1,9 @@
-Experiment with installation targets.
-    Do we need to use ${target} or ${target_path}?
+Implement the remainder of the tests.
+Implement production code.
+Remove dead tests and files:
+    Led2.h -> Led_ATtiny861.c -> ATtiny861.h
+Convert other modules to use a similar path.
+
 
 Figure out how to add AVR-specific makefile targets.
 See commit 9c78390; I removed these targets while flailing about.
