@@ -39,7 +39,7 @@ if(COMPILE_TESTS)
 endif(COMPILE_TESTS)
 
 # Create executables
-# Cross-compilation only until/unless I get the build straightened out.
+# Allow only cross-compilation until/unless I get the build straightened out.
 if(CMAKE_CROSSCOMPILING)
 add_subdirectory(libhw_attiny861/products/pin_a0_high)
 add_subdirectory(libhw_attiny861/products/pin_a1_high)
