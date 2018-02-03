@@ -41,7 +41,7 @@ endif(COMPILE_TESTS)
 # Create executables
 # Cross-compilation only until/unless I get the build straightened out.
 if(CMAKE_CROSSCOMPILING)
-add_subdirectory(hw_attiny861/products/leds_on)
+add_subdirectory(hw_attiny861/products/pins_high)
 endif(CMAKE_CROSSCOMPILING)
 
 message(STATUS "

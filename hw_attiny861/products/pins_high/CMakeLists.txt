@@ -4,7 +4,7 @@ if(NOT CMAKE_CROSSCOMPILING)
     message(FATAL_ERROR "hw_attiny861 products must be cross compiled!")
 endif()
 
-set (target ATtinyHwDemo)
+set (target PinA0High)
 # CMake is smart enough to place output form add_executable in the runtime output directory
 # Custom targets do not have this luxury; we must manually specify the path.
 set (target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
@@ -13,7 +13,7 @@ set (target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
 # Configure elf file #
 ######################
 add_executable(${target}.elf
-    main.c
+    pin_a0.c
 )
 target_link_libraries(${target}.elf ATtiny861::Gpio)
 
