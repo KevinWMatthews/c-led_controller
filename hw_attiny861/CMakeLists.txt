@@ -4,6 +4,7 @@ add_library(ATtiny861Gpio
 )
 target_include_directories(ATtiny861Gpio PRIVATE "${PROJECT_BINARY_DIR}/include")
 target_include_directories(ATtiny861Gpio PUBLIC "${PROJECT_SOURCE_DIR}/hw_attiny861/include")
+target_include_directories(ATtiny861Gpio PRIVATE "${PROJECT_SOURCE_DIR}/hw_attiny861/src")
 
 if(CMAKE_CROSSCOMPILING)
     target_include_directories(ATtiny861Gpio PRIVATE "${AVR_TOOLCHAIN_HOME}/avr")
