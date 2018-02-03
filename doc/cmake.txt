@@ -1,0 +1,4 @@
+add_library(<name> <STATIC | SHARED | MODULE> IMPORTED)
+
+set_property(TARGET <target> PROPERTY <property> <value>)
+TARGET means we will operate on a target, not a directory or source file.

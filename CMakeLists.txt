@@ -24,6 +24,8 @@ option(COMPILE_TESTS "Compile unit tests" OFF)
 
 # Search for libraries
 if(COMPILE_TESTS)
+    #TODO do we need this?
+    #enable_language(CXX)
     set(CMAKE_PREFIX_PATH "${CPPUTEST_HOME}")
     message(STATUS ${CMAKE_PREFIX_PATH})
     find_package(CppUTest 3.8 REQUIRED)
@@ -36,6 +38,7 @@ add_subdirectory(libhw_attiny861)
 # Compile unit tests
 if(COMPILE_TESTS)
     add_subdirectory(libhw_attiny861/tests)
+    add_subdirectory(tests)
 endif(COMPILE_TESTS)
 
 # Create executables
