@@ -1,0 +1,37 @@
+if(NOT CMAKE_CROSSCOMPILING)
+    message(FATAL_ERROR "hw_attiny861 products must be cross compiled!")
+endif()
+
+set (target PinA1High)
+set (target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
+
+add_executable(${target}.elf
+    pin_a1.c
+)
+target_link_libraries(${target}.elf ATtiny861::Gpio)
+
+#target_include_directories(${target}.elf
+#    "${PROJECT_BINARY_DIR}/include"         # Include generated Config.h file
+#)
+
+set_target_properties(${target}.elf
+    PROPERTIES
+        COMPILE_FLAGS ${AVR_COMPILE_FLAGS}
+        LINK_FLAGS "${AVR_LINK_FLAGS} -Wl,-Map,${target_path}.map"
+)
+
+if(COMPILE_TESTS)
+    set_target_properties(${target}.elf PROPERTIES
+        COMPILE_FLAGS "-include CppUTest/MemoryLeakDetectorMallocMacros.h"
+    )
+    target_link_libraries(${target}.elf CppUTest)
+endif(COMPILE_TESTS)
+
+set(avr_clean_files ${target_path}.map)
+
+set_directory_properties(
+    PROPERTY ADDITIONAL_MAKE_CLEAN_FILES
+        "${avr_clean_files}"
+)
+
+include("${PROJECT_SOURCE_DIR}/AvrTargets.cmake")
