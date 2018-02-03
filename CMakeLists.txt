@@ -43,6 +43,7 @@ endif(COMPILE_TESTS)
 if(CMAKE_CROSSCOMPILING)
 add_subdirectory(hw_attiny861/products/pin_a0_high)
 add_subdirectory(hw_attiny861/products/pin_a1_high)
+add_subdirectory(hw_attiny861/products/pin_a2_high)
 endif(CMAKE_CROSSCOMPILING)
 
 message(STATUS "
