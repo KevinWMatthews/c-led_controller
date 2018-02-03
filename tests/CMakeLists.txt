@@ -6,9 +6,7 @@
 
 
 
-##########################################################
-# Create library of hardware-independent production code #
-##########################################################
+# Create library of hardware-independent production code
 # This enables us to use link-time substitution to swap in mock hardware modules.
 # Should this also be done in production code? Or will each target select files as needed?
 add_library(ProductionLib
@@ -16,9 +14,13 @@ add_library(ProductionLib
 )
 target_include_directories(ProductionLib PRIVATE "${PROJECT_BINARY_DIR}/include")
 target_include_directories(ProductionLib PUBLIC "${PROJECT_SOURCE_DIR}/include")
-target_include_directories(ProductionLib PRIVATE "${PROJECT_SOURCE_DIR}/libhw_attiny861/include")
 
-# set_target_properties(ProductionLib PROPERTIES
-    # COMPILE_FLAGS "-include CppUTest/MemoryLeakDetectorMallocMacros.h"
-# )
-target_link_libraries(ProductionLib ATiny861GPIO)
+# PRIVATE or PUBLIC?
+target_link_libraries(ProductionLib PRIVATE ATtiny861::Gpio)
+
+if(COMPILE_TESTS)
+    set_target_properties(ProductionLib PROPERTIES
+        COMPILE_FLAGS "-include CppUTest/MemoryLeakDetectorMallocMacros.h"
+    )
+    target_link_libraries(ProductionLib PRIVATE CppUTest)
+endif(COMPILE_TESTS)

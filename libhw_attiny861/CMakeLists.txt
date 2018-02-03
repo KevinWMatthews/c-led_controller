@@ -22,7 +22,7 @@ if(COMPILE_TESTS)
     set_target_properties(ATtiny861Gpio PROPERTIES
         COMPILE_FLAGS "-include CppUTest/MemoryLeakDetectorMallocMacros.h"
     )
-    target_link_libraries(ATtiny861Gpio CppUTest)
+    target_link_libraries(ATtiny861Gpio PRIVATE CppUTest)
 endif(COMPILE_TESTS)
 
 # Specify an alias library for other targets to link against.
