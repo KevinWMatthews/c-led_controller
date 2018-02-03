@@ -19,7 +19,6 @@ endif(CMAKE_CROSSCOMPILING)
 
 
 if(COMPILE_TESTS)
-    message(STATUS "compile tests")
     set_target_properties(ATtiny861Gpio PROPERTIES
         COMPILE_FLAGS "-include CppUTest/MemoryLeakDetectorMallocMacros.h"
     )
