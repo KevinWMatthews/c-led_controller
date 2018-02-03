@@ -6,7 +6,6 @@ target_include_directories(ATtiny861Gpio PRIVATE "${PROJECT_BINARY_DIR}/include"
 target_include_directories(ATtiny861Gpio PUBLIC "${PROJECT_SOURCE_DIR}/hw_attiny861/include")
 
 if(CMAKE_CROSSCOMPILING)
-    message(STATUS "\n cross compiling! \n")
     target_include_directories(ATtiny861Gpio PRIVATE "${AVR_TOOLCHAIN_HOME}/avr")
     set_target_properties(ATtiny861Gpio
         PROPERTIES
