@@ -8,6 +8,8 @@ set (target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
 ######################
 add_executable(${target}.elf
     main.c
+    "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/src/mock_io.c"
+    "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/src/MockHw_ATtiny861.c"
 )
 target_link_libraries(${target}.elf ATtiny861::Gpio)
 
@@ -146,13 +148,15 @@ if (CMAKE_CROSS_COMPILING)
             "${avr_clean_files}"
     )
 else()
-    set (source_list 
-            main.c;"${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/src/mock_io.c";"${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/src/MockHw_ATtiny861.c")
+    # set (source_list
+            # main.c;
+            # "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/src/mock_io.c";
+            # "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/src/MockHw_ATtiny861.c")
 
-    set_target_properties(${target}.elf PROPERTIES
-        SOURCES
-            ${source_list}
-    )
+    # set_target_properties(${target}.elf PROPERTIES
+        # SOURCES
+            # ${source_list}
+    # )
     message(STATUS "hi get_target_properties(${target}.elf SOURCES)")
 
     target_include_directories(${target}.elf PRIVATE "${PROJECT_SOURCE_DIR}/hw_attiny861/mocks/include")
