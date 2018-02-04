@@ -26,13 +26,6 @@ set_target_properties(${target}.elf PROPERTIES
     LINK_FLAGS "${AVR_LINK_FLAGS} -Wl,-Map,${target_path}.map"
 )
 
-if(COMPILE_TESTS)
-    set_target_properties(${target}.elf PROPERTIES
-        COMPILE_FLAGS "-include CppUTest/MemoryLeakDetectorMallocMacros.h"
-    )
-    target_link_libraries(${target}.elf PRIVATE CppUTest)
-endif(COMPILE_TESTS)
-
 # Create a list of files that we need to clean.
 #TODO I don't know how to get add_executable to clean extra generated files.
 # To extend this list, use:

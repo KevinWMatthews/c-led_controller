@@ -20,13 +20,6 @@ set_target_properties(${target}.elf
         LINK_FLAGS "${AVR_LINK_FLAGS} -Wl,-Map,${target_path}.map"
 )
 
-if(COMPILE_TESTS)
-    set_target_properties(${target}.elf PROPERTIES
-        COMPILE_FLAGS "-include CppUTest/MemoryLeakDetectorMallocMacros.h"
-    )
-    target_link_libraries(${target}.elf CppUTest)
-endif(COMPILE_TESTS)
-
 set(avr_clean_files ${target_path}.map)
 
 set_directory_properties(
