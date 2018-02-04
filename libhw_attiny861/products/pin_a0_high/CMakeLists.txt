@@ -14,7 +14,7 @@ set (target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
 add_executable(${target}.elf
     pin_a0.c
 )
-target_link_libraries(${target}.elf ATtiny861::Gpio)
+target_link_libraries(${target}.elf PRIVATE ATtiny861::Gpio)
 
 #TODO Do we want the Config.h file here? Perhaps we need a config file per project.
 #target_include_directories(${target}.elf
@@ -30,7 +30,7 @@ if(COMPILE_TESTS)
     set_target_properties(${target}.elf PROPERTIES
         COMPILE_FLAGS "-include CppUTest/MemoryLeakDetectorMallocMacros.h"
     )
-    target_link_libraries(${target}.elf CppUTest)
+    target_link_libraries(${target}.elf PRIVATE CppUTest)
 endif(COMPILE_TESTS)
 
 # Create a list of files that we need to clean.

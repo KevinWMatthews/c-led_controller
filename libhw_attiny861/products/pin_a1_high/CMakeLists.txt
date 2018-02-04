@@ -8,7 +8,7 @@ set (target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
 add_executable(${target}.elf
     pin_a1.c
 )
-target_link_libraries(${target}.elf ATtiny861::Gpio)
+target_link_libraries(${target}.elf PRIVATE ATtiny861::Gpio)
 
 #target_include_directories(${target}.elf
 #    "${PROJECT_BINARY_DIR}/include"         # Include generated Config.h file
