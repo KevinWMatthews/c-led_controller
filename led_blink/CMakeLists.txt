@@ -18,7 +18,7 @@ target_include_directories(${target}.elf PRIVATE
 
 set_target_properties(${target}.elf PROPERTIES
     COMPILE_FLAGS ${AVR_COMPILE_FLAGS}
-    LINK_FLAGS ${AVR_LINK_FLAGS}
+    LINK_FLAGS "${AVR_LINK_FLAGS} -Wl,-Map,${target_path}.map"
 )
 
 set(avr_clean_files ${target_path}.map)
