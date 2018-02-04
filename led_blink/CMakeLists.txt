@@ -9,7 +9,7 @@ add_executable(${target}.elf
     main.c
     "${PROJECT_SOURCE_DIR}/src_hw/Led_ATtiny861.c"
 )
-target_link_libraries(${target}.elf PRIVATE ATtiny861::Gpio)
+target_link_libraries(${target}.elf PRIVATE ATtiny::861)
 
 target_include_directories(${target}.elf PRIVATE
     "${PROJECT_SOURCE_DIR}/include"

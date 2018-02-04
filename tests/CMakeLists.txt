@@ -16,7 +16,7 @@ target_include_directories(ProductionLib PRIVATE "${PROJECT_BINARY_DIR}/include"
 target_include_directories(ProductionLib PUBLIC "${PROJECT_SOURCE_DIR}/include")
 
 # PRIVATE or PUBLIC?
-target_link_libraries(ProductionLib PRIVATE CppUTest ATtiny861::Gpio)
+target_link_libraries(ProductionLib PRIVATE CppUTest ATtiny::861)
 
 set_target_properties(ProductionLib PROPERTIES
     COMPILE_FLAGS "-include CppUTest/MemoryLeakDetectorMallocMacros.h"
