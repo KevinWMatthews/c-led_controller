@@ -4,6 +4,7 @@ Remove dead tests and files:
     Led2.h -> Led_ATtiny861.c -> ATtiny861.h
 Convert other modules to use a similar path.
 
+Encapsulate the timer in the HW layer.
 
 Figure out how to add AVR-specific makefile targets.
 See commit 9c78390; I removed these targets while flailing about.
