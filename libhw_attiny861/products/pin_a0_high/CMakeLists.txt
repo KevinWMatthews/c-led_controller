@@ -21,10 +21,9 @@ target_link_libraries(${target}.elf ATtiny861::Gpio)
 #    "${PROJECT_BINARY_DIR}/include"         # Include generated Config.h file
 #)
 
-set_target_properties(${target}.elf
-    PROPERTIES
-        COMPILE_FLAGS ${AVR_COMPILE_FLAGS}
-        LINK_FLAGS "${AVR_LINK_FLAGS} -Wl,-Map,${target_path}.map"
+set_target_properties(${target}.elf PROPERTIES
+    COMPILE_FLAGS ${AVR_COMPILE_FLAGS}
+    LINK_FLAGS "${AVR_LINK_FLAGS} -Wl,-Map,${target_path}.map"
 )
 
 if(COMPILE_TESTS)
