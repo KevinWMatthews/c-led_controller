@@ -15,3 +15,6 @@ install_avr/
 
 # Ignore directories used for CppUTest
 CppUTest/
+
+# Ignore Sublime Text files
+*.sublime-workspace
