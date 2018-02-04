@@ -1,73 +1,29 @@
-Implement the remainder of the tests.
-Implement production code.
+Rewrite notes/how-to/readme.
+I want to be able to start this from scratch and get somewhere.
+
+Implement an interrupt module.
+    This will allow us to read a button press without the need for polling.
+
+Implement a timer module.
+    This will allow us to blink the LED.
+
+Read documentation about the reset line.
+
+Remove old LedHw interface. It is no longer needed.
 Remove dead tests and files:
     Led2.h -> Led_ATtiny861.c -> ATtiny861.h
 Convert other modules to use a similar path.
 
-Encapsulate the timer in the HW layer.
-
-Figure out how to add AVR-specific makefile targets.
-See commit 9c78390; I removed these targets while flailing about.
 Try to support tests during cross-compilation.
     Will run into the bug that the chip is too small!
 
-Must you specify the toolchain file first on the command line?
-
-Make tests optional - see randomguy's blog.
-
-CMake will search the install prefix for libraries!
-    "The installation prefix is also added to CMAKE_SYSTEM_PREFIX_PATH so that find_package(), find_program(), find_library(), find_path(), and find_file() will search the prefix for other software."
-
-CppUTest link error:
-    INTERFACE_INCLUDE_DIRECTORIES is getting set improperly in CppUTestTargets.cmake
-    If I shorten /include/CppUTest to /include, then the library will link properly using
-    find_package().
-
-    I am not sure how this gets set during the CppUTest build.
-    I am not sure if I am linking against the library properly.
-    If I answer both of these questions I'd like to fix the error.
-
-    See install/lib/CppUTest/cmake/CppUTestTargets.cmake
-        set_target_properties(CppUTest PROPERTIES
-          INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/CppUTest"
-        )
+Do you need to specify the toolchain file first on the command line?
 
 Consider setting CPPUTEST_HOME as an environment variable rather than a preprocessor (-D) option.
 
-Add this into hw_attiny861/CMakeLists.txt:
-    if (CMAKE_CROSSCOMPILING)
-        set_target_properties(ATtiny861Gpio
-            PROPERTIES
-                COMPILE_FLAGS ${AVR_COMPILE_FLAGS}
-                LINK_FLAGS ${AVR_LINK_FLAGS}
-        )
-    endif
-
-Figure out how to edit the cache or whatever. What variables have I set?
-
-Learn to use find_package(). Can I use this for CppUTest?
-    Compile/cross-compile CppUTest.
-    See if the package stuff works.
-
-Consider creating a build directory with a .gitignore in the style of CppUTest. Good idea, Mr. Grenning.
-
-
 Holy crap! Check out the 'make help' target for CppUTest. I have much to learn.
 
-
-
-Can we use a double-colon for other libraries in this project?
-Can we use it for the IMPORTED libCppUTest? I think so.
-    The double colon forces the library to be a target and causes errors during
-    CMake generation instead of during link time.
-    (see video about 26:20)
-
-Can not make multiple targets: disassemble, size, etc.
-Figure this out so that we can create multiple executables!
-
-Create a second executable that toggles multiple LEDs.
-
-Remove old LedHw interface. It is no longer needed.
+Create a second executable/new product that toggles multiple LEDs.
 
 Add Config.h file per project?
 
@@ -77,26 +33,10 @@ Led.h should have no hardware references.
 
 Move compiler flags out of toolchain file?
 
-Wrap delays?
-avr/delay.h requires compiler optimization. Huh?
+Perhaps I should pull out the specific wiring details into a separate header file.
+Can we use macros?
 
-Make something actually run on the hardware!
-    What should the LedHw layer actually do?
-    I wonder if we can take it out and have the Led initialize directly from the chip.
-    This could work but then we're stuck with that specific cpu.
-    How about this:
-        All chips use the general LedHw interface.
-        Each schematic/product can/will implement its own interface. So,
-        rather than having LedHw_ATtiny861.c, we'll have
-            LedHw_led_with_button_ATtiny861.c
-            LedHw_<another_product>_ATtiny861.c
-        This will allow us to account for differing schematics.
-        Perhaps I should pull out the specific wiring details into a separate header file.
-        Don't want to be searching through source code! Unfortunately, I don't know how to do that.
-
-Rename Gpio header file....
-
-Extract setting gpio direction.
+Add an LED toggle function. Doesn't the hardware specifically support this?
 
 Replace set_gpio_state() with a function pointer.
 This will allow us to set the PORT register on a production build and the PORT and PIN registers on a local/test build.
@@ -105,71 +45,35 @@ Can we remove ATTN861_GPIO_MAX?
 
 I think stddef.h in the mock hw is defining NULL... or something?
 
-Look into RESET pin and Brown Out Detection.
-
-AVR compilation:
-    If we can't get unit tests working for the AVR, remove/move the requirement for CppUTest.
-    Compile CppUTest for AVR? How will we work around chip size?
-
-
-Test LedController module
 
 Remove initial state from ButtonObserver. It is unneeded in the foreseeable future.
 
-Create button interface.
-Toggle LED state with button press.
-    -> I think we need to create a ButtonHW interface.
-
 Are buttons high by default? Design the hardware to ensure that this is the case.
 
-Should Test_Led verify that calls were made to the abstraction layer? Or to the HW?
-I'll bet that is should check on some mock HW. Don't we want to verify that the LED state actually changes?
-
 Later on we'll need to verify that a single GPIO is not used twice!!
-
-Rename HW library from ATtiny861 to HwATtiny861
-
-Learn the difference between add_custom_target and add_custom_command.
 
 Flash something to the ATtiny!
 Create a Makefile target that will do this.
 
-How to run tests all at once? Hijack CMake's 'make test' target? Create a tew target?
-
-Finish setting up cross-compilation:
-    https://github.com/davisford/cmake-cpputest
-    https://cmake.org/cmake/help/v3.3/manual/cmake-toolchains.7.html
-    https://cmake.org/Wiki/CMake_Cross_Compiling
-    https://github.com/danielotero/Generic-avr.cmake/blob/master/Generic-avr.cmake
-    https://github.com/mkleemann/cmake-avr/blob/master/generic-gcc-avr.cmake
-    http://nnarain.github.io/2016/03/29/AVR-CMake-Toolchain.html
-
-CMake is configured to override anything that the user specifies for CMAKE_INSTALL_PREFIX.
-Rewrite CMakeLists to provide a default but give user flexibility?
-
-Cross-compile production code.
-
-Cross-compile test code.
-Run cross-compiled unit tests in QEMU (can we run them on the chip itself?).
-
-Rethink how hw source code and mock source code is arranged. It's rather like it's own project, or at least I think it should be.
-
-Does C throw an -fpermissive warning?
-
-Test SetState() for all other ATtiny861 GPIOs.
-
-Can't get autotools to compile CppUTest for the sitara; the libraries' .o files are still x86_64.
-Cmake works.
+How to run tests all at once?
 
 Expand tests is HW library - test all GPIO.
 
-Double-check tests in LedHw layer. Did we get everything?
-
-Add CppUTestExt to all test executables. This enables malloc Memory checking!!
-
-How to check for calloc fail?
+How/if/when to check for calloc fail?
 
 Why doesn't the Makefile throw an error if I forget to return a value?
     This is when a C++ function is calling C code.
 
-Set CMAKE_PREFIX_PATH or CMAKE_MODULE_PATH? I think prefix path.
+Look into RESET pin and Brown Out Detection.
+
+Run cross-compiled unit tests in QEMU (can we run them on the chip itself?).
+
+See if I can use include-what-you-use:
+    <lang>_INCLUDE_WHAT_YOU_USE
+        Runs the respective tool along the with compiler.
+        Diagnostics are visible in your IDE.
+        Diagnostics are visible on CDash.
+    LINK_WHAT_YOU_USE
+        links with -Wl,--no-as-needed, then runs ldd -r -u
+    <lang> is either C or CXX.
+    Each of those properties is initialzied with CMAKE_<property

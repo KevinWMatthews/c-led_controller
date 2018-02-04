@@ -1,4 +1,16 @@
-https://r4nd0m6uy.ch/cmake-and-cpputest.html
+References for cross-compilation:
+    https://github.com/davisford/cmake-cpputest
+    https://cmake.org/cmake/help/v3.3/manual/cmake-toolchains.7.html
+    https://cmake.org/Wiki/CMake_Cross_Compiling
+    https://github.com/danielotero/Generic-avr.cmake/blob/master/Generic-avr.cmake
+    https://github.com/mkleemann/cmake-avr/blob/master/generic-gcc-avr.cmake
+    http://nnarain.github.io/2016/03/29/AVR-CMake-Toolchain.html
+
+References for CMake and CppUTest:
+    https://r4nd0m6uy.ch/cmake-and-cpputest.html
+    http://cpputest.github.io/
+
+
 
 # Clone source:
 git clone https://github.com/cpputest/cpputest.git CppUTest
