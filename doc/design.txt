@@ -1,0 +1,25 @@
+libhw_ATtiny861:
+    Abstraction layer/library around the hardware.
+    Figure out all things hardware, then implement and document them in this library.
+    The goal is that all hardware interactions take place through this library, which
+    allows a single implementation to be designed and tested.
+    Ideally the user will not need to reference the chip's datasheet; everything
+    should be provided here.
+
+
+led_blink:
+    Blink an LED periodically.
+
+    Depends on:
+        libhw_ATtiny861GPIO
+        AVR's util/delay.h.
+            For _delay_ms(), but I'd like to convert it to use the chip's internal timers.
+
+util/delay.h:
+    The easiest way to track time is with the AVR function _delay_ms().
+    This method is not easily viable for mocking.
+    See: http://www.nongnu.org/avr-libc/user-manual/group__util__delay.html
+    _delay_ms() requires:
+        its argument to be an integer constant that is known at compile-time
+        optimization to be enabled
+    They optimize away the floating point calculations during compilation.
