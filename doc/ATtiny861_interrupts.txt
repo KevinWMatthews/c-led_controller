@@ -1,0 +1,87 @@
+Interrupt vectors are mapped to a particular address in memory (se ATtiny861 Datasheet, table 9.1):
+	0x0000		RESET
+	0x0001		INT0		External Interrupt Request 0
+	0x0002		PCINT		Pin Change Interrupt Request
+	...
+	0x000D		INT1		External Interrupt Request 1
+	...
+
+Interrupts are prioritized according to their order in memory.
+Interrupts are not nested by default.
+	The chip disables global interrupts when an interrupt occurs.
+	The chip re-enables global interrupts at the end of an interrupt with the Return from Interrupt instruction – RETI.
+	You can manually re-enable global interrupts within an interrupt routine. This allows nested interrupts.
+
+There are two types of interrupts:
+	Set interrupt flag
+	Trigger as long as interrupt source is present.
+
+External interrupts are triggered by INT0 (PA0/pin 20), INT1 (PA2/pin 18), or any of the PCINT pins.
+
+PCINT:
+	This interrupt vector can be triggered by any of the PCINT pins.
+	Use PCMSK to configure which pins trigger PCINT.
+	PCINT are detected asynchronously (?) so you can use this to wake the chip from sleep modes other than idle mode.
+
+INT:
+	This interrupt vector can be triggered by the INT0 or INT1 pins.
+	Configure this with MCU Control Register, MCUCR.
+	Interrupts can be triggered on:
+		falling edge
+		rising edge
+		low level
+	Falling or rising edge interrupts require an I/O clock (?). See section 6.
+	PCINT are detected asynchronously (?) so you can use this to wake the chip from sleep modes other than idle mode.
+
+
+
+
+To enable INT0:
+	Generate an interrupt request:	Set INT0 bit of GIMSK.
+	Configure interrupt direction:	Set ISC01 and ISC00 bits of MCUCR.
+	Configure interrupt flag: 		Set INTF0 of GIFR.
+	Enable interrupt globally: 		Set I-flag of SREG.
+
+To enable INT1
+	Generate an interrupt request:	Set INT1 bit of GIMSK.
+	Configure interrupt direction:	Set ISC01 and ISC00 bits of MCUCR.
+	Configure interrupt flag: 		Set INTF1 of GIFR.
+	Enable interrupt globally: 		Set I-flag of SREG.
+
+
+	! Both INT0 and INT1 use the same interrupt direction: ISC0 bits in MCUCR.
+
+
+	MCUCR – MCU Control Register (9.3.1)
+		• Bits 1, 0 – ISC01, ISC00: Interrupt Sense Control 0 Bit 1 and Bit 0:
+		See table 9-2:
+		ISC01 	ISC00 	Description
+		0 		0 		The low level of INT0 or INT1 generates an interrupt request.
+		0 		1 		Any logical change on INT0 or INT1 generates an interrupt request.
+		1 		0 		The falling edge of INT0 or INT1 generates an interrupt request.
+		1 		1 		The rising edge of INT0 or INT1 generates an interrupt request.
+
+
+	GIMSK – General Interrupt Mask Register (9.3.2)
+		• Bit 7 – INT1: External Interrupt Request 1 Enable
+			Set to 1 to enable interrupts on the INT1 pin.
+		• Bit 6 – INT1: External Interrupt Request 0 Enable
+			Set to 1 to enable interrupts on the INT0 pin.
+
+	GIFR – General Interrupt Flag Register
+		• Bit 7 – INTF1: External Interrupt Flag 1
+			Set interrupt flag INTF1 when the INT1 pin triggers an interrupt.
+			Flag is cleared by:
+				the processor executing the interrupt routine
+				writing logical 1
+		• Bit 6 – INTF0: External Interrupt Flag 0
+			Set interrupt flag INTF0 when the INT0 pin triggers an interrupt.
+			Flag is cleared by:
+				the processor executing the interrupt routine
+				writing logical 1
+
+	SREG – AVR Status Register (4.3.1)
+		• Bit 7 – I: Global Interrupt Enable
+			Set/clear this bit to enable/disable all interrupts.
+			This can be done using special SEI (Set I) and CLI (Clear I) insructions.
+			These are part of the instruction set of the chip and are designed to manuipulate the Global Interrupt Enable bit.
