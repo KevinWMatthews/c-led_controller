@@ -8,6 +8,33 @@ Implement a timer module.
     This will allow us to blink the LED.
 
 Read documentation about the reset line.
+Re-read documentation about initializing variables to 0.
+    See man/man3/FAQ.3
+        You shouldn't do it for global and static variables? It could waste space.
+
+! Re-read documentation on passing IO ports as parameters to functions.
+    I think I'm doing this correctly.
+
+See if we can use macros for setting and clearing bits. This could save code space for me?
+
+Does AVR provide SBI() and CBI() macros? I thought so....
+    These macros are deprecated. See avr/include/compat/deprecated.h .
+    Instead, these can be re-implemented using the _BV() (byte value) macro.
+    Perhaps this macro solves my GET_BIT issues?
+
+    From http://www.microchip.com/webdoc/AVRLibcReferenceManual/group__avr__sfr.html:
+        "Porting programs that use the deprecated sbi/cbi macros
+            Access to the AVR single bit set and clear instructions are provided via the standard C bit manipulation commands.
+            The sbi and cbi macros are no longer directly supported.
+                sbi (sfr,bit) can be replaced by sfr |= _BV(bit) .
+                    i.e.: sbi(PORTB, PB1); is now PORTB |= _BV(PB1);
+                cbi (sfr,bit) is now sfr &= ~(_BV(bit));
+        This actually is more flexible than having sbi directly, as the optimizer will use a hardware sbi if appropriate,
+        or a read/or/write operation if not appropriate.
+        You do not need to keep track of which registers sbi/cbi will operate on."
+
+    Perhaps with these we'd only need BitManip.h on my PC, unless there is some C standard library file that provides such operations.
+
 
 Remove old LedHw interface. It is no longer needed.
 Remove dead tests and files:
@@ -16,6 +43,9 @@ Convert other modules to use a similar path.
 
 Try to support tests during cross-compilation.
     Will run into the bug that the chip is too small!
+    Re-read the FAQ and man pages to learn about compiling C++ code for the AVR.
+
+Learn about how strings are stored in memory.
 
 Do you need to specify the toolchain file first on the command line?
 
