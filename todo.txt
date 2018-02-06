@@ -1,3 +1,8 @@
+A "button press" triggers multiple interrupts because the pin state change is not clean.
+Perhaps it's better to monitor the button state using a timer? I've seen a few recommendations in that regard. Do more research.
+
+For testing interrupts, try rigging up a second ATtiny that periodically switches an output pin. If we wire this directly to the first ATtiny's INT0 pin, we should get a clean signal.
+
 Rewrite notes/how-to/readme.
 I want to be able to start this from scratch and get somewhere.
 
