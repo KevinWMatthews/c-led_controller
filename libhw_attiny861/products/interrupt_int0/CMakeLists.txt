@@ -10,6 +10,9 @@ add_executable(${target}.elf
 )
 target_link_libraries(${target}.elf PRIVATE ATtiny::861)
 
+# Short-term hack for proof-of-concept.
+target_include_directories(${target}.elf PRIVATE "${PROJECT_SOURCE_DIR}/libhw_attiny861/src")
+
 set_target_properties(${target}.elf
     PROPERTIES
         COMPILE_FLAGS ${AVR_COMPILE_FLAGS}

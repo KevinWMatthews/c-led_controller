@@ -35,6 +35,13 @@ Does AVR provide SBI() and CBI() macros? I thought so....
 
     Perhaps with these we'd only need BitManip.h on my PC, unless there is some C standard library file that provides such operations.
 
+See what else we can use from <avr/sfr_defs.h>:
+    bit_is_set
+    bit_is_clear
+    loop_until_bit_is_set
+    loop_until_bit_is_clear
+
+Learn more about atomic operations: <util/atomic.h>
 
 Remove old LedHw interface. It is no longer needed.
 Remove dead tests and files:
