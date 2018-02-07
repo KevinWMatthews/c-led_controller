@@ -1,0 +1,31 @@
+Design a libhw_attiny861 module that grants access to the two hardware timers.
+For simplicity, start with only one timer.
+
+The timer will trigger an interrupt. We need to put behavior in this interrupt.
+We can either:
+    Can we define the interrupt in our module? Perhaps so....
+    Allow the user to register a callback and tell them to define the interrupt and place our callback code there.
+    Tell the user to do put their code in the interrupt.
+
+Setup:
+    Set the correct pins, whatever that requries.
+    Ideally just the time interval.
+    Perhaps also the HW timer number?
+
+Register callback:
+    Allow the user to execute periodic behavior.
+    Define the ISR in the Timer module.
+
+Start:
+    Will start be separate from create?
+    Do not set global interrupts!
+        The user needs control of that; it should happen just before the main loop.
+    Start timer or enable interrupt?
+
+Stop:
+    Will stop be separate from teardown?
+    Stop timer or disable interrupt?
+
+Teardown:
+    Free any handles.
+    Turn off the timer?
