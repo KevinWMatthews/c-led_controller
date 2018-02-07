@@ -14,4 +14,11 @@ typedef enum
  */
 ATTN861_TIMER_STATUS_CODE ATtiny861Timer_Timer0_Create(void);
 
+/*
+ * Destroy Timer0.
+ *
+ * Multiple destroys have no effect.
+ */
+ATTN861_TIMER_STATUS_CODE ATtiny861Timer_Timer0_Destroy(void);
+
 #endif

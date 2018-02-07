@@ -20,3 +20,8 @@ TEST(ATtiny861Timer, can_create_timer)
 {
     LONGS_EQUAL( ATTN861_TIMER_SUCCESS, ATtiny861Timer_Timer0_Create() );
 }
+
+TEST(ATtiny861Timer, can_destroy_timer)
+{
+    LONGS_EQUAL( ATTN861_TIMER_SUCCESS, ATtiny861Timer_Timer0_Destroy() );
+}
