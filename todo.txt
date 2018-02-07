@@ -119,3 +119,7 @@ See if I can use include-what-you-use:
         links with -Wl,--no-as-needed, then runs ldd -r -u
     <lang> is either C or CXX.
     Each of those properties is initialzied with CMAKE_<property
+
+Fix status macros in gpio library. They are generic.
+
+Standardize module names....

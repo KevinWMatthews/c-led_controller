@@ -16,7 +16,7 @@ TEST_GROUP(ATtiny861Timer)
     }
 };
 
-TEST(ATtiny861Timer, wiring_check)
+TEST(ATtiny861Timer, can_create_timer)
 {
-    FAIL("start here");
+    LONGS_EQUAL( ATTN861_TIMER_SUCCESS, ATtiny861Timer_Timer0_Create() );
 }

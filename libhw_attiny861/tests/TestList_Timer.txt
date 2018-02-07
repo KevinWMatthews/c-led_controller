@@ -7,10 +7,11 @@ We can either:
     Allow the user to register a callback and tell them to define the interrupt and place our callback code there.
     Tell the user to do put their code in the interrupt.
 
-Setup:
+Create:
     Set the correct pins, whatever that requries.
     Ideally just the time interval.
     Perhaps also the HW timer number?
+    Do not allow multiple creates without a destroy.
 
 Register callback:
     Allow the user to execute periodic behavior.
@@ -26,6 +27,6 @@ Stop:
     Will stop be separate from teardown?
     Stop timer or disable interrupt?
 
-Teardown:
+Destroy:
     Free any handles.
     Turn off the timer?
