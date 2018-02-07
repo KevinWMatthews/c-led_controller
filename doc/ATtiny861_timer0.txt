@@ -1,0 +1,137 @@
+Details of Normal 16-bit mode and input capture mode are omitted.
+
+To set Timer0 to 8-bit CTC mode:
+	Disable timer:		 					Clear CS02, CS01, CS00 bits of TCCR0B
+	Set to 8-bit mode:						Clear bit TCW0 of TCCR0A
+	Set to compare mode:					Set CTC0 bit of TCCR0A
+	Disable input capture mode:				Clear bit ICEN0 of TCCR0A
+	Enable Compare Match A interrupts:		Set 0CIE0A bit of TIMSK
+	Set Compare Match A value:				Set OCR0A byte
+	? Enable Compare Match B interrupts:	Set 0CIE0B bit of TIMSK
+	? Set Compare Match B value:			Set OCR0B byte
+	? Clear the Timer0 prescaler:			Write 1 to PSR0 bit of TCCR0B
+	Set the clock source (start timer):		Set CS02, CS01, CS00 bits of TCCR0B
+
+
+The timer operates by incrementing the Timer/Counter register TCNT0 and comparing it to the Output Compare registers, OCR0A and OCR0B. Whenever the counter register equals the compare registers, the comparator signals a match. A match will set the Output Compare Flag OCF0A or OCF0B at the next clock cycle.
+The timer can also be allowed to run up to its max value, at which point it overflows and sets the Overflow Flag TOV0. This can be configured to trigger the Timer/Counter0 Overflow interrupt (TIMER0_OVF).
+
+This flag can be configured to generate an Output Compare interrupt: Timer/Counter0 Compare Match A (TIMER0_COMPA) or Timer/Counter0 Compare Match B (TIMER0_COMPB).
+The interrupt will clear the Output Compare Flag upon exiting the interrupt, although this behavior can be configured.
+If there is no interrupt, you will need to clear this flag manually.
+
+The timer is, obviously, controlled by a clock.
+The clock can come from multiple sources - internal, internal prescaler, external.
+
+The Timer/Counter register is actually 16 bytes/two registers: high and low.
+You can write directly to this register to initialize/change its value.
+
+The timer has several operating modes:
+	Normal			- 8-bit
+	CTC				- 8-bit
+	Normal			- 16-bit
+	Input capture 	- 8-bit
+	Input capture 	- 16-bit
+These are set using the Timer/Counter Width (TCW0), Input Capture Enable (ICEN0) and Wave Genera-
+tion Mode (CTC0) bits of the TCCR0A register.
+See Table 11-3 for details on selecting a mode of operation.
+
+	Normal (11.7.1)
+		Run the timer from bottom to max, then overflow.
+		The timer will set the Overflow Flag, TOV0.
+		This can trigger a Timer/Counter0 Overflow interrupt, TIMER0_OVF.
+		The flag is set in the same clock that the counter is reset to 0.
+			The flag behaves like a 9th bit.
+
+	Clear Timer on Compare Match (CTC) 8-bit Mode (11.7.2)
+		Set a top (user-defined max) value using the Output Compare Register A, OCR0A.
+		The Timer/Counter register TCNT0 will be incremented.
+		Will set the OCF0A Flag when the timer reaches its max value (not when it is reset to 0).
+		This flag can be used to generate the Timer/Counter0 Compare Match A interrupt, TIMER0_COMPA
+		Does this also apply to OCR0B?
+
+	Normal, 16-bit (11.7.3)
+		TODO
+
+	Input capture, 8-bit (11.7.4)
+		TODO
+
+	Input capture, 16-bit (11.7.5)
+		TODO
+
+
+Bottom: 0x00
+Top:	Highest user-defined counter value
+Max:	0xff
+
+Set the clock source using the CS bits of TCCR0B.
+
+The prescaler is always running, so there could/will be a delay of up to <prescaler_divisor> clock ticks until the timer actually starts ticking.
+
+"The Timer/Counter incorporates an Input Capture unit that can capture external events and give
+them a time-stamp indicating time of occurrence." - pretty cool.
+
+
+
+ICEN0	TCW0	CTC0	Mode of Operation
+0		0		0 		Normal, 8-bit Mode
+
+TCCR0A – Timer/Counter0 Control Register A (11.10.1)
+	See Table 11-3 for details on selecting a mode of operation.
+
+	• Bit 7 – TCW0: Timer/Counter0 Width
+		1		16-bit mode
+		0		8-bit mode
+
+	• Bit 6 – ICEN0: Input Capture Mode Enable
+		1		Input capture enabled
+		0		Input capture disabled
+
+	• Bit 5 – ICNC0: Input Capture Noise Canceler
+	• Bit 4 – ICES0: Input Capture Edge Select
+	• Bit 3 - ACIC0: Analog Comparator Input Capture Enable
+
+	• Bits 2:1 – Res: Reserved Bits
+		Always read 0
+
+	• Bit 0 – CTC0: Waveform Generation Mode
+		0 		Normal 8-bit
+		1		CTC 8-bit
+		Not valid in Normal 16-bit or Input Capture modes
+
+TCCR0B – Timer/Counter0 Control Register B (11.10.2)
+	• Bit 4 – TSM: Timer/Counter Synchronization Mode
+		Use this to hold the prescaler in reset mode
+
+	• Bit 3 – PSR0: Prescaler Reset Timer/Counter0
+		Write 1 to clear the Timer0 prescaler.
+
+	• Bits 2:0 – CS02, CS01, CS00: Clock Select0, Bit 2, 1, and 0
+		See table 11-4
+
+TCNT0L – Timer/Counter0 Register Low Byte (11.10.3)
+
+TCNT0H – Timer/Counter0 Register High Byte (11.10.4)
+
+OCR0A – Timer/Counter0 Output Compare Register A (11.10.5)
+
+OCR0B – Timer/Counter0 Output Compare Register B (11.10.6)
+
+TIMSK – Timer/Counter0 Interrupt Mask Register (11.10.7)
+	• Bit 4 – OCIE0A: Timer/Counter0 Output Compare Match A Interrupt Enable
+		1		enable interrupt
+		0		disable interrupt
+
+	• Bit 3 – OCIE0B: Timer/Counter Output Compare Match B Interrupt Enable
+
+	• Bit 1 – TOIE0: Timer/Counter0 Overflow Interrupt Enable
+
+	• Bit 0 – TICIE0: Timer/Counter0, Input Capture Interrupt Enable
+
+TIFR – Timer/Counter0 Interrupt Flag Register (11.10.8)
+	• Bit 4 – OCF0A: Output Compare Flag 0 A
+	• Bit 3 – OCF0B: Output Compare Flag 0 B
+	• Bit 1 – TOV0: Timer/Counter0 Overflow Flag
+	• Bit 0 – ICF0: Timer/Counter0, Input Capture Flag
+
+For all interrupts, you must also set I-bit in SREG.

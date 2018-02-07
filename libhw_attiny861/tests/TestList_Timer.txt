@@ -8,25 +8,42 @@ We can either:
     Tell the user to do put their code in the interrupt.
 
 Create:
-    Set the correct pins, whatever that requries.
-    Ideally just the time interval.
-    Perhaps also the HW timer number?
     Do not allow multiple creates without a destroy.
+    ? Disable timer
+    Set:
+        8-bit mode
+        CTC/compare mode
+        No input capture mode
+        Enable Compare Match A/B interrupts
+        Set Compare A/B value(s)
 
 Register callback:
-    Allow the user to execute periodic behavior.
+    This allows the user to execute periodic behavior.
     Define the ISR in the Timer module.
+    Multiple callbacks?
+        As needed.
+
+Unregister callback:
+    As needed.
 
 Start:
-    Will start be separate from create?
+    Clear Timer0 prescaler?
+    Start timer - set clock source.
     Do not set global interrupts!
         The user needs control of that; it should happen just before the main loop.
-    Start timer or enable interrupt?
 
 Stop:
-    Will stop be separate from teardown?
-    Stop timer or disable interrupt?
+    Stop timer - set clock source.
+
+Change interval:
+    As needed.
+    What if we need to change the clock interval/match value at runtime?
+    This gets complicated with the prescaler.
+    We could hold it in reset using Timer0 Synchronization Mode - TSM bit of TCCR0B register.
+    Then reset the Timer0 prescaler?
 
 Destroy:
+    Must stop the timer if needed.
     Free any handles.
-    Turn off the timer?
+
+Check and see if CTC mode checks both Output Compare Registers A and B.
