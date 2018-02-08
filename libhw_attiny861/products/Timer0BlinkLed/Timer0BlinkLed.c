@@ -5,7 +5,7 @@
 int main(void)
 {
     ATtiny861Timer0_Params timer0_params = {
-        .clock_source = ATTN861_TIMER0_SYSTEM_CLOCK,
+        .clock_source = ATTN861_TIMER0_INTERNAL_CLOCK_PRESCALER_1024,
         .match_value = 0xff
     };
 
