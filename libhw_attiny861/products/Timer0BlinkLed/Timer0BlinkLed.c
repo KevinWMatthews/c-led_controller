@@ -4,9 +4,12 @@
 
 int main(void)
 {
+    /*
+     * 8 MHz / (1024*255) = 30.6 Hz  => Roughly twice a second.
+     */
     ATtiny861Timer0_Params timer0_params = {
         .clock_source = ATTN861_TIMER0_INTERNAL_CLOCK_PRESCALER_1024,
-        .match_value = 0xff
+        .match_value = 255
     };
 
     ATtiny861Timer0_Create(&timer0_params);

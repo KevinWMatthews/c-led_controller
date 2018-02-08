@@ -28,6 +28,9 @@ typedef enum
  * there is only a single Timer0 available in hardware.
  *
  * match_value and clock_source must be set.
+ * Calculate the frequency of the timer interrupt:
+ *  (internal_clock MHz) / (prescaler * match_value)
+ * The system clock defaults to 8MHz.
  *
  * params may not be null.
  */
