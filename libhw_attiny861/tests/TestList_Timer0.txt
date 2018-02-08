@@ -31,6 +31,7 @@ Start:
     Start timer - set clock source.
     Do not set global interrupts!
         The user needs control of that; it should happen just before the main loop.
+    Do not allow start unless timer has been Created.
 
 Stop:
     Stop timer - set clock source.
@@ -45,5 +46,6 @@ Change interval:
 Destroy:
     Must stop the timer if needed.
     Free any handles.
+    Do not allow start.
 
 Check and see if CTC mode checks both Output Compare Registers A and B.

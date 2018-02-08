@@ -96,6 +96,15 @@ extern uint8_t TCCR0A;
 // #define ICEN0   6
 #define TCW0    7
 
+extern uint8_t TCCR0B;
+// #define TCCR0B  _SFR_IO8(0x33)
+#define CS00    0
+#define CS01    1
+#define CS02    2
+// #define PSR0    3
+// #define TSM     4
+
+
 extern uint8_t TIMSK;
 // #define TIMSK   _SFR_IO8(0x39)
 // #define TICIE0  0
