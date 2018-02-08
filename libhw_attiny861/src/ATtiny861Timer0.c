@@ -23,7 +23,7 @@ static void set_compare_A_match_value(uint8_t match_value)
     OCR0A = match_value;
 }
 
-ATTN861_TIMER0_STATUS_CODE ATtiny861Timer0_Create(ATtiny861Timer0_Params *params)
+ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_Create(ATtiny861Timer0_Params *params)
 {
     if (params == NULL)
     {
@@ -41,7 +41,7 @@ ATTN861_TIMER0_STATUS_CODE ATtiny861Timer0_Create(ATtiny861Timer0_Params *params
     return ATTN861_TIMER0_SUCCESS;
 }
 
-ATTN861_TIMER0_STATUS_CODE ATtiny861Timer0_Destroy(void)
+ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_Destroy(void)
 {
     return ATTN861_TIMER0_SUCCESS;
 }
