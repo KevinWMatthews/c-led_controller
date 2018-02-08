@@ -1,6 +1,8 @@
 #ifndef ATTINY861_TIMER0_INCLUDED
 #define ATTINY861_TIMER0_INCLUDED
 
+#include <stdint.h>
+
 typedef enum
 {
     ATTN861_TIMER0_SUCCESS  = 0
@@ -12,7 +14,11 @@ typedef enum
  * Can not be created again without first being destroyed -
  * there is only a single Timer0 available in hardware.
  */
-ATTN861_TIMER0_STATUS_CODE ATtiny861Timer_Timer0_Create(void);
+typedef struct ATtiny861Timer0_Params
+{
+    uint8_t match_value;
+} ATtiny861Timer0_Params;
+ATTN861_TIMER0_STATUS_CODE ATtiny861Timer_Timer0_Create(ATtiny861Timer0_Params *params);
 
 /*
  * Destroy Timer0.

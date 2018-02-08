@@ -9,9 +9,9 @@
 
 
 
-//************//
-//*** GPIO ***//
-//************//
+/*
+ * GPIO
+ */
 extern uint8_t DDRA;
 // #define DDRA _SFR_IO8(0x1A)
 #define DDA0 0
@@ -77,5 +77,34 @@ extern uint8_t PINB;
 #define PINB5   5
 #define PINB6   6
 #define PINB7   7
+
+
+/*
+ * Timer 0
+ */
+extern uint8_t OCR0A;
+// #define OCR0A   _SFR_IO8(0x13)
+
+extern uint8_t TCCR0A;
+// #define TCCR0A  _SFR_IO8(0x15)
+// #define WGM00   0		/* up to at least datasheet rev. B */
+#define CTC0    0		/* newer revisions; change not mentioned
+				 * in revision history */
+// #define ACIC0   3
+// #define ICES0   4
+// #define ICNC0   5
+// #define ICEN0   6
+#define TCW0    7
+
+extern uint8_t TIMSK;
+// #define TIMSK   _SFR_IO8(0x39)
+// #define TICIE0  0
+// #define TOIE0   1
+// #define TOIE1   2
+// #define OCIE0B  3
+#define OCIE0A  4
+// #define OCIE1B  5
+// #define OCIE1A  6
+// #define OCIE1D  7
 
 #endif

@@ -19,6 +19,7 @@ Re-read documentation about initializing variables to 0.
 
 ! Re-read documentation on passing IO ports as parameters to functions.
     I think I'm doing this correctly.
+    Should I declare and define the mock registers as volatile? Probably?
 
 See if we can use macros for setting and clearing bits. This could save code space for me?
 
@@ -39,6 +40,11 @@ Does AVR provide SBI() and CBI() macros? I thought so....
         You do not need to keep track of which registers sbi/cbi will operate on."
 
     Perhaps with these we'd only need BitManip.h on my PC, unless there is some C standard library file that provides such operations.
+
+Test all of my macros after I do this.
+    Where does BitManip.h belong? I'd like to be able to use these in tests, too.
+    They probably belong in the toolchain avr mock.
+    See where AVR defines them.
 
 See what else we can use from <avr/sfr_defs.h>:
     bit_is_set
