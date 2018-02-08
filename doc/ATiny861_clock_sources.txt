@@ -1,0 +1,6 @@
+ATiny861_clock_sources.txt
+
+Need to read more about this.
+
+Programmed using fuses during the programming process.
+Defaults to 8MHz, calibrated.
