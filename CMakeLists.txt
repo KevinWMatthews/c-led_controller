@@ -48,6 +48,7 @@ add_subdirectory(libhw_attiny861/products/pin_a0_high)
 add_subdirectory(libhw_attiny861/products/pin_a1_high)
 add_subdirectory(libhw_attiny861/products/pin_a2_high)
 add_subdirectory(libhw_attiny861/products/interrupt_int0)
+add_subdirectory(libhw_attiny861/products/Timer0BlinkLed)
 add_subdirectory(led_blink)
 endif(CMAKE_CROSSCOMPILING)
 
