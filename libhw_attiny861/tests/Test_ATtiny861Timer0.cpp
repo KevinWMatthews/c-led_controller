@@ -33,7 +33,7 @@ TEST(ATtiny861Timer0, can_create_timer)
     ret = ATtiny861Timer0_Create(&params);
 
     LONGS_EQUAL( ATTN861_TIMER0_SUCCESS, ret );
-    BYTES_EQUAL( BIT_VALUE(TCW0) | BIT_VALUE(CTC0), TCCR0A );
+    BYTES_EQUAL( BIT_VALUE(CTC0), TCCR0A );
     BYTES_EQUAL( BIT_VALUE(OCIE0A), TIMSK );
     BYTES_EQUAL( params.match_value, OCR0A );
 }

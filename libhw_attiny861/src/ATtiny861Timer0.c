@@ -6,7 +6,7 @@ static int timer0_clock_source;
 
 static void enable_8_bit_mode(void)
 {
-    SBI(TCCR0A, TCW0);
+    // CBI(TCCR0A, TCW0);
 }
 
 // CTC: Clear Timer on Compare match
