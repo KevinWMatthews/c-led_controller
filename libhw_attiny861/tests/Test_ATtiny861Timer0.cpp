@@ -71,3 +71,26 @@ TEST(ATtiny861Timer0, can_start_timer_using_system_clock)
     LONGS_EQUAL( ATTN861_TIMER0_SUCCESS, ret );
     BYTES_EQUAL( expected_clock, TCCR0B );
 }
+
+
+TEST(ATtiny861Timer0, can_start_timer_using_internal_clock_with_prescaler_1024)
+{
+    ATtiny861Timer0_Params params = {
+        .clock_source = ATTN861_TIMER0_INTERNAL_CLOCK_PRESCALER_1024,
+        .match_value = 123
+    };
+    uint8_t expected_clock = 0;
+    //TODO rewrite with SBI and CBI
+    //TODO give this a descriptive function name.
+    // Set clock source to system clock
+    expected_clock |= BIT_VALUE(CS02);
+    expected_clock &= ~BIT_VALUE(CS01);
+    expected_clock |= BIT_VALUE(CS00);
+
+    ATtiny861Timer0_Create(&params);
+
+    ret = ATtiny861Timer0_Start();
+
+    LONGS_EQUAL( ATTN861_TIMER0_SUCCESS, ret );
+    BYTES_EQUAL( expected_clock, TCCR0B );
+}

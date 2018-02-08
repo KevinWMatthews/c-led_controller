@@ -36,6 +36,11 @@ static void set_clock_select_bits(int clock_source)
             CBI(TCCR0B, CS01);
             SBI(TCCR0B, CS00);
             break;
+        case ATTN861_TIMER0_INTERNAL_CLOCK_PRESCALER_1024:
+            SBI(TCCR0B, CS02);
+            CBI(TCCR0B, CS01);
+            SBI(TCCR0B, CS00);
+            break;
     }
 }
 
