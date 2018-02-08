@@ -25,6 +25,11 @@ static void set_compare_A_match_value(uint8_t match_value)
 
 ATTN861_TIMER0_STATUS_CODE ATtiny861Timer_Timer0_Create(ATtiny861Timer0_Params *params)
 {
+    if (params == NULL)
+    {
+        return ATTN861_TIMER0_NULL_POINTER;
+    }
+
     // Disable timer?
     enable_8_bit_mode();
     enable_clear_timer_on_compare_match();

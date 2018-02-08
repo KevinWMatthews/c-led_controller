@@ -33,7 +33,10 @@ TEST(ATtiny861Timer0, can_create_timer)
     BYTES_EQUAL( params.match_value, OCR0A );
 }
 
-//TODO params may not be null. There is no default clock prescaler or match value.
+TEST(ATtiny861Timer0, can_not_pass_null_params_to_create)
+{
+    LONGS_EQUAL( ATTN861_TIMER0_NULL_POINTER, ATtiny861Timer_Timer0_Create(NULL) );
+}
 
 TEST(ATtiny861Timer0, can_destroy_timer)
 {
