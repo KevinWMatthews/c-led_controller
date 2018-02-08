@@ -19,13 +19,13 @@ typedef struct ATtiny861Timer0_Params
 {
     uint8_t match_value;
 } ATtiny861Timer0_Params;
-ATTN861_TIMER0_STATUS_CODE ATtiny861Timer_Timer0_Create(ATtiny861Timer0_Params *params);
+ATTN861_TIMER0_STATUS_CODE ATtiny861Timer0_Create(ATtiny861Timer0_Params *params);
 
 /*
  * Destroy Timer0.
  *
  * Multiple destroys have no effect.
  */
-ATTN861_TIMER0_STATUS_CODE ATtiny861Timer_Timer0_Destroy(void);
+ATTN861_TIMER0_STATUS_CODE ATtiny861Timer0_Destroy(void);
 
 #endif
