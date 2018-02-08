@@ -2,7 +2,7 @@ extern "C"
 {
 #include "ATtiny861Gpio.h"
 #include "MockHw_ATtiny861.h"
-// #include "avr/io.h"
+#include <avr/io.h>
 }
 
 #include "CppUTest/TestHarness.h"

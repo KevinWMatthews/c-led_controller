@@ -1,4 +1,5 @@
 #include "MockHw_ATtiny861.h"
+#include <avr/io.h>
 
 void MockHw_ATtiny861_Reset(void)
 {
