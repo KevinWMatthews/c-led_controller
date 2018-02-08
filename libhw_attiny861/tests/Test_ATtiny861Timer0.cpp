@@ -53,7 +53,7 @@ TEST(ATtiny861Timer0, can_destroy_timer)
 TEST(ATtiny861Timer0, can_start_timer_using_system_clock)
 {
     ATtiny861Timer0_Params params = {
-        .clock_source = ATTN861_TIMER0_SYSTEM_CLOCK,
+        .clock_source = ATTN861_TIMER0_INTERNAL_CLOCK,
         .match_value = 123
     };
     uint8_t expected_clock = 0;

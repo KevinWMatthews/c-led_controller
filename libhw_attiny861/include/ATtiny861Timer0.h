@@ -11,11 +11,14 @@ typedef enum
 
 typedef enum
 {
-    ATTN861_TIMER0_STOPPED          = 0,        // No clock source
-    ATTN861_TIMER0_SYSTEM_CLOCK     = 1,
-    /* ... */
+    ATTN861_TIMER0_STOPPED                          = 0,    // No clock source
+    ATTN861_TIMER0_INTERNAL_CLOCK                   = 1,
+    // ATTN861_TIMER0_INTERNAL_CLOCK_PRESCALER_8       = 2
+    // ATTN861_TIMER0_INTERNAL_CLOCK_PRESCALER_64      = 3,
+    // ATTN861_TIMER0_INTERNAL_CLOCK_PRESCALER_256     = 4,
     ATTN861_TIMER0_INTERNAL_CLOCK_PRESCALER_1024    = 5,
-    /* ... */
+    // ATTN861_TIMER0_EXTERNAL_CLOCK_FALLING_EDGE      = 6,
+    // ATTN861_TIMER0_EXTERNAL_CLOCK_RISING_EDGE       = 7,
 } ATTN861_TIMER0_CLOCK_SOURCE;
 
 /*
