@@ -22,6 +22,7 @@ Register callback:
     Define the ISR in the Timer module.
     Multiple callbacks?
         As needed.
+    Reset prescaler and counter register?
 
 Unregister callback:
     As needed.

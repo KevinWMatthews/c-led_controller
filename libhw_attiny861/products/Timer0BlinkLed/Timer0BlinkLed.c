@@ -1,28 +1,18 @@
 #include "ATtiny861Gpio.h"
+#include "ATtiny861Timer0.h"
 #include <avr/interrupt.h>
 
 int main(void)
 {
+    ATtiny861Timer0_Params timer0_params = {
+        .clock_source = ATTN861_TIMER0_SYSTEM_CLOCK,
+        .match_value = 0xff
+    };
+
+    ATtiny861Timer0_Create(&timer0_params);
+    ATtiny861Timer0_Start();
+
     ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_HIGH);
-
-    // Set to 8-bit mode
-    // Disable input capture mode
-    // Set to compare mode
-    TCCR0A = (1<<CTC0);
-    // Enable Timer 0 Compare Match A interrupts
-    TIMSK = (1<<OCIE0A);
-
-    // Set counter value
-    OCR0A = 255;
-
-    // Reset counter register
-    TCNT0L = 0;
-
-    // Reset prescaler
-    TCCR0B |= (1<<PSR0);
-
-    // Set clock source to internal system, prescaler 1024
-    TCCR0B = (1<<CS02) | (1<<CS00);
 
     // Enable interrupts
     sei();
