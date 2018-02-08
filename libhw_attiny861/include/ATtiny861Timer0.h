@@ -14,6 +14,8 @@ typedef enum
  *
  * Can not be created again without first being destroyed -
  * there is only a single Timer0 available in hardware.
+ *
+ * Params may not be null; there is no valid default for match_value.
  */
 typedef struct ATtiny861Timer0_Params
 {
