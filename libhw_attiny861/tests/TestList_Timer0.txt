@@ -23,6 +23,8 @@ Register callback:
     Multiple callbacks?
         As needed.
     Reset prescaler and counter register?
+    The counter register should be fine.
+    The prescaler applies to both timers, doesn't it? Sounds dangerous.
 
 Unregister callback:
     As needed.

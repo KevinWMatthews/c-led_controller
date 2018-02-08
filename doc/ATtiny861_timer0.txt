@@ -10,6 +10,7 @@ To set Timer0 to 8-bit CTC mode:
 	? Enable Compare Match B interrupts:	Set 0CIE0B bit of TIMSK
 	? Set Compare Match B value:			Set OCR0B byte
 	? Clear the Timer0 prescaler:			Write 1 to PSR0 bit of TCCR0B
+	? Clear counter register:				Write 0 to TCNT0L
 	Set the clock source (start timer):		Set CS02, CS01, CS00 bits of TCCR0B
 
 
