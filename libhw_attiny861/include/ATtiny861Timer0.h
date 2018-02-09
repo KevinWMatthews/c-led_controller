@@ -33,9 +33,12 @@ typedef void (*TIMER0_CALLBACK)(void);
  * there is only a single Timer0 available in hardware.
  *
  * match_value_A and clock_source must be set.
- * Calculate the frequency of the timer interrupt:
- *  (internal_clock MHz) / (prescaler * match_value)
- * The system clock defaults to 8MHz.
+ * Calculate the interrupt frequency of a match value:
+ *      Hz = (internal_clock MHz) / (prescaler * match_value)
+ * Calculate the match value of a interrupt frequency:
+ *      match_value = (internal_clock MHz) / (prescaler * Hz)
+ * The system clock defaults to 8MHz, but mine seems to be set for 1MHz.
+ * The system clock is set with fuse bits.
  *
  * params may not be null.
  */

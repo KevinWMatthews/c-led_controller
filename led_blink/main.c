@@ -1,23 +1,55 @@
 #include "LedControllerConfig.h"
 #include "Led2.h"
+#include "ATtiny861Timer0.h"
 #include <stddef.h>
+#include <avr/interrupt.h>     // For global interrupts.
 
-#ifndef F_CPU
-#define F_CPU 1000000UL
-#endif
+// We are not (yet?) able to pass information to the callback,
+// so the LED must be file-scope.
+static Led led;
 
-#include <util/delay.h>
+void timer_callback(void)
+{
+    static uint8_t count;
+    static LED_STATE led_state;
+
+    if (count < 10)
+    {
+        ++count;
+        return;
+    }
+    count = 0;
+
+    if (led_state == LED_OFF)
+    {
+        led_state = LED_ON;
+        Led_TurnOn(led);
+    }
+    else
+    {
+        led_state = LED_OFF;
+        Led_TurnOff(led);
+    }
+}
 
 int main(void)
 {
-    Led led = NULL;
+    ATtiny861Timer0_Params params =
+    {
+        .clock_source = ATTN861_TIMER0_INTERNAL_CLOCK_PRESCALER_1024,
+        .match_value_A = 97     // = 1MHZ / (1024*10Hz)
+    };
+
+    ATtiny861Timer0_Create(&params);
+    ATtiny861Timer0_RegisterCallback_MatchA(timer_callback);
     led = Led_Create(LED_1);
+
+    ATtiny861Timer0_Start();
+    sei();      // Enable global interrupts
+
     while (1)
     {
-        Led_TurnOn(led);
-        _delay_ms(500);
-        Led_TurnOff(led);
-        _delay_ms(500);
+        ;
     }
 
     return 0;
