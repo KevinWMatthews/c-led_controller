@@ -1,13 +1,9 @@
 Design a libhw_attiny861 module that grants access to the two hardware timers.
-For simplicity, start with only one timer.
+For simplicity, start with only one timer and one interrupt source:
+    Timer0, Compare Match A.
 
-The timer will trigger an interrupt. We need to put behavior in this interrupt.
-We can either:
-    Can we define the interrupt in our module? Perhaps so....
-    Allow the user to register a callback and tell them to define the interrupt and place our callback code there.
-    Tell the user to do put their code in the interrupt.
-
-Create:
+Create():
+    # Configure the timer.
     Do not allow multiple creates without a destroy.
     ?   Disable timer
     Set:
@@ -18,9 +14,10 @@ Create:
         -   Set Compare A value
         x   Enable Compare Match B interrupts
         x   Set Compare B value
+        x   Enable overflow interrupts
 
-Register callback:
-    This allows the user to execute periodic behavior.
+Register callback():
+    # This allows the user to execute periodic behavior.
     -   Define the ISR in the Timer module.
     -   Multiple callbacks? As needed.
     -   Do not allow multiple callbacks to be registered (right now) - replace existing.
@@ -36,32 +33,35 @@ Callback execution:
     Ignore the flag register.
     Ignore the global interrupt register; assume that global interrupts are enabled.
 
-Unregister callback:
-    x   As needed.
+X Unregister callback:
+    If needed.
 
-Start:
-    Clear Timer0 prescaler?
+Start():
+    ? Clear Timer0 prescaler
     -   Start timer - set clock source.
     -   Do not set global interrupts!
         The user needs control of that; it should happen just before the main loop.
-    Do not allow start unless timer has been Created.
-    Reset prescaler and counter register?
+    ? Do not allow start unless timer has been Created.
+    ? Reset prescaler and counter register
         The counter register should be fine.
         The prescaler applies to both timers, doesn't it? Sounds dangerous.
 
 Stop:
-    Stop timer - set clock source.
+    x   Stop timer - set clock source. As needed.
 
-Change interval:
+X Change interval:
     As needed.
     What if we need to change the clock interval/match value at runtime?
     This gets complicated with the prescaler.
     We could hold it in reset using Timer0 Synchronization Mode - TSM bit of TCCR0B register.
     Then reset the Timer0 prescaler?
 
-Destroy:
+X Destroy:
+    As needed; currently nothing for it to do.
     Must stop the timer if needed.
     Free any handles.
     Do not allow start.
 
-Check and see if CTC mode checks both Output Compare Registers A and B.
+X HW:
+    Haven't actually tried Compare Match B.
+    Check and see if CTC mode checks both Output Compare Registers A and B when in 8-bit mode.
