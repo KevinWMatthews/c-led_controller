@@ -2,9 +2,9 @@ Design a libhw_attiny861 module that grants access to the two hardware timers.
 For simplicity, start with only one timer and one interrupt source:
     Timer0, Compare Match A.
 
-Create():
+- Create():
     # Configure the timer.
-    Do not allow multiple creates without a destroy.
+    ?   Multiple creates reconfigure the timer.
     ?   Disable timer
     Set:
         -   8-bit mode
@@ -16,27 +16,29 @@ Create():
         x   Set Compare B value
         x   Enable overflow interrupts
 
-Register callback():
+- Register callback():
     # This allows the user to execute periodic behavior.
     -   Define the ISR in the Timer module.
     -   Multiple callbacks? As needed.
     -   Do not allow multiple callbacks to be registered (right now) - replace existing.
     -   NULL should clear the callback.
 
-Callback execution:
+- Callback execution:
     -   Execute callback
     -   Do not segfault with NULL callback.
 
+X Mock:
     * This mock may needs tests of its own! *
     Do not execute if timer is stopped.
     Do not execute if MatchA interrupts are not enabled.
     Ignore the flag register.
     Ignore the global interrupt register; assume that global interrupts are enabled.
+    ? Increment counter register instead of triggering an interrupt.
 
 X Unregister callback:
     If needed.
 
-Start():
+- Start():
     ? Clear Timer0 prescaler
     -   Start timer - set clock source.
     -   Do not set global interrupts!
@@ -51,8 +53,8 @@ Start():
         The prescaler applies to both timers, doesn't it? Sounds dangerous.
         Would be most useful if we were starting and stopping the timer.
 
-Stop:
-    x   Stop timer - set clock source. As needed.
+X Stop:
+    Stop timer - set clock source. As needed.
 
 X Change interval:
     As needed.
