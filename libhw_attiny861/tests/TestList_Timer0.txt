@@ -25,12 +25,12 @@ Register callback:
     This allows the user to execute periodic behavior.
     -   Define the ISR in the Timer module.
     -   Multiple callbacks? As needed.
-    Do not allow multiple callbacks to be registered (right now) - replace existing.
-    NULL should clear the callback and allow a different one to be registered.
+    -   Do not allow multiple callbacks to be registered (right now) - replace existing.
+    -   NULL should clear the callback.
 
 Callback execution:
     -   Execute callback
-    Do not segfault with NULL callback.
+    -   Do not segfault with NULL callback.
 
     * This mock may needs tests of its own! *
     Do not execute if timer is stopped.
@@ -39,17 +39,17 @@ Callback execution:
     Ignore the global interrupt register; assume that global interrupts are enabled.
 
 Unregister callback:
-    As needed.
+    x   As needed.
 
 Start:
     Clear Timer0 prescaler?
-    Start timer - set clock source.
-    Do not set global interrupts!
+    -   Start timer - set clock source.
+    -   Do not set global interrupts!
         The user needs control of that; it should happen just before the main loop.
     Do not allow start unless timer has been Created.
     Reset prescaler and counter register?
-    The counter register should be fine.
-    The prescaler applies to both timers, doesn't it? Sounds dangerous.
+        The counter register should be fine.
+        The prescaler applies to both timers, doesn't it? Sounds dangerous.
 
 Stop:
     Stop timer - set clock source.
