@@ -20,6 +20,15 @@ Re-read documentation about initializing variables to 0.
 ! Re-read documentation on passing IO ports as parameters to functions.
     I think I'm doing this correctly.
     Should I declare and define the mock registers as volatile? Probably?
+Nice! All avr/io*.h header files include <sfr_defs.h> - Special Function Register definitions.
+This file fills in the various PORTx, PINx, etc, defines that make special registers look like C variables:
+    #define _SFR_IO8(io_addr) _MMIO_BYTE((io_addr) + __SFR_OFFSET)
+Don't worry about __SFR_OFFSET.
+Then:
+    #include <inttypes.h>
+    #define _MMIO_BYTE(mem_addr) (*(volatile uint8_t *)(mem_addr))
+
+    In the end, special registers are simply defined as the value of a volatile uint*_t pointer.
 
 See if we can use macros for setting and clearing bits. This could save code space for me?
 
