@@ -77,3 +77,8 @@ ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_Start(void)
     set_clock_select_bits(timer0_clock_source);
     return ATTN861_TIMER0_SUCCESS;
 }
+
+ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_RegisterCallback_MatchA(TIMER0_CALLBACK callback)
+{
+    return ATTN861_TIMER0_SUCCESS;
+}

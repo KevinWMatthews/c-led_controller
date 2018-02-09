@@ -7,6 +7,8 @@ We can either:
     Allow the user to register a callback and tell them to define the interrupt and place our callback code there.
     Tell the user to do put their code in the interrupt.
 
+Change match_value to match_value_A?
+
 Create:
     Do not allow multiple creates without a destroy.
     ? Disable timer

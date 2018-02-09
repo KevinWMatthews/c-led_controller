@@ -22,6 +22,11 @@ typedef enum
 } ATTN861_TIMER0_CLOCK_SOURCE;
 
 /*
+ * Callback for timer interrupts.
+ */
+typedef void (*TIMER0_CALLBACK)(void);
+
+/*
  * Create a Timer using the ATtiny's Timer/Counter0.
  *
  * Can not be created again without first being destroyed -
@@ -49,5 +54,16 @@ ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_Create(ATtiny861Timer0_Params *params
 ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_Destroy(void);
 
 ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_Start(void);
+
+/*
+ * Register a callback that will be executed with the
+ * Timer/Counter0 Compare Match A interrupt.
+ *
+ * To clear a callback, register a NULL pointer.
+ *
+ * The Timer0 module will define the ISR vector.
+ */
+ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_RegisterCallback_MatchA(TIMER0_CALLBACK);
+
 
 #endif
