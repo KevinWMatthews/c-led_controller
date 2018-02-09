@@ -1,7 +1,7 @@
 extern "C"
 {
 #include "ATtiny861Timer0.h"
-// #include "MockHw_ATtiny861.h"
+#include "Mock_ATtiny861Timer0.h"
 #include <avr/io.h>
 }
 
@@ -9,6 +9,7 @@ extern "C"
 #define BIT_VALUE(bit_number)   (1<<(bit_number))
 
 #include "CppUTest/TestHarness.h"
+#include "CppUTestExt/MockSupport.h"
 
 TEST_GROUP(ATtiny861Timer0)
 {
@@ -16,10 +17,13 @@ TEST_GROUP(ATtiny861Timer0)
 
     void setup()
     {
+        mock().strictOrder();
     }
 
     void teardown()
     {
+        mock().checkExpectations();
+        mock().clear();
     }
 };
 
@@ -126,4 +130,18 @@ TEST(ATtiny861Timer0, can_clear_callback_for_timer0_compare_A_interrupt)
 
     LONGS_EQUAL( ATTN861_TIMER0_SUCCESS, ret );
     //TODO verify that there is no behavior/this will not segfault
+}
+
+TEST(ATtiny861Timer0, can_execute_callback_for_timer0_compare_A_interrupt)
+{
+    ATtiny861Timer0_Params params = {
+        .clock_source = ATTN861_TIMER0_INTERNAL_CLOCK_PRESCALER_1024,
+        .match_value = 123
+    };
+
+    ATtiny861Timer0_Create(&params);
+    ATtiny861Timer0_RegisterCallback_MatchA(match_a_callback);
+    ATtiny861Timer0_Start();
+
+    Mock_ATtiny861Timer0_CompareMatchA();
 }
