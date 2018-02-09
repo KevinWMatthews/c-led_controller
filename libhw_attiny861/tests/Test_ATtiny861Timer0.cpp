@@ -103,6 +103,11 @@ void match_a_callback(void)
     mock().actualCall("match_a_callback");
 }
 
+void match_a_callback2(void)
+{
+    mock().actualCall("match_a_callback2");
+}
+
 TEST(ATtiny861Timer0, can_register_callback_for_timer0_compare_A_interrupt)
 {
     ATtiny861Timer0_Params params = {
@@ -146,6 +151,21 @@ TEST(ATtiny861Timer0, can_execute_callback_for_timer0_compare_A_interrupt)
     Mock_ATtiny861Timer0_CompareMatchA();
 }
 
+TEST(ATtiny861Timer0, second_compare_A_callback_replaces_original)
+{
+    ATtiny861Timer0_Params params = {
+        .clock_source = ATTN861_TIMER0_INTERNAL_CLOCK_PRESCALER_1024,
+        .match_value = 123
+    };
+
+    ATtiny861Timer0_Create(&params);
+    ATtiny861Timer0_RegisterCallback_MatchA(match_a_callback);
+    ATtiny861Timer0_Start();
+
+    mock().expectOneCall("match_a_callback");
+    Mock_ATtiny861Timer0_CompareMatchA();
+}
+
 TEST(ATtiny861Timer0, will_not_execute_null_callback_for_timer0_compare_A_interrupt)
 {
     ATtiny861Timer0_Params params = {
@@ -154,8 +174,10 @@ TEST(ATtiny861Timer0, will_not_execute_null_callback_for_timer0_compare_A_interr
     };
 
     ATtiny861Timer0_Create(&params);
-    ATtiny861Timer0_RegisterCallback_MatchA(NULL);
+    ATtiny861Timer0_RegisterCallback_MatchA(match_a_callback);
+    ATtiny861Timer0_RegisterCallback_MatchA(match_a_callback2);
     ATtiny861Timer0_Start();
 
+    mock().expectOneCall("match_a_callback2");
     Mock_ATtiny861Timer0_CompareMatchA();
 }
