@@ -32,7 +32,7 @@ typedef void (*TIMER0_CALLBACK)(void);
  * Can not be created again without first being destroyed -
  * there is only a single Timer0 available in hardware.
  *
- * match_value and clock_source must be set.
+ * match_value_A and clock_source must be set.
  * Calculate the frequency of the timer interrupt:
  *  (internal_clock MHz) / (prescaler * match_value)
  * The system clock defaults to 8MHz.
@@ -42,7 +42,7 @@ typedef void (*TIMER0_CALLBACK)(void);
 typedef struct ATtiny861Timer0_Params
 {
     ATTN861_TIMER0_CLOCK_SOURCE clock_source;
-    uint8_t match_value;
+    uint8_t match_value_A;
 } ATtiny861Timer0_Params;
 ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_Create(ATtiny861Timer0_Params *params);
 

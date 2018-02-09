@@ -61,7 +61,7 @@ ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_Create(ATtiny861Timer0_Params *params
     enable_clear_timer_on_compare_match();
     // CBI(TCCR0A, ICEN0);  // Disable input capture mode.
     enable_compare_match_A_interrupts();
-    set_compare_A_match_value(params->match_value);
+    set_compare_A_match_value(params->match_value_A);
     // Clear Timer0 prescaler?
 
     // Do not set the clock source; this would enable the timer.
