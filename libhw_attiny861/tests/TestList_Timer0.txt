@@ -24,9 +24,8 @@ Register callback:
     Define the ISR in the Timer module.
     Multiple callbacks?
         As needed.
-    Reset prescaler and counter register?
-    The counter register should be fine.
-    The prescaler applies to both timers, doesn't it? Sounds dangerous.
+    Do not allow multiple callbacks to be registered (right now).
+    NULL should clear the callback and allow a different one to be registered.
 
 Unregister callback:
     As needed.
@@ -37,6 +36,9 @@ Start:
     Do not set global interrupts!
         The user needs control of that; it should happen just before the main loop.
     Do not allow start unless timer has been Created.
+    Reset prescaler and counter register?
+    The counter register should be fine.
+    The prescaler applies to both timers, doesn't it? Sounds dangerous.
 
 Stop:
     Stop timer - set clock source.

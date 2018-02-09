@@ -1,8 +1,13 @@
 #include "ATtiny861Timer0.h"
 #include <avr/io.h>
+#include <avr/interrupt.h>
 #include "BitManip.h"
 
+/*
+ * File-scope variables.
+ */
 static int timer0_clock_source;
+static TIMER0_CALLBACK timer0_match_a_callback;
 
 static void enable_8_bit_mode(void)
 {
@@ -80,5 +85,11 @@ ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_Start(void)
 
 ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_RegisterCallback_MatchA(TIMER0_CALLBACK callback)
 {
+    timer0_match_a_callback = callback;
     return ATTN861_TIMER0_SUCCESS;
+}
+
+ISR(TIMER0_COMPA_vect)
+{
+    timer0_match_a_callback();
 }

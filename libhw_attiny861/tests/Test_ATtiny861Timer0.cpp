@@ -100,7 +100,7 @@ TEST(ATtiny861Timer0, can_start_timer_using_internal_clock_with_prescaler_1024)
 
 void match_a_callback(void)
 {
-
+    mock().actualCall("match_a_callback");
 }
 
 TEST(ATtiny861Timer0, can_register_callback_for_timer0_compare_A_interrupt)
@@ -143,5 +143,6 @@ TEST(ATtiny861Timer0, can_execute_callback_for_timer0_compare_A_interrupt)
     ATtiny861Timer0_RegisterCallback_MatchA(match_a_callback);
     ATtiny861Timer0_Start();
 
+    mock().expectOneCall("match_a_callback");
     Mock_ATtiny861Timer0_CompareMatchA();
 }

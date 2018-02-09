@@ -58,10 +58,10 @@ ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_Start(void);
 /*
  * Register a callback that will be executed with the
  * Timer/Counter0 Compare Match A interrupt.
+ * The Timer0 module will define AVR's ISR vector and execute this callback there.
  *
+ * Currently only allows a single callback to be registered.
  * To clear a callback, register a NULL pointer.
- *
- * The Timer0 module will define the ISR vector.
  */
 ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_RegisterCallback_MatchA(TIMER0_CALLBACK);
 

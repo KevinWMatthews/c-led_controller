@@ -116,4 +116,27 @@ extern uint8_t TIMSK;
 // #define OCIE1A  6
 // #define OCIE1D  7
 
+
+/*
+ * Interrupts
+ *
+ * These are defined in chip-specific io*.h files, such as iotn*61.h.
+ * Various vector names are defined using the convention:
+ *      #define <vector_name>_vect      _VECTOR(<n>)
+ *
+ * _VECTOR is defined in <avr/sfr_defs.h> as:
+ *      #ifndef _VECTOR
+ *      #define _VECTOR(N) __vector_ ## N
+ *      #endif
+ * This is a preprocessor substitution, not a compiler extension or attribute.
+ * We should be able to skip the level of indirection and simply define
+ * the vectors here.
+ */
+
+/* Timer/Counter0 Compare Match A */
+#define TIMER0_COMPA_vect               vector_14_TIMER0_COMPA
+// #define TIMER0_COMPA_vect_num		14
+// #define TIMER0_COMPA_vect	    	_VECTOR(14)
+// #define SIG_OUTPUT_COMPARE0A		_VECTOR(14)
+
 #endif
