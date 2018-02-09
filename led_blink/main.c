@@ -37,7 +37,9 @@ int main(void)
     ATtiny861Timer0_Params params =
     {
         .clock_source = ATTN861_TIMER0_INTERNAL_CLOCK_PRESCALER_1024,
-        .match_value_A = 97     // = 1MHZ / (1024*10Hz)
+        // Set timer to 10 Hz:
+        //  match_value = 1MHZ / (1024*10Hz)
+        .match_value_A = 97
     };
 
     ATtiny861Timer0_Create(&params);
