@@ -1,5 +1,8 @@
 Should we write an abstract layer for Timers? I don't need to yet, so don't.
 
+_set() still lingers in production code. Leave this? Abstract it away?
+If we switch processors/toolchains we will need to.
+
 A "button press" triggers multiple interrupts because the pin state change is not clean.
 Perhaps it's better to monitor the button state using a timer? I've seen a few recommendations in that regard. Do more research.
 
