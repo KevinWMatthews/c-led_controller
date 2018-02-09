@@ -42,9 +42,14 @@ Start():
     -   Do not set global interrupts!
         The user needs control of that; it should happen just before the main loop.
     ? Do not allow start unless timer has been Created.
-    ? Reset prescaler and counter register
-        The counter register should be fine.
+    X Reset Timer0 counter register
+        Technically necessary?
+        Hard to test right now because nothing increments our mock timer counter.
+        We could just hack it in there....
+        Will only affect the first interrupt, which is fine for now.
+    ? Reset Timer0 prescaler
         The prescaler applies to both timers, doesn't it? Sounds dangerous.
+        Would be most useful if we were starting and stopping the timer.
 
 Stop:
     x   Stop timer - set clock source. As needed.

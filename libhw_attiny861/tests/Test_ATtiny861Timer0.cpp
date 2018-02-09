@@ -68,6 +68,7 @@ TEST(ATtiny861Timer0, can_start_timer_using_system_clock)
 
     LONGS_EQUAL( ATTN861_TIMER0_SUCCESS, ret );
     BYTES_EQUAL( expected_clock, TCCR0B );
+    // BYTES_EQUAL( 0x00, TCNT0L );        // Never fails... nothing increments the count.
 }
 
 TEST(ATtiny861Timer0, can_start_timer_using_internal_clock_with_prescaler_1024)

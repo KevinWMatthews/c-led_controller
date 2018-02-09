@@ -96,6 +96,10 @@ extern uint8_t TCCR0A;
 // #define ICEN0   6
 #define TCW0    7
 
+// Timer0 Counter Low register
+// extern uint8_t TCNT0L;
+// #define TCNT0L  _SFR_IO8(0x32)
+
 extern uint8_t TCCR0B;
 // #define TCCR0B  _SFR_IO8(0x33)
 #define CS00    0
