@@ -91,5 +91,8 @@ ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_RegisterCallback_MatchA(TIMER0_CALLBA
 
 ISR(TIMER0_COMPA_vect)
 {
-    timer0_match_a_callback();
+    if (timer0_match_a_callback)
+    {
+        timer0_match_a_callback();
+    }
 }
