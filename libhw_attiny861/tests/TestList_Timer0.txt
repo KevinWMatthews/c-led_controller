@@ -11,21 +11,32 @@ Change match_value to match_value_A?
 
 Create:
     Do not allow multiple creates without a destroy.
-    ? Disable timer
+    ?   Disable timer
     Set:
-        8-bit mode
-        CTC/compare mode
-        No input capture mode
-        Enable Compare Match A/B interrupts
-        Set Compare A/B value(s)
+        -   8-bit mode
+        -   CTC/compare mode
+        -   No input capture mode
+        -   Enable Compare Match A interrupts
+        -   Set Compare A value
+        x   Enable Compare Match B interrupts
+        x   Set Compare B value
 
 Register callback:
     This allows the user to execute periodic behavior.
-    Define the ISR in the Timer module.
-    Multiple callbacks?
-        As needed.
-    Do not allow multiple callbacks to be registered (right now).
+    -   Define the ISR in the Timer module.
+    -   Multiple callbacks? As needed.
+    Do not allow multiple callbacks to be registered (right now) - replace existing.
     NULL should clear the callback and allow a different one to be registered.
+
+Callback execution:
+    -   Execute callback
+    Do not segfault with NULL callback.
+
+    * This mock may needs tests of its own! *
+    Do not execute if timer is stopped.
+    Do not execute if MatchA interrupts are not enabled.
+    Ignore the flag register.
+    Ignore the global interrupt register; assume that global interrupts are enabled.
 
 Unregister callback:
     As needed.
