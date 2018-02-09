@@ -71,11 +71,6 @@ ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_Create(ATtiny861Timer0_Params *params
     return ATTN861_TIMER0_SUCCESS;
 }
 
-ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_Destroy(void)
-{
-    return ATTN861_TIMER0_SUCCESS;
-}
-
 ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_Start(void)
 {
     // Setting the clock source starts the timer.

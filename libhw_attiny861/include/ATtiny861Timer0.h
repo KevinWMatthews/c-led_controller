@@ -29,7 +29,7 @@ typedef void (*TIMER0_CALLBACK)(void);
 /*
  * Create a Timer using the ATtiny's Timer/Counter0.
  *
- * Can not be created again without first being destroyed -
+ * Creating this timer a second time will change the settings of Timer0 -
  * there is only a single Timer0 available in hardware.
  *
  * match_value_A and clock_source must be set.
@@ -50,10 +50,24 @@ ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_Create(ATtiny861Timer0_Params *params
  * Destroy Timer0.
  *
  * Multiple destroys have no effect.
+ *
+ * Implement as needed.
  */
-ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_Destroy(void);
+// ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_Destroy(void);
 
+/*
+ * Start Timer0.
+ *
+ * Sets the clock source as specified during Create(), which starts the timer.
+ */
 ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_Start(void);
+
+/*
+ * Stop Timer0.
+ *
+ * Implement as needed.
+ */
+// ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_Stop(void);
 
 /*
  * Register a callback that will be executed with the

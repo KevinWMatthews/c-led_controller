@@ -48,12 +48,6 @@ TEST(ATtiny861Timer0, can_not_pass_null_params_to_create)
     LONGS_EQUAL( ATTN861_TIMER0_NULL_POINTER, ret );
 }
 
-TEST(ATtiny861Timer0, can_destroy_timer)
-{
-    ret = ATtiny861Timer0_Destroy();
-    LONGS_EQUAL( ATTN861_TIMER0_SUCCESS, ret );
-}
-
 TEST(ATtiny861Timer0, can_start_timer_using_system_clock)
 {
     ATtiny861Timer0_Params params = {
