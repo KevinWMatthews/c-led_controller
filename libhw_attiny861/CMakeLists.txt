@@ -1,5 +1,5 @@
 add_library(ATtiny861
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/ATtiny861_gpio.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/ATtiny861_Gpio.c"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/ATtiny861_GpioMap.c"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/ATtiny861_Timer0.c"
 )
