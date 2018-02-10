@@ -1,5 +1,5 @@
 #include "ATtiny861_Gpio.h"
-#include "ATtiny861_gpio_map.h"
+#include "ATtiny861_GpioMap.h"
 #include "BitManip.h"
 #include <avr/io.h>
 #include <stddef.h>

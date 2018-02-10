@@ -1,4 +1,4 @@
-#include "ATtiny861_gpio_map.h"
+#include "ATtiny861_GpioMap.h"
 #include <avr/io.h>
 #include <stddef.h>
 
