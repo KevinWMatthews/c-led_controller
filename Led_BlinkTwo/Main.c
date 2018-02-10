@@ -34,20 +34,14 @@ void timer_callback(void)
 {
     static uint8_t count;
 
-    if (count == 4)
+    if (count < 10)
     {
-        toggle_led(led1);
+        ++count;
+        return;
     }
-    if (count == 9)
-    {
-        toggle_led(led2);
-    }
-
-    ++count;
-    if (count >= 10)
-    {
-        count = 0;
-    }
+    count = 0;
+    toggle_led(led1);
+    toggle_led(led2);
 }
 
 int main(void)
@@ -64,6 +58,7 @@ int main(void)
     led1 = Led_Create(LED_1);
     led2 = Led_Create(LED_2);
 
+    Led_TurnOn(LED_1);      // check return value?
     ATtiny861Timer0_Start();
     sei();      // Enable global interrupts
 
