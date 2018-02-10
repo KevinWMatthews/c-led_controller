@@ -1,4 +1,4 @@
-#include "ATtiny861Gpio.h"
+#include "ATtiny861_Gpio.h"
 
 /*
  * Basic hardware sanity check.

@@ -1,4 +1,4 @@
-#include "ATtiny861Gpio.h"
+#include "ATtiny861_Gpio.h"
 #include "ATtiny861_gpio_map.h"
 #include "BitManip.h"
 #include <avr/io.h>
@@ -55,11 +55,11 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput(ATTINY861_PIN pin, GPIO_STATE in
 
     ATTINY861_STATUS_CODE ret;
 
-    ddr = ATtiny861GpioMap_GetDdrRegister(pin);
-    ddr_bit = ATtiny861GpioMap_GetDdrBit(pin);
+    ddr = ATtiny861_GpioMap_GetDdrRegister(pin);
+    ddr_bit = ATtiny861_GpioMap_GetDdrBit(pin);
 
-    port = ATtiny861GpioMap_GetPortRegister(pin);
-    port_bit = ATtiny861GpioMap_GetPortBit(pin);
+    port = ATtiny861_GpioMap_GetPortRegister(pin);
+    port_bit = ATtiny861_GpioMap_GetPortBit(pin);
 
     //TODO Extract this.
     ret = set_gpio_direction(ddr, ddr_bit);
@@ -95,8 +95,8 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetState(ATTINY861_PIN pin, GPIO_STATE state
 
     ATTINY861_STATUS_CODE ret;
 
-    port = ATtiny861GpioMap_GetPortRegister(pin);
-    port_bit = ATtiny861GpioMap_GetPortBit(pin);
+    port = ATtiny861_GpioMap_GetPortRegister(pin);
+    port_bit = ATtiny861_GpioMap_GetPortBit(pin);
 
     ret = set_gpio_state(port, port_bit, state);
     if (ret < 0)
@@ -114,12 +114,12 @@ GPIO_STATE ATtiny861_GpioGetState(ATTINY861_PIN pin)
     volatile uint8_t * port_reg;
     int8_t port_bit;
 
-    port_reg = ATtiny861GpioMap_GetPortRegister(pin);
+    port_reg = ATtiny861_GpioMap_GetPortRegister(pin);
     if (port_reg == NULL)
     {
         return GPIO_INVALID;
     }
-    port_bit = ATtiny861GpioMap_GetPortBit(pin);
+    port_bit = ATtiny861_GpioMap_GetPortBit(pin);
     if (port_bit < 0)
     {
         return GPIO_INVALID;
