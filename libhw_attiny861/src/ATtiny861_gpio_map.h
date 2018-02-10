@@ -1,7 +1,7 @@
 #ifndef ATTINY861_GPIO_MAP_INCLUDED
 #define ATTINY861_GPIO_MAP_INCLUDED
 
-#include "ATtiny861Gpio.h"
+#include "ATtiny861_Pins.h"
 
 /*
  * Configuring and using GPIO requires knowledge of three registers:
