@@ -1,3 +1,9 @@
+CMake todo:
+    Can we put libhw products in its CMakeLists.txt? Do we want the main app to have to know everything? It should just have an option, perhaps.
+
+    Revisit CMAKE_PREFIX_PATH and CPPUTEST_HOME
+
+
 Should we write an abstract layer for Timers? I don't need to yet, so don't.
 
 _set() still lingers in production code. Leave this? Abstract it away?
@@ -145,3 +151,6 @@ Fix status macros in gpio library. They are generic.
 Standardize module names....
 
 Rename Mock_ATtiny.h to something specific to GPIO.
+
+Read this:
+    https://stackoverflow.com/questions/43123571/generate-list-files-with-cmake

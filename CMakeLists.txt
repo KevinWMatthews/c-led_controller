@@ -8,48 +8,29 @@ cmake_policy(VERSION 3.5)
 set (LedController_VERSION_MAJOR 0)
 set (LedController_VERSION_MINOR 1)
 
-# Specify where files are installed
 set (CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 set (CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 set (CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 
-# Create a header file with project information
 configure_file (
     "${PROJECT_SOURCE_DIR}/include/LedControllerConfig.h.in"
     "${PROJECT_BINARY_DIR}/include/LedControllerConfig.h"
 )
 
-# Enable project options
 option(COMPILE_TESTS "Compile unit tests" OFF)
 
-# Search for libraries
 if(COMPILE_TESTS)
-    #TODO do we need this?
-    #enable_language(CXX)
+    # If tests are compiled, the production code links against CppUTest
     set(CMAKE_PREFIX_PATH "${CPPUTEST_HOME}")
-    message(STATUS ${CMAKE_PREFIX_PATH})
     find_package(CppUTest 3.8 REQUIRED)
-endif(COMPILE_TESTS)
 
-# Add subdirectories
-# Compile source code libraries
-add_subdirectory(libhw_attiny861)
-
-# Compile unit tests
-if(COMPILE_TESTS)
-    add_subdirectory(libhw_attiny861/tests)
     add_subdirectory(tests)
 endif(COMPILE_TESTS)
 
-# Create executables
-# Allow only cross-compilation until/unless I get the build straightened out.
+add_subdirectory(libhw_attiny861)
 if(CMAKE_CROSSCOMPILING)
-add_subdirectory(libhw_attiny861/products/pin_a0_high)
-add_subdirectory(libhw_attiny861/products/pin_a1_high)
-add_subdirectory(libhw_attiny861/products/pin_a2_high)
-add_subdirectory(libhw_attiny861/products/interrupt_int0)
-add_subdirectory(libhw_attiny861/products/Timer0BlinkLed)
-add_subdirectory(led_blink)
+    # Only cross-compile products until/unless I get the build straightened out.
+    add_subdirectory(led_blink)
 endif(CMAKE_CROSSCOMPILING)
 
 message(STATUS "
@@ -57,6 +38,7 @@ message(STATUS "
 Project options:
     CPPUTEST_HOME:                      ${CPPUTEST_HOME}
     CMAKE_INSTALL_PREFIX:               ${CMAKE_INSTALL_PREFIX}
+    CMAKE_PREFIX_PATH:                  ${CMAKE_PREFIX_PATH}
     COMPILE_TESTS:                      ${COMPILE_TESTS}
 
 Compiler options:

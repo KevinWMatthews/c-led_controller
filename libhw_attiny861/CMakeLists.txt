@@ -24,6 +24,7 @@ endif(CMAKE_CROSSCOMPILING)
 
 
 if(COMPILE_TESTS)
+    # Compile production code against CppUTest to enable memory leak detection
     set_target_properties(ATtiny861 PROPERTIES
         COMPILE_FLAGS "-include CppUTest/MemoryLeakDetectorMallocMacros.h"
     )
@@ -35,3 +36,15 @@ endif(COMPILE_TESTS)
 # is generating the build system if the library is not found.
 # Otherwise, we must wait until the linker fails (after compilation).
 add_library(ATtiny::861 ALIAS ATtiny861)
+
+if(COMPILE_TESTS)
+    add_subdirectory(tests)
+endif(COMPILE_TESTS)
+
+if(CMAKE_CROSSCOMPILING)
+add_subdirectory(products/pin_a0_high)
+add_subdirectory(products/pin_a1_high)
+add_subdirectory(products/pin_a2_high)
+add_subdirectory(products/interrupt_int0)
+add_subdirectory(products/Timer0BlinkLed)
+endif(CMAKE_CROSSCOMPILING)
