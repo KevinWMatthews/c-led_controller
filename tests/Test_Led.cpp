@@ -67,26 +67,26 @@ TEST(Led, can_turn_led1_on)
 TEST(Led, can_turn_led1_off)
 {
     Led_TurnOn(led1);
-    CHECK_EQUAL(LED_SUCCESS, Led_TurnOff(led1));
+    LONGS_EQUAL(LED_SUCCESS, Led_TurnOff(led1));
     Led_GetState(led1, &state1);
-    CHECK_EQUAL(LED_OFF, state1);
+    LONGS_EQUAL(LED_OFF, state1);
 }
 
 TEST(Led, can_turn_led2_on)
 {
     Led_TurnOn(led2);
 
-    CHECK_EQUAL(LED_SUCCESS, Led_TurnOff(led2));
+    LONGS_EQUAL(LED_SUCCESS, Led_TurnOff(led2));
     Led_GetState(led2, &state2);
-    CHECK_EQUAL(LED_OFF, state2);
+    LONGS_EQUAL(LED_OFF, state2);
 }
 
 TEST(Led, can_turn_led2_off)
 {
     Led_TurnOn(led2);
-    CHECK_EQUAL(LED_SUCCESS, Led_TurnOff(led2));
+    LONGS_EQUAL(LED_SUCCESS, Led_TurnOff(led2));
     Led_GetState(led2, &state2);
-    CHECK_EQUAL(LED_OFF, state2);
+    LONGS_EQUAL(LED_OFF, state2);
 }
 
 TEST(Led, will_not_get_state_if_state_pointer_is_null)
