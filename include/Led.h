@@ -11,7 +11,8 @@ typedef enum
 
 typedef enum
 {
-    LED_1       = 0
+    LED_1       = 0,
+    LED_2       = 1
 } LED_NUMBER;
 
 /*

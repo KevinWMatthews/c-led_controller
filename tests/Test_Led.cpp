@@ -8,6 +8,7 @@ extern "C"
 TEST_GROUP(Led)
 {
     Led led1;
+    Led led2;
     LED_RETURN_CODE ret;
     LED_STATE state;
 
@@ -26,6 +27,13 @@ TEST_GROUP(Led)
 TEST(Led, can_create_led1)
 {
     CHECK_TRUE(led1 != NULL);
+}
+
+TEST(Led, can_create_led2)
+{
+    led2 = Led_Create(LED_2);
+    CHECK_TRUE(led2 != NULL);
+    Led_Destroy(&led2);
 }
 
 TEST(Led, can_destroy_an_led)
