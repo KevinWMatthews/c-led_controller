@@ -2,7 +2,7 @@
 #define MOCK_ATTINY861_TIMER0_INCLUDED
 
 // Execute the Timer/Counter0 Compare Match A, if configured.
-void Mock_ATtiny861Timer0_CompareMatchA(void);
+void Mock_ATtiny861_Timer0_CompareMatchA(void);
 
 /*
  * Expose the individual interrupts so that the Mock can execute them.

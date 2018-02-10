@@ -1,6 +1,6 @@
 #include "LedControllerConfig.h"
 #include "Led.h"
-#include "ATtiny861Timer0.h"
+#include "ATtiny861_Timer0.h"
 #include <stddef.h>
 #include <avr/interrupt.h>     // For global interrupts.
 
@@ -39,22 +39,22 @@ void timer_callback(void)
 
 int main(void)
 {
-    ATtiny861Timer0_Params params = {
+    ATtiny861_Timer0_Params params = {
         .clock_source = ATTN861_TIMER0_INTERNAL_CLOCK_PRESCALER_1024,
         // Set timer to 10 Hz:
         //  match_value = 1MHZ / (1024*10Hz)
         .match_value_A = 97
     };
 
-    ATtiny861Timer0_Create(&params);
-    ATtiny861Timer0_RegisterCallback_MatchA(timer_callback);
+    ATtiny861_Timer0_Create(&params);
+    ATtiny861_Timer0_RegisterCallback_MatchA(timer_callback);
     led = Led_Create(ATTN861_PA0);
     if (led == NULL)
     {
         return -1;
     }
 
-    ATtiny861Timer0_Start();
+    ATtiny861_Timer0_Start();
     sei();      // Enable global interrupts
 
     while (1)

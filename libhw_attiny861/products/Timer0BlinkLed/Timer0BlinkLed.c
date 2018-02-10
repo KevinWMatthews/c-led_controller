@@ -1,5 +1,5 @@
 #include "ATtiny861_Gpio.h"
-#include "ATtiny861Timer0.h"
+#include "ATtiny861_Timer0.h"
 #include <avr/interrupt.h>
 
 static void toggle_led_state(void)
@@ -24,17 +24,17 @@ int main(void)
     /*
      * 8 MHz / (1024*255) = 30.6 Hz  => Roughly twice a second.
      */
-    ATtiny861Timer0_Params timer0_params = {
+    ATtiny861_Timer0_Params timer0_params = {
         .clock_source = ATTN861_TIMER0_INTERNAL_CLOCK_PRESCALER_1024,
         .match_value_A = 255
     };
 
-    ATtiny861Timer0_Create(&timer0_params);
-    ATtiny861Timer0_Start();
+    ATtiny861_Timer0_Create(&timer0_params);
+    ATtiny861_Timer0_Start();
 
     ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_LOW);
 
-    ATtiny861Timer0_RegisterCallback_MatchA(toggle_led_state);
+    ATtiny861_Timer0_RegisterCallback_MatchA(toggle_led_state);
 
     // Enable interrupts
     sei();

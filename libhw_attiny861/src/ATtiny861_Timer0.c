@@ -1,4 +1,4 @@
-#include "ATtiny861Timer0.h"
+#include "ATtiny861_Timer0.h"
 #include <avr/io.h>
 #include <avr/interrupt.h>
 #include "BitManip.h"
@@ -49,7 +49,7 @@ static void set_clock_select_bits(int clock_source)
     }
 }
 
-ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_Create(ATtiny861Timer0_Params *params)
+ATTN861_TIMER0_RETURN_CODE ATtiny861_Timer0_Create(ATtiny861_Timer0_Params *params)
 {
     if (!params)
     {
@@ -71,14 +71,14 @@ ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_Create(ATtiny861Timer0_Params *params
     return ATTN861_TIMER0_SUCCESS;
 }
 
-ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_Start(void)
+ATTN861_TIMER0_RETURN_CODE ATtiny861_Timer0_Start(void)
 {
     // Setting the clock source starts the timer.
     set_clock_select_bits(timer0_clock_source);
     return ATTN861_TIMER0_SUCCESS;
 }
 
-ATTN861_TIMER0_RETURN_CODE ATtiny861Timer0_RegisterCallback_MatchA(TIMER0_CALLBACK callback)
+ATTN861_TIMER0_RETURN_CODE ATtiny861_Timer0_RegisterCallback_MatchA(TIMER0_CALLBACK callback)
 {
     timer0_match_a_callback = callback;
     return ATTN861_TIMER0_SUCCESS;

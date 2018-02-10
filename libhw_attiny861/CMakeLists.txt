@@ -1,7 +1,7 @@
 add_library(ATtiny861
     "${CMAKE_CURRENT_SOURCE_DIR}/src/ATtiny861_gpio.c"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/ATtiny861_GpioMap.c"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/ATtiny861Timer0.c"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/ATtiny861_Timer0.c"
 )
 target_include_directories(ATtiny861 PRIVATE "${PROJECT_BINARY_DIR}/include")
 target_include_directories(ATtiny861 PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")

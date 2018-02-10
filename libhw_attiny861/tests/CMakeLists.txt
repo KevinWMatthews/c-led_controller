@@ -3,9 +3,9 @@ enable_language(CXX)
 add_executable(Test_ATtiny861
     RunAllTests.cpp
     Test_ATtiny861_Gpio.cpp
-    Test_ATtiny861Timer0.cpp
+    Test_ATtiny861_Timer0.cpp
     "${CMAKE_CURRENT_SOURCE_DIR}/../mocks/src/MockHw_ATtiny861.c"
-    "${CMAKE_CURRENT_SOURCE_DIR}/../mocks/src/Mock_ATtiny861Timer0.cpp"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../mocks/src/Mock_ATtiny861_Timer0.cpp"
 )
 target_include_directories(Test_ATtiny861 PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../mocks/include")
 

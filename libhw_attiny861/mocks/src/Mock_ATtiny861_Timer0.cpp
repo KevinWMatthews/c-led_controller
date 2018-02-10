@@ -1,12 +1,12 @@
 extern "C"
 {
-#include "Mock_ATtiny861Timer0.h"
+#include "Mock_ATtiny861_Timer0.h"
 #include <avr/io.h>
 }
 
 #include "CppUTestExt/MockSupport.h"
 
-void Mock_ATtiny861Timer0_CompareMatchA(void)
+void Mock_ATtiny861_Timer0_CompareMatchA(void)
 {
     // This will execute the corresponding ISR.
     // ISR will be declared in our mocked <avr/io.h>
