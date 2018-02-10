@@ -17,13 +17,11 @@ cmake -DCMAKE_INSTALL_PREFIX=/home/kevin/coding/c/led_controller/install -DCPPUT
 # Toolchain file must come first?
 cmake -DCMAKE_TOOLCHAIN_FILE=/home/kevin/coding/c/led_controller/Toolchain-avr-ATtiny.cmake -DCMAKE_INSTALL_PREFIX=/home/kevin/coding/c/led_controller/install -DCPPUTEST_HOME=/home/kevin/coding/c/led_controller/install -DCOMPILE_TESTS=OFF ..
 
-make
-#Fails
-It's searching for libraryies in install/CppUTest
-and the source code includes <CppUTest/some_header.h>
 
+This project places test executables in the bin/ directory.
 
-The documentation states that we need to add:
-    CXXFLAGS += -include $(CPPUTEST_HOME)/include/CppUTest/MemoryLeakDetectorNewMacros.h
-    CFLAGS += -include $(CPPUTEST_HOME)/include/CppUTest/MemoryLeakDetectorMallocMacros.h
-However, I'm only adding MallocMacros and it works.
+Run tests for a specific module using command line flags for individual CppUTest executables:
+	-g <group>      contains group
+	-sg <group>     matches group exactly
+	-lg             print all group names
+./bin/Test_<your_code> -sg <your_test_group>
