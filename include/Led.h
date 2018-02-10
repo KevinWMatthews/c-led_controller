@@ -23,7 +23,7 @@ Led Led_Create(LED_NUMBER);
 /*
  * Free all resources associated with the LED handle
  * and set its pointer to NULL.
- * TODO should this tri-state the GPIO and turn the LED off?
+ * TODO should this turn the LED off and tri-state the GPIO?
  */
 // void Led_Destroy(Led * self);
 
@@ -38,10 +38,16 @@ typedef enum
  */
 LED_RETURN_CODE Led_GetState(Led self, LED_STATE *state);
 
-// Turn an LED on.
+/*
+ * Turn an LED on.
+ * On error, does nothing.
+ */
 LED_RETURN_CODE Led_TurnOn(Led self);
 
-// Turn an LED off.
+/*
+ * Turn an LED off.
+ * On error, does nothing.
+ */
 LED_RETURN_CODE Led_TurnOff(Led self);
 
 #endif
