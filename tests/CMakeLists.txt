@@ -2,7 +2,7 @@
 # This enables us to use link-time substitution to swap in mock modules.
 #TODO This doesn't seem right...
 add_library(ProductionLib
-    "${PROJECT_SOURCE_DIR}/src_hw/Led_ATtiny861.c"
+    "${PROJECT_SOURCE_DIR}/src/Led_ATtiny861.c"
 )
 target_include_directories(ProductionLib PRIVATE "${PROJECT_BINARY_DIR}/include")
 target_include_directories(ProductionLib PUBLIC "${PROJECT_SOURCE_DIR}/include")
