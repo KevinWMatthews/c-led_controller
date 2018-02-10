@@ -2,11 +2,11 @@ if(NOT CMAKE_CROSSCOMPILING)
     message(FATAL_ERROR "Products must be cross compiled!")
 endif()
 
-set(target LedBlink)
+set(target Led_Blink)
 set(target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
 
 add_executable(${target}.elf
-    main.c
+    Main.c
 )
 target_link_libraries(${target}.elf PRIVATE ATtiny::861 LedController)
 
