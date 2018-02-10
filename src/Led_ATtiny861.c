@@ -61,12 +61,22 @@ LED_RETURN_CODE Led_GetState(Led self, LED_STATE *state)
 
 LED_RETURN_CODE Led_TurnOn(Led self)
 {
+    if (self == NULL)
+    {
+        return LED_NULL_POINTER;
+    }
+
     ATtiny861_GpioSetState(self->gpio, GPIO_HIGH);
     return LED_SUCCESS;
 }
 
 LED_RETURN_CODE Led_TurnOff(Led self)
 {
+    if (self == NULL)
+    {
+        return LED_NULL_POINTER;
+    }
+
     ATtiny861_GpioSetState(self->gpio, GPIO_LOW);
     return LED_SUCCESS;
 }

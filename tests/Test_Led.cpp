@@ -112,3 +112,15 @@ TEST(Led, will_not_create_invalid_led)
     Led invalid = Led_Create(led_num);
     CHECK_TRUE(invalid == NULL);
 }
+
+TEST(Led, do_not_turn_on_null_led)
+{
+    ret = Led_TurnOn(NULL);
+    LONGS_EQUAL(LED_NULL_POINTER, ret);
+}
+
+TEST(Led, do_not_turn_off_null_led)
+{
+    ret = Led_TurnOff(NULL);
+    LONGS_EQUAL(LED_NULL_POINTER, ret);
+}
