@@ -39,8 +39,7 @@ void timer_callback(void)
 
 int main(void)
 {
-    ATtiny861Timer0_Params params =
-    {
+    ATtiny861Timer0_Params params = {
         .clock_source = ATTN861_TIMER0_INTERNAL_CLOCK_PRESCALER_1024,
         // Set timer to 10 Hz:
         //  match_value = 1MHZ / (1024*10Hz)
