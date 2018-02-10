@@ -32,6 +32,7 @@ add_subdirectory(src)
 if(CMAKE_CROSSCOMPILING)
     # Only cross-compile products until/unless I get the build straightened out.
     add_subdirectory(Led_Blink)
+    add_subdirectory(Led_BlinkTwo)
 endif(CMAKE_CROSSCOMPILING)
 
 message(STATUS "
