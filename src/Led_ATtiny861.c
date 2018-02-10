@@ -6,35 +6,29 @@
 
 typedef struct LedStruct
 {
-    ATTN861_GPIO gpio;
+    ATTINY861_PIN pin;
 } LedStruct;
 
 Led Led_Create(LED_NUMBER led_num)
 {
     Led self = NULL;
-    ATTN861_GPIO gpio;
+    ATTINY861_PIN pin;
 
     switch (led_num)
     {
         case LED_1:
-            gpio = PINMAP_LED_1;
+            pin = PINMAP_LED_1;
             break;
         case LED_2:
-            gpio = PINMAP_LED_2;
+            pin = PINMAP_LED_2;
             break;
         default:
-            gpio = ATTN861_UNWIRED;
-            break;
-    }
-
-    if (gpio == ATTN861_UNWIRED)
-    {
-        return NULL;
+            return NULL;
     }
 
     self = calloc( 1, sizeof(*self) );
-    self->gpio = gpio;
-    ATtiny861_GpioSetAsOutput(gpio, GPIO_LOW);
+    self->pin = pin;
+    ATtiny861_GpioSetAsOutput(pin, GPIO_LOW);
     return self;
 }
 
@@ -55,7 +49,7 @@ LED_RETURN_CODE Led_GetState(Led self, LED_STATE *state)
         return LED_NULL_POINTER;
     }
 
-    *state = ATtiny861_GpioGetState(self->gpio);
+    *state = ATtiny861_GpioGetState(self->pin);
     return LED_SUCCESS;
 }
 
@@ -66,7 +60,7 @@ LED_RETURN_CODE Led_TurnOn(Led self)
         return LED_NULL_POINTER;
     }
 
-    ATtiny861_GpioSetState(self->gpio, GPIO_HIGH);
+    ATtiny861_GpioSetState(self->pin, GPIO_HIGH);
     return LED_SUCCESS;
 }
 
@@ -77,6 +71,6 @@ LED_RETURN_CODE Led_TurnOff(Led self)
         return LED_NULL_POINTER;
     }
 
-    ATtiny861_GpioSetState(self->gpio, GPIO_LOW);
+    ATtiny861_GpioSetState(self->pin, GPIO_LOW);
     return LED_SUCCESS;
 }
