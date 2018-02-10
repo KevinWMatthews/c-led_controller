@@ -8,6 +8,9 @@ typedef struct LedStruct
     ATTN861_GPIO gpio;
 } LedStruct;
 
+#define PINMAP_LED_1        ATTN861_PA0
+#define PINMAP_LED_2        ATTN861_PA1
+
 Led Led_Create(LED_NUMBER led_num)
 {
     Led self = calloc( 1, sizeof(*self) );
@@ -15,10 +18,10 @@ Led Led_Create(LED_NUMBER led_num)
     switch (led_num)
     {
         case LED_1:
-            self->gpio = ATTN861_PA0;
+            self->gpio = PINMAP_LED_1;
             break;
         case LED_2:
-            self->gpio = ATTN861_PA1;
+            self->gpio = PINMAP_LED_2;
             break;
         //TODO default...
     }
