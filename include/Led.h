@@ -11,12 +11,6 @@ typedef enum
     LED_NULL_POINTER    = -1
 } LED_RETURN_CODE;
 
-typedef enum
-{
-    LED_1       = 0,
-    LED_2       = 1
-} LED_NUMBER;
-
 /*
  * Create an LED handle and initialize the underlying GPIO as output.
  * LEDs default to the off state.
