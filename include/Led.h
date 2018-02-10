@@ -7,8 +7,19 @@ typedef enum
 {
     LED_1       = 0
 } LED_NUMBER;
+
+/*
+ * Create an LED handle and initialize the underlying GPIO as output.
+ * LEDs default to the off state.
+ */
 Led Led_Create(LED_NUMBER);
-void Led_Destroy(Led * self);
+
+/*
+ * Free all resources associated with the LED handle
+ * and set its pointer to NULL.
+ * TODO should this tri-state the GPIO and turn the LED off?
+ */
+// void Led_Destroy(Led * self);
 
 typedef enum
 {
