@@ -1,5 +1,6 @@
 #include "Led.h"
 #include "ATtiny861Gpio.h"
+#include "Pinmap_ATtiny861.h"
 #include <stddef.h>
 #include <stdlib.h>
 
@@ -7,9 +8,6 @@ typedef struct LedStruct
 {
     ATTN861_GPIO gpio;
 } LedStruct;
-
-#define PINMAP_LED_1        ATTN861_PA0
-#define PINMAP_LED_2        ATTN861_PA1
 
 Led Led_Create(LED_NUMBER led_num)
 {
