@@ -45,7 +45,7 @@ static ATTINY861_STATUS_CODE set_gpio_state(volatile uint8_t * port, int8_t bit,
     return ATTINY861_SUCCESS;
 }
 
-ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput(ATTN861_GPIO gpio, GPIO_STATE initial_state)
+ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput(ATTINY861_PIN pin, GPIO_STATE initial_state)
 {
     volatile uint8_t *ddr;
     int8_t ddr_bit;
@@ -55,11 +55,11 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput(ATTN861_GPIO gpio, GPIO_STATE in
 
     ATTINY861_STATUS_CODE ret;
 
-    ddr = ATtiny861GpioMap_GetDdrRegister(gpio);
-    ddr_bit = ATtiny861GpioMap_GetDdrBit(gpio);
+    ddr = ATtiny861GpioMap_GetDdrRegister(pin);
+    ddr_bit = ATtiny861GpioMap_GetDdrBit(pin);
 
-    port = ATtiny861GpioMap_GetPortRegister(gpio);
-    port_bit = ATtiny861GpioMap_GetPortBit(gpio);
+    port = ATtiny861GpioMap_GetPortRegister(pin);
+    port_bit = ATtiny861GpioMap_GetPortBit(pin);
 
     //TODO Extract this.
     ret = set_gpio_direction(ddr, ddr_bit);
@@ -88,15 +88,15 @@ void ATtiny861_GpioInit(void)
     //TODO I wonder if these references could/should be extracted?
 }
 
-ATTINY861_STATUS_CODE ATtiny861_GpioSetState(ATTN861_GPIO gpio, GPIO_STATE state)
+ATTINY861_STATUS_CODE ATtiny861_GpioSetState(ATTINY861_PIN pin, GPIO_STATE state)
 {
     volatile uint8_t *port;
     int8_t port_bit;
 
     ATTINY861_STATUS_CODE ret;
 
-    port = ATtiny861GpioMap_GetPortRegister(gpio);
-    port_bit = ATtiny861GpioMap_GetPortBit(gpio);
+    port = ATtiny861GpioMap_GetPortRegister(pin);
+    port_bit = ATtiny861GpioMap_GetPortBit(pin);
 
     ret = set_gpio_state(port, port_bit, state);
     if (ret < 0)
@@ -107,19 +107,19 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetState(ATTN861_GPIO gpio, GPIO_STATE state
     return ATTINY861_SUCCESS;
 }
 
-GPIO_STATE ATtiny861_GpioGetState(ATTN861_GPIO gpio)
+GPIO_STATE ATtiny861_GpioGetState(ATTINY861_PIN pin)
 {
     //TODO need to rewrite to use PIN bit!!
 
     volatile uint8_t * port_reg;
     int8_t port_bit;
 
-    port_reg = ATtiny861GpioMap_GetPortRegister(gpio);
+    port_reg = ATtiny861GpioMap_GetPortRegister(pin);
     if (port_reg == NULL)
     {
         return GPIO_INVALID;
     }
-    port_bit = ATtiny861GpioMap_GetPortBit(gpio);
+    port_bit = ATtiny861GpioMap_GetPortBit(pin);
     if (port_bit < 0)
     {
         return GPIO_INVALID;

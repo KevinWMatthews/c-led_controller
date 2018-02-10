@@ -355,23 +355,6 @@ TEST(ATtiny861Gpio, initialize_PB7_as_output_high)
 
 
 
-IGNORE_TEST(ATtiny861Gpio, will_not_set_invalid_gpio_as_output)
-{
-    LONGS_EQUAL( ATTINY861_GPIO_INVALID, ATtiny861_GpioSetAsOutput(ATTN861_GPIO_MAX, GPIO_LOW) );
-    BYTES_EQUAL(0x00, DDRA);
-    BYTES_EQUAL(0xff, PORTA);
-    BYTES_EQUAL(0x00, DDRB);
-    BYTES_EQUAL(0xff, PORTB);
-}
-
-// TEST(ATtiny861Gpio, set_gpio_as_output_will_not_set_invalid_state)
-// {
-    // C++ won't allow this. What about C?
-    // LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_GPIO_MAX, 0) );
-// }
-
-
-
 // Test SetState(). Direction must have already been set.
 TEST(ATtiny861Gpio, set_output_gpio_PA0_low)
 {
