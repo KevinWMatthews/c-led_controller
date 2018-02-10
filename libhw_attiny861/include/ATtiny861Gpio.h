@@ -17,6 +17,7 @@ void ATtiny861_GpioInit(void);
 
 typedef enum
 {
+    ATTN861_UNWIRED     = -1,
     ATTN861_PA0         = 0,
     ATTN861_PA1         = 1,
     ATTN861_PA2         = 2,

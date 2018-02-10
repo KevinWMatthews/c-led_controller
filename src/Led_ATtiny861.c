@@ -11,19 +11,30 @@ typedef struct LedStruct
 
 Led Led_Create(LED_NUMBER led_num)
 {
-    Led self = calloc( 1, sizeof(*self) );
+    Led self = NULL;
+    ATTN861_GPIO gpio;
 
     switch (led_num)
     {
         case LED_1:
-            self->gpio = PINMAP_LED_1;
+            gpio = PINMAP_LED_1;
             break;
         case LED_2:
-            self->gpio = PINMAP_LED_2;
+            gpio = PINMAP_LED_2;
             break;
-        //TODO default...
+        default:
+            gpio = ATTN861_UNWIRED;
+            break;
     }
-    ATtiny861_GpioSetAsOutput(self->gpio, GPIO_LOW);
+
+    if (gpio == ATTN861_UNWIRED)
+    {
+        return NULL;
+    }
+
+    self = calloc( 1, sizeof(*self) );
+    self->gpio = gpio;
+    ATtiny861_GpioSetAsOutput(gpio, GPIO_LOW);
     return self;
 }
 

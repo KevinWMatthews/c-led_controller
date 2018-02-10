@@ -1,3 +1,6 @@
+Create tests for Pinmaps?
+Add tests into libATtiny for unwired gpio?
+
 CMake todo:
     Can we put libhw products in its CMakeLists.txt? Do we want the main app to have to know everything? It should just have an option, perhaps.
 

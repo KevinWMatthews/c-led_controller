@@ -105,3 +105,10 @@ TEST(Led, will_not_get_state_if_state_pointer_is_null)
     ret = Led_GetState(led1, NULL);
     LONGS_EQUAL(ret, LED_NULL_POINTER);
 }
+
+TEST(Led, will_not_create_invalid_led)
+{
+    LED_NUMBER led_num = (LED_NUMBER)(-1);  // Typecast -1
+    Led invalid = Led_Create(led_num);
+    CHECK_TRUE(invalid == NULL);
+}
