@@ -11,9 +11,10 @@ add_executable(${target}.elf
 )
 target_link_libraries(${target}.elf PRIVATE ATtiny::861)
 
-target_include_directories(${target}.elf PRIVATE
-    "${PROJECT_SOURCE_DIR}/include"
-    "${PROJECT_BINARY_DIR}/include"
+target_include_directories(${target}.elf
+    PRIVATE "${PROJECT_SOURCE_DIR}/include"
+    PRIVATE "${PROJECT_BINARY_DIR}/include"
+    PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}"
 )
 
 set_target_properties(${target}.elf PROPERTIES
