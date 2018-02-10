@@ -49,6 +49,10 @@ int main(void)
     ATtiny861Timer0_Create(&params);
     ATtiny861Timer0_RegisterCallback_MatchA(timer_callback);
     led = Led_Create(LED_1);
+    if (led == NULL)
+    {
+        return -1;
+    }
 
     ATtiny861Timer0_Start();
     sei();      // Enable global interrupts
