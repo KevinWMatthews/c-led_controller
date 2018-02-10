@@ -25,7 +25,7 @@ Led Led_Create(LED_NUMBER);
  * and set its pointer to NULL.
  * TODO should this turn the LED off and tri-state the GPIO?
  */
-// void Led_Destroy(Led * self);
+void Led_Destroy(Led * self);
 
 typedef enum
 {

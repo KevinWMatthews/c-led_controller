@@ -1,12 +1,30 @@
 #include "Led.h"
 #include "ATtiny861Gpio.h"
 #include <stddef.h>
+#include <stdlib.h>
+
+typedef struct LedStruct
+{
+    int placeholder;
+} LedStruct;
 
 Led Led_Create(LED_NUMBER led_num)
 {
+    Led self = calloc( 1, sizeof(*self) );
+
     //TODO map Led number to gpio number
     ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_LOW);
-    return NULL;
+    return self;
+}
+
+void Led_Destroy(Led * self)
+{
+    if (self == NULL)
+    {
+        return;
+    }
+    free(*self);
+    *self = NULL;
 }
 
 LED_RETURN_CODE Led_GetState(Led self, LED_STATE *state)
