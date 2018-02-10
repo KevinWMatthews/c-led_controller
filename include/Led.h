@@ -5,6 +5,12 @@ typedef struct LedStruct * Led;
 
 typedef enum
 {
+    LED_SUCCESS         =  0,
+    LED_NULL_POINTER    = -1
+} LED_RETURN_CODE;
+
+typedef enum
+{
     LED_1       = 0
 } LED_NUMBER;
 
@@ -26,13 +32,11 @@ typedef enum
     LED_OFF = 0,
     LED_ON  = 1
 } LED_STATE;
-LED_STATE Led_GetState(Led self);
-
-typedef enum
-{
-    LED_SUCCESS         =  0,
-    LED_NULL_POINTER    = -1
-} LED_RETURN_CODE;
+/*
+ * Get the state of the LED.
+ * On error, state is unmodified and its value should not be used.
+ */
+LED_RETURN_CODE Led_GetState(Led self, LED_STATE *state);
 
 // Turn an LED on.
 LED_RETURN_CODE Led_TurnOn(Led self);

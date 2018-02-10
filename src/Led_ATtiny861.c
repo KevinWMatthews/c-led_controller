@@ -9,10 +9,15 @@ Led Led_Create(LED_NUMBER led_num)
     return NULL;
 }
 
-LED_STATE Led_GetState(Led self)
+LED_RETURN_CODE Led_GetState(Led self, LED_STATE *state)
 {
-    // GPIO_STATE is mapped directly to LED_STATE at the moment.
-    return ATtiny861_GpioGetState(ATTN861_PA0);
+    if (state == NULL)
+    {
+        return LED_NULL_POINTER;
+    }
+
+    *state = ATtiny861_GpioGetState(ATTN861_PA0);
+    return LED_SUCCESS;
 }
 
 LED_RETURN_CODE Led_TurnOn(Led self)
