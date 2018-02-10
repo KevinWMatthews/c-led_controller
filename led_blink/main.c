@@ -1,5 +1,5 @@
 #include "LedControllerConfig.h"
-#include "Led2.h"
+#include "Led.h"
 #include "ATtiny861Timer0.h"
 #include <stddef.h>
 #include <avr/interrupt.h>     // For global interrupts.

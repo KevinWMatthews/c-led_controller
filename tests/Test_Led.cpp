@@ -1,6 +1,6 @@
 extern "C"
 {
-#include "Led2.h"
+#include "Led.h"
 }
 
 #include "CppUTest/TestHarness.h"

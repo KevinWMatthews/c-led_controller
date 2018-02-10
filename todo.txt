@@ -8,6 +8,7 @@ CMake todo:
     executables for each module.
 
     Does linking production code into a library change the executable size?
+    Will we encounter structure/organization issues by doing this? What if the library has dependencies that do not affect our source code?
 
 Should we write an abstract layer for Timers? I don't need to yet, so don't.
 

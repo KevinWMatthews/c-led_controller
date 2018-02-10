@@ -1,5 +1,5 @@
-#ifndef LED2_H_INCLUDED
-#define LED2_H_INCLUDED
+#ifndef LED_H_INCLUDED
+#define LED_H_INCLUDED
 
 typedef struct LedStruct * Led;
 
