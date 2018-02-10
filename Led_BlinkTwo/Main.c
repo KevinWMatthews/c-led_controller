@@ -52,13 +52,19 @@ int main(void)
         //  match_value = 1MHZ / (1024*10Hz)
         .match_value_A = 97
     };
+    LED_RETURN_CODE ret;
 
     ATtiny861Timer0_Create(&params);
     ATtiny861Timer0_RegisterCallback_MatchA(timer_callback);
     led1 = Led_Create(LED_1);
     led2 = Led_Create(LED_2);
 
-    Led_TurnOn(LED_1);      // check return value?
+    ret = Led_TurnOn(led1);
+    if (ret != LED_SUCCESS)
+    {
+        return -1;
+    }
+
     ATtiny861Timer0_Start();
     sei();      // Enable global interrupts
 
