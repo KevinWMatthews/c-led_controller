@@ -1,6 +1,5 @@
 #include "Led.h"
 #include "ATtiny861Gpio.h"
-#include "Pinmap_ATtiny861.h"
 #include <stddef.h>
 #include <stdlib.h>
 

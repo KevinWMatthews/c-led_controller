@@ -57,12 +57,12 @@ int main(void)
     ATtiny861Timer0_Create(&params);
     ATtiny861Timer0_RegisterCallback_MatchA(timer_callback);
 
-    led1 = Led_Create(LED_1);
+    led1 = Led_Create(ATTN861_PA6);
     if (led1 == NULL)
     {
         return -1;
     }
-    led2 = Led_Create(LED_2);
+    led2 = Led_Create(ATTN861_PA7);
     if (led2 == NULL)
     {
         return -1;
