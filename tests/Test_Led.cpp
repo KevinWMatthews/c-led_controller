@@ -16,6 +16,7 @@ TEST_GROUP(Led)
     void setup()
     {
         led1 = Led_Create(LED_1);
+        led2 = Led_Create(LED_2);
         state1 = LED_OFF;
         state2 = LED_OFF;
     }
@@ -23,6 +24,7 @@ TEST_GROUP(Led)
     void teardown()
     {
         Led_Destroy(&led1);
+        Led_Destroy(&led2);
     }
 };
 
@@ -33,9 +35,7 @@ TEST(Led, can_create_led1)
 
 TEST(Led, can_create_led2)
 {
-    led2 = Led_Create(LED_2);
     CHECK_TRUE(led2 != NULL);
-    Led_Destroy(&led2);
 }
 
 TEST(Led, can_destroy_an_led)
@@ -86,6 +86,17 @@ TEST(Led, can_turn_led2_off)
     Led_TurnOn(led2);
     LONGS_EQUAL(LED_SUCCESS, Led_TurnOff(led2));
     Led_GetState(led2, &state2);
+    LONGS_EQUAL(LED_OFF, state2);
+}
+
+TEST(Led, can_turn_led1_on_and_led2_off)
+{
+    Led_TurnOn(led1);
+    Led_TurnOff(led2);
+
+    Led_GetState(led1, &state1);
+    Led_GetState(led2, &state2);
+    LONGS_EQUAL(LED_ON, state1);
     LONGS_EQUAL(LED_OFF, state2);
 }
 
