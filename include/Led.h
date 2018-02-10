@@ -1,6 +1,8 @@
 #ifndef LED_H_INCLUDED
 #define LED_H_INCLUDED
 
+#include "ATtiny861_Pins.h"
+
 typedef struct LedStruct * Led;
 
 typedef enum
@@ -19,7 +21,7 @@ typedef enum
  * Create an LED handle and initialize the underlying GPIO as output.
  * LEDs default to the off state.
  */
-Led Led_Create(LED_NUMBER);
+Led Led_Create(ATTINY861_PIN pin);
 
 /*
  * Free all resources associated with the LED handle

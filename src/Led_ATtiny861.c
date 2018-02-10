@@ -9,26 +9,12 @@ typedef struct LedStruct
     ATTINY861_PIN pin;
 } LedStruct;
 
-Led Led_Create(LED_NUMBER led_num)
+Led Led_Create(ATTINY861_PIN pin)
 {
     Led self = NULL;
-    ATTINY861_PIN pin;
-
-    switch (led_num)
-    {
-        case LED_1:
-            pin = PINMAP_LED_1;
-            break;
-        case LED_2:
-            pin = PINMAP_LED_2;
-            break;
-        default:
-            return NULL;
-    }
-
     self = calloc( 1, sizeof(*self) );
     self->pin = pin;
-    ATtiny861_GpioSetAsOutput(pin, GPIO_LOW);
+    ATtiny861_GpioSetAsOutput(self->pin, GPIO_LOW);
     return self;
 }
 
