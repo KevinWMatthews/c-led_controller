@@ -10,16 +10,8 @@ static Led led;
 
 void timer_callback(void)
 {
-    static uint8_t count;
     LED_STATE led_state;
     LED_RETURN_CODE ret;
-
-    if (count < 10)
-    {
-        ++count;
-        return;
-    }
-    count = 0;
 
     ret = Led_GetState(led, &led_state);
     if (ret != LED_SUCCESS)
@@ -41,9 +33,8 @@ int main(void)
 {
     ATtiny861_Timer0_Params params = {
         .clock_source = ATTN861_TIMER0_INTERNAL_CLOCK_PRESCALER_1024,
-        // Set timer to 10 Hz:
-        //  match_value = 1MHZ / (1024*10Hz)
-        .match_value_A = 97
+        // 1 MHz / (1024*255) = 3.83 Hz
+        .match_value_A = 255
     };
 
     ATtiny861_Timer0_Create(&params);
