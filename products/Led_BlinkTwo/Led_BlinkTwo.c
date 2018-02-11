@@ -9,27 +9,6 @@
 static Led led1;
 static Led led2;
 
-static void toggle_led(Led led)
-{
-    LED_STATE led_state;
-    LED_RETURN_CODE ret;
-
-    ret = Led_GetState(led, &led_state);
-    if (ret != LED_SUCCESS)
-    {
-        return;
-    }
-
-    if (led_state == LED_OFF)
-    {
-        Led_TurnOn(led);
-    }
-    else
-    {
-        Led_TurnOff(led);
-    }
-}
-
 void timer_callback(void)
 {
     static uint8_t count;
@@ -40,8 +19,8 @@ void timer_callback(void)
         return;
     }
     count = 0;
-    toggle_led(led1);
-    toggle_led(led2);
+    // Led_Toggle(led1);
+    Led_Toggle(led2);
 }
 
 int main(void)

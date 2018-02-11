@@ -10,23 +10,7 @@ static Led led;
 
 void timer_callback(void)
 {
-    LED_STATE led_state;
-    LED_RETURN_CODE ret;
-
-    ret = Led_GetState(led, &led_state);
-    if (ret != LED_SUCCESS)
-    {
-        return;
-    }
-
-    if (led_state == LED_OFF)
-    {
-        Led_TurnOn(led);
-    }
-    else
-    {
-        Led_TurnOff(led);
-    }
+    Led_Toggle(led);
 }
 
 int main(void)
