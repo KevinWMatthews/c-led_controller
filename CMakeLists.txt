@@ -30,6 +30,7 @@ endif(COMPILE_TESTS)
 add_subdirectory(libhw_attiny861)
 add_subdirectory(src)
 add_subdirectory(products)
+add_subdirectory(products_libhw_attiny861)
 add_subdirectory(products_avr)
 
 message(STATUS "

@@ -1,0 +1,12 @@
+if(CMAKE_CROSSCOMPILING)
+	message(STATUS "Compiling libhw_ATtiny861 products.")
+	add_subdirectory(pin_a0_high)
+	add_subdirectory(pin_a1_high)
+	add_subdirectory(pin_a2_high)
+	add_subdirectory(interrupt_int0)
+	add_subdirectory(Libhw_Led_Blink)
+	add_subdirectory(PinPort_Output)
+else()
+	message(STATUS "Skipping libhw_ATtiny861 products; these must be cross compiled.")
+endif()
+	
