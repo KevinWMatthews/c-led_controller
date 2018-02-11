@@ -36,4 +36,13 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetState(ATTINY861_PIN pin, GPIO_STATE state
 //TODO does it matter if the pin is an input or an output? Re-read the manual.
 GPIO_STATE ATtiny861_GpioGetState(ATTINY861_PIN pin);
 
+/*
+ * Toggle the state of the given pin.
+ * Operates on both inputs and outputs.
+ *
+ * For outputs, this changes the pin state.
+ * For inputs, this enables or disables the internal pull-up.
+ */
+ATTINY861_STATUS_CODE ATtiny861_GpioToggle(ATTINY861_PIN pin);
+
 #endif
