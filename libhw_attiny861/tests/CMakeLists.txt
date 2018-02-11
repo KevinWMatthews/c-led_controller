@@ -10,6 +10,7 @@ add_executable(Test_ATtiny861
 target_include_directories(Test_ATtiny861
     PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}"
     PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../mocks/include"
+    PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../mocks/bit_manip"
 )
 
 target_link_libraries(Test_ATtiny861 CppUTest CppUTestExt ATtiny::861)

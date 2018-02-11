@@ -166,3 +166,10 @@ The CppUTest documentation states that we need to add:
 However, I'm only adding MallocMacros and it works...
 
 How does AVR resolve a _VECTOR()? How does it map this to the particular interrupt address?
+
+How thoroughly should we test the hardware library?
+Should we verify that only the desired bit has been set/cleared?
+But then what if we change the initial conditions? We may need different tests in that case.
+Perhaps we could infer that only one bit is being set by setting multiple bits (and in conflicting orders....
+
+We should probably test the gpio map separately and test only a few pins in the gpio library.
