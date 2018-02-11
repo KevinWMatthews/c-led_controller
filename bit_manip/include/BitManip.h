@@ -2,6 +2,7 @@
 #define BIT_MANIP_INCLUDED
 
 
+
 /*
  * Convert a (0-indexed) bit number into a byte value.
  *
@@ -12,7 +13,7 @@
  *      BIT_VALUE(1) = (1<<1) = 0x01
  *      BIT_VALUE(7) = (1<<7) = 0x80
  */
-#define BIT_VALUE(bit_number)      (1<<(bit_number))
+#define BIT_VALUE(bit_number)           (1<<(bit_number))
 
 /*
  * AVR removed support for their sbi() and cbi() macros for reasons that

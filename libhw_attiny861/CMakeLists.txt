@@ -3,9 +3,12 @@ add_library(ATtiny861
     "${CMAKE_CURRENT_SOURCE_DIR}/src/ATtiny861_GpioMap.c"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/ATtiny861_Timer0.c"
 )
-target_include_directories(ATtiny861 PRIVATE "${PROJECT_BINARY_DIR}/include")
-target_include_directories(ATtiny861 PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include")
-target_include_directories(ATtiny861 PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/src")
+target_include_directories(ATtiny861
+    PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include"
+    PRIVATE "${PROJECT_BINARY_DIR}/include"
+    PRIVATE "${PROJECT_SOURCE_DIR}/bit_manip/include"
+)
+
 
 if(CMAKE_CROSSCOMPILING)
     target_include_directories(ATtiny861 PRIVATE "${AVR_TOOLCHAIN_HOME}/avr")
@@ -29,6 +32,15 @@ if(COMPILE_TESTS)
         COMPILE_FLAGS "-include CppUTest/MemoryLeakDetectorMallocMacros.h"
     )
     target_link_libraries(ATtiny861 PRIVATE CppUTest)
+
+    if(NOT CMAKE_CROSSCOMPILING)
+        # Override header files!!
+        # This allows custom behavior for mocked registers.
+        target_include_directories(ATtiny861 BEFORE
+            PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/mocks/bit_manip"
+        )
+    endif(CMAKE_CROSSCOMPILING)
+
     add_subdirectory(tests)
 endif(COMPILE_TESTS)
 
