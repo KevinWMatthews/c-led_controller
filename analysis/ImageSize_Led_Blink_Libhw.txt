@@ -1,0 +1,25 @@
+commit 6e56ab869cd3d428569266f293e1e15eddae4ac6
+
+
+[100%] Generating stats for Libhw_Led_Blink.elf
+/home/kevin/coding/c/led_controller/build_avr/bin/Libhw_Led_Blink.elf  :
+section    size      addr
+.text       874         0
+.data        40   8388704
+.bss          5   8388744
+.comment     48         0
+Total       967
+
+
+AVR Memory Usage
+----------------
+Device: attiny861
+
+Program:     914 bytes (11.2% Full)
+(.text + .data + .bootloader)
+
+Data:         45 bytes (8.8% Full)
+(.data + .bss + .noinit)
+
+
+[100%] Built target Libhw_Led_Blink-size
