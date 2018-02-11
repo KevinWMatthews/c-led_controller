@@ -1,24 +1,25 @@
-commit 6e56ab869cd3d428569266f293e1e15eddae4ac6
-
-
+[ 57%] Built target ATtiny861
+[ 71%] Building C object products_libhw_attiny861/Led_Blink/CMakeFiles/Libhw_Led_Blink.elf.dir/Led_Blink.c.obj
+[ 85%] Linking C executable ../../bin/Libhw_Led_Blink.elf
+[ 85%] Built target Libhw_Led_Blink.elf
 [100%] Generating stats for Libhw_Led_Blink.elf
 /home/kevin/coding/c/led_controller/build_avr/bin/Libhw_Led_Blink.elf  :
 section    size      addr
-.text       874         0
-.data        40   8388704
-.bss          5   8388744
+.text       986         0
+.data        60   8388704
+.bss          4   8388764
 .comment     48         0
-Total       967
+Total      1098
 
 
 AVR Memory Usage
 ----------------
 Device: attiny861
 
-Program:     914 bytes (11.2% Full)
+Program:    1046 bytes (12.8% Full)
 (.text + .data + .bootloader)
 
-Data:         45 bytes (8.8% Full)
+Data:         64 bytes (12.5% Full)
 (.data + .bss + .noinit)
 
 

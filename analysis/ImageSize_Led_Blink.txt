@@ -1,24 +1,23 @@
-commit 6e56ab869cd3d428569266f293e1e15eddae4ac6
-
-
+[ 50%] Built target ATtiny861
+[ 87%] Built target Led_Blink.elf
 [100%] Generating stats for Led_Blink.elf
 /home/kevin/coding/c/led_controller/build_avr/bin/Led_Blink.elf  :
 section    size      addr
-.text      1734         0
-.data        46   8388704
-.bss         10   8388750
+.text      1846         0
+.data        66   8388704
+.bss         10   8388770
 .comment     92         0
-Total      1882
+Total      2014
 
 
 AVR Memory Usage
 ----------------
 Device: attiny861
 
-Program:    1780 bytes (21.7% Full)
+Program:    1912 bytes (23.3% Full)
 (.text + .data + .bootloader)
 
-Data:         56 bytes (10.9% Full)
+Data:         76 bytes (14.8% Full)
 (.data + .bss + .noinit)
 
 
