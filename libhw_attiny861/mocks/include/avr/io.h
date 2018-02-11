@@ -7,7 +7,36 @@
 
 #include <stdint.h>
 
+/*
+ * AVR defines bit maniuplation macros in <avr/sfr_regs.h>.
+ * Reproduce them here, but with modifications to account for
+ * registers with unique behavior.
+ */
 
+/*
+ * Convert a 0-indexed bit number into a byte value.
+ * AVR provides macros that define which bit of a byte contains a value.
+ * Use this macro to extract this value from a register.
+ */
+#define _BV(bit)    (1 << (bit))
+
+/*
+ * Query if a bit in a byte is set.
+ * Byte must be a pointer!
+ *
+ * AVR takes care to typecast the byte to *(volatile uint8_t *),
+ * but I don't think this is necessary in our tests.
+ */
+#define bit_is_set(byte, bit) (*byte & _BV(bit))
+
+/*
+ * Query if a bit in a byte is clear.
+ * Byte must be a pointer!
+ *
+ * AVR takes care to typecast the byte to *(volatile uint8_t *),
+ * but I don't think this is necessary in our tests.
+ */
+#define bit_is_clear(byte, bit) ( !(*byte & _BV(bit)) )
 
 /*
  * GPIO

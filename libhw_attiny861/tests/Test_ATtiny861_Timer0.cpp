@@ -5,9 +5,6 @@ extern "C"
 #include <avr/io.h>
 }
 
-//TODO where to put this?
-#define BIT_VALUE(bit_number)   (1<<(bit_number))
-
 #include "CppUTest/TestHarness.h"
 #include "CppUTestExt/MockSupport.h"
 
@@ -37,8 +34,8 @@ TEST(ATtiny861_Timer0, can_create_timer)
     ret = ATtiny861_Timer0_Create(&params);
 
     LONGS_EQUAL( ATTN861_TIMER0_SUCCESS, ret );
-    BYTES_EQUAL( BIT_VALUE(CTC0), TCCR0A );
-    BYTES_EQUAL( BIT_VALUE(OCIE0A), TIMSK );
+    BYTES_EQUAL( _BV(CTC0), TCCR0A );
+    BYTES_EQUAL( _BV(OCIE0A), TIMSK );
     BYTES_EQUAL( params.match_value_A, OCR0A );
 }
 
@@ -55,12 +52,12 @@ TEST(ATtiny861_Timer0, can_start_timer_using_system_clock)
         .match_value_A = 123
     };
     uint8_t expected_clock = 0;
-    //TODO rewrite with SBI and CBI
+
     //TODO give this a descriptive function name.
     // Set clock source to system clock
-    expected_clock &= ~BIT_VALUE(CS02);
-    expected_clock &= ~BIT_VALUE(CS01);
-    expected_clock |= BIT_VALUE(CS00);
+    expected_clock &= ~_BV(CS02);
+    expected_clock &= ~_BV(CS01);
+    expected_clock |= _BV(CS00);
 
     ATtiny861_Timer0_Create(&params);
 
@@ -78,12 +75,11 @@ TEST(ATtiny861_Timer0, can_start_timer_using_internal_clock_with_prescaler_1024)
         .match_value_A = 123
     };
     uint8_t expected_clock = 0;
-    //TODO rewrite with SBI and CBI
     //TODO give this a descriptive function name.
     // Set clock source to system clock
-    expected_clock |= BIT_VALUE(CS02);
-    expected_clock &= ~BIT_VALUE(CS01);
-    expected_clock |= BIT_VALUE(CS00);
+    expected_clock |= _BV(CS02);
+    expected_clock &= ~_BV(CS01);
+    expected_clock |= _BV(CS00);
 
     ATtiny861_Timer0_Create(&params);
 

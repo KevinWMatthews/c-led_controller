@@ -1,27 +1,26 @@
 #include <avr/io.h>         // For register definitions
 #include <avr/interrupt.h>  // For sei()
-#include "BitManip.h"
 
 
 int main(void)
 {
     // Enable LED, for testing
-    SBI(DDRA, DDA0);        // Set direction
-    SBI(PORTA, PORTA0);     // Drive output high
+    DDRA |= _BV(DDA0);          // Set direction
+    PORTA |= _BV(PORTA0);       // Drive output high
 
     // Set interrupt pin as input with internal pull-up (I think)
-    CBI(DDRB, DDB6);        // Set direction
-    SBI(PORTB, PORTB6);     // Enable internal pull-up
+    DDRB &= ~_BV(DDB6);         // Set direction
+    PORTB |= _BV(PORTB6);       // Enable internal pull-up
 
     // Generate an interrupt request for INT0
-    SBI(GIMSK, INT0);
+    GIMSK |= _BV(INT0);
 
     // Configure interrupt flag
-    SBI(GIFR, INTF0);
+    GIFR |= _BV(INTF0);
 
     // Set interrupt direction
-    CBI(MCUCR, ISC01);
-    SBI(MCUCR, ISC00);
+    MCUCR &= ~_BV(ISC01);
+    MCUCR |= _BV(ISC00);
 
     // Enable global interrupts
     sei();

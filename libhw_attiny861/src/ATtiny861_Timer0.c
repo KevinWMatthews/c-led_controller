@@ -1,7 +1,6 @@
 #include "ATtiny861_Timer0.h"
 #include <avr/io.h>
 #include <avr/interrupt.h>
-#include "BitManip.h"
 
 /*
  * File-scope variables.
@@ -11,18 +10,18 @@ static TIMER0_CALLBACK timer0_match_a_callback;
 
 static void enable_8_bit_mode(void)
 {
-    // CBI(TCCR0A, TCW0);
+    // TCCR0A &= ~_BV(TCW0);
 }
 
 // CTC: Clear Timer on Compare match
 static void enable_clear_timer_on_compare_match(void)
 {
-    SBI(TCCR0A, CTC0);
+    TCCR0A |= _BV(CTC0);
 }
 
 static void enable_compare_match_A_interrupts(void)
 {
-    SBI(TIMSK, OCIE0A);
+    TIMSK |= _BV(OCIE0A);
 }
 
 static void set_compare_A_match_value(uint8_t match_value)
@@ -37,14 +36,14 @@ static void set_clock_select_bits(int clock_source)
     {
         // case ATTN861_TIMER0_STOPPED:
         case ATTN861_TIMER0_INTERNAL_CLOCK:
-            CBI(TCCR0B, CS02);
-            CBI(TCCR0B, CS01);
-            SBI(TCCR0B, CS00);
+            TCCR0B &= ~_BV(CS02);
+            TCCR0B &= ~_BV(CS01);
+            TCCR0B |= _BV(CS00);
             break;
         case ATTN861_TIMER0_INTERNAL_CLOCK_PRESCALER_1024:
-            SBI(TCCR0B, CS02);
-            CBI(TCCR0B, CS01);
-            SBI(TCCR0B, CS00);
+            TCCR0B |= _BV(CS02);
+            TCCR0B &= ~_BV(CS01);
+            TCCR0B |= _BV(CS00);
             break;
     }
 }
@@ -59,7 +58,7 @@ ATTN861_TIMER0_RETURN_CODE ATtiny861_Timer0_Create(ATtiny861_Timer0_Params *para
     // Disable timer?
     enable_8_bit_mode();
     enable_clear_timer_on_compare_match();
-    // CBI(TCCR0A, ICEN0);  // Disable input capture mode.
+    // TCCR0A &= ~_BV(ICEN0);  // Disable input capture mode.
     enable_compare_match_A_interrupts();
     set_compare_A_match_value(params->match_value_A);
     // Clear Timer0 prescaler?
