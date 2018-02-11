@@ -24,17 +24,5 @@ int main(void)
 
 ISR(TIMER0_COMPA_vect)
 {
-    // Use this until we implement a GPIO toggle function
-    static unsigned char led_state;
-
-    if (led_state)
-    {
-        PORTA &= ~_BV(PORTA0);
-        led_state = 0;
-    }
-    else
-    {
-        PORTA |= _BV(PORTA0);
-        led_state = 1;
-    }
+    PINA |= _BV(PINA0);
 }

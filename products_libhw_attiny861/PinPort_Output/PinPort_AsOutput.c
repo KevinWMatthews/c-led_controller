@@ -17,19 +17,7 @@
 
 static void toggle_led_state(void)
 {
-    // Use this until we implement a GPIO toggle function
-    static unsigned char led_state;
-
-    if (led_state)
-    {
-        ATtiny861_GpioSetState(ATTN861_PA0, GPIO_LOW);
-        led_state = 0;
-    }
-    else
-    {
-        ATtiny861_GpioSetState(ATTN861_PA0, GPIO_HIGH);
-        led_state = 1;
-    }
+    ATtiny861_GpioToggle(ATTN861_PA0);
 
     if ( bit_is_set(PINA, PINA0) )
     {

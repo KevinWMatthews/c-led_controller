@@ -1,5 +1,5 @@
-#include <avr/io.h>         // For register definitions
-#include <avr/interrupt.h>  // For sei()
+#include <avr/io.h>
+#include <avr/interrupt.h>
 
 
 int main(void)
@@ -27,15 +27,15 @@ int main(void)
 
     while (1)
     {
-        ;   // Hang on!
+        ;   // Hang on! Wait for interrupts.
     }
 
     return 0;
 }
 
 // Define an interrupt handler
-// See avr/interrupt.h for funciton declaration, avr/io.h for various vectors
+// See avr/interrupt.h for the macro definition, avr/io.h for various vectors
 ISR(INT0_vect)
 {
-    PORTA ^= _BV(PORTA0);
+    PINA |= _BV(PINA0);
 }

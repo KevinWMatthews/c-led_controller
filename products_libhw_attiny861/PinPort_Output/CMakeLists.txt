@@ -2,7 +2,7 @@ if(NOT CMAKE_CROSSCOMPILING)
     message(FATAL_ERROR "hw_attiny861 products must be cross compiled!")
 endif()
 
-set (target LibHw_PinPort_AsOutput)
+set (target Libhw_PinPort_AsOutput)
 set (target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
 
 add_executable(${target}.elf
