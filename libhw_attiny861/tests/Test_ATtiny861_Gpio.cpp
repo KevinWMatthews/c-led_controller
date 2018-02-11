@@ -10,6 +10,8 @@ extern "C"
 
 TEST_GROUP(ATtiny861_Gpio)
 {
+    ATTINY861_STATUS_CODE ret;
+
     void setup()
     {
         MockHw_ATtiny861_Reset();
@@ -29,24 +31,31 @@ TEST(ATtiny861_Gpio, after_init_pins_set_to_input_with_pullup_high)
     BYTES_EQUAL(0xff, PORTB);
 }
 
+#define ALL_BITS_CLEAR_EXCEPT(byte, bit) \
+    BYTES_EQUAL( _BV(bit), byte )
 
+#define ALL_BITS_SET_EXCEPT(byte, bit) \
+    BYTES_EQUAL( 0xff & ~(_BV(bit)), byte )
 
 // Initialize Port A gpio as output low
 TEST(ATtiny861_Gpio, set_PA0_as_output_low)
 {
-    LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_LOW) );
-    LONGS_EQUAL( GPIO_LOW, ATtiny861_GpioGetState(ATTN861_PA0) );
-    BYTES_EQUAL((1<<DDA0), DDRA);
-    BYTES_EQUAL(0xff & ~(1<<PORTA0), PORTA);
+    ret = ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_LOW);
+
+    LONGS_EQUAL( ATTINY861_SUCCESS, ret );
+    ALL_BITS_CLEAR_EXCEPT(DDRA, DDA0);
+    ALL_BITS_SET_EXCEPT(PORTA, PORTA0);
     BYTES_EQUAL(0x00, DDRB);
     BYTES_EQUAL(0xff, PORTB);
 }
 
 TEST(ATtiny861_Gpio, set_PA1_as_output_low)
 {
-    LONGS_EQUAL( ATTINY861_SUCCESS, ATtiny861_GpioSetAsOutput(ATTN861_PA1, GPIO_LOW) );
-    LONGS_EQUAL( GPIO_LOW, ATtiny861_GpioGetState(ATTN861_PA1) );
-    BYTES_EQUAL((1<<DDA1), DDRA);
+    ret = ATtiny861_GpioSetAsOutput(ATTN861_PA1, GPIO_LOW);
+
+    LONGS_EQUAL( ATTINY861_SUCCESS, ret );
+
+    bit_is_set(&DDRA, DDA1);
     BYTES_EQUAL(0xff & ~(1<<PORTA1), PORTA);
     BYTES_EQUAL(0x00, DDRB);
     BYTES_EQUAL(0xff, PORTB);
