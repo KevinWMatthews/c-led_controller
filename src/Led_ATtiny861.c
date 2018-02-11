@@ -59,3 +59,13 @@ LED_RETURN_CODE Led_TurnOff(Led self)
     ATtiny861_GpioSetState(self->pin, GPIO_LOW);
     return LED_SUCCESS;
 }
+
+LED_RETURN_CODE Led_Toggle(Led self)
+{
+    if (self == NULL)
+    {
+        return LED_NULL_POINTER;
+    }
+    ATtiny861_GpioToggle(self->pin);
+    return LED_SUCCESS;
+}

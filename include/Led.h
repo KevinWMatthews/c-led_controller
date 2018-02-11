@@ -47,4 +47,10 @@ LED_RETURN_CODE Led_TurnOn(Led self);
  */
 LED_RETURN_CODE Led_TurnOff(Led self);
 
+/*
+ * Toggle an LED.
+ * On error, does nothing.
+ */
+LED_RETURN_CODE Led_Toggle(Led self);
+
 #endif
