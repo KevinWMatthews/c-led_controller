@@ -4,22 +4,25 @@
 // Mock registers are defined here to enable testing.
 
 /*
- * GPIO
+ * GPIO Bank A
  */
-uint8_t DDRA;
-uint8_t PORTA;
-uint8_t PINA;
+volatile uint8_t ddra;
+volatile uint8_t porta;
+volatile uint8_t pina;
 
-uint8_t DDRB;
-uint8_t PORTB;
-uint8_t PINB;
+/*
+ * GPIO Bank B
+ */
+volatile uint8_t ddrb;
+volatile uint8_t portb;
+volatile uint8_t pinb;
 
 /*
  * Timer0
  */
-uint8_t OCR0A;
-uint8_t TCCR0A;
-// uint8_t TCNT0L;
+volatile uint8_t ocr0a;
+volatile uint8_t tccr0a;
+// volatile uint8_t tcnt0l;
+volatile uint8_t tccr0b;
 
-uint8_t TCCR0B;
-uint8_t TIMSK;
+volatile uint8_t timsk;

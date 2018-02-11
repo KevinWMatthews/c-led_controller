@@ -38,10 +38,24 @@
  */
 #define bit_is_clear(byte, bit) ( !(*byte & _BV(bit)) )
 
+
+
 /*
- * GPIO
+ * AVR creates special macros to read and write memory-mapped registers on the chip.
+ * These actually dereference specific addresses in memory.
+ * Specifically, they implement:
+ *      #define <special_register>       (*(volatile uint8_t *))(<memory_address>)
+ * This casts a memory address as a pointer to a volatile uint8_t, then
+ * takes its value.
+ *
+ * Reproduce this here, but pointing to memory defined locally.
  */
-extern uint8_t DDRA;
+
+/*
+ * GPIO Bank A
+ */
+extern volatile uint8_t ddra;
+#define DDRA    (*(&ddra))
 // #define DDRA _SFR_IO8(0x1A)
 #define DDA0 0
 #define DDA1 1
@@ -52,7 +66,8 @@ extern uint8_t DDRA;
 #define DDA6 6
 #define DDA7 7
 
-extern uint8_t PORTA;
+extern volatile uint8_t porta;
+#define PORTA   (*(&porta))
 // #define PORTA _SFR_IO8(0x1B)
 #define PORTA0 0
 #define PORTA1 1
@@ -63,29 +78,8 @@ extern uint8_t PORTA;
 #define PORTA6 6
 #define PORTA7 7
 
-extern uint8_t DDRB;
-// #define DDRB _SFR_IO8(0x17)
-#define DDB0 0
-#define DDB1 1
-#define DDB2 2
-#define DDB3 3
-#define DDB4 4
-#define DDB5 5
-#define DDB6 6
-#define DDB7 7
-
-extern uint8_t PORTB;
-// #define PORTB _SFR_IO8(0x18)
-#define PORTB0 0
-#define PORTB1 1
-#define PORTB2 2
-#define PORTB3 3
-#define PORTB4 4
-#define PORTB5 5
-#define PORTB6 6
-#define PORTB7 7
-
-extern uint8_t PINA;
+extern volatile uint8_t pina;
+#define PINA    (*(&pina))
 // #define PINA    _SFR_IO8(0x19)
 #define PINA0   0
 #define PINA1   1
@@ -96,7 +90,35 @@ extern uint8_t PINA;
 #define PINA6   6
 #define PINA7   7
 
-extern uint8_t PINB;
+/*
+ * GPIO Bank B
+ */
+extern volatile uint8_t ddrb;
+#define DDRB    (*(&ddrb))
+// #define DDRB _SFR_IO8(0x17)
+#define DDB0 0
+#define DDB1 1
+#define DDB2 2
+#define DDB3 3
+#define DDB4 4
+#define DDB5 5
+#define DDB6 6
+#define DDB7 7
+
+extern volatile uint8_t portb;
+#define PORTB   (*(&portb))
+// #define PORTB _SFR_IO8(0x18)
+#define PORTB0 0
+#define PORTB1 1
+#define PORTB2 2
+#define PORTB3 3
+#define PORTB4 4
+#define PORTB5 5
+#define PORTB6 6
+#define PORTB7 7
+
+extern volatile uint8_t pinb;
+#define PINB   (*(&pinb))
 // #define PINB    _SFR_IO8(0x16)
 #define PINB0   0
 #define PINB1   1
@@ -111,14 +133,16 @@ extern uint8_t PINB;
 /*
  * Timer 0
  */
-extern uint8_t OCR0A;
+extern volatile uint8_t ocr0a;
+#define OCR0A   (*(&ocr0a))
 // #define OCR0A   _SFR_IO8(0x13)
 
-extern uint8_t TCCR0A;
+extern volatile uint8_t tccr0a;
+#define TCCR0A  (*(&tccr0a))
 // #define TCCR0A  _SFR_IO8(0x15)
-// #define WGM00   0		/* up to at least datasheet rev. B */
-#define CTC0    0		/* newer revisions; change not mentioned
-				 * in revision history */
+// #define WGM00   0    /* up to at least datasheet rev. B */
+#define CTC0    0       /* newer revisions; change not mentioned
+				         * in revision history */
 // #define ACIC0   3
 // #define ICES0   4
 // #define ICNC0   5
@@ -129,7 +153,8 @@ extern uint8_t TCCR0A;
 // extern uint8_t TCNT0L;
 // #define TCNT0L  _SFR_IO8(0x32)
 
-extern uint8_t TCCR0B;
+extern volatile uint8_t tccr0b;
+#define TCCR0B  (*(&tccr0b))
 // #define TCCR0B  _SFR_IO8(0x33)
 #define CS00    0
 #define CS01    1
@@ -138,7 +163,9 @@ extern uint8_t TCCR0B;
 // #define TSM     4
 
 
-extern uint8_t TIMSK;
+
+extern volatile uint8_t timsk;
+#define TIMSK   (*(&timsk))
 // #define TIMSK   _SFR_IO8(0x39)
 // #define TICIE0  0
 // #define TOIE0   1
@@ -148,6 +175,7 @@ extern uint8_t TIMSK;
 // #define OCIE1B  5
 // #define OCIE1A  6
 // #define OCIE1D  7
+
 
 
 /*
