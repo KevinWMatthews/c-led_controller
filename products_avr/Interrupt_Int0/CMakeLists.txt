@@ -2,11 +2,11 @@ if(NOT CMAKE_CROSSCOMPILING)
     message(FATAL_ERROR "hw_attiny861 products must be cross-compiled")
 endif()
 
-set(target InterruptInt0)
+set(target Avr_Interrupt_Int0)
 set(target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
 
 add_executable(${target}.elf
-    interrupt_int0.c
+    Interrupt_Int0.c
 )
 target_link_libraries(${target}.elf PRIVATE ATtiny::861)
 

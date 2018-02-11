@@ -29,6 +29,7 @@ if(COMPILE_TESTS)
         COMPILE_FLAGS "-include CppUTest/MemoryLeakDetectorMallocMacros.h"
     )
     target_link_libraries(ATtiny861 PRIVATE CppUTest)
+    add_subdirectory(tests)
 endif(COMPILE_TESTS)
 
 # Specify an alias library for other targets to link against.
@@ -36,7 +37,3 @@ endif(COMPILE_TESTS)
 # is generating the build system if the library is not found.
 # Otherwise, we must wait until the linker fails (after compilation).
 add_library(ATtiny::861 ALIAS ATtiny861)
-
-if(COMPILE_TESTS)
-    add_subdirectory(tests)
-endif(COMPILE_TESTS)

@@ -20,7 +20,8 @@ configure_file (
 option(COMPILE_TESTS "Compile unit tests" OFF)
 
 if(COMPILE_TESTS)
-    # If tests are compiled, the production code links against CppUTest
+    # If tests are compiled, the production code links against CppUTest.
+    # Find the library before adding any production source code.
     set(CMAKE_PREFIX_PATH "${CPPUTEST_HOME}")
     find_package(CppUTest 3.8 REQUIRED)
 

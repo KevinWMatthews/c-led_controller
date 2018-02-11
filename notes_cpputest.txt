@@ -14,8 +14,10 @@ make install
 mkdir build
 cd build
 cmake -DCMAKE_INSTALL_PREFIX=/home/kevin/coding/c/led_controller/install -DCPPUTEST_HOME=/home/kevin/coding/c/led_controller/install -DCOMPILE_TESTS=ON ..
+
+# This is for cross-compiling, which currently does not support unit tests
 # Toolchain file must come first?
-cmake -DCMAKE_TOOLCHAIN_FILE=/home/kevin/coding/c/led_controller/Toolchain-avr-ATtiny.cmake -DCMAKE_INSTALL_PREFIX=/home/kevin/coding/c/led_controller/install -DCPPUTEST_HOME=/home/kevin/coding/c/led_controller/install -DCOMPILE_TESTS=OFF ..
+cmake -DCMAKE_TOOLCHAIN_FILE=/home/kevin/coding/c/led_controller/Toolchain-avr-ATtiny.cmake -DCMAKE_INSTALL_PREFIX=/home/kevin/coding/c/led_controller/install -DCOMPILE_TESTS=OFF ..
 
 
 This project places test executables in the bin/ directory.
