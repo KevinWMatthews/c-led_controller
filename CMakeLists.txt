@@ -29,11 +29,8 @@ endif(COMPILE_TESTS)
 
 add_subdirectory(libhw_attiny861)
 add_subdirectory(src)
-if(CMAKE_CROSSCOMPILING)
-    # Only cross-compile products until/unless I get the build straightened out.
-    add_subdirectory(Led_Blink)
-    add_subdirectory(Led_BlinkTwo)
-endif(CMAKE_CROSSCOMPILING)
+# add_subdirectory(products)
+add_subdirectory(products_avr)
 
 message(STATUS "
 -------------------------------------------------------
