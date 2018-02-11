@@ -1,0 +1,86 @@
+There are two banks of pins on the ATtiny61. These are referred to as PORTA and PORTB. Conveniently, there are 16 pins so two 8-bit registers is enough to provide access to all gpio.
+
+Each GPIO is controlled with three registers:
+    Register    Name                            Description
+    DDRx        Data Direction Register         Set GPIO direction: input (0) or output (1)
+    PORTx       Data Register                   Drive output pin high or low/control input pin's internal pull-up resistor
+    PINx        Port Input Pin Address          Read the value of the pin/write the value of PORTx
+There is also a pull-up disable bit (PUD) in MCUCR, the MCU Control Register. See section 10.3.1.
+
+See table 10.1 for a detailed description:
+Output:
+    DDRx        1
+    PORTx       1 => high, 0 => low
+    PINx        Read PORT value
+
+Input:
+    DDRx        0
+    PORTX       1                   => Pull-up enabled, GPIO high will source current.
+                1 with PUD bit set  => What is pin state? Hi-Z.
+                0                   => Pull-up disabled. Hi-Z.
+    PINx        Read PORT value
+
+
+
+Writing 1 to PINx toggles the value of PORTx for inputs and outputs.
+
+In most cases it is possible to read the value of a GPIO using the PORT register, but
+the PIN register is routed through a "synchronizer" in hardware.
+This guarantees an accurate reading?
+
+
+DDRx        Data Direction Register
+    Write:
+        Configure the direction of a pin:
+            0       input
+            1       output
+    Read:
+        ?
+
+PORTx       Data Register
+    Write:
+        When input:
+            1       Enable internal pull-up
+            0       Disable internal pull-up
+        When output:
+            1       Drive pin high
+            0       Drive pin low
+    Read:
+        When input:
+            Seems to read an accurate GPIO value.
+        When output:
+            Seems to read an accurate GPIO value.
+
+PINx        Port Input Pin Address
+    Read:
+        Read the state/value of the associated GPIO. Can be read regardless of the pin direction (DDRxn).
+        Output:
+            Read if MCU is driving GPIO high or low.
+        Input:
+            Read something external is driving GPIO high or low.
+
+    Write:
+        Writing a value of 1 to PINxn toggles the value of PORTxn regardless of the state of DDRxn (!).
+        This will:
+            for an input, change the state of the internal pull-up
+            for an output, change the pin state
+        See ATtiny861 datasheet, 10.1.2.
+        Does writing 0 do anything?
+
+
+
+Unconnected pins (10.1.6):
+    Set unused pins as an input with an internal pull-up.
+
+It is possible to override the state of any pin. See Table 10.2. I can't see any way to do this using the AVR headers.
+These appear in the manual but I can't find them in the AVR header files:
+    PUEx        Pull Up resistor Enable         Enable (1) or disable (0) internal pull-up resistor
+    PUOE        Pull Up Override Enable
+    PUOV        "   "   " Value
+    DDOE        Data Direction Override Enable
+    DDOV
+    PVOE        Port Value Override Enable
+    PVOV
+    PTOE        Port Toggle Override Enable
+    DIEOE       Digital Input Enable Override Enable
+    DIEOV
