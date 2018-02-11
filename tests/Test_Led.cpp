@@ -119,6 +119,30 @@ TEST(Led, can_toggle_an_led_on_and_off)
     LONGS_EQUAL(LED_OFF, state1);
 }
 
+TEST(Led, can_toggle_two_leds)
+{
+    Led_Toggle(led1);
+    Led_Toggle(led2);
+
+    Led_GetState(led1, &state1);
+    Led_GetState(led2, &state2);
+    LONGS_EQUAL(LED_ON, state1);
+    LONGS_EQUAL(LED_ON, state2);
+}
+
+TEST(Led, can_toggle_two_leds_in_opposing_states)
+{
+    Led_TurnOn(led1);
+
+    Led_Toggle(led1);
+    Led_Toggle(led2);
+
+    Led_GetState(led1, &state1);
+    Led_GetState(led2, &state2);
+    LONGS_EQUAL(LED_OFF, state1);
+    LONGS_EQUAL(LED_ON, state2);
+}
+
 
 /*
  * Validity checks
