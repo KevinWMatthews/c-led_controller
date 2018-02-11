@@ -1,5 +1,6 @@
 #include "ATtiny861_Gpio.h"
 #include "ATtiny861_GpioMap.h"
+#include "BitManip.h"       // will replace avr/io.h
 #include <avr/io.h>
 #include <stddef.h>
 
@@ -15,7 +16,7 @@ static ATTINY861_STATUS_CODE set_gpio_direction(volatile uint8_t * ddr, int8_t b
         return ATTINY861_GPIO_INVALID;
     }
 
-    *ddr |= _BV(bit);
+    SET_BIT(*ddr, bit);
 
     return ATTINY861_SUCCESS;
 }
@@ -34,11 +35,11 @@ static ATTINY861_STATUS_CODE set_gpio_state(volatile uint8_t * port, int8_t bit,
 
     if (state == GPIO_HIGH)
     {
-        *port |= _BV(bit);
+        SET_BIT(*port, bit);
     }
     else if (state == GPIO_LOW)
     {
-        *port &= ~_BV(bit);
+        CLEAR_BIT(*port, bit);
     }
 
     return ATTINY861_SUCCESS;
