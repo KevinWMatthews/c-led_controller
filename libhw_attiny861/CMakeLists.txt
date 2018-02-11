@@ -39,7 +39,7 @@ if(COMPILE_TESTS)
         target_include_directories(ATtiny861 BEFORE
             PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/mocks/bit_manip"
         )
-    endif(CMAKE_CROSSCOMPILING)
+    endif(NOT CMAKE_CROSSCOMPILING)
 
     add_subdirectory(tests)
 endif(COMPILE_TESTS)
