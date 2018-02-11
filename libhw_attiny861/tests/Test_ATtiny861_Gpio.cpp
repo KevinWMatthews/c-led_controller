@@ -366,7 +366,7 @@ TEST(ATtiny861_Gpio, set_output_gpio_PA0_low)
 /*
  * Toggle gpio
  */
-IGNORE_TEST(ATtiny861_Gpio, toggle_gpio_from_low_to_high)
+TEST(ATtiny861_Gpio, toggle_gpio_from_low_to_high)
 {
     ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_LOW);
 

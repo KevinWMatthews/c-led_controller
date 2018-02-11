@@ -133,7 +133,6 @@ ATTINY861_STATUS_CODE ATtiny861_GpioToggle(ATTINY861_PIN pin)
     volatile uint8_t * pin_reg;
     int8_t pin_bit;
 
-#if 0
     pin_reg = ATtiny861_GpioMap_GetPinRegister(pin);
     if (pin_reg == NULL)
     {
@@ -146,7 +145,6 @@ ATTINY861_STATUS_CODE ATtiny861_GpioToggle(ATTINY861_PIN pin)
     }
 
     SET_BIT(*pin_reg, pin_bit);
-#endif
 
     return ATTINY861_SUCCESS;
 }
