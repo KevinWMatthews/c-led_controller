@@ -18,6 +18,9 @@
  *      Map using several switch statements.
  *  Struct
  *      Map using structures.
+ *  Macros
+ *      I bet we could define ATTN861_Pxn in some fancy way
+ *      and decode information from this.
  */
 
 // Returns a pointer to memory on success, NULL on failure.
