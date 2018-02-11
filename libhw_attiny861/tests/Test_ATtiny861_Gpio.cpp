@@ -24,6 +24,23 @@ TEST_GROUP(ATtiny861_Gpio)
     }
 };
 
+/*
+ * Output:          DDR bit high
+ * Input:           DDR bit low
+ * GPIO set high:   PORT bit high
+ * GPIO set low:    PORT bit low
+ * GPIO reads high: PIN bit high
+ * GPIO reads low:  PIN bit low
+ */
+#define GPIO_SET_OUTPUT(ddr, bit)   IS_BIT_SET(ddr, bit)
+#define GPIO_SET_INPUT(ddr, bit)    IS_BIT_CLEAR(ddr, bit)
+
+#define GPIO_SET_HIGH(port, bit)    IS_BIT_SET(port, bit)
+#define GIO_SET_LOW(port, bit)      IS_BIT_CLEAR(port, bit)
+
+#define GPIO_READS_HIGH(pin, bit)   IS_BIT_SET(pin, bit)
+#define GPIO_READS_LOW(pin, bit)    IS_BIT_CLEAR(pin, bit)
+
 TEST(ATtiny861_Gpio, after_init_pins_set_to_input_with_pullup_high)
 {
     BYTES_EQUAL(0x00, DDRA);
