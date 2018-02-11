@@ -173,3 +173,7 @@ But then what if we change the initial conditions? We may need different tests i
 Perhaps we could infer that only one bit is being set by setting multiple bits (and in conflicting orders....
 
 We should probably test the gpio map separately and test only a few pins in the gpio library.
+
+Add quick tests for mock register?
+    POINTERS_EQUAL( &PINA, &pina );
+    BYTES_EQUAL( PINA, pina );

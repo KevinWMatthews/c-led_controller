@@ -150,3 +150,29 @@ int8_t ATtiny861_GpioMap_GetPortBit(ATTINY861_PIN pin)
     }
     return -1;
 }
+
+volatile uint8_t * ATtiny861_GpioMap_GetPinRegister(ATTINY861_PIN pin)
+{
+    switch (pin)
+    {
+        case ATTN861_PA0:
+        case ATTN861_PA1:
+        case ATTN861_PA2:
+        case ATTN861_PA3:
+        case ATTN861_PA4:
+        case ATTN861_PA5:
+        case ATTN861_PA6:
+        case ATTN861_PA7:
+            return &PINA;
+        case ATTN861_PB0:
+        case ATTN861_PB1:
+        case ATTN861_PB2:
+        case ATTN861_PB3:
+        case ATTN861_PB4:
+        case ATTN861_PB5:
+        case ATTN861_PB6:
+        case ATTN861_PB7:
+            return &PINB;
+    }
+    return NULL;
+}
