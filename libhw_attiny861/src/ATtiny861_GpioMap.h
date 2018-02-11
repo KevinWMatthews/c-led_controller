@@ -41,4 +41,6 @@ int8_t ATtiny861_GpioMap_GetPortBit(ATTINY861_PIN pin);
 
 volatile uint8_t * ATtiny861_GpioMap_GetPinRegister(ATTINY861_PIN pin);
 
+int8_t ATtiny861_GpioMap_GetPinBit(ATTINY861_PIN pin);
+
 #endif

@@ -10,6 +10,7 @@ extern "C"
 TEST_GROUP(ATtiny861_GpioMap)
 {
     volatile uint8_t * reg;
+    int8_t bit;
 
     void setup()
     {
@@ -124,4 +125,101 @@ TEST(ATtiny861_GpioMap, get_PIN_register_PB7)
 {
     reg = ATtiny861_GpioMap_GetPinRegister(ATTN861_PB7);
     POINTERS_EQUAL( &PINB, reg );
+}
+
+
+/*
+ * PINA bits
+ */
+TEST(ATtiny861_GpioMap, get_PIN_bit_PA0)
+{
+    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PA0);
+    BYTES_EQUAL( PINA0, bit );
+}
+
+TEST(ATtiny861_GpioMap, get_PIN_bit_PA1)
+{
+    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PA1);
+    BYTES_EQUAL( PINA1, bit );
+}
+
+TEST(ATtiny861_GpioMap, get_PIN_bit_PA2)
+{
+    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PA2);
+    BYTES_EQUAL( PINA2, bit );
+}
+
+TEST(ATtiny861_GpioMap, get_PIN_bit_PA3)
+{
+    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PA3);
+    BYTES_EQUAL( PINA3, bit );
+}
+
+TEST(ATtiny861_GpioMap, get_PIN_bit_PA4)
+{
+    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PA4);
+    BYTES_EQUAL( PINA4, bit );
+}
+
+TEST(ATtiny861_GpioMap, get_PIN_bit_PA5)
+{
+    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PA5);
+    BYTES_EQUAL( PINA5, bit );
+}
+
+TEST(ATtiny861_GpioMap, get_PIN_bit_PA6)
+{
+    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PA6);
+    BYTES_EQUAL( PINA6, bit );
+}
+
+TEST(ATtiny861_GpioMap, get_PIN_bit_PA7)
+{
+    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PA7);
+    BYTES_EQUAL( PINA7, bit );
+}
+
+/*
+ * PINB bits
+ */
+TEST(ATtiny861_GpioMap, get_PIN_bit_PB1)
+{
+    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PB1);
+    BYTES_EQUAL( PINB1, bit );
+}
+
+TEST(ATtiny861_GpioMap, get_PIN_bit_PB2)
+{
+    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PB2);
+    BYTES_EQUAL( PINB2, bit );
+}
+
+TEST(ATtiny861_GpioMap, get_PIN_bit_PB3)
+{
+    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PB3);
+    BYTES_EQUAL( PINB3, bit );
+}
+
+TEST(ATtiny861_GpioMap, get_PIN_bit_PB4)
+{
+    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PB4);
+    BYTES_EQUAL( PINB4, bit );
+}
+
+TEST(ATtiny861_GpioMap, get_PIN_bit_PB5)
+{
+    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PB5);
+    BYTES_EQUAL( PINB5, bit );
+}
+
+TEST(ATtiny861_GpioMap, get_PIN_bit_PB6)
+{
+    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PB6);
+    BYTES_EQUAL( PINB6, bit );
+}
+
+TEST(ATtiny861_GpioMap, get_PIN_bit_PB7)
+{
+    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PB7);
+    BYTES_EQUAL( PINB7, bit );
 }
