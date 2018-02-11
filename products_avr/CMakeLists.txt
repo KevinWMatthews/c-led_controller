@@ -1,3 +1,6 @@
 if(CMAKE_CROSSCOMPILING)
-add_subdirectory(Led_Blink)
-endif(CMAKE_CROSSCOMPILING)
+	message(STATUS "Compiling AVR products.")
+	add_subdirectory(Led_Blink)
+else()
+	message(STATUS "Skipping AVR products; these must be cross compiled.")
+endif()

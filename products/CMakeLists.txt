@@ -1,0 +1,7 @@
+if(CMAKE_CROSSCOMPILING)
+	message(STATUS "Compiling products.")
+	add_subdirectory(Led_Blink)
+	add_subdirectory(Led_BlinkTwo)
+else()
+	message(STATUS "Skipping products; these must be cross compiled.")
+endif()
