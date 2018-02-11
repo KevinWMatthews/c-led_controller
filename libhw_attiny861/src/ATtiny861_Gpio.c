@@ -124,5 +124,5 @@ GPIO_STATE ATtiny861_GpioGetState(ATTINY861_PIN pin)
         return GPIO_INVALID;
     }
 
-    return bit_is_set(port_reg, port_bit) && 1;
+    return bit_is_set(*port_reg, port_bit) && 1;
 }

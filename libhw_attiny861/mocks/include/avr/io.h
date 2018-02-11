@@ -22,21 +22,21 @@
 
 /*
  * Query if a bit in a byte is set.
- * Byte must be a pointer!
  *
  * AVR takes care to typecast the byte to *(volatile uint8_t *),
- * but I don't think this is necessary in our tests.
+ * but this is not necessary in our tests because out memory is already
+ * the correct type.
  */
-#define bit_is_set(byte, bit) (*byte & _BV(bit))
+#define bit_is_set(byte, bit)       (byte & _BV(bit))
 
 /*
  * Query if a bit in a byte is clear.
- * Byte must be a pointer!
  *
  * AVR takes care to typecast the byte to *(volatile uint8_t *),
- * but I don't think this is necessary in our tests.
+ * but this is not necessary in our tests because out memory is already
+ * the correct type.
  */
-#define bit_is_clear(byte, bit) ( !(*byte & _BV(bit)) )
+#define bit_is_clear(byte, bit)     ( !(byte & _BV(bit)) )
 
 
 

@@ -55,7 +55,7 @@ TEST(ATtiny861_Gpio, set_PA1_as_output_low)
 
     LONGS_EQUAL( ATTINY861_SUCCESS, ret );
 
-    bit_is_set(&DDRA, DDA1);
+    bit_is_set(DDRA, DDA1);
     BYTES_EQUAL(0xff & ~(1<<PORTA1), PORTA);
     BYTES_EQUAL(0x00, DDRB);
     BYTES_EQUAL(0xff, PORTB);
