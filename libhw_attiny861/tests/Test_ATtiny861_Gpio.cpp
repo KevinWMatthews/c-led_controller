@@ -366,7 +366,7 @@ TEST(ATtiny861_Gpio, set_output_gpio_PA0_low)
 /*
  * Toggle gpio
  */
-TEST(ATtiny861_Gpio, toggle_gpio_from_low_to_high)
+TEST(ATtiny861_Gpio, toggle_PA0_from_low_to_high)
 {
     ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_LOW);
 
@@ -374,4 +374,25 @@ TEST(ATtiny861_Gpio, toggle_gpio_from_low_to_high)
 
     LONGS_EQUAL( ATTINY861_SUCCESS, ret );
     CHECK_TRUE( GPIO_READS_HIGH(PORTA, PORTA0) );
+}
+
+TEST(ATtiny861_Gpio, toggle_PA0_from_high_to_low)
+{
+    ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_LOW);
+
+    ret = ATtiny861_GpioToggle(ATTN861_PA0);
+    ret = ATtiny861_GpioToggle(ATTN861_PA0);
+
+    LONGS_EQUAL( ATTINY861_SUCCESS, ret );
+    CHECK_TRUE( GPIO_READS_LOW(PORTA, PORTA0) );
+}
+
+TEST(ATtiny861_Gpio, toggle_PB7)
+{
+    ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_HIGH);
+
+    ret = ATtiny861_GpioToggle(ATTN861_PB7);
+
+    LONGS_EQUAL( ATTINY861_SUCCESS, ret );
+    CHECK_TRUE( GPIO_READS_LOW(PORTB, PORTB7) );
 }
