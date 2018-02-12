@@ -1,6 +1,7 @@
 if(CMAKE_CROSSCOMPILING)
 	message(STATUS "Compiling AVR products.")
 	add_subdirectory(Led_Blink)
+	add_subdirectory(Led_BlinkTwo)
 	add_subdirectory(Interrupt_Int0)
 	add_subdirectory(SetBit)
 else()
