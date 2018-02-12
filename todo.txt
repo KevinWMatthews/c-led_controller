@@ -1,4 +1,7 @@
 Add tests for invalid gpio in the hw library.
+Revisit GpioMap tests.
+    They are actually incomplete - as far as the tests are concerned,
+    we could set or clearn the entire byte and it wouldn't know.
 
 CMake todo:
     Can we put libhw products in its CMakeLists.txt? Do we want the main app to have to know everything? It should just have an option, perhaps.
