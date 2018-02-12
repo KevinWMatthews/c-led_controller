@@ -1,0 +1,27 @@
+[ 57%] Built target ATtiny861
+[ 71%] Building C object products_libhw_attiny861/Led_BlinkTwo/CMakeFiles/Libhw_Led_BlinkTwo.elf.dir/Led_BlinkTwo.c.obj
+[ 85%] Linking C executable ../../bin/Libhw_Led_BlinkTwo.elf
+[ 85%] Built target Libhw_Led_BlinkTwo.elf
+Scanning dependencies of target Libhw_Led_BlinkTwo-size
+[100%] Generating stats for Libhw_Led_BlinkTwo.elf
+/home/kevin/coding/c/led_controller/build_avr/bin/Libhw_Led_BlinkTwo.elf  :
+section    size      addr
+.text       992         0
+.data        60   8388704
+.bss          4   8388764
+.comment     48         0
+Total      1104
+
+
+AVR Memory Usage
+----------------
+Device: attiny861
+
+Program:    1052 bytes (12.8% Full)
+(.text + .data + .bootloader)
+
+Data:         64 bytes (12.5% Full)
+(.data + .bss + .noinit)
+
+
+[100%] Built target Libhw_Led_BlinkTwo-size
