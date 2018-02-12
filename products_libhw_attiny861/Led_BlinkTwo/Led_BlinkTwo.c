@@ -4,8 +4,19 @@
 
 static void toggle_led_state(void)
 {
-    ATtiny861_GpioToggle(ATTN861_PA6);
-    ATtiny861_GpioToggle(ATTN861_PA7);
+    ATTINY861_STATUS_CODE ret;
+
+    ret = ATtiny861_GpioToggle(ATTN861_PA6);
+    if (ret != ATTINY861_SUCCESS)
+    {
+        return;
+    }
+
+    ret = ATtiny861_GpioToggle(ATTN861_PA7);
+    if (ret != ATTINY861_SUCCESS)
+    {
+        return;
+    }
 }
 
 int main(void)
@@ -17,14 +28,37 @@ int main(void)
         .clock_source = ATTN861_TIMER0_INTERNAL_CLOCK_PRESCALER_1024,
         .match_value_A = 255
     };
+    ATTN861_TIMER0_RETURN_CODE timer_ret;
+    ATTINY861_STATUS_CODE ret;
 
-    ATtiny861_Timer0_Create(&timer0_params);
-    ATtiny861_Timer0_Start();
+    timer_ret = ATtiny861_Timer0_Create(&timer0_params);
+    if (timer_ret != ATTN861_TIMER0_SUCCESS)
+    {
+        return -1;
+    }
+    timer_ret = ATtiny861_Timer0_Start();
+    if (timer_ret != ATTN861_TIMER0_SUCCESS)
+    {
+        return -1;
+    }
 
-    ATtiny861_GpioSetAsOutput(ATTN861_PA6, GPIO_HIGH);
-    ATtiny861_GpioSetAsOutput(ATTN861_PA7, GPIO_LOW);
+    ret = ATtiny861_GpioSetAsOutput(ATTN861_PA6, GPIO_HIGH);
+    if (ret != ATTINY861_SUCCESS)
+    {
+        return -1;
+    }
 
-    ATtiny861_Timer0_RegisterCallback_MatchA(toggle_led_state);
+    ret = ATtiny861_GpioSetAsOutput(ATTN861_PA7, GPIO_LOW);
+    if (ret != ATTINY861_SUCCESS)
+    {
+        return -1;
+    }
+
+    timer_ret = ATtiny861_Timer0_RegisterCallback_MatchA(toggle_led_state);
+    if (timer_ret != ATTN861_TIMER0_SUCCESS)
+    {
+        return -1;
+    }
 
     // Enable interrupts
     sei();
