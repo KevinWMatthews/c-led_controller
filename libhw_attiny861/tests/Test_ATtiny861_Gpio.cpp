@@ -32,8 +32,8 @@ TEST_GROUP(ATtiny861_Gpio)
  * GPIO reads high: PIN bit high
  * GPIO reads low:  PIN bit low
  */
-#define GPIO_SET_OUTPUT(ddr, bit)   IS_BIT_SET(ddr, bit)
-#define GPIO_SET_INPUT(ddr, bit)    IS_BIT_CLEAR(ddr, bit)
+#define IS_GPIO_OUTPUT(ddr, bit)    IS_BIT_SET(ddr, bit)
+#define IS_GPIO_INPUT(ddr, bit)     IS_BIT_CLEAR(ddr, bit)
 
 #define GPIO_SET_HIGH(port, bit)    IS_BIT_SET(port, bit)
 #define GIO_SET_LOW(port, bit)      IS_BIT_CLEAR(port, bit)
@@ -59,8 +59,8 @@ TEST(ATtiny861_Gpio, set_lowest_pin_as_output_low)
     ret = ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_LOW);
 
     LONGS_EQUAL( ATTINY861_SUCCESS, ret );
-    CHECK_TRUE( IS_BIT_SET(DDRA, DDA0) );
-    CHECK_TRUE( IS_BIT_CLEAR(PORTA, PORTA0) );
+    CHECK_TRUE( IS_GPIO_OUTPUT(DDRA, DDA0) );
+    CHECK_TRUE( GPIO_READS_LOW(PORTA, PORTA0) );
 }
 
 TEST(ATtiny861_Gpio, set_highest_pin_as_output_low)
@@ -68,8 +68,8 @@ TEST(ATtiny861_Gpio, set_highest_pin_as_output_low)
     ret = ATtiny861_GpioSetAsOutput(ATTN861_PA7, GPIO_LOW);
 
     LONGS_EQUAL( ATTINY861_SUCCESS, ret );
-    CHECK_TRUE( IS_BIT_SET(DDRA, DDA7) );
-    CHECK_TRUE( IS_BIT_CLEAR(PORTA, PORTA7) );
+    CHECK_TRUE( IS_GPIO_OUTPUT(DDRA, DDA7) );
+    CHECK_TRUE( GPIO_READS_LOW(PORTA, PORTA7) );
 }
 
 TEST(ATtiny861_Gpio, set_two_pins_as_output_low)
@@ -78,10 +78,10 @@ TEST(ATtiny861_Gpio, set_two_pins_as_output_low)
     ret = ATtiny861_GpioSetAsOutput(ATTN861_PA3, GPIO_LOW);
 
     LONGS_EQUAL( ATTINY861_SUCCESS, ret );
-    CHECK_TRUE( IS_BIT_SET(DDRA, DDA1) );
-    CHECK_TRUE( IS_BIT_CLEAR(PORTA, PORTA1) );
-    CHECK_TRUE( IS_BIT_SET(DDRA, DDA3) );
-    CHECK_TRUE( IS_BIT_CLEAR(PORTA, PORTA3) );
+    CHECK_TRUE( IS_GPIO_OUTPUT(DDRA, DDA1) );
+    CHECK_TRUE( GPIO_READS_LOW(PORTA, PORTA1) );
+    CHECK_TRUE( IS_GPIO_OUTPUT(DDRA, DDA3) );
+    CHECK_TRUE( GPIO_READS_LOW(PORTA, PORTA3) );
 }
 
 TEST(ATtiny861_Gpio, set_lowest_port_a_pin_as_output_high)
@@ -89,8 +89,8 @@ TEST(ATtiny861_Gpio, set_lowest_port_a_pin_as_output_high)
     ret = ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_HIGH);
 
     LONGS_EQUAL( ATTINY861_SUCCESS, ret );
-    CHECK_TRUE( IS_BIT_SET(DDRA, DDA0) );
-    CHECK_TRUE( IS_BIT_SET(PORTA, PORTA0) );
+    CHECK_TRUE( IS_GPIO_OUTPUT(DDRA, DDA0) );
+    CHECK_TRUE( GPIO_READS_HIGH(PORTA, PORTA0) );
 }
 
 TEST(ATtiny861_Gpio, set_highest_port_a_pin_as_output_high)
@@ -98,8 +98,8 @@ TEST(ATtiny861_Gpio, set_highest_port_a_pin_as_output_high)
     ret = ATtiny861_GpioSetAsOutput(ATTN861_PA7, GPIO_HIGH);
 
     LONGS_EQUAL( ATTINY861_SUCCESS, ret );
-    CHECK_TRUE( IS_BIT_SET(DDRA, DDA7) );
-    CHECK_TRUE( IS_BIT_SET(PORTA, PORTA7) );
+    CHECK_TRUE( IS_GPIO_OUTPUT(DDRA, DDA7) );
+    CHECK_TRUE( GPIO_READS_HIGH(PORTA, PORTA7) );
 }
 
 TEST(ATtiny861_Gpio, set_two_pins_as_output_high)
@@ -108,10 +108,10 @@ TEST(ATtiny861_Gpio, set_two_pins_as_output_high)
     ret = ATtiny861_GpioSetAsOutput(ATTN861_PA3, GPIO_HIGH);
 
     LONGS_EQUAL( ATTINY861_SUCCESS, ret );
-    CHECK_TRUE( IS_BIT_SET(DDRA, DDA1) );
-    CHECK_TRUE( IS_BIT_SET(PORTA, PORTA1) );
-    CHECK_TRUE( IS_BIT_SET(DDRA, DDA3) );
-    CHECK_TRUE( IS_BIT_SET(PORTA, PORTA3) );
+    CHECK_TRUE( IS_GPIO_OUTPUT(DDRA, DDA1) );
+    CHECK_TRUE( GPIO_READS_HIGH(PORTA, PORTA1) );
+    CHECK_TRUE( IS_GPIO_OUTPUT(DDRA, DDA3) );
+    CHECK_TRUE( GPIO_READS_HIGH(PORTA, PORTA3) );
 }
 
 TEST(ATtiny861_Gpio, set_port_b_pin_as_output)
@@ -119,8 +119,8 @@ TEST(ATtiny861_Gpio, set_port_b_pin_as_output)
     ret = ATtiny861_GpioSetAsOutput(ATTN861_PB0, GPIO_LOW);
 
     LONGS_EQUAL( ATTINY861_SUCCESS, ret );
-    CHECK_TRUE( IS_BIT_SET(DDRB, DDB0) );
-    CHECK_TRUE( IS_BIT_CLEAR(PORTB, PORTB0) );
+    CHECK_TRUE( IS_GPIO_OUTPUT(DDRB, DDB0) );
+    CHECK_TRUE( GPIO_READS_LOW(PORTB, PORTB0) );
 }
 
 TEST(ATtiny861_Gpio, set_two_port_a_pints_to_different_states)
@@ -128,10 +128,10 @@ TEST(ATtiny861_Gpio, set_two_port_a_pints_to_different_states)
     ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_LOW);
     ATtiny861_GpioSetAsOutput(ATTN861_PA1, GPIO_HIGH);
 
-    CHECK_TRUE( IS_BIT_SET(DDRA, DDA0) );
-    CHECK_TRUE( IS_BIT_CLEAR(PORTA, PORTA0) );
-    CHECK_TRUE( IS_BIT_SET(DDRA, DDA1) );
-    CHECK_TRUE( IS_BIT_SET(PORTA, PORTA1) );
+    CHECK_TRUE( IS_GPIO_OUTPUT(DDRA, DDA0) );
+    CHECK_TRUE( GPIO_READS_LOW(PORTA, PORTA0) );
+    CHECK_TRUE( IS_GPIO_OUTPUT(DDRA, DDA1) );
+    CHECK_TRUE( GPIO_READS_HIGH(PORTA, PORTA1) );
 }
 
 TEST(ATtiny861_Gpio, set_two_port_b_pints_to_different_states)
@@ -139,10 +139,10 @@ TEST(ATtiny861_Gpio, set_two_port_b_pints_to_different_states)
     ATtiny861_GpioSetAsOutput(ATTN861_PB0, GPIO_LOW);
     ATtiny861_GpioSetAsOutput(ATTN861_PB1, GPIO_HIGH);
 
-    CHECK_TRUE( IS_BIT_SET(DDRB, DDB0) );
-    CHECK_TRUE( IS_BIT_CLEAR(PORTB, PORTB0) );
-    CHECK_TRUE( IS_BIT_SET(DDRB, DDB1) );
-    CHECK_TRUE( IS_BIT_SET(PORTB, PORTB1) );
+    CHECK_TRUE( IS_GPIO_OUTPUT(DDRB, DDB0) );
+    CHECK_TRUE( GPIO_READS_LOW(PORTB, PORTB0) );
+    CHECK_TRUE( IS_GPIO_OUTPUT(DDRB, DDB1) );
+    CHECK_TRUE( GPIO_READS_HIGH(PORTB, PORTB1) );
 }
 
 
@@ -157,7 +157,7 @@ TEST(ATtiny861_Gpio, set_high_output_low)
     ret = ATtiny861_GpioSetState(ATTN861_PA0, GPIO_LOW);
 
     LONGS_EQUAL( ATTINY861_SUCCESS, ret );
-    CHECK_TRUE( IS_BIT_CLEAR(PORTA, PORTA0) );
+    CHECK_TRUE( GPIO_READS_LOW(PORTA, PORTA0) );
 }
 
 TEST(ATtiny861_Gpio, set_low_output_high)
@@ -167,7 +167,7 @@ TEST(ATtiny861_Gpio, set_low_output_high)
     ret = ATtiny861_GpioSetState(ATTN861_PA0, GPIO_HIGH);
 
     LONGS_EQUAL( ATTINY861_SUCCESS, ret );
-    CHECK_TRUE( IS_BIT_SET(PORTA, PORTA0) );
+    CHECK_TRUE( GPIO_READS_HIGH(PORTA, PORTA0) );
 }
 
 TEST(ATtiny861_Gpio, set_output_to_same_state)
@@ -177,7 +177,7 @@ TEST(ATtiny861_Gpio, set_output_to_same_state)
     ret = ATtiny861_GpioSetState(ATTN861_PA0, GPIO_LOW);
 
     LONGS_EQUAL( ATTINY861_SUCCESS, ret );
-    CHECK_TRUE( IS_BIT_CLEAR(PORTA, PORTA0) );
+    CHECK_TRUE( GPIO_READS_LOW(PORTA, PORTA0) );
 }
 
 
