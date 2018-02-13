@@ -9,11 +9,11 @@
  * This is the same as AVR's _BV() macro.
  *
  * Ex:
- *      BIT_VALUE(0) = (1<<0) = 0x00
- *      BIT_VALUE(1) = (1<<1) = 0x01
- *      BIT_VALUE(7) = (1<<7) = 0x80
+ *      BYTE_VALUE(0) = (1<<0) = 0x00
+ *      BYTE_VALUE(1) = (1<<1) = 0x01
+ *      BYTE_VALUE(7) = (1<<7) = 0x80
  */
-#define BIT_VALUE(bit_number)           (1<<(bit_number))
+#define BYTE_VALUE(bit_number)           (1<<(bit_number))
 
 /*
  * AVR removed support for their sbi() and cbi() macros for reasons that
@@ -32,7 +32,7 @@
  *      SET_BIT(var, 0) =>  var |= 1<<0;
  *      SET_BIT(var, 7) =>  var |= 1<<7;
  */
-#define SET_BIT(byte, bit_number)       (byte) |= BIT_VALUE(bit_number)
+#define SET_BIT(byte, bit_number)     	(byte) |= BYTE_VALUE(bit_number)
 
 
 
@@ -63,7 +63,7 @@
  *
  */
 // Do not use this on standard registers! It will clear all other bits.
-#define SET_BIT_INTERRUPT(byte, bit_number)         (byte) = BIT_VALUE(bit_number)
+#define SET_BIT_INTERRUPT(byte, bit_number)         (byte) = BYTE_VALUE(bit_number)
 
 
 
@@ -74,7 +74,7 @@
  *      SET_BIT(var, 0) =>  var &= ~(1<<0);
  *      SET_BIT(var, 7) =>  var &= ~(1<<7);
  */
-#define CLEAR_BIT(byte, bit_number)     (byte) &= ~(BIT_VALUE(bit_number))
+#define CLEAR_BIT(byte, bit_number)     (byte) &= ~(BYTE_VALUE(bit_number))
 
 
 #endif
