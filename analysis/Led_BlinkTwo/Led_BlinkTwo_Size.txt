@@ -1,0 +1,24 @@
+[ 50%] Built target ATtiny861
+[ 87%] Built target Led_BlinkTwo.elf
+[100%] Generating stats for Led_BlinkTwo.elf
+/home/kevin/coding/c/led_controller/build_avr/bin/Led_BlinkTwo.elf  :
+section    size      addr
+.text      1882         0
+.data        66   8388704
+.bss         12   8388770
+.comment     92         0
+Total      2052
+
+
+AVR Memory Usage
+----------------
+Device: attiny861
+
+Program:    1948 bytes (23.8% Full)
+(.text + .data + .bootloader)
+
+Data:         78 bytes (15.2% Full)
+(.data + .bss + .noinit)
+
+
+[100%] Built target Led_BlinkTwo-size

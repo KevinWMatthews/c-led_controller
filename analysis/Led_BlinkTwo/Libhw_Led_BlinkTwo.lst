@@ -1,0 +1,577 @@
+
+/home/kevin/coding/c/led_controller/build_avr/bin/Libhw_Led_BlinkTwo.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000408  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         0000003c  00800060  00000408  0000049c  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000004  0080009c  0080009c  000004d8  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  000004d8  2**0
+                  CONTENTS, READONLY
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	4e c0       	rjmp	.+156    	; 0x9e <__ctors_end>
+   2:	68 c0       	rjmp	.+208    	; 0xd4 <__bad_interrupt>
+   4:	67 c0       	rjmp	.+206    	; 0xd4 <__bad_interrupt>
+   6:	66 c0       	rjmp	.+204    	; 0xd4 <__bad_interrupt>
+   8:	65 c0       	rjmp	.+202    	; 0xd4 <__bad_interrupt>
+   a:	64 c0       	rjmp	.+200    	; 0xd4 <__bad_interrupt>
+   c:	63 c0       	rjmp	.+198    	; 0xd4 <__bad_interrupt>
+   e:	62 c0       	rjmp	.+196    	; 0xd4 <__bad_interrupt>
+  10:	61 c0       	rjmp	.+194    	; 0xd4 <__bad_interrupt>
+  12:	60 c0       	rjmp	.+192    	; 0xd4 <__bad_interrupt>
+  14:	5f c0       	rjmp	.+190    	; 0xd4 <__bad_interrupt>
+  16:	5e c0       	rjmp	.+188    	; 0xd4 <__bad_interrupt>
+  18:	5d c0       	rjmp	.+186    	; 0xd4 <__bad_interrupt>
+  1a:	5c c0       	rjmp	.+184    	; 0xd4 <__bad_interrupt>
+  1c:	a1 c1       	rjmp	.+834    	; 0x360 <__vector_14>
+  1e:	5a c0       	rjmp	.+180    	; 0xd4 <__bad_interrupt>
+  20:	59 c0       	rjmp	.+178    	; 0xd4 <__bad_interrupt>
+  22:	58 c0       	rjmp	.+176    	; 0xd4 <__bad_interrupt>
+  24:	57 c0       	rjmp	.+174    	; 0xd4 <__bad_interrupt>
+  26:	24 c1       	rjmp	.+584    	; 0x270 <__stack+0x11>
+  28:	23 c1       	rjmp	.+582    	; 0x270 <__stack+0x11>
+  2a:	22 c1       	rjmp	.+580    	; 0x270 <__stack+0x11>
+  2c:	21 c1       	rjmp	.+578    	; 0x270 <__stack+0x11>
+  2e:	1d c1       	rjmp	.+570    	; 0x26a <__stack+0xb>
+  30:	1c c1       	rjmp	.+568    	; 0x26a <__stack+0xb>
+  32:	1e c1       	rjmp	.+572    	; 0x270 <__stack+0x11>
+  34:	1d c1       	rjmp	.+570    	; 0x270 <__stack+0x11>
+  36:	1c c1       	rjmp	.+568    	; 0x270 <__stack+0x11>
+  38:	1b c1       	rjmp	.+566    	; 0x270 <__stack+0x11>
+  3a:	14 c1       	rjmp	.+552    	; 0x264 <__stack+0x5>
+  3c:	13 c1       	rjmp	.+550    	; 0x264 <__stack+0x5>
+  3e:	12 c1       	rjmp	.+548    	; 0x264 <__stack+0x5>
+  40:	11 c1       	rjmp	.+546    	; 0x264 <__stack+0x5>
+  42:	13 c1       	rjmp	.+550    	; 0x26a <__stack+0xb>
+  44:	12 c1       	rjmp	.+548    	; 0x26a <__stack+0xb>
+  46:	0e c1       	rjmp	.+540    	; 0x264 <__stack+0x5>
+  48:	0d c1       	rjmp	.+538    	; 0x264 <__stack+0x5>
+  4a:	0c c1       	rjmp	.+536    	; 0x264 <__stack+0x5>
+  4c:	0b c1       	rjmp	.+534    	; 0x264 <__stack+0x5>
+  4e:	22 c1       	rjmp	.+580    	; 0x294 <ATtiny861_GpioMap_GetPortRegister+0x1e>
+  50:	21 c1       	rjmp	.+578    	; 0x294 <ATtiny861_GpioMap_GetPortRegister+0x1e>
+  52:	20 c1       	rjmp	.+576    	; 0x294 <ATtiny861_GpioMap_GetPortRegister+0x1e>
+  54:	1f c1       	rjmp	.+574    	; 0x294 <ATtiny861_GpioMap_GetPortRegister+0x1e>
+  56:	1b c1       	rjmp	.+566    	; 0x28e <ATtiny861_GpioMap_GetPortRegister+0x18>
+  58:	1a c1       	rjmp	.+564    	; 0x28e <ATtiny861_GpioMap_GetPortRegister+0x18>
+  5a:	1c c1       	rjmp	.+568    	; 0x294 <ATtiny861_GpioMap_GetPortRegister+0x1e>
+  5c:	1b c1       	rjmp	.+566    	; 0x294 <ATtiny861_GpioMap_GetPortRegister+0x1e>
+  5e:	1a c1       	rjmp	.+564    	; 0x294 <ATtiny861_GpioMap_GetPortRegister+0x1e>
+  60:	19 c1       	rjmp	.+562    	; 0x294 <ATtiny861_GpioMap_GetPortRegister+0x1e>
+  62:	12 c1       	rjmp	.+548    	; 0x288 <ATtiny861_GpioMap_GetPortRegister+0x12>
+  64:	11 c1       	rjmp	.+546    	; 0x288 <ATtiny861_GpioMap_GetPortRegister+0x12>
+  66:	10 c1       	rjmp	.+544    	; 0x288 <ATtiny861_GpioMap_GetPortRegister+0x12>
+  68:	0f c1       	rjmp	.+542    	; 0x288 <ATtiny861_GpioMap_GetPortRegister+0x12>
+  6a:	11 c1       	rjmp	.+546    	; 0x28e <ATtiny861_GpioMap_GetPortRegister+0x18>
+  6c:	10 c1       	rjmp	.+544    	; 0x28e <ATtiny861_GpioMap_GetPortRegister+0x18>
+  6e:	0c c1       	rjmp	.+536    	; 0x288 <ATtiny861_GpioMap_GetPortRegister+0x12>
+  70:	0b c1       	rjmp	.+534    	; 0x288 <ATtiny861_GpioMap_GetPortRegister+0x12>
+  72:	0a c1       	rjmp	.+532    	; 0x288 <ATtiny861_GpioMap_GetPortRegister+0x12>
+  74:	09 c1       	rjmp	.+530    	; 0x288 <ATtiny861_GpioMap_GetPortRegister+0x12>
+  76:	36 c1       	rjmp	.+620    	; 0x2e4 <ATtiny861_GpioMap_GetPinRegister+0x1e>
+  78:	35 c1       	rjmp	.+618    	; 0x2e4 <ATtiny861_GpioMap_GetPinRegister+0x1e>
+  7a:	34 c1       	rjmp	.+616    	; 0x2e4 <ATtiny861_GpioMap_GetPinRegister+0x1e>
+  7c:	33 c1       	rjmp	.+614    	; 0x2e4 <ATtiny861_GpioMap_GetPinRegister+0x1e>
+  7e:	2f c1       	rjmp	.+606    	; 0x2de <ATtiny861_GpioMap_GetPinRegister+0x18>
+  80:	2e c1       	rjmp	.+604    	; 0x2de <ATtiny861_GpioMap_GetPinRegister+0x18>
+  82:	30 c1       	rjmp	.+608    	; 0x2e4 <ATtiny861_GpioMap_GetPinRegister+0x1e>
+  84:	2f c1       	rjmp	.+606    	; 0x2e4 <ATtiny861_GpioMap_GetPinRegister+0x1e>
+  86:	2e c1       	rjmp	.+604    	; 0x2e4 <ATtiny861_GpioMap_GetPinRegister+0x1e>
+  88:	2d c1       	rjmp	.+602    	; 0x2e4 <ATtiny861_GpioMap_GetPinRegister+0x1e>
+  8a:	26 c1       	rjmp	.+588    	; 0x2d8 <ATtiny861_GpioMap_GetPinRegister+0x12>
+  8c:	25 c1       	rjmp	.+586    	; 0x2d8 <ATtiny861_GpioMap_GetPinRegister+0x12>
+  8e:	24 c1       	rjmp	.+584    	; 0x2d8 <ATtiny861_GpioMap_GetPinRegister+0x12>
+  90:	23 c1       	rjmp	.+582    	; 0x2d8 <ATtiny861_GpioMap_GetPinRegister+0x12>
+  92:	25 c1       	rjmp	.+586    	; 0x2de <ATtiny861_GpioMap_GetPinRegister+0x18>
+  94:	24 c1       	rjmp	.+584    	; 0x2de <ATtiny861_GpioMap_GetPinRegister+0x18>
+  96:	20 c1       	rjmp	.+576    	; 0x2d8 <ATtiny861_GpioMap_GetPinRegister+0x12>
+  98:	1f c1       	rjmp	.+574    	; 0x2d8 <ATtiny861_GpioMap_GetPinRegister+0x12>
+  9a:	1e c1       	rjmp	.+572    	; 0x2d8 <ATtiny861_GpioMap_GetPinRegister+0x12>
+  9c:	1d c1       	rjmp	.+570    	; 0x2d8 <ATtiny861_GpioMap_GetPinRegister+0x12>
+
+0000009e <__ctors_end>:
+  9e:	11 24       	eor	r1, r1
+  a0:	1f be       	out	0x3f, r1	; 63
+  a2:	cf e5       	ldi	r28, 0x5F	; 95
+  a4:	d2 e0       	ldi	r29, 0x02	; 2
+  a6:	de bf       	out	0x3e, r29	; 62
+  a8:	cd bf       	out	0x3d, r28	; 61
+
+000000aa <__do_copy_data>:
+  aa:	10 e0       	ldi	r17, 0x00	; 0
+  ac:	a0 e6       	ldi	r26, 0x60	; 96
+  ae:	b0 e0       	ldi	r27, 0x00	; 0
+  b0:	e8 e0       	ldi	r30, 0x08	; 8
+  b2:	f4 e0       	ldi	r31, 0x04	; 4
+  b4:	02 c0       	rjmp	.+4      	; 0xba <__do_copy_data+0x10>
+  b6:	05 90       	lpm	r0, Z+
+  b8:	0d 92       	st	X+, r0
+  ba:	ac 39       	cpi	r26, 0x9C	; 156
+  bc:	b1 07       	cpc	r27, r17
+  be:	d9 f7       	brne	.-10     	; 0xb6 <__do_copy_data+0xc>
+
+000000c0 <__do_clear_bss>:
+  c0:	20 e0       	ldi	r18, 0x00	; 0
+  c2:	ac e9       	ldi	r26, 0x9C	; 156
+  c4:	b0 e0       	ldi	r27, 0x00	; 0
+  c6:	01 c0       	rjmp	.+2      	; 0xca <.do_clear_bss_start>
+
+000000c8 <.do_clear_bss_loop>:
+  c8:	1d 92       	st	X+, r1
+
+000000ca <.do_clear_bss_start>:
+  ca:	a0 3a       	cpi	r26, 0xA0	; 160
+  cc:	b2 07       	cpc	r27, r18
+  ce:	e1 f7       	brne	.-8      	; 0xc8 <.do_clear_bss_loop>
+  d0:	70 d1       	rcall	.+736    	; 0x3b2 <main>
+  d2:	98 c1       	rjmp	.+816    	; 0x404 <_exit>
+
+000000d4 <__bad_interrupt>:
+  d4:	95 cf       	rjmp	.-214    	; 0x0 <__vectors>
+
+000000d6 <toggle_led_state>:
+  d6:	8c e0       	ldi	r24, 0x0C	; 12
+  d8:	a2 d0       	rcall	.+324    	; 0x21e <ATtiny861_GpioToggle>
+  da:	81 11       	cpse	r24, r1
+  dc:	02 c0       	rjmp	.+4      	; 0xe2 <toggle_led_state+0xc>
+  de:	8b e0       	ldi	r24, 0x0B	; 11
+  e0:	9e c0       	rjmp	.+316    	; 0x21e <ATtiny861_GpioToggle>
+  e2:	08 95       	ret
+
+000000e4 <set_gpio_state>:
+  e4:	fc 01       	movw	r30, r24
+  e6:	00 97       	sbiw	r24, 0x00	; 0
+  e8:	e9 f0       	breq	.+58     	; 0x124 <set_gpio_state+0x40>
+  ea:	67 fd       	sbrc	r22, 7
+  ec:	1d c0       	rjmp	.+58     	; 0x128 <set_gpio_state+0x44>
+  ee:	41 30       	cpi	r20, 0x01	; 1
+  f0:	59 f4       	brne	.+22     	; 0x108 <set_gpio_state+0x24>
+  f2:	20 81       	ld	r18, Z
+  f4:	81 e0       	ldi	r24, 0x01	; 1
+  f6:	90 e0       	ldi	r25, 0x00	; 0
+  f8:	06 2e       	mov	r0, r22
+  fa:	01 c0       	rjmp	.+2      	; 0xfe <set_gpio_state+0x1a>
+  fc:	88 0f       	add	r24, r24
+  fe:	0a 94       	dec	r0
+ 100:	ea f7       	brpl	.-6      	; 0xfc <set_gpio_state+0x18>
+ 102:	28 2b       	or	r18, r24
+ 104:	20 83       	st	Z, r18
+ 106:	12 c0       	rjmp	.+36     	; 0x12c <set_gpio_state+0x48>
+ 108:	41 11       	cpse	r20, r1
+ 10a:	10 c0       	rjmp	.+32     	; 0x12c <set_gpio_state+0x48>
+ 10c:	20 81       	ld	r18, Z
+ 10e:	81 e0       	ldi	r24, 0x01	; 1
+ 110:	90 e0       	ldi	r25, 0x00	; 0
+ 112:	06 2e       	mov	r0, r22
+ 114:	01 c0       	rjmp	.+2      	; 0x118 <set_gpio_state+0x34>
+ 116:	88 0f       	add	r24, r24
+ 118:	0a 94       	dec	r0
+ 11a:	ea f7       	brpl	.-6      	; 0x116 <set_gpio_state+0x32>
+ 11c:	80 95       	com	r24
+ 11e:	82 23       	and	r24, r18
+ 120:	80 83       	st	Z, r24
+ 122:	04 c0       	rjmp	.+8      	; 0x12c <set_gpio_state+0x48>
+ 124:	8f ef       	ldi	r24, 0xFF	; 255
+ 126:	08 95       	ret
+ 128:	8e ef       	ldi	r24, 0xFE	; 254
+ 12a:	08 95       	ret
+ 12c:	80 e0       	ldi	r24, 0x00	; 0
+ 12e:	08 95       	ret
+
+00000130 <ATtiny861_GpioSetAsOutput>:
+ 130:	cf 92       	push	r12
+ 132:	df 92       	push	r13
+ 134:	ef 92       	push	r14
+ 136:	ff 92       	push	r15
+ 138:	0f 93       	push	r16
+ 13a:	1f 93       	push	r17
+ 13c:	cf 93       	push	r28
+ 13e:	df 93       	push	r29
+ 140:	1f 92       	push	r1
+ 142:	cd b7       	in	r28, 0x3d	; 61
+ 144:	de b7       	in	r29, 0x3e	; 62
+ 146:	f8 2e       	mov	r15, r24
+ 148:	69 83       	std	Y+1, r22	; 0x01
+ 14a:	83 d0       	rcall	.+262    	; 0x252 <ATtiny861_GpioMap_GetDdrRegister>
+ 14c:	6c 01       	movw	r12, r24
+ 14e:	8f 2d       	mov	r24, r15
+ 150:	a4 d0       	rcall	.+328    	; 0x29a <ATtiny861_GpioMap_GetDdrBit>
+ 152:	e8 2e       	mov	r14, r24
+ 154:	8f 2d       	mov	r24, r15
+ 156:	8f d0       	rcall	.+286    	; 0x276 <ATtiny861_GpioMap_GetPortRegister>
+ 158:	8c 01       	movw	r16, r24
+ 15a:	8f 2d       	mov	r24, r15
+ 15c:	a9 d0       	rcall	.+338    	; 0x2b0 <ATtiny861_GpioMap_GetPortBit>
+ 15e:	49 81       	ldd	r20, Y+1	; 0x01
+ 160:	c1 14       	cp	r12, r1
+ 162:	d1 04       	cpc	r13, r1
+ 164:	a1 f0       	breq	.+40     	; 0x18e <ATtiny861_GpioSetAsOutput+0x5e>
+ 166:	e7 fc       	sbrc	r14, 7
+ 168:	14 c0       	rjmp	.+40     	; 0x192 <ATtiny861_GpioSetAsOutput+0x62>
+ 16a:	f6 01       	movw	r30, r12
+ 16c:	90 81       	ld	r25, Z
+ 16e:	21 e0       	ldi	r18, 0x01	; 1
+ 170:	30 e0       	ldi	r19, 0x00	; 0
+ 172:	0e 2c       	mov	r0, r14
+ 174:	01 c0       	rjmp	.+2      	; 0x178 <ATtiny861_GpioSetAsOutput+0x48>
+ 176:	22 0f       	add	r18, r18
+ 178:	0a 94       	dec	r0
+ 17a:	ea f7       	brpl	.-6      	; 0x176 <ATtiny861_GpioSetAsOutput+0x46>
+ 17c:	92 2b       	or	r25, r18
+ 17e:	90 83       	st	Z, r25
+ 180:	68 2f       	mov	r22, r24
+ 182:	c8 01       	movw	r24, r16
+ 184:	af df       	rcall	.-162    	; 0xe4 <set_gpio_state>
+ 186:	18 16       	cp	r1, r24
+ 188:	2c f4       	brge	.+10     	; 0x194 <ATtiny861_GpioSetAsOutput+0x64>
+ 18a:	80 e0       	ldi	r24, 0x00	; 0
+ 18c:	03 c0       	rjmp	.+6      	; 0x194 <ATtiny861_GpioSetAsOutput+0x64>
+ 18e:	8f ef       	ldi	r24, 0xFF	; 255
+ 190:	01 c0       	rjmp	.+2      	; 0x194 <ATtiny861_GpioSetAsOutput+0x64>
+ 192:	8e ef       	ldi	r24, 0xFE	; 254
+ 194:	0f 90       	pop	r0
+ 196:	df 91       	pop	r29
+ 198:	cf 91       	pop	r28
+ 19a:	1f 91       	pop	r17
+ 19c:	0f 91       	pop	r16
+ 19e:	ff 90       	pop	r15
+ 1a0:	ef 90       	pop	r14
+ 1a2:	df 90       	pop	r13
+ 1a4:	cf 90       	pop	r12
+ 1a6:	08 95       	ret
+
+000001a8 <ATtiny861_GpioInit>:
+ 1a8:	8f ef       	ldi	r24, 0xFF	; 255
+ 1aa:	8b bb       	out	0x1b, r24	; 27
+ 1ac:	88 bb       	out	0x18, r24	; 24
+ 1ae:	08 95       	ret
+
+000001b0 <ATtiny861_GpioSetState>:
+ 1b0:	ef 92       	push	r14
+ 1b2:	ff 92       	push	r15
+ 1b4:	1f 93       	push	r17
+ 1b6:	cf 93       	push	r28
+ 1b8:	df 93       	push	r29
+ 1ba:	1f 92       	push	r1
+ 1bc:	cd b7       	in	r28, 0x3d	; 61
+ 1be:	de b7       	in	r29, 0x3e	; 62
+ 1c0:	18 2f       	mov	r17, r24
+ 1c2:	69 83       	std	Y+1, r22	; 0x01
+ 1c4:	58 d0       	rcall	.+176    	; 0x276 <ATtiny861_GpioMap_GetPortRegister>
+ 1c6:	7c 01       	movw	r14, r24
+ 1c8:	81 2f       	mov	r24, r17
+ 1ca:	72 d0       	rcall	.+228    	; 0x2b0 <ATtiny861_GpioMap_GetPortBit>
+ 1cc:	49 81       	ldd	r20, Y+1	; 0x01
+ 1ce:	68 2f       	mov	r22, r24
+ 1d0:	c7 01       	movw	r24, r14
+ 1d2:	88 df       	rcall	.-240    	; 0xe4 <set_gpio_state>
+ 1d4:	18 16       	cp	r1, r24
+ 1d6:	0c f4       	brge	.+2      	; 0x1da <ATtiny861_GpioSetState+0x2a>
+ 1d8:	80 e0       	ldi	r24, 0x00	; 0
+ 1da:	0f 90       	pop	r0
+ 1dc:	df 91       	pop	r29
+ 1de:	cf 91       	pop	r28
+ 1e0:	1f 91       	pop	r17
+ 1e2:	ff 90       	pop	r15
+ 1e4:	ef 90       	pop	r14
+ 1e6:	08 95       	ret
+
+000001e8 <ATtiny861_GpioGetState>:
+ 1e8:	1f 93       	push	r17
+ 1ea:	cf 93       	push	r28
+ 1ec:	df 93       	push	r29
+ 1ee:	18 2f       	mov	r17, r24
+ 1f0:	42 d0       	rcall	.+132    	; 0x276 <ATtiny861_GpioMap_GetPortRegister>
+ 1f2:	ec 01       	movw	r28, r24
+ 1f4:	00 97       	sbiw	r24, 0x00	; 0
+ 1f6:	11 f4       	brne	.+4      	; 0x1fc <ATtiny861_GpioGetState+0x14>
+ 1f8:	8f ef       	ldi	r24, 0xFF	; 255
+ 1fa:	0d c0       	rjmp	.+26     	; 0x216 <ATtiny861_GpioGetState+0x2e>
+ 1fc:	81 2f       	mov	r24, r17
+ 1fe:	58 d0       	rcall	.+176    	; 0x2b0 <ATtiny861_GpioMap_GetPortBit>
+ 200:	87 fd       	sbrc	r24, 7
+ 202:	fa cf       	rjmp	.-12     	; 0x1f8 <ATtiny861_GpioGetState+0x10>
+ 204:	28 81       	ld	r18, Y
+ 206:	30 e0       	ldi	r19, 0x00	; 0
+ 208:	02 c0       	rjmp	.+4      	; 0x20e <ATtiny861_GpioGetState+0x26>
+ 20a:	35 95       	asr	r19
+ 20c:	27 95       	ror	r18
+ 20e:	8a 95       	dec	r24
+ 210:	e2 f7       	brpl	.-8      	; 0x20a <ATtiny861_GpioGetState+0x22>
+ 212:	82 2f       	mov	r24, r18
+ 214:	81 70       	andi	r24, 0x01	; 1
+ 216:	df 91       	pop	r29
+ 218:	cf 91       	pop	r28
+ 21a:	1f 91       	pop	r17
+ 21c:	08 95       	ret
+
+0000021e <ATtiny861_GpioToggle>:
+ 21e:	1f 93       	push	r17
+ 220:	cf 93       	push	r28
+ 222:	df 93       	push	r29
+ 224:	18 2f       	mov	r17, r24
+ 226:	4f d0       	rcall	.+158    	; 0x2c6 <ATtiny861_GpioMap_GetPinRegister>
+ 228:	ec 01       	movw	r28, r24
+ 22a:	00 97       	sbiw	r24, 0x00	; 0
+ 22c:	11 f4       	brne	.+4      	; 0x232 <ATtiny861_GpioToggle+0x14>
+ 22e:	8f ef       	ldi	r24, 0xFF	; 255
+ 230:	0c c0       	rjmp	.+24     	; 0x24a <ATtiny861_GpioToggle+0x2c>
+ 232:	81 2f       	mov	r24, r17
+ 234:	5a d0       	rcall	.+180    	; 0x2ea <ATtiny861_GpioMap_GetPinBit>
+ 236:	87 fd       	sbrc	r24, 7
+ 238:	fa cf       	rjmp	.-12     	; 0x22e <ATtiny861_GpioToggle+0x10>
+ 23a:	21 e0       	ldi	r18, 0x01	; 1
+ 23c:	30 e0       	ldi	r19, 0x00	; 0
+ 23e:	01 c0       	rjmp	.+2      	; 0x242 <ATtiny861_GpioToggle+0x24>
+ 240:	22 0f       	add	r18, r18
+ 242:	8a 95       	dec	r24
+ 244:	ea f7       	brpl	.-6      	; 0x240 <ATtiny861_GpioToggle+0x22>
+ 246:	28 83       	st	Y, r18
+ 248:	80 e0       	ldi	r24, 0x00	; 0
+ 24a:	df 91       	pop	r29
+ 24c:	cf 91       	pop	r28
+ 24e:	1f 91       	pop	r17
+ 250:	08 95       	ret
+
+00000252 <ATtiny861_GpioMap_GetDdrRegister>:
+ 252:	90 e0       	ldi	r25, 0x00	; 0
+ 254:	fc 01       	movw	r30, r24
+ 256:	31 97       	sbiw	r30, 0x01	; 1
+ 258:	e4 31       	cpi	r30, 0x14	; 20
+ 25a:	f1 05       	cpc	r31, r1
+ 25c:	30 f4       	brcc	.+12     	; 0x26a <__stack+0xb>
+ 25e:	ed 5e       	subi	r30, 0xED	; 237
+ 260:	ff 4f       	sbci	r31, 0xFF	; 255
+ 262:	09 94       	ijmp
+ 264:	8a e3       	ldi	r24, 0x3A	; 58
+ 266:	90 e0       	ldi	r25, 0x00	; 0
+ 268:	08 95       	ret
+ 26a:	80 e0       	ldi	r24, 0x00	; 0
+ 26c:	90 e0       	ldi	r25, 0x00	; 0
+ 26e:	08 95       	ret
+ 270:	87 e3       	ldi	r24, 0x37	; 55
+ 272:	90 e0       	ldi	r25, 0x00	; 0
+ 274:	08 95       	ret
+
+00000276 <ATtiny861_GpioMap_GetPortRegister>:
+ 276:	90 e0       	ldi	r25, 0x00	; 0
+ 278:	fc 01       	movw	r30, r24
+ 27a:	31 97       	sbiw	r30, 0x01	; 1
+ 27c:	e4 31       	cpi	r30, 0x14	; 20
+ 27e:	f1 05       	cpc	r31, r1
+ 280:	30 f4       	brcc	.+12     	; 0x28e <ATtiny861_GpioMap_GetPortRegister+0x18>
+ 282:	e9 5d       	subi	r30, 0xD9	; 217
+ 284:	ff 4f       	sbci	r31, 0xFF	; 255
+ 286:	09 94       	ijmp
+ 288:	8b e3       	ldi	r24, 0x3B	; 59
+ 28a:	90 e0       	ldi	r25, 0x00	; 0
+ 28c:	08 95       	ret
+ 28e:	80 e0       	ldi	r24, 0x00	; 0
+ 290:	90 e0       	ldi	r25, 0x00	; 0
+ 292:	08 95       	ret
+ 294:	88 e3       	ldi	r24, 0x38	; 56
+ 296:	90 e0       	ldi	r25, 0x00	; 0
+ 298:	08 95       	ret
+
+0000029a <ATtiny861_GpioMap_GetDdrBit>:
+ 29a:	81 50       	subi	r24, 0x01	; 1
+ 29c:	84 31       	cpi	r24, 0x14	; 20
+ 29e:	30 f4       	brcc	.+12     	; 0x2ac <ATtiny861_GpioMap_GetDdrBit+0x12>
+ 2a0:	e8 2f       	mov	r30, r24
+ 2a2:	f0 e0       	ldi	r31, 0x00	; 0
+ 2a4:	e8 57       	subi	r30, 0x78	; 120
+ 2a6:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2a8:	80 81       	ld	r24, Z
+ 2aa:	08 95       	ret
+ 2ac:	8f ef       	ldi	r24, 0xFF	; 255
+ 2ae:	08 95       	ret
+
+000002b0 <ATtiny861_GpioMap_GetPortBit>:
+ 2b0:	81 50       	subi	r24, 0x01	; 1
+ 2b2:	84 31       	cpi	r24, 0x14	; 20
+ 2b4:	30 f4       	brcc	.+12     	; 0x2c2 <ATtiny861_GpioMap_GetPortBit+0x12>
+ 2b6:	e8 2f       	mov	r30, r24
+ 2b8:	f0 e0       	ldi	r31, 0x00	; 0
+ 2ba:	ec 58       	subi	r30, 0x8C	; 140
+ 2bc:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2be:	80 81       	ld	r24, Z
+ 2c0:	08 95       	ret
+ 2c2:	8f ef       	ldi	r24, 0xFF	; 255
+ 2c4:	08 95       	ret
+
+000002c6 <ATtiny861_GpioMap_GetPinRegister>:
+ 2c6:	90 e0       	ldi	r25, 0x00	; 0
+ 2c8:	fc 01       	movw	r30, r24
+ 2ca:	31 97       	sbiw	r30, 0x01	; 1
+ 2cc:	e4 31       	cpi	r30, 0x14	; 20
+ 2ce:	f1 05       	cpc	r31, r1
+ 2d0:	30 f4       	brcc	.+12     	; 0x2de <ATtiny861_GpioMap_GetPinRegister+0x18>
+ 2d2:	e5 5c       	subi	r30, 0xC5	; 197
+ 2d4:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2d6:	09 94       	ijmp
+ 2d8:	89 e3       	ldi	r24, 0x39	; 57
+ 2da:	90 e0       	ldi	r25, 0x00	; 0
+ 2dc:	08 95       	ret
+ 2de:	80 e0       	ldi	r24, 0x00	; 0
+ 2e0:	90 e0       	ldi	r25, 0x00	; 0
+ 2e2:	08 95       	ret
+ 2e4:	86 e3       	ldi	r24, 0x36	; 54
+ 2e6:	90 e0       	ldi	r25, 0x00	; 0
+ 2e8:	08 95       	ret
+
+000002ea <ATtiny861_GpioMap_GetPinBit>:
+ 2ea:	81 50       	subi	r24, 0x01	; 1
+ 2ec:	84 31       	cpi	r24, 0x14	; 20
+ 2ee:	30 f4       	brcc	.+12     	; 0x2fc <ATtiny861_GpioMap_GetPinBit+0x12>
+ 2f0:	e8 2f       	mov	r30, r24
+ 2f2:	f0 e0       	ldi	r31, 0x00	; 0
+ 2f4:	e0 5a       	subi	r30, 0xA0	; 160
+ 2f6:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2f8:	80 81       	ld	r24, Z
+ 2fa:	08 95       	ret
+ 2fc:	8f ef       	ldi	r24, 0xFF	; 255
+ 2fe:	08 95       	ret
+
+00000300 <ATtiny861_Timer0_Create>:
+ 300:	00 97       	sbiw	r24, 0x00	; 0
+ 302:	79 f0       	breq	.+30     	; 0x322 <ATtiny861_Timer0_Create+0x22>
+ 304:	a8 9a       	sbi	0x15, 0	; 21
+ 306:	29 b7       	in	r18, 0x39	; 57
+ 308:	20 61       	ori	r18, 0x10	; 16
+ 30a:	29 bf       	out	0x39, r18	; 57
+ 30c:	fc 01       	movw	r30, r24
+ 30e:	21 81       	ldd	r18, Z+1	; 0x01
+ 310:	23 bb       	out	0x13, r18	; 19
+ 312:	80 81       	ld	r24, Z
+ 314:	90 e0       	ldi	r25, 0x00	; 0
+ 316:	90 93 9f 00 	sts	0x009F, r25
+ 31a:	80 93 9e 00 	sts	0x009E, r24
+ 31e:	80 e0       	ldi	r24, 0x00	; 0
+ 320:	08 95       	ret
+ 322:	8f ef       	ldi	r24, 0xFF	; 255
+ 324:	08 95       	ret
+
+00000326 <ATtiny861_Timer0_Start>:
+ 326:	80 91 9e 00 	lds	r24, 0x009E
+ 32a:	90 91 9f 00 	lds	r25, 0x009F
+ 32e:	81 30       	cpi	r24, 0x01	; 1
+ 330:	91 05       	cpc	r25, r1
+ 332:	29 f0       	breq	.+10     	; 0x33e <ATtiny861_Timer0_Start+0x18>
+ 334:	05 97       	sbiw	r24, 0x05	; 5
+ 336:	61 f4       	brne	.+24     	; 0x350 <ATtiny861_Timer0_Start+0x2a>
+ 338:	83 b7       	in	r24, 0x33	; 51
+ 33a:	84 60       	ori	r24, 0x04	; 4
+ 33c:	02 c0       	rjmp	.+4      	; 0x342 <ATtiny861_Timer0_Start+0x1c>
+ 33e:	83 b7       	in	r24, 0x33	; 51
+ 340:	8b 7f       	andi	r24, 0xFB	; 251
+ 342:	83 bf       	out	0x33, r24	; 51
+ 344:	83 b7       	in	r24, 0x33	; 51
+ 346:	8d 7f       	andi	r24, 0xFD	; 253
+ 348:	83 bf       	out	0x33, r24	; 51
+ 34a:	83 b7       	in	r24, 0x33	; 51
+ 34c:	81 60       	ori	r24, 0x01	; 1
+ 34e:	83 bf       	out	0x33, r24	; 51
+ 350:	80 e0       	ldi	r24, 0x00	; 0
+ 352:	08 95       	ret
+
+00000354 <ATtiny861_Timer0_RegisterCallback_MatchA>:
+ 354:	90 93 9d 00 	sts	0x009D, r25
+ 358:	80 93 9c 00 	sts	0x009C, r24
+ 35c:	80 e0       	ldi	r24, 0x00	; 0
+ 35e:	08 95       	ret
+
+00000360 <__vector_14>:
+ 360:	1f 92       	push	r1
+ 362:	0f 92       	push	r0
+ 364:	0f b6       	in	r0, 0x3f	; 63
+ 366:	0f 92       	push	r0
+ 368:	11 24       	eor	r1, r1
+ 36a:	2f 93       	push	r18
+ 36c:	3f 93       	push	r19
+ 36e:	4f 93       	push	r20
+ 370:	5f 93       	push	r21
+ 372:	6f 93       	push	r22
+ 374:	7f 93       	push	r23
+ 376:	8f 93       	push	r24
+ 378:	9f 93       	push	r25
+ 37a:	af 93       	push	r26
+ 37c:	bf 93       	push	r27
+ 37e:	ef 93       	push	r30
+ 380:	ff 93       	push	r31
+ 382:	e0 91 9c 00 	lds	r30, 0x009C
+ 386:	f0 91 9d 00 	lds	r31, 0x009D
+ 38a:	30 97       	sbiw	r30, 0x00	; 0
+ 38c:	09 f0       	breq	.+2      	; 0x390 <__vector_14+0x30>
+ 38e:	09 95       	icall
+ 390:	ff 91       	pop	r31
+ 392:	ef 91       	pop	r30
+ 394:	bf 91       	pop	r27
+ 396:	af 91       	pop	r26
+ 398:	9f 91       	pop	r25
+ 39a:	8f 91       	pop	r24
+ 39c:	7f 91       	pop	r23
+ 39e:	6f 91       	pop	r22
+ 3a0:	5f 91       	pop	r21
+ 3a2:	4f 91       	pop	r20
+ 3a4:	3f 91       	pop	r19
+ 3a6:	2f 91       	pop	r18
+ 3a8:	0f 90       	pop	r0
+ 3aa:	0f be       	out	0x3f, r0	; 63
+ 3ac:	0f 90       	pop	r0
+ 3ae:	1f 90       	pop	r1
+ 3b0:	18 95       	reti
+
+000003b2 <main>:
+ 3b2:	cf 93       	push	r28
+ 3b4:	df 93       	push	r29
+ 3b6:	00 d0       	rcall	.+0      	; 0x3b8 <main+0x6>
+ 3b8:	cd b7       	in	r28, 0x3d	; 61
+ 3ba:	de b7       	in	r29, 0x3e	; 62
+ 3bc:	85 e0       	ldi	r24, 0x05	; 5
+ 3be:	89 83       	std	Y+1, r24	; 0x01
+ 3c0:	8f ef       	ldi	r24, 0xFF	; 255
+ 3c2:	8a 83       	std	Y+2, r24	; 0x02
+ 3c4:	ce 01       	movw	r24, r28
+ 3c6:	01 96       	adiw	r24, 0x01	; 1
+ 3c8:	9b df       	rcall	.-202    	; 0x300 <ATtiny861_Timer0_Create>
+ 3ca:	81 11       	cpse	r24, r1
+ 3cc:	14 c0       	rjmp	.+40     	; 0x3f6 <main+0x44>
+ 3ce:	ab df       	rcall	.-170    	; 0x326 <ATtiny861_Timer0_Start>
+ 3d0:	81 11       	cpse	r24, r1
+ 3d2:	11 c0       	rjmp	.+34     	; 0x3f6 <main+0x44>
+ 3d4:	61 e0       	ldi	r22, 0x01	; 1
+ 3d6:	8c e0       	ldi	r24, 0x0C	; 12
+ 3d8:	ab de       	rcall	.-682    	; 0x130 <ATtiny861_GpioSetAsOutput>
+ 3da:	81 11       	cpse	r24, r1
+ 3dc:	0c c0       	rjmp	.+24     	; 0x3f6 <main+0x44>
+ 3de:	60 e0       	ldi	r22, 0x00	; 0
+ 3e0:	8b e0       	ldi	r24, 0x0B	; 11
+ 3e2:	a6 de       	rcall	.-692    	; 0x130 <ATtiny861_GpioSetAsOutput>
+ 3e4:	81 11       	cpse	r24, r1
+ 3e6:	07 c0       	rjmp	.+14     	; 0x3f6 <main+0x44>
+ 3e8:	8b e6       	ldi	r24, 0x6B	; 107
+ 3ea:	90 e0       	ldi	r25, 0x00	; 0
+ 3ec:	b3 df       	rcall	.-154    	; 0x354 <ATtiny861_Timer0_RegisterCallback_MatchA>
+ 3ee:	81 11       	cpse	r24, r1
+ 3f0:	02 c0       	rjmp	.+4      	; 0x3f6 <main+0x44>
+ 3f2:	78 94       	sei
+ 3f4:	ff cf       	rjmp	.-2      	; 0x3f4 <main+0x42>
+ 3f6:	8f ef       	ldi	r24, 0xFF	; 255
+ 3f8:	9f ef       	ldi	r25, 0xFF	; 255
+ 3fa:	0f 90       	pop	r0
+ 3fc:	0f 90       	pop	r0
+ 3fe:	df 91       	pop	r29
+ 400:	cf 91       	pop	r28
+ 402:	08 95       	ret
+
+00000404 <_exit>:
+ 404:	f8 94       	cli
+
+00000406 <__stop_program>:
+ 406:	ff cf       	rjmp	.-2      	; 0x406 <__stop_program>

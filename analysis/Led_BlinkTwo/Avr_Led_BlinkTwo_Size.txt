@@ -1,9 +1,5 @@
 [ 57%] Built target ATtiny861
-Scanning dependencies of target Avr_Led_BlinkTwo.elf
-[ 71%] Building C object products_avr/Led_BlinkTwo/CMakeFiles/Avr_Led_BlinkTwo.elf.dir/Led_BlinkTwo.c.obj
-[ 85%] Linking C executable ../../bin/Avr_Led_BlinkTwo.elf
 [ 85%] Built target Avr_Led_BlinkTwo.elf
-Scanning dependencies of target Avr_Led_BlinkTwo-size
 [100%] Generating stats for Avr_Led_BlinkTwo.elf
 /home/kevin/coding/c/led_controller/build_avr/bin/Avr_Led_BlinkTwo.elf  :
 section    size   addr
