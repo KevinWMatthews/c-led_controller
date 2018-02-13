@@ -1,0 +1,12 @@
+From man3/FAQ, "Why are (many) interrupt flags cleared by writing a logical 1?":
+	Writing a logical 1 to it requires only a single OUT instruction, and it is clear that only this single interrupt request bit will be cleared.
+	There is no need to perform a read-modify-write cycle (like, an SBI instruction), since all bits in these control registers are interrupt bits, and writing a logical 0 to the remaining bits (as it is done by the simple OUT instruction) will not alter them, so there is no risk of any race condition that might accidentally clear another interrupt request bit.
+	So instead of writing
+
+       TIFR |= _BV(TOV0); /* wrong! */
+
+       simply use
+
+       TIFR = _BV(TOV0);
+
+Interesting.

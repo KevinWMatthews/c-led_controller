@@ -7,6 +7,7 @@ set (target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
 
 add_executable(${target}.elf
     SetBit.c
+	bit_numbers.c
 )
 target_link_libraries(${target}.elf
     PRIVATE
