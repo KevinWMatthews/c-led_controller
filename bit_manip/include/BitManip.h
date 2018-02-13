@@ -34,6 +34,39 @@
  */
 #define SET_BIT(byte, bit_number)       (byte) |= BIT_VALUE(bit_number)
 
+
+
+/*
+ * Some registers, particularly interrupt enable registers, have special behavior:
+ *  writing a 1 performs an operation, such as clearing a flag or toggling a bit.
+ *  writing 0 has no effect.
+ * In this case it is preferable to write the entire register (using =) rather
+ * than using a set bit operation (|=).
+ * Only bits that are set will have an effect, and the assembly is more concise.
+ * It also avoids some perplexing bugs....
+ *
+ * From the AVR toolchain FAQ,
+ * Why are (many) interrupt flags cleared by writing a logical 1?:
+ *      Writing a logical 1 requires only a single OUT instruction, and
+ *      it is clear that only this single interrupt request bit will be cleared.
+ *      There is no need to perform a read-modify-write cycle
+ *      (like, an SBI instruction),
+ *      since all bits in these control registers are interrupt bits,
+ *      and writing a logical 0 to the remaining bits (as it is done by the
+ *      simple OUT instruction) will not alter them, so there is no risk of
+ *      any race condition that might accidentally clear another interrupt
+ *      request bit.
+ *      So instead of writing
+ *          TIFR |= _BV(TOV0); // wrong!
+ *      simply use
+ *          TIFR = _BV(TOV0);
+ *
+ */
+// Do not use this on standard registers! It will clear all other bits.
+#define SET_BIT_INTERRUPT(byte, bit_number)         (byte) = BIT_VALUE(bit_number)
+
+
+
 /*
  * Clear the given (0-indexed) bit in the byte.
  *
@@ -42,5 +75,6 @@
  *      SET_BIT(var, 7) =>  var &= ~(1<<7);
  */
 #define CLEAR_BIT(byte, bit_number)     (byte) &= ~(BIT_VALUE(bit_number))
+
 
 #endif

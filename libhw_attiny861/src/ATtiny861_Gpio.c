@@ -144,7 +144,7 @@ ATTINY861_STATUS_CODE ATtiny861_GpioToggle(ATTINY861_PIN pin)
         return GPIO_INVALID;
     }
 
-    *pin_reg = BIT_VALUE(pin_bit);
+    SET_BIT_INTERRUPT(*pin_reg, pin_bit);
 
     return ATTINY861_SUCCESS;
 }
