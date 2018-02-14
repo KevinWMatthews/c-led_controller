@@ -1,0 +1,28 @@
+Scanning dependencies of target ATtiny861
+[ 14%] Building C object libhw_attiny861/CMakeFiles/ATtiny861.dir/src/ATtiny861_Gpio.c.obj
+[ 28%] Linking C static library ../lib/libATtiny861.a
+[ 57%] Built target ATtiny861
+[ 71%] Linking C executable ../../bin/Libhw_Led_Blink.elf
+[ 85%] Built target Libhw_Led_Blink.elf
+[100%] Generating stats for Libhw_Led_Blink.elf
+/home/kevin/coding/c/led_controller/build_avr/bin/Libhw_Led_Blink.elf  :
+section    size      addr
+.text      1332         0
+.data        60   8388704
+.bss          4   8388764
+.comment     48         0
+Total      1444
+
+
+AVR Memory Usage
+----------------
+Device: attiny861
+
+Program:    1392 bytes (17.0% Full)
+(.text + .data + .bootloader)
+
+Data:         64 bytes (12.5% Full)
+(.data + .bss + .noinit)
+
+
+[100%] Built target Libhw_Led_Blink-size

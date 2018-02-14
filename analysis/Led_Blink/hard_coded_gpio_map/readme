@@ -1,0 +1,3 @@
+The various HardCodedMap files track the image size as I moved the massive GetPortBit() switch statement from GpioMap.c back into Gpio.c.
+
+I was curious to see if some optimaztion could/would occur, but it instead increase the image size. The switch statement now occurs multiple times.
