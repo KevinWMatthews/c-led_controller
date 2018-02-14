@@ -45,8 +45,7 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetState(ATTINY861_PIN pin, GPIO_STATE state
  * Valid for inputs and outputs.
  * If pin or state pointer are invalid, does nothing.
  */
-GPIO_STATE ATtiny861_GpioGetState(ATTINY861_PIN pin);
-ATTINY861_STATUS_CODE ATtiny861_GpioGetState2(ATTINY861_PIN pin, GPIO_STATE *state);
+ATTINY861_STATUS_CODE ATtiny861_GpioGetState(ATTINY861_PIN pin, GPIO_STATE *state);
 
 /*
  * Toggle the state of the given pin.

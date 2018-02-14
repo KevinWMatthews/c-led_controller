@@ -29,12 +29,20 @@ void Led_Destroy(Led * self)
 
 LED_RETURN_CODE Led_GetState(Led self, LED_STATE *state)
 {
+    //TODO need to have gpio state consistent across modules.
+    //Status codes, too.
+    ATTINY861_STATUS_CODE ret;
+    GPIO_STATE gpio_state;
+
     if (state == NULL)
     {
         return LED_NULL_POINTER;
     }
 
-    *state = ATtiny861_GpioGetState(self->pin);
+    ret = ATtiny861_GpioGetState(self->pin, &gpio_state);
+    //TODO what if this fails?
+
+    *state = gpio_state;    //TODO Nice typecast.
     return LED_SUCCESS;
 }
 

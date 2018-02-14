@@ -107,28 +107,7 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetState(ATTINY861_PIN pin, GPIO_STATE state
     return ATTINY861_SUCCESS;
 }
 
-GPIO_STATE ATtiny861_GpioGetState(ATTINY861_PIN pin)
-{
-    //TODO need to rewrite to use PIN bit!!
-
-    volatile uint8_t * port_reg;
-    int8_t port_bit;
-
-    port_reg = ATtiny861_GpioMap_GetPortRegister(pin);
-    if (port_reg == NULL)
-    {
-        return GPIO_INVALID;
-    }
-    port_bit = ATtiny861_GpioMap_GetPortBit(pin);
-    if (port_bit < 0)
-    {
-        return GPIO_INVALID;
-    }
-
-    return bit_is_set(*port_reg, port_bit) && 1;
-}
-
-ATTINY861_STATUS_CODE ATtiny861_GpioGetState2(ATTINY861_PIN pin, GPIO_STATE *state)
+ATTINY861_STATUS_CODE ATtiny861_GpioGetState(ATTINY861_PIN pin, GPIO_STATE *state)
 {
     volatile uint8_t * pin_reg;
     int8_t pin_bit;
