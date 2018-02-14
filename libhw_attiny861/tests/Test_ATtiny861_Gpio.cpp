@@ -181,6 +181,70 @@ TEST(ATtiny861_Gpio, set_output_to_same_state)
 }
 
 
+/*
+ * GetState().
+ */
+TEST(ATtiny861_Gpio, get_state_of_port_A_output_low)
+{
+    GPIO_STATE state;
+    ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_LOW);
+
+    ret = ATtiny861_GpioGetState2(ATTN861_PA0, &state);
+
+    LONGS_EQUAL( ATTINY861_SUCCESS, ret );
+    LONGS_EQUAL( GPIO_LOW, state );
+}
+
+TEST(ATtiny861_Gpio, get_state_of_port_A_output_high)
+{
+    GPIO_STATE state;
+    ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_HIGH);
+
+    ret = ATtiny861_GpioGetState2(ATTN861_PA0, &state);
+
+    LONGS_EQUAL( ATTINY861_SUCCESS, ret );
+    LONGS_EQUAL( GPIO_HIGH, state );
+}
+
+TEST(ATtiny861_Gpio, get_state_of_port_B_output_low)
+{
+    GPIO_STATE state;
+    ATtiny861_GpioSetAsOutput(ATTN861_PB7, GPIO_LOW);
+
+    ret = ATtiny861_GpioGetState2(ATTN861_PB7, &state);
+
+    LONGS_EQUAL( ATTINY861_SUCCESS, ret );
+    LONGS_EQUAL( GPIO_LOW, state );
+}
+
+TEST(ATtiny861_Gpio, get_state_of_port_B_output_high)
+{
+    GPIO_STATE state;
+    ATtiny861_GpioSetAsOutput(ATTN861_PB6, GPIO_HIGH);
+
+    ret = ATtiny861_GpioGetState2(ATTN861_PB6, &state);
+
+    LONGS_EQUAL( ATTINY861_SUCCESS, ret );
+    LONGS_EQUAL( GPIO_HIGH, state );
+}
+
+TEST(ATtiny861_Gpio, will_not_get_state_of_invalid_gpio)
+{
+    GPIO_STATE state = GPIO_INVALID;
+
+    ret = ATtiny861_GpioGetState2(66, &state);
+
+    LONGS_EQUAL( ATTINY861_GPIO_INVALID, ret );
+    LONGS_EQUAL( GPIO_INVALID, state );     // Unmodified
+}
+
+TEST(ATtiny861_Gpio, will_not_fail_with_null_state_pointer)
+{
+    ret = ATtiny861_GpioGetState2(ATTN861_PA0, NULL);
+
+    LONGS_EQUAL( ATTINY861_NULL_POINTER, ret );
+}
+
 
 /*
  * Toggle gpio
