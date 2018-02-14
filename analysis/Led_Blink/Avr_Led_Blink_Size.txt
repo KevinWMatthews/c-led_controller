@@ -1,6 +1,5 @@
 [ 57%] Built target ATtiny861
-[ 71%] Building C object products_avr/Led_Blink/CMakeFiles/Avr_Led_Blink.elf.dir/Led_Blink.c.obj
-[ 85%] Linking C executable ../../bin/Avr_Led_Blink.elf
+[ 71%] Linking C executable ../../bin/Avr_Led_Blink.elf
 [ 85%] Built target Avr_Led_Blink.elf
 [100%] Generating stats for Avr_Led_Blink.elf
 /home/kevin/coding/c/led_controller/build_avr/bin/Avr_Led_Blink.elf  :
