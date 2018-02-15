@@ -49,11 +49,11 @@ static void set_clock_select_bits(int clock_source)
     }
 }
 
-ATTN861_TIMER0_RETURN_CODE ATtiny861_Timer0_Create(ATtiny861_Timer0_Params *params)
+ATTINY861_STATUS_CODE ATtiny861_Timer0_Create(ATtiny861_Timer0_Params *params)
 {
     if (!params)
     {
-        return ATTN861_TIMER0_NULL_POINTER;
+        return ATTINY861_NULL_POINTER;
     }
 
     // Disable timer?
@@ -68,20 +68,20 @@ ATTN861_TIMER0_RETURN_CODE ATtiny861_Timer0_Create(ATtiny861_Timer0_Params *para
     // Start() does this.
     timer0_clock_source = params->clock_source;
 
-    return ATTN861_TIMER0_SUCCESS;
+    return ATTINY861_SUCCESS;
 }
 
-ATTN861_TIMER0_RETURN_CODE ATtiny861_Timer0_Start(void)
+ATTINY861_STATUS_CODE ATtiny861_Timer0_Start(void)
 {
     // Setting the clock source starts the timer.
     set_clock_select_bits(timer0_clock_source);
-    return ATTN861_TIMER0_SUCCESS;
+    return ATTINY861_SUCCESS;
 }
 
-ATTN861_TIMER0_RETURN_CODE ATtiny861_Timer0_RegisterCallback_MatchA(TIMER0_CALLBACK callback)
+ATTINY861_STATUS_CODE ATtiny861_Timer0_RegisterCallback_MatchA(TIMER0_CALLBACK callback)
 {
     timer0_match_a_callback = callback;
-    return ATTN861_TIMER0_SUCCESS;
+    return ATTINY861_SUCCESS;
 }
 
 ISR(TIMER0_COMPA_vect)

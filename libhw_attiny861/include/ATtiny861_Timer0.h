@@ -6,12 +6,6 @@
 
 typedef enum
 {
-    ATTN861_TIMER0_SUCCESS      = 0,
-    ATTN861_TIMER0_NULL_POINTER = -1
-} ATTN861_TIMER0_RETURN_CODE;
-
-typedef enum
-{
     ATTN861_TIMER0_STOPPED                          = 0,    // No clock source
     ATTN861_TIMER0_INTERNAL_CLOCK                   = 1,
     // ATTN861_TIMER0_INTERNAL_CLOCK_PRESCALER_8       = 2
@@ -48,7 +42,7 @@ typedef struct ATtiny861_Timer0_Params
     ATTN861_TIMER0_CLOCK_SOURCE clock_source;
     uint8_t match_value_A;
 } ATtiny861_Timer0_Params;
-ATTN861_TIMER0_RETURN_CODE ATtiny861_Timer0_Create(ATtiny861_Timer0_Params *params);
+ATTINY861_STATUS_CODE ATtiny861_Timer0_Create(ATtiny861_Timer0_Params *params);
 
 /*
  * Destroy Timer0.
@@ -57,21 +51,21 @@ ATTN861_TIMER0_RETURN_CODE ATtiny861_Timer0_Create(ATtiny861_Timer0_Params *para
  *
  * Implement as needed.
  */
-// ATTN861_TIMER0_RETURN_CODE ATtiny861_Timer0_Destroy(void);
+// ATTINY861_STATUS_CODE ATtiny861_Timer0_Destroy(void);
 
 /*
  * Start Timer0.
  *
  * Sets the clock source as specified during Create(), which starts the timer.
  */
-ATTN861_TIMER0_RETURN_CODE ATtiny861_Timer0_Start(void);
+ATTINY861_STATUS_CODE ATtiny861_Timer0_Start(void);
 
 /*
  * Stop Timer0.
  *
  * Implement as needed.
  */
-// ATTN861_TIMER0_RETURN_CODE ATtiny861_Timer0_Stop(void);
+// ATTINY861_STATUS_CODE ATtiny861_Timer0_Stop(void);
 
 /*
  * Register a callback that will be executed with the
@@ -81,7 +75,7 @@ ATTN861_TIMER0_RETURN_CODE ATtiny861_Timer0_Start(void);
  * Currently only allows a single callback to be registered.
  * To clear a callback, register a NULL pointer.
  */
-ATTN861_TIMER0_RETURN_CODE ATtiny861_Timer0_RegisterCallback_MatchA(TIMER0_CALLBACK);
+ATTINY861_STATUS_CODE ATtiny861_Timer0_RegisterCallback_MatchA(TIMER0_CALLBACK);
 
 
 #endif

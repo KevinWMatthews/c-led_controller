@@ -10,7 +10,7 @@ extern "C"
 
 TEST_GROUP(ATtiny861_Timer0)
 {
-    ATTN861_TIMER0_RETURN_CODE ret;
+    ATTINY861_STATUS_CODE ret;
 
     void setup()
     {
@@ -33,7 +33,7 @@ TEST(ATtiny861_Timer0, can_create_timer)
     };
     ret = ATtiny861_Timer0_Create(&params);
 
-    LONGS_EQUAL( ATTN861_TIMER0_SUCCESS, ret );
+    LONGS_EQUAL( ATTINY861_SUCCESS, ret );
     BYTES_EQUAL( _BV(CTC0), TCCR0A );
     BYTES_EQUAL( _BV(OCIE0A), TIMSK );
     BYTES_EQUAL( params.match_value_A, OCR0A );
@@ -42,7 +42,7 @@ TEST(ATtiny861_Timer0, can_create_timer)
 TEST(ATtiny861_Timer0, can_not_pass_null_params_to_create)
 {
     ret = ATtiny861_Timer0_Create(NULL);
-    LONGS_EQUAL( ATTN861_TIMER0_NULL_POINTER, ret );
+    LONGS_EQUAL( ATTINY861_NULL_POINTER, ret );
 }
 
 TEST(ATtiny861_Timer0, can_start_timer_using_system_clock)
@@ -63,7 +63,7 @@ TEST(ATtiny861_Timer0, can_start_timer_using_system_clock)
 
     ret = ATtiny861_Timer0_Start();
 
-    LONGS_EQUAL( ATTN861_TIMER0_SUCCESS, ret );
+    LONGS_EQUAL( ATTINY861_SUCCESS, ret );
     BYTES_EQUAL( expected_clock, TCCR0B );
     // BYTES_EQUAL( 0x00, TCNT0L );        // Never fails... nothing increments the count.
 }
@@ -85,7 +85,7 @@ TEST(ATtiny861_Timer0, can_start_timer_using_internal_clock_with_prescaler_1024)
 
     ret = ATtiny861_Timer0_Start();
 
-    LONGS_EQUAL( ATTN861_TIMER0_SUCCESS, ret );
+    LONGS_EQUAL( ATTINY861_SUCCESS, ret );
     BYTES_EQUAL( expected_clock, TCCR0B );
 }
 
@@ -110,7 +110,7 @@ TEST(ATtiny861_Timer0, can_register_callback_for_timer0_compare_A_interrupt)
 
     ret = ATtiny861_Timer0_RegisterCallback_MatchA(match_a_callback);
 
-    LONGS_EQUAL( ATTN861_TIMER0_SUCCESS, ret );
+    LONGS_EQUAL( ATTINY861_SUCCESS, ret );
 }
 
 TEST(ATtiny861_Timer0, can_clear_callback_for_timer0_compare_A_interrupt)
@@ -124,7 +124,7 @@ TEST(ATtiny861_Timer0, can_clear_callback_for_timer0_compare_A_interrupt)
 
     ret = ATtiny861_Timer0_RegisterCallback_MatchA(NULL);
 
-    LONGS_EQUAL( ATTN861_TIMER0_SUCCESS, ret );
+    LONGS_EQUAL( ATTINY861_SUCCESS, ret );
 }
 
 TEST(ATtiny861_Timer0, can_execute_callback_for_timer0_compare_A_interrupt)
