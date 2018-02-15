@@ -358,3 +358,10 @@ TEST(ATtiny861_Gpio, toggle_two_adjacent_pins_in_opposite_states_reverse)
     CHECK_TRUE( GPIO_READS_HIGH(PORTA, PORTA6) );
     CHECK_TRUE( GPIO_READS_LOW(PORTA, PORTA7) );
 }
+
+TEST(ATtiny861_Gpio, will_not_toggle_invalid_pin)
+{
+    ret = ATtiny861_GpioToggle(255);
+
+    LONGS_EQUAL( ATTINY861_GPIO_INVALID, ret );
+}
