@@ -83,13 +83,18 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput(ATTINY861_PIN pin, GPIO_STATE in
 
 void ATtiny861_GpioInit(void)
 {
+    volatile uint8_t * port_register;
+
     // Pins should default to inputs on power-up.
 
     // The ATtiny861 datasheet, section 10.1.6 states that all unconnected pins
     // should be left as inputs and have their internal pull-up resistor driven high.
-    PORTA = 0xff;
-    PORTB = 0xff;
-    //TODO I wonder if these references could/should be extracted?
+
+    // Use any pin to get a pointer to the entire register.
+    port_register = ATtiny861_GpioMap_GetPortRegister(ATTN861_PA0);
+    *port_register = 0xff;
+    port_register = ATtiny861_GpioMap_GetPortRegister(ATTN861_PB0);
+    *port_register = 0xff;
 }
 
 ATTINY861_STATUS_CODE ATtiny861_GpioSetState(ATTINY861_PIN pin, GPIO_STATE state)
