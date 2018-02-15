@@ -20,7 +20,7 @@ int main(void)
     ATtiny861_Timer0_Params params = {
         .clock_source = ATTN861_TIMER0_INTERNAL_CLOCK_PRESCALER_1024,
         // 1 MHz / (1024*255) = 3.83 Hz
-        .match_value_A = 97
+        .match_value_A = 255
     };
     LED_RETURN_CODE ret;
 
