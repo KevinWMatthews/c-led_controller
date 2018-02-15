@@ -193,3 +193,6 @@ There are several methods of mapping a GPIO to the appropriate registers and bit
     Macros
          I bet we could define ATTN861_Pxn in some fancy way
          and decode information from this.
+
+Thik about what the Led layer should do if the hw layer fails.
+Right now we're suppressing the hw layer return code and providing a generic error response.

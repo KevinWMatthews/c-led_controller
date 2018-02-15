@@ -46,7 +46,11 @@ LED_RETURN_CODE Led_GetState(Led self, LED_STATE *state)
     }
 
     ret = ATtiny861_GpioGetState(self->pin, &gpio_state);
-    //TODO what if this fails?
+    if (ret < 0)
+    {
+        //TODO untested. Don't know how.
+        return LED_ERROR;
+    }
 
     // GPIO state is mapped directly to LED state, for now.
     *state = gpio_state;
@@ -55,37 +59,57 @@ LED_RETURN_CODE Led_GetState(Led self, LED_STATE *state)
 
 LED_RETURN_CODE Led_TurnOn(Led self)
 {
+    ATTINY861_STATUS_CODE ret;
+
     if (self == NULL)
     {
         return LED_NULL_POINTER;
     }
 
-    ATtiny861_GpioSetState(self->pin, GPIO_HIGH);
-    //TODO what if this fails?
+    ret = ATtiny861_GpioSetState(self->pin, GPIO_HIGH);
+    if (ret < 0)
+    {
+        //TODO untested. Don't know how.
+        return LED_ERROR;
+    }
 
     return LED_SUCCESS;
 }
 
 LED_RETURN_CODE Led_TurnOff(Led self)
 {
+    ATTINY861_STATUS_CODE ret;
+
     if (self == NULL)
     {
         return LED_NULL_POINTER;
     }
 
-    ATtiny861_GpioSetState(self->pin, GPIO_LOW);
-    //TODO what if this fails?
+    ret = ATtiny861_GpioSetState(self->pin, GPIO_LOW);
+    if (ret < 0)
+    {
+        //TODO untested. Don't know how.
+        return LED_ERROR;
+    }
 
     return LED_SUCCESS;
 }
 
 LED_RETURN_CODE Led_Toggle(Led self)
 {
+    ATTINY861_STATUS_CODE ret;
+
     if (self == NULL)
     {
         return LED_NULL_POINTER;
     }
-    ATtiny861_GpioToggle(self->pin);
-    //TODO what if this fails?
+
+    ret = ATtiny861_GpioToggle(self->pin);
+    if (ret < 0)
+    {
+        //TODO untested. Don't know how.
+        return LED_ERROR;
+    }
+
     return LED_SUCCESS;
 }

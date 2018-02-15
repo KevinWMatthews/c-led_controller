@@ -8,7 +8,8 @@ typedef struct LedStruct * Led;
 typedef enum
 {
     LED_SUCCESS         =  0,
-    LED_NULL_POINTER    = -1
+    LED_NULL_POINTER    = -1,
+    LED_ERROR           = -2,
 } LED_RETURN_CODE;
 
 /*
