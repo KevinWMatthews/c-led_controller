@@ -3,6 +3,13 @@
 
 #include <inttypes.h>
 
+/*
+ * A list of pins on the ATtiny861.
+ * Any integer constant is sufficient.
+ * These are mapped to the pin numbers on the chip.
+ *
+ * See ATtiny861 datasheet, Figure 1-1.
+ */
 #define ATTN861_PA0     20
 #define ATTN861_PA1     19
 #define ATTN861_PA2     18

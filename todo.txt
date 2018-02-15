@@ -180,3 +180,16 @@ We should probably test the gpio map separately and test only a few pins in the 
 Add quick tests for mock register?
     POINTERS_EQUAL( &PINA, &pina );
     BYTES_EQUAL( PINA, pina );
+
+There are several methods of mapping a GPIO to the appropriate registers and bits:
+    Manually.
+        The traditional way?
+        This spreads an explicit chip dependency throughout the code and is not easily testable.
+        It also requires frequent references to the manual.
+    Switch statement
+        Map using several switch statements.
+    Struct
+        Map using structures.
+    Macros
+         I bet we could define ATTN861_Pxn in some fancy way
+         and decode information from this.
