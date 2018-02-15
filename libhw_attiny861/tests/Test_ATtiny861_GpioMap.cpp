@@ -252,13 +252,13 @@ TEST(ATtiny861_GpioMap, get_DDR_bit_for_PB7)
 /*
  * DDR bit sanity checks
  */
-TEST(ATtiny861_GpioMap, get_PIN_bit_do_not_fail_with_null_bit_number)
+TEST(ATtiny861_GpioMap, get_DDR_bit_do_not_fail_with_null_bit_number)
 {
     ret = ATtiny861_GpioMap_GetDdrBit(ATTN861_PA0, NULL);
     LONGS_EQUAL( ATTINY861_GPIOMAP_NULL_POINTER, ret );
 }
 
-TEST(ATtiny861_GpioMap, get_PIN_bit_return_error_for_invalid_bit_number)
+TEST(ATtiny861_GpioMap, get_DDR_bit_return_error_for_invalid_bit_number)
 {
     ret = ATtiny861_GpioMap_GetDdrBit(255, &bit_number);
     LONGS_EQUAL( ATTINY861_GPIOMAP_INVALID_PIN, ret );
@@ -427,9 +427,9 @@ TEST(ATtiny861_GpioMap, get_PORT_bit_for_PA6)
 
 TEST(ATtiny861_GpioMap, get_PORT_bit_for_PA7)
 {
-    ret = ATtiny861_GpioMap_GetPortBit(ATTN861_PA6, &bit_number);
+    ret = ATtiny861_GpioMap_GetPortBit(ATTN861_PA7, &bit_number);
     LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
-    BYTES_EQUAL( PORTA6, bit_number );
+    BYTES_EQUAL( PORTA7, bit_number );
 }
 
 /*
@@ -492,7 +492,7 @@ TEST(ATtiny861_GpioMap, get_PORT_bit_for_PB7)
 }
 
 /*
- * DDR bit sanity checks
+ * PORT bit sanity checks
  */
 TEST(ATtiny861_GpioMap, get_PORT_bit_do_not_fail_with_null_bit_number)
 {
