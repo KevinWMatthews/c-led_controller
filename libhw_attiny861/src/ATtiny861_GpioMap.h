@@ -2,6 +2,7 @@
 #define ATTINY861_GPIOMAP_INCLUDED
 
 #include "ATtiny861_Pins.h"
+#include "ATtiny861_ReturnCodes.h"
 
 /*
  * Configuring and using GPIO requires knowledge of three registers:
@@ -12,12 +13,6 @@
  * This module provides functions to easily access these values.
  */
 
-typedef enum
-{
-    ATTINY861_GPIOMAP_SUCCESS       = 0,
-    ATTINY861_GPIOMAP_NULL_POINTER  = -1,
-    ATTINY861_GPIOMAP_INVALID_PIN   = -2,
-} ATTINY861_GPIOMAP_STATUS_CODE;
 
 /*
  * Get a pointer to the Data Direction Register for the given pin.
@@ -32,7 +27,7 @@ volatile uint8_t * ATtiny861_GpioMap_GetDdrRegister(ATTINY861_PIN pin);
  *
  * On failure, bit_number is unmodified.
  */
-ATTINY861_GPIOMAP_STATUS_CODE ATtiny861_GpioMap_GetDdrBit(ATTINY861_PIN pin, uint8_t * bit_number);
+ATTINY861_RETURN_CODE ATtiny861_GpioMap_GetDdrBit(ATTINY861_PIN pin, uint8_t * bit_number);
 
 /*
  * Get a pointer to the Port Register for the given pin.
@@ -47,7 +42,7 @@ volatile uint8_t * ATtiny861_GpioMap_GetPortRegister(ATTINY861_PIN pin);
  *
  * On failure, bit_number is unmodified.
  */
-ATTINY861_GPIOMAP_STATUS_CODE ATtiny861_GpioMap_GetPortBit(ATTINY861_PIN pin, uint8_t * bit_number);
+ATTINY861_RETURN_CODE ATtiny861_GpioMap_GetPortBit(ATTINY861_PIN pin, uint8_t * bit_number);
 
 /*
  * Get a pointer to the Pin Register for the given pin.
@@ -62,6 +57,6 @@ volatile uint8_t * ATtiny861_GpioMap_GetPinRegister(ATTINY861_PIN pin);
  *
  * On failure, bit_number is unmodified.
  */
-ATTINY861_GPIOMAP_STATUS_CODE ATtiny861_GpioMap_GetPinBit(ATTINY861_PIN pin, uint8_t * bit_number);
+ATTINY861_RETURN_CODE ATtiny861_GpioMap_GetPinBit(ATTINY861_PIN pin, uint8_t * bit_number);
 
 #endif

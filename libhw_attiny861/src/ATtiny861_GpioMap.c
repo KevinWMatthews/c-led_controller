@@ -32,11 +32,11 @@ volatile uint8_t * ATtiny861_GpioMap_GetDdrRegister(ATTINY861_PIN pin)
     return NULL;
 }
 
-ATTINY861_GPIOMAP_STATUS_CODE ATtiny861_GpioMap_GetDdrBit(ATTINY861_PIN pin, uint8_t * bit_number)
+ATTINY861_RETURN_CODE ATtiny861_GpioMap_GetDdrBit(ATTINY861_PIN pin, uint8_t * bit_number)
 {
     if (bit_number == NULL)
     {
-        return ATTINY861_GPIOMAP_NULL_POINTER;
+        return ATTINY861_NULL_POINTER;
     }
 
     switch (pin)
@@ -92,9 +92,9 @@ ATTINY861_GPIOMAP_STATUS_CODE ATtiny861_GpioMap_GetDdrBit(ATTINY861_PIN pin, uin
             break;
 
         default:
-            return ATTINY861_GPIOMAP_INVALID_PIN;
+            return ATTINY861_PIN_INVALID;
     }
-    return ATTINY861_GPIOMAP_SUCCESS;
+    return ATTINY861_SUCCESS;
 }
 
 volatile uint8_t * ATtiny861_GpioMap_GetPortRegister(ATTINY861_PIN pin)
@@ -125,11 +125,11 @@ volatile uint8_t * ATtiny861_GpioMap_GetPortRegister(ATTINY861_PIN pin)
     return NULL;
 }
 
-ATTINY861_GPIOMAP_STATUS_CODE ATtiny861_GpioMap_GetPortBit(ATTINY861_PIN pin, uint8_t * bit_number)
+ATTINY861_RETURN_CODE ATtiny861_GpioMap_GetPortBit(ATTINY861_PIN pin, uint8_t * bit_number)
 {
     if (bit_number == NULL)
     {
-        return ATTINY861_GPIOMAP_NULL_POINTER;
+        return ATTINY861_NULL_POINTER;
     }
 
     switch (pin)
@@ -185,10 +185,10 @@ ATTINY861_GPIOMAP_STATUS_CODE ATtiny861_GpioMap_GetPortBit(ATTINY861_PIN pin, ui
             break;
 
         default:
-            return ATTINY861_GPIOMAP_INVALID_PIN;
+            return ATTINY861_PIN_INVALID;
     }
 
-    return ATTINY861_GPIOMAP_SUCCESS;
+    return ATTINY861_SUCCESS;
 }
 
 volatile uint8_t * ATtiny861_GpioMap_GetPinRegister(ATTINY861_PIN pin)
@@ -217,11 +217,11 @@ volatile uint8_t * ATtiny861_GpioMap_GetPinRegister(ATTINY861_PIN pin)
     return NULL;
 }
 
-ATTINY861_GPIOMAP_STATUS_CODE ATtiny861_GpioMap_GetPinBit(ATTINY861_PIN pin, uint8_t * bit_number)
+ATTINY861_RETURN_CODE ATtiny861_GpioMap_GetPinBit(ATTINY861_PIN pin, uint8_t * bit_number)
 {
     if (bit_number == NULL)
     {
-        return ATTINY861_GPIOMAP_NULL_POINTER;
+        return ATTINY861_NULL_POINTER;
     }
 
     switch (pin)
@@ -277,7 +277,7 @@ ATTINY861_GPIOMAP_STATUS_CODE ATtiny861_GpioMap_GetPinBit(ATTINY861_PIN pin, uin
             break;
 
         default:
-            return ATTINY861_GPIOMAP_INVALID_PIN;
+            return ATTINY861_PIN_INVALID;
     }
-    return ATTINY861_GPIOMAP_SUCCESS;
+    return ATTINY861_SUCCESS;
 }
