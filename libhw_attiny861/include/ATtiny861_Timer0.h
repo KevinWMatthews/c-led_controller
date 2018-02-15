@@ -75,7 +75,7 @@ ATTINY861_RETURN_CODE ATtiny861_Timer0_Start(void);
  * Currently only allows a single callback to be registered.
  * To clear a callback, register a NULL pointer.
  */
-ATTINY861_RETURN_CODE ATtiny861_Timer0_RegisterCallback_MatchA(TIMER0_CALLBACK);
+ATTINY861_RETURN_CODE ATtiny861_Timer0_RegisterCallback_MatchA(TIMER0_CALLBACK callback);
 
 
 #endif
