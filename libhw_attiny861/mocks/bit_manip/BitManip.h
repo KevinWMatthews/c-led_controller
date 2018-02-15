@@ -1,6 +1,8 @@
 #ifndef _BIT_MANIP_INCLUDED
 #define _BIT_MANIP_INCLUDED
 
+#include <avr/io.h>
+
 #define BYTE_VALUE(bit_number)          (1<<(bit_number))
 
 #define SET_BIT(byte, bit_number)       (byte) |= BYTE_VALUE(bit_number);

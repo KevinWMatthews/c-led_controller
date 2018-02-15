@@ -1,7 +1,6 @@
 #include "ATtiny861_Gpio.h"
 #include "ATtiny861_GpioMap.h"
 #include "BitManip.h"       // will replace avr/io.h
-#include <avr/io.h>
 #include <stddef.h>
 
 //TODO add a direction parameter
