@@ -5,7 +5,7 @@
 #include <stddef.h>
 
 //TODO add a direction parameter
-static ATTINY861_STATUS_CODE set_gpio_direction(volatile uint8_t * ddr, int8_t bit)
+static ATTINY861_STATUS_CODE set_gpio_direction(volatile uint8_t * ddr, uint8_t bit)
 {
     if (ddr == NULL)
     {
@@ -21,7 +21,7 @@ static ATTINY861_STATUS_CODE set_gpio_direction(volatile uint8_t * ddr, int8_t b
     return ATTINY861_SUCCESS;
 }
 
-static ATTINY861_STATUS_CODE set_gpio_state(volatile uint8_t * port, int8_t bit, GPIO_STATE state)
+static ATTINY861_STATUS_CODE set_gpio_state(volatile uint8_t * port, uint8_t bit, GPIO_STATE state)
 {
     if (port == NULL)
     {
@@ -51,7 +51,7 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput(ATTINY861_PIN pin, GPIO_STATE in
     uint8_t ddr_bit;
 
     volatile uint8_t *port;
-    int8_t port_bit;
+    uint8_t port_bit;
 
     ATTINY861_STATUS_CODE ret;
     ATTINY861_GPIOMAP_STATUS_CODE gpiomap_ret;
@@ -66,7 +66,6 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput(ATTINY861_PIN pin, GPIO_STATE in
     port = ATtiny861_GpioMap_GetPortRegister(pin);
     gpiomap_ret = ATtiny861_GpioMap_GetPortBit(pin, &port_bit);
 
-    //TODO Extract this.
     ret = set_gpio_direction(ddr, ddr_bit);
     if (ret < 0)
     {
@@ -96,7 +95,7 @@ void ATtiny861_GpioInit(void)
 ATTINY861_STATUS_CODE ATtiny861_GpioSetState(ATTINY861_PIN pin, GPIO_STATE state)
 {
     volatile uint8_t *port;
-    int8_t port_bit;
+    uint8_t port_bit;
 
     ATTINY861_STATUS_CODE ret;
     ATTINY861_GPIOMAP_STATUS_CODE gpiomap_ret;
@@ -120,7 +119,7 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetState(ATTINY861_PIN pin, GPIO_STATE state
 ATTINY861_STATUS_CODE ATtiny861_GpioGetState(ATTINY861_PIN pin, GPIO_STATE *state)
 {
     volatile uint8_t * pin_reg;
-    int8_t pin_bit;
+    uint8_t pin_bit;
     ATTINY861_GPIOMAP_STATUS_CODE gpiomap_ret;
 
     if (state == NULL)

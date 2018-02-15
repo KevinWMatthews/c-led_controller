@@ -76,5 +76,16 @@
  */
 #define CLEAR_BIT(byte, bit_number)     (byte) &= ~(BYTE_VALUE(bit_number))
 
+/*
+ * Check if the given (0-indexed) bit is 1.
+ * Returns a boolean value.
+ */
+#define IS_BIT_SET(byte, bit_number)    ( (byte & BYTE_VALUE(bit_number)) )
+
+/*
+ * Check if the given (0-indexed) bit is 0.
+ * Returns a boolean value.
+ */
+#define IS_BIT_CLEAR(byte, bit_number)  ( !(byte & BYTE_VALUE(bit_number)) )
 
 #endif
