@@ -22,9 +22,10 @@ void ATtiny861_GpioInit(void);
 
 typedef enum
 {
-    ATTINY861_GPIO_INVALID  = -2,
+    ATTINY861_SUCCESS       = 0,
     ATTINY861_NULL_POINTER  = -1,
-    ATTINY861_SUCCESS       = 0
+    ATTINY861_GPIO_INVALID  = -2,
+    ATTINY861_STATE_INVALID = -3,
 } ATTINY861_STATUS_CODE;
 
 /*

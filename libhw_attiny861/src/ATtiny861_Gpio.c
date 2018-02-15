@@ -1,7 +1,17 @@
 #include "ATtiny861_Gpio.h"
 #include "ATtiny861_GpioMap.h"
-#include "BitManip.h"       // will replace avr/io.h
+#include "BitManip.h"
 #include <stddef.h>
+#include <stdbool.h>
+
+bool is_valid_state(GPIO_STATE state)
+{
+    if (state == GPIO_LOW)
+        return true;
+    else if (state == GPIO_HIGH)
+        return true;
+    return false;
+}
 
 //TODO add a direction parameter
 static ATTINY861_STATUS_CODE set_gpio_direction(volatile uint8_t * ddr, uint8_t bit)
@@ -30,7 +40,6 @@ static ATTINY861_STATUS_CODE set_gpio_state(volatile uint8_t * port, uint8_t bit
     {
         return ATTINY861_GPIO_INVALID;
     }
-    //TODO check for invalid state
 
     if (state == GPIO_HIGH)
     {
@@ -48,12 +57,15 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput(ATTINY861_PIN pin, GPIO_STATE in
 {
     volatile uint8_t *ddr;
     uint8_t ddr_bit;
-
     volatile uint8_t *port;
     uint8_t port_bit;
-
     ATTINY861_STATUS_CODE ret;
     ATTINY861_GPIOMAP_STATUS_CODE gpiomap_ret;
+
+    if ( !is_valid_state(initial_state) )
+    {
+        return ATTINY861_STATE_INVALID;
+    }
 
     ddr = ATtiny861_GpioMap_GetDdrRegister(pin);
     gpiomap_ret = ATtiny861_GpioMap_GetDdrBit(pin, &ddr_bit);
@@ -74,7 +86,7 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput(ATTINY861_PIN pin, GPIO_STATE in
     ret = set_gpio_state(port, port_bit, initial_state);
     if (ret < 0)
     {
-        return ret;     // Uh oh.
+        return ret;
     }
 
     return ATTINY861_SUCCESS;
@@ -100,9 +112,13 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetState(ATTINY861_PIN pin, GPIO_STATE state
 {
     volatile uint8_t *port;
     uint8_t port_bit;
-
     ATTINY861_STATUS_CODE ret;
     ATTINY861_GPIOMAP_STATUS_CODE gpiomap_ret;
+
+    if ( !is_valid_state(state) )
+    {
+        return ATTINY861_STATE_INVALID;
+    }
 
     port = ATtiny861_GpioMap_GetPortRegister(pin);
     gpiomap_ret = ATtiny861_GpioMap_GetPortBit(pin, &port_bit);
@@ -114,7 +130,7 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetState(ATTINY861_PIN pin, GPIO_STATE state
     ret = set_gpio_state(port, port_bit, state);
     if (ret < 0)
     {
-        return ret;     // Uh oh.
+        return ret;
     }
 
     return ATTINY861_SUCCESS;
