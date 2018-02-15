@@ -189,8 +189,9 @@ TEST(ATtiny861_GpioMap, get_DDR_bit_for_PA7)
  */
 TEST(ATtiny861_GpioMap, get_DDR_bit_for_PB1)
 {
-    bit = ATtiny861_GpioMap_GetDdrBit(ATTN861_PB1);
-    BYTES_EQUAL( DDB1, bit );
+    ret = ATtiny861_GpioMap_GetDdrBit2(ATTN861_PB1, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( DDB1, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_DDR_bit_for_PB2)
