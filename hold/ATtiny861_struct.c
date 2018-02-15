@@ -213,7 +213,7 @@ ATTINY861_RETURN_CODE ATtiny861_GpioSetAsOutput(ATTN861_GPIO gpio, GPIO_STATE in
 {
     if (gpio >= ATTN861_GPIO_MAX)
     {
-        return ATTINY861_PIN_INVALID;
+        return ATTINY861_INVALID_PIN;
     }
     set_gpio_as_output(&gpios[gpio]);
     set_gpio_state(&gpios[gpio], initial_state);
@@ -224,7 +224,7 @@ ATTINY861_RETURN_CODE ATtiny861_GpioSetState(ATTN861_GPIO gpio, GPIO_STATE state
 {
     if (gpio >= ATTN861_GPIO_MAX)
     {
-        return ATTINY861_PIN_INVALID;
+        return ATTINY861_INVALID_PIN;
     }
     set_gpio_state(&gpios[gpio], state);
     return ATTINY861_SUCCESS;

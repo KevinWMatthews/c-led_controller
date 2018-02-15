@@ -261,7 +261,7 @@ TEST(ATtiny861_GpioMap, get_DDR_bit_do_not_fail_with_null_bit_number)
 TEST(ATtiny861_GpioMap, get_DDR_bit_return_error_for_invalid_bit_number)
 {
     ret = ATtiny861_GpioMap_GetDdrBit(255, &bit_number);
-    LONGS_EQUAL( ATTINY861_PIN_INVALID, ret );
+    LONGS_EQUAL( ATTINY861_INVALID_PIN, ret );
 }
 
 
@@ -503,7 +503,7 @@ TEST(ATtiny861_GpioMap, get_PORT_bit_do_not_fail_with_null_bit_number)
 TEST(ATtiny861_GpioMap, get_PORT_bit_return_error_for_invalid_bit_number)
 {
     ret = ATtiny861_GpioMap_GetPortBit(255, &bit_number);
-    LONGS_EQUAL( ATTINY861_PIN_INVALID, ret );
+    LONGS_EQUAL( ATTINY861_INVALID_PIN, ret );
 }
 
 
@@ -744,5 +744,5 @@ TEST(ATtiny861_GpioMap, get_PIN_bit_do_not_fail_with_null_bit_number)
 TEST(ATtiny861_GpioMap, get_PIN_bit_return_error_for_invalid_bit_number)
 {
     ret = ATtiny861_GpioMap_GetPinBit(255, &bit_number);
-    LONGS_EQUAL( ATTINY861_PIN_INVALID, ret );
+    LONGS_EQUAL( ATTINY861_INVALID_PIN, ret );
 }

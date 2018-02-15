@@ -148,14 +148,14 @@ TEST(ATtiny861_Gpio, set_two_port_b_pins_to_different_states)
 TEST(ATtiny861_Gpio, set_as_output_will_not_set_invalid_pin)
 {
     ret = ATtiny861_GpioSetAsOutput(66, GPIO_LOW);
-    LONGS_EQUAL( ATTINY861_PIN_INVALID, ret );
+    LONGS_EQUAL( ATTINY861_INVALID_PIN, ret );
 }
 
 TEST(ATtiny861_Gpio, set_as_output_will_not_set_pin_to_invalid_state)
 {
     GPIO_STATE state = (GPIO_STATE)66;
     ret = ATtiny861_GpioSetAsOutput(ATTN861_PB0, state);
-    LONGS_EQUAL( ATTINY861_STATE_INVALID, ret );
+    LONGS_EQUAL( ATTINY861_INVALID_STATE, ret );
 }
 
 
@@ -197,7 +197,7 @@ TEST(ATtiny861_Gpio, will_not_set_state_of_invalid_pin)
 {
     ret = ATtiny861_GpioSetState(255, GPIO_LOW);
 
-    LONGS_EQUAL( ATTINY861_PIN_INVALID, ret );
+    LONGS_EQUAL( ATTINY861_INVALID_PIN, ret );
 }
 
 TEST(ATtiny861_Gpio, set_state_will_not_set_invalid_state)
@@ -206,7 +206,7 @@ TEST(ATtiny861_Gpio, set_state_will_not_set_invalid_state)
 
     ret = ATtiny861_GpioSetState(ATTN861_PA0, state);
 
-    LONGS_EQUAL( ATTINY861_STATE_INVALID, ret );
+    LONGS_EQUAL( ATTINY861_INVALID_STATE, ret );
 }
 
 
@@ -263,7 +263,7 @@ TEST(ATtiny861_Gpio, will_not_get_state_of_invalid_gpio)
 
     ret = ATtiny861_GpioGetState(66, &state);
 
-    LONGS_EQUAL( ATTINY861_PIN_INVALID, ret );
+    LONGS_EQUAL( ATTINY861_INVALID_PIN, ret );
 }
 
 TEST(ATtiny861_Gpio, will_not_fail_with_null_state_pointer)
@@ -384,5 +384,5 @@ TEST(ATtiny861_Gpio, will_not_toggle_invalid_pin)
 {
     ret = ATtiny861_GpioToggle(255);
 
-    LONGS_EQUAL( ATTINY861_PIN_INVALID, ret );
+    LONGS_EQUAL( ATTINY861_INVALID_PIN, ret );
 }

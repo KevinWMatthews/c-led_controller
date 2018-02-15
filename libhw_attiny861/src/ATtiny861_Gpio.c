@@ -58,13 +58,13 @@ ATTINY861_RETURN_CODE ATtiny861_GpioSetAsOutput(ATTINY861_PIN pin, GPIO_STATE in
 
     if ( !is_valid_state(initial_state) )
     {
-        return ATTINY861_STATE_INVALID;
+        return ATTINY861_INVALID_STATE;
     }
 
     ddr = ATtiny861_GpioMap_GetDdrRegister(pin);
     if (ddr == NULL)
     {
-        return ATTINY861_PIN_INVALID;
+        return ATTINY861_INVALID_PIN;
     }
 
     gpiomap_ret = ATtiny861_GpioMap_GetDdrBit(pin, &ddr_bit);
@@ -76,7 +76,7 @@ ATTINY861_RETURN_CODE ATtiny861_GpioSetAsOutput(ATTINY861_PIN pin, GPIO_STATE in
     port = ATtiny861_GpioMap_GetPortRegister(pin);
     if (port == NULL)
     {
-        return ATTINY861_PIN_INVALID;
+        return ATTINY861_INVALID_PIN;
     }
 
     gpiomap_ret = ATtiny861_GpioMap_GetPortBit(pin, &port_bit);
@@ -132,13 +132,13 @@ ATTINY861_RETURN_CODE ATtiny861_GpioSetState(ATTINY861_PIN pin, GPIO_STATE state
 
     if ( !is_valid_state(state) )
     {
-        return ATTINY861_STATE_INVALID;
+        return ATTINY861_INVALID_STATE;
     }
 
     port = ATtiny861_GpioMap_GetPortRegister(pin);
     if (port == NULL)
     {
-        return ATTINY861_PIN_INVALID;
+        return ATTINY861_INVALID_PIN;
     }
 
     gpiomap_ret = ATtiny861_GpioMap_GetPortBit(pin, &port_bit);
@@ -170,13 +170,13 @@ ATTINY861_RETURN_CODE ATtiny861_GpioGetState(ATTINY861_PIN pin, GPIO_STATE *stat
     pin_reg = ATtiny861_GpioMap_GetPinRegister(pin);
     if (pin_reg == NULL)
     {
-        return ATTINY861_PIN_INVALID;
+        return ATTINY861_INVALID_PIN;
     }
 
     gpiomap_ret = ATtiny861_GpioMap_GetPinBit(pin, &pin_bit);
     if (gpiomap_ret < 0)
     {
-        return ATTINY861_PIN_INVALID;
+        return ATTINY861_INVALID_PIN;
     }
 
     *state = IS_BIT_SET(*pin_reg, pin_bit);
@@ -192,13 +192,13 @@ ATTINY861_RETURN_CODE ATtiny861_GpioToggle(ATTINY861_PIN pin)
     pin_reg = ATtiny861_GpioMap_GetPinRegister(pin);
     if (pin_reg == NULL)
     {
-        return ATTINY861_PIN_INVALID;
+        return ATTINY861_INVALID_PIN;
     }
 
     gpiomap_ret = ATtiny861_GpioMap_GetPinBit(pin, &pin_bit);
     if (gpiomap_ret < 0)
     {
-        return ATTINY861_PIN_INVALID;
+        return ATTINY861_INVALID_PIN;
     }
 
     SET_BIT_INTERRUPT(*pin_reg, pin_bit);

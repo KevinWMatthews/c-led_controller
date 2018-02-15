@@ -92,7 +92,7 @@ ATTINY861_RETURN_CODE ATtiny861_GpioMap_GetDdrBit(ATTINY861_PIN pin, uint8_t * b
             break;
 
         default:
-            return ATTINY861_PIN_INVALID;
+            return ATTINY861_INVALID_PIN;
     }
     return ATTINY861_SUCCESS;
 }
@@ -185,7 +185,7 @@ ATTINY861_RETURN_CODE ATtiny861_GpioMap_GetPortBit(ATTINY861_PIN pin, uint8_t * 
             break;
 
         default:
-            return ATTINY861_PIN_INVALID;
+            return ATTINY861_INVALID_PIN;
     }
 
     return ATTINY861_SUCCESS;
@@ -277,7 +277,7 @@ ATTINY861_RETURN_CODE ATtiny861_GpioMap_GetPinBit(ATTINY861_PIN pin, uint8_t * b
             break;
 
         default:
-            return ATTINY861_PIN_INVALID;
+            return ATTINY861_INVALID_PIN;
     }
     return ATTINY861_SUCCESS;
 }
