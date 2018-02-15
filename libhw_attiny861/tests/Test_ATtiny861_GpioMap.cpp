@@ -249,10 +249,8 @@ TEST(ATtiny861_GpioMap, get_DDR_bit_for_PB7)
     BYTES_EQUAL( DDB7, bit_number );
 }
 
-
-
 /*
- * DDR Bit sanity checks
+ * DDR bit sanity checks
  */
 TEST(ATtiny861_GpioMap, do_not_fail_with_null_bit_number)
 {

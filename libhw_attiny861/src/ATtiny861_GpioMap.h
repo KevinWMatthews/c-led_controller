@@ -33,9 +33,11 @@ typedef enum
 // Returns a pointer to memory on success, NULL on failure.
 volatile uint8_t * ATtiny861_GpioMap_GetDdrRegister(ATTINY861_PIN pin);
 
-// Returns 0-indexed bit number (0-7) on success, -1 on failure.
-// You **MUST** check the return code!
-// If the pin is invalid, you *will* set an undefined bit in memory.
+/*
+ * Get the 0-indexed bit number (0-7) of the given pin and place it in bit_number.
+ *
+ * On failure, bit_number is unmodified.
+ */
 ATTINY861_GPIOMAP_STATUS_CODE ATtiny861_GpioMap_GetDdrBit(ATTINY861_PIN pin, uint8_t * bit_number);
 
 // Returns a pointer to memory on success, NULL on failure.
