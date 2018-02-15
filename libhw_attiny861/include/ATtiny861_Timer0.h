@@ -2,6 +2,7 @@
 #define ATTINY861_TIMER0_INCLUDED
 
 #include <stdint.h>
+#include "ATtiny861_ReturnCodes.h"
 
 typedef enum
 {

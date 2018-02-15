@@ -2,6 +2,7 @@
 #define ATTINY861_GPIO_H_INCLUDED
 
 #include "ATtiny861_Pins.h"
+#include "ATtiny861_ReturnCodes.h"
 
 typedef enum
 {
@@ -18,14 +19,6 @@ typedef enum
  * datasheet, section 10.1.6.
  */
 void ATtiny861_GpioInit(void);
-
-typedef enum
-{
-    ATTINY861_SUCCESS       = 0,
-    ATTINY861_NULL_POINTER  = -1,
-    ATTINY861_GPIO_INVALID  = -2,
-    ATTINY861_STATE_INVALID = -3,
-} ATTINY861_STATUS_CODE;
 
 /*
  * Set the given gpio as an output and set its initial state.
