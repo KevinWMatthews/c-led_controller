@@ -49,7 +49,7 @@ static void set_clock_select_bits(int clock_source)
     }
 }
 
-ATTINY861_STATUS_CODE ATtiny861_Timer0_Create(ATtiny861_Timer0_Params *params)
+ATTINY861_RETURN_CODE ATtiny861_Timer0_Create(ATtiny861_Timer0_Params *params)
 {
     if (!params)
     {
@@ -71,14 +71,14 @@ ATTINY861_STATUS_CODE ATtiny861_Timer0_Create(ATtiny861_Timer0_Params *params)
     return ATTINY861_SUCCESS;
 }
 
-ATTINY861_STATUS_CODE ATtiny861_Timer0_Start(void)
+ATTINY861_RETURN_CODE ATtiny861_Timer0_Start(void)
 {
     // Setting the clock source starts the timer.
     set_clock_select_bits(timer0_clock_source);
     return ATTINY861_SUCCESS;
 }
 
-ATTINY861_STATUS_CODE ATtiny861_Timer0_RegisterCallback_MatchA(TIMER0_CALLBACK callback)
+ATTINY861_RETURN_CODE ATtiny861_Timer0_RegisterCallback_MatchA(TIMER0_CALLBACK callback)
 {
     timer0_match_a_callback = callback;
     return ATTINY861_SUCCESS;

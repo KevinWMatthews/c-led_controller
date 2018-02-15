@@ -4,7 +4,7 @@
 
 static void toggle_led_state(void)
 {
-    ATTINY861_STATUS_CODE ret;
+    ATTINY861_RETURN_CODE ret;
 
     ret = ATtiny861_GpioToggle(ATTN861_PA6);
     if (ret != ATTINY861_SUCCESS)
@@ -28,7 +28,7 @@ int main(void)
         .clock_source = ATTN861_TIMER0_INTERNAL_CLOCK_PRESCALER_1024,
         .match_value_A = 255
     };
-    ATTINY861_STATUS_CODE ret;
+    ATTINY861_RETURN_CODE ret;
 
     ret = ATtiny861_Timer0_Create(&timer0_params);
     if (ret != ATTINY861_SUCCESS)

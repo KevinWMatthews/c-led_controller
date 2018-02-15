@@ -10,7 +10,7 @@ typedef struct LedStruct
 
 Led Led_Create(ATTINY861_PIN pin)
 {
-    ATTINY861_STATUS_CODE ret;
+    ATTINY861_RETURN_CODE ret;
     Led self = NULL;
 
     ret = ATtiny861_GpioSetAsOutput(pin, GPIO_LOW);
@@ -37,7 +37,7 @@ void Led_Destroy(Led * self)
 
 LED_RETURN_CODE Led_GetState(Led self, LED_STATE *state)
 {
-    ATTINY861_STATUS_CODE ret;
+    ATTINY861_RETURN_CODE ret;
     GPIO_STATE gpio_state;
 
     if (state == NULL)
@@ -59,7 +59,7 @@ LED_RETURN_CODE Led_GetState(Led self, LED_STATE *state)
 
 LED_RETURN_CODE Led_TurnOn(Led self)
 {
-    ATTINY861_STATUS_CODE ret;
+    ATTINY861_RETURN_CODE ret;
 
     if (self == NULL)
     {
@@ -78,7 +78,7 @@ LED_RETURN_CODE Led_TurnOn(Led self)
 
 LED_RETURN_CODE Led_TurnOff(Led self)
 {
-    ATTINY861_STATUS_CODE ret;
+    ATTINY861_RETURN_CODE ret;
 
     if (self == NULL)
     {
@@ -97,7 +97,7 @@ LED_RETURN_CODE Led_TurnOff(Led self)
 
 LED_RETURN_CODE Led_Toggle(Led self)
 {
-    ATTINY861_STATUS_CODE ret;
+    ATTINY861_RETURN_CODE ret;
 
     if (self == NULL)
     {

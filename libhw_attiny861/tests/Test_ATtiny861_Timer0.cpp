@@ -10,7 +10,7 @@ extern "C"
 
 TEST_GROUP(ATtiny861_Timer0)
 {
-    ATTINY861_STATUS_CODE ret;
+    ATTINY861_RETURN_CODE ret;
 
     void setup()
     {

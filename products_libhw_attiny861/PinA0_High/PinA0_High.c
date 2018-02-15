@@ -6,7 +6,7 @@
  */
 int main(void)
 {
-    ATTINY861_STATUS_CODE ret;
+    ATTINY861_RETURN_CODE ret;
     ret = ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_HIGH);
     if (ret < 0)
     {

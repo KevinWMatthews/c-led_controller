@@ -42,7 +42,7 @@ typedef struct ATtiny861_Timer0_Params
     ATTN861_TIMER0_CLOCK_SOURCE clock_source;
     uint8_t match_value_A;
 } ATtiny861_Timer0_Params;
-ATTINY861_STATUS_CODE ATtiny861_Timer0_Create(ATtiny861_Timer0_Params *params);
+ATTINY861_RETURN_CODE ATtiny861_Timer0_Create(ATtiny861_Timer0_Params *params);
 
 /*
  * Destroy Timer0.
@@ -51,21 +51,21 @@ ATTINY861_STATUS_CODE ATtiny861_Timer0_Create(ATtiny861_Timer0_Params *params);
  *
  * Implement as needed.
  */
-// ATTINY861_STATUS_CODE ATtiny861_Timer0_Destroy(void);
+// ATTINY861_RETURN_CODE ATtiny861_Timer0_Destroy(void);
 
 /*
  * Start Timer0.
  *
  * Sets the clock source as specified during Create(), which starts the timer.
  */
-ATTINY861_STATUS_CODE ATtiny861_Timer0_Start(void);
+ATTINY861_RETURN_CODE ATtiny861_Timer0_Start(void);
 
 /*
  * Stop Timer0.
  *
  * Implement as needed.
  */
-// ATTINY861_STATUS_CODE ATtiny861_Timer0_Stop(void);
+// ATTINY861_RETURN_CODE ATtiny861_Timer0_Stop(void);
 
 /*
  * Register a callback that will be executed with the
@@ -75,7 +75,7 @@ ATTINY861_STATUS_CODE ATtiny861_Timer0_Start(void);
  * Currently only allows a single callback to be registered.
  * To clear a callback, register a NULL pointer.
  */
-ATTINY861_STATUS_CODE ATtiny861_Timer0_RegisterCallback_MatchA(TIMER0_CALLBACK);
+ATTINY861_RETURN_CODE ATtiny861_Timer0_RegisterCallback_MatchA(TIMER0_CALLBACK);
 
 
 #endif

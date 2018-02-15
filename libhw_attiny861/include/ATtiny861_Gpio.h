@@ -24,21 +24,21 @@ void ATtiny861_GpioInit(void);
  * Set the given gpio as an output and set its initial state.
  * If an invalid pin or state is passed, does nothing.
  */
-ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput(ATTINY861_PIN pin, GPIO_STATE initial_state);
+ATTINY861_RETURN_CODE ATtiny861_GpioSetAsOutput(ATTINY861_PIN pin, GPIO_STATE initial_state);
 
 /*
  * Set the given pin to a new state.
  * If an invalid pin or state is passed, does nothing.
  */
 //TODO what does this do if the gpio is an input? Enable the internal pull-up?
-ATTINY861_STATUS_CODE ATtiny861_GpioSetState(ATTINY861_PIN pin, GPIO_STATE state);
+ATTINY861_RETURN_CODE ATtiny861_GpioSetState(ATTINY861_PIN pin, GPIO_STATE state);
 
 /*
  * Get the state of the given pin and place it in state.
  * Valid for inputs and outputs.
  * If pin or state pointer are invalid, does nothing.
  */
-ATTINY861_STATUS_CODE ATtiny861_GpioGetState(ATTINY861_PIN pin, GPIO_STATE *state);
+ATTINY861_RETURN_CODE ATtiny861_GpioGetState(ATTINY861_PIN pin, GPIO_STATE *state);
 
 /*
  * Toggle the state of the given pin.
@@ -47,6 +47,6 @@ ATTINY861_STATUS_CODE ATtiny861_GpioGetState(ATTINY861_PIN pin, GPIO_STATE *stat
  * For outputs, this changes the pin state.
  * For inputs, this enables or disables the internal pull-up.
  */
-ATTINY861_STATUS_CODE ATtiny861_GpioToggle(ATTINY861_PIN pin);
+ATTINY861_RETURN_CODE ATtiny861_GpioToggle(ATTINY861_PIN pin);
 
 #endif
