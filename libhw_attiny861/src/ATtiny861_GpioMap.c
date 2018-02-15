@@ -125,54 +125,7 @@ volatile uint8_t * ATtiny861_GpioMap_GetPortRegister(ATTINY861_PIN pin)
     return NULL;
 }
 
-// Returns < 0 on error.
-// You **MUST** check the return code!
-// If the pin is invalid, you *will* set an undefined bit in memory.
-int8_t ATtiny861_GpioMap_GetPortBit(ATTINY861_PIN pin)
-{
-    switch (pin)
-    {
-        case ATTN861_PA0:
-            return PORTA0;
-        case ATTN861_PA1:
-            return PORTA1;
-        case ATTN861_PA2:
-            return PORTA2;
-        case ATTN861_PA3:
-            return PORTA3;
-        case ATTN861_PA4:
-            return PORTA4;
-        case ATTN861_PA5:
-            return PORTA5;
-        case ATTN861_PA6:
-            return PORTA6;
-        case ATTN861_PA7:
-            return PORTA7;
-
-        case ATTN861_PB0:
-            return PORTB0;
-        case ATTN861_PB1:
-            return PORTB1;
-        case ATTN861_PB2:
-            return PORTB2;
-        case ATTN861_PB3:
-            return PORTB3;
-        case ATTN861_PB4:
-            return PORTB4;
-        case ATTN861_PB5:
-            return PORTB5;
-        case ATTN861_PB6:
-            return PORTB6;
-        case ATTN861_PB7:
-            return PORTB7;
-
-        default:
-            return -1;
-    }
-    return -1;
-}
-
-ATTINY861_GPIOMAP_STATUS_CODE ATtiny861_GpioMap_GetPortBit2(ATTINY861_PIN pin, uint8_t * bit_number)
+ATTINY861_GPIOMAP_STATUS_CODE ATtiny861_GpioMap_GetPortBit(ATTINY861_PIN pin, uint8_t * bit_number)
 {
     if (bit_number == NULL)
     {

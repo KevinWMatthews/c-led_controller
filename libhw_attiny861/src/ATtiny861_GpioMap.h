@@ -48,8 +48,7 @@ volatile uint8_t * ATtiny861_GpioMap_GetPortRegister(ATTINY861_PIN pin);
  *
  * On failure, bit_number is unmodified.
  */
-int8_t ATtiny861_GpioMap_GetPortBit(ATTINY861_PIN pin);
-ATTINY861_GPIOMAP_STATUS_CODE ATtiny861_GpioMap_GetPortBit2(ATTINY861_PIN pin, uint8_t * bit_number);
+ATTINY861_GPIOMAP_STATUS_CODE ATtiny861_GpioMap_GetPortBit(ATTINY861_PIN pin, uint8_t * bit_number);
 
 volatile uint8_t * ATtiny861_GpioMap_GetPinRegister(ATTINY861_PIN pin);
 

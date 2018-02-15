@@ -64,7 +64,7 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput(ATTINY861_PIN pin, GPIO_STATE in
     }
 
     port = ATtiny861_GpioMap_GetPortRegister(pin);
-    port_bit = ATtiny861_GpioMap_GetPortBit(pin);
+    gpiomap_ret = ATtiny861_GpioMap_GetPortBit(pin, &port_bit);
 
     //TODO Extract this.
     ret = set_gpio_direction(ddr, ddr_bit);
@@ -99,9 +99,10 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetState(ATTINY861_PIN pin, GPIO_STATE state
     int8_t port_bit;
 
     ATTINY861_STATUS_CODE ret;
+    ATTINY861_GPIOMAP_STATUS_CODE gpiomap_ret;
 
     port = ATtiny861_GpioMap_GetPortRegister(pin);
-    port_bit = ATtiny861_GpioMap_GetPortBit(pin);
+    gpiomap_ret = ATtiny861_GpioMap_GetPortBit(pin, &port_bit);
 
     ret = set_gpio_state(port, port_bit, state);
     if (ret < 0)
