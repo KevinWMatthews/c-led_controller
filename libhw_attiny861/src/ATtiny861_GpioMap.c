@@ -232,8 +232,45 @@ ATTINY861_GPIOMAP_STATUS_CODE ATtiny861_GpioMap_GetDdrBit2(ATTINY861_PIN pin, ui
         case ATTN861_PA1:
             *bit_number = DDA1;
             break;
+        case ATTN861_PA2:
+            *bit_number = DDA2;
+            break;
+        case ATTN861_PA3:
+            *bit_number = DDA3;
+            break;
+        case ATTN861_PA4:
+            *bit_number = DDA4;
+            break;
+        case ATTN861_PA5:
+            *bit_number = DDA5;
+            break;
+        case ATTN861_PA6:
+            *bit_number = DDA6;
+            break;
+        case ATTN861_PA7:
+            *bit_number = DDA7;
+            break;
+
         case ATTN861_PB1:
             *bit_number = DDB1;
+            break;
+        case ATTN861_PB2:
+            *bit_number = DDB2;
+            break;
+        case ATTN861_PB3:
+            *bit_number = DDB3;
+            break;
+        case ATTN861_PB4:
+            *bit_number = DDB4;
+            break;
+        case ATTN861_PB5:
+            *bit_number = DDB5;
+            break;
+        case ATTN861_PB6:
+            *bit_number = DDB6;
+            break;
+        case ATTN861_PB7:
+            *bit_number = DDB7;
             break;
         default:
             return ATTINY861_GPIOMAP_INVALID_PIN;

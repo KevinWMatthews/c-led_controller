@@ -150,38 +150,44 @@ TEST(ATtiny861_GpioMap, get_DDR_bit_for_PA1)
 
 TEST(ATtiny861_GpioMap, get_DDR_bit_for_PA2)
 {
-    bit = ATtiny861_GpioMap_GetDdrBit(ATTN861_PA2);
-    BYTES_EQUAL( DDA2, bit );
+    ret = ATtiny861_GpioMap_GetDdrBit2(ATTN861_PA2, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( DDA2, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_DDR_bit_for_PA3)
 {
-    bit = ATtiny861_GpioMap_GetDdrBit(ATTN861_PA3);
-    BYTES_EQUAL( DDA3, bit );
+    ret = ATtiny861_GpioMap_GetDdrBit2(ATTN861_PA3, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( DDA3, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_DDR_bit_for_PA4)
 {
-    bit = ATtiny861_GpioMap_GetDdrBit(ATTN861_PA4);
-    BYTES_EQUAL( DDA4, bit );
+    ret = ATtiny861_GpioMap_GetDdrBit2(ATTN861_PA4, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( DDA4, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_DDR_bit_for_PA5)
 {
-    bit = ATtiny861_GpioMap_GetDdrBit(ATTN861_PA5);
-    BYTES_EQUAL( DDA5, bit );
+    ret = ATtiny861_GpioMap_GetDdrBit2(ATTN861_PA5, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( DDA5, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_DDR_bit_for_PA6)
 {
-    bit = ATtiny861_GpioMap_GetDdrBit(ATTN861_PA6);
-    BYTES_EQUAL( DDA6, bit );
+    ret = ATtiny861_GpioMap_GetDdrBit2(ATTN861_PA6, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( DDA6, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_DDR_bit_for_PA7)
 {
-    bit = ATtiny861_GpioMap_GetDdrBit(ATTN861_PA7);
-    BYTES_EQUAL( DDA7, bit );
+    ret = ATtiny861_GpioMap_GetDdrBit2(ATTN861_PA6, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( DDA6, bit_number );
 }
 
 /*
@@ -196,38 +202,44 @@ TEST(ATtiny861_GpioMap, get_DDR_bit_for_PB1)
 
 TEST(ATtiny861_GpioMap, get_DDR_bit_for_PB2)
 {
-    bit = ATtiny861_GpioMap_GetDdrBit(ATTN861_PB2);
-    BYTES_EQUAL( DDB2, bit );
+    ret = ATtiny861_GpioMap_GetDdrBit2(ATTN861_PB2, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( DDB2, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_DDR_bit_for_PB3)
 {
-    bit = ATtiny861_GpioMap_GetDdrBit(ATTN861_PB3);
-    BYTES_EQUAL( DDB3, bit );
+    ret = ATtiny861_GpioMap_GetDdrBit2(ATTN861_PB3, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( DDB3, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_DDR_bit_for_PB4)
 {
-    bit = ATtiny861_GpioMap_GetDdrBit(ATTN861_PB4);
-    BYTES_EQUAL( DDB4, bit );
+    ret = ATtiny861_GpioMap_GetDdrBit2(ATTN861_PB4, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( DDB4, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_DDR_bit_for_PB5)
 {
-    bit = ATtiny861_GpioMap_GetDdrBit(ATTN861_PB5);
-    BYTES_EQUAL( DDB5, bit );
+    ret = ATtiny861_GpioMap_GetDdrBit2(ATTN861_PB5, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( DDB5, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_DDR_bit_for_PB6)
 {
-    bit = ATtiny861_GpioMap_GetDdrBit(ATTN861_PB6);
-    BYTES_EQUAL( DDB6, bit );
+    ret = ATtiny861_GpioMap_GetDdrBit2(ATTN861_PB6, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( DDB6, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_DDR_bit_for_PB7)
 {
-    bit = ATtiny861_GpioMap_GetDdrBit(ATTN861_PB7);
-    BYTES_EQUAL( DDB7, bit );
+    ret = ATtiny861_GpioMap_GetDdrBit2(ATTN861_PB7, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( DDB7, bit_number );
 }
 
 
