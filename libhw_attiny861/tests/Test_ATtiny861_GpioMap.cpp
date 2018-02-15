@@ -619,93 +619,130 @@ TEST(ATtiny861_GpioMap, get_PIN_register_for_PB7)
  */
 TEST(ATtiny861_GpioMap, get_PIN_bit_for_PA0)
 {
-    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PA0);
-    BYTES_EQUAL( PINA0, bit );
+    ret = ATtiny861_GpioMap_GetPinBit2(ATTN861_PA0, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PINA0, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PIN_bit_for_PA1)
 {
-    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PA1);
-    BYTES_EQUAL( PINA1, bit );
+    ret = ATtiny861_GpioMap_GetPinBit2(ATTN861_PA1, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PINA1, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PIN_bit_for_PA2)
 {
-    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PA2);
-    BYTES_EQUAL( PINA2, bit );
+    ret = ATtiny861_GpioMap_GetPinBit2(ATTN861_PA2, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PINA2, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PIN_bit_for_PA3)
 {
-    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PA3);
-    BYTES_EQUAL( PINA3, bit );
+    ret = ATtiny861_GpioMap_GetPinBit2(ATTN861_PA3, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PINA3, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PIN_bit_for_PA4)
 {
-    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PA4);
-    BYTES_EQUAL( PINA4, bit );
+    ret = ATtiny861_GpioMap_GetPinBit2(ATTN861_PA4, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PINA4, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PIN_bit_for_PA5)
 {
-    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PA5);
-    BYTES_EQUAL( PINA5, bit );
+    ret = ATtiny861_GpioMap_GetPinBit2(ATTN861_PA5, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PINA5, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PIN_bit_for_PA6)
 {
-    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PA6);
-    BYTES_EQUAL( PINA6, bit );
+    ret = ATtiny861_GpioMap_GetPinBit2(ATTN861_PA6, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PINA6, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PIN_bit_for_PA7)
 {
-    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PA7);
-    BYTES_EQUAL( PINA7, bit );
+    ret = ATtiny861_GpioMap_GetPinBit2(ATTN861_PA7, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PINA7, bit_number );
 }
 
 /*
  * PINB bits
  */
+TEST(ATtiny861_GpioMap, get_PIN_bit_for_PB0)
+{
+    ret = ATtiny861_GpioMap_GetPortBit(ATTN861_PB0, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PINB0, bit_number );
+}
+
 TEST(ATtiny861_GpioMap, get_PIN_bit_for_PB1)
 {
-    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PB1);
-    BYTES_EQUAL( PINB1, bit );
+    ret = ATtiny861_GpioMap_GetPortBit(ATTN861_PB1, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PINB1, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PIN_bit_for_PB2)
 {
-    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PB2);
-    BYTES_EQUAL( PINB2, bit );
+    ret = ATtiny861_GpioMap_GetPortBit(ATTN861_PB2, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PINB2, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PIN_bit_for_PB3)
 {
-    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PB3);
-    BYTES_EQUAL( PINB3, bit );
+    ret = ATtiny861_GpioMap_GetPortBit(ATTN861_PB3, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PINB3, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PIN_bit_for_PB4)
 {
-    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PB4);
-    BYTES_EQUAL( PINB4, bit );
+    ret = ATtiny861_GpioMap_GetPortBit(ATTN861_PB4, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PINB4, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PIN_bit_for_PB5)
 {
-    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PB5);
-    BYTES_EQUAL( PINB5, bit );
+    ret = ATtiny861_GpioMap_GetPortBit(ATTN861_PB5, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PINB5, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PIN_bit_for_PB6)
 {
-    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PB6);
-    BYTES_EQUAL( PINB6, bit );
+    ret = ATtiny861_GpioMap_GetPortBit(ATTN861_PB6, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PINB6, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PIN_bit_for_PB7)
 {
-    bit = ATtiny861_GpioMap_GetPinBit(ATTN861_PB7);
-    BYTES_EQUAL( PINB7, bit );
+    ret = ATtiny861_GpioMap_GetPortBit(ATTN861_PB7, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PINB7, bit_number );
+}
+
+/*
+ * PIN bit sanity checks
+ */
+TEST(ATtiny861_GpioMap, get_PIN_bit_do_not_fail_with_null_bit_number)
+{
+    ret = ATtiny861_GpioMap_GetPinBit2(ATTN861_PB0, NULL);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_NULL_POINTER, ret );
+}
+
+TEST(ATtiny861_GpioMap, get_PIN_bit_return_error_for_invalid_bit_number)
+{
+    ret = ATtiny861_GpioMap_GetPinBit2(255, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_INVALID_PIN, ret );
 }
