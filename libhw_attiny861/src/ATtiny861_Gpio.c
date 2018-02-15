@@ -103,6 +103,10 @@ ATTINY861_STATUS_CODE ATtiny861_GpioSetState(ATTINY861_PIN pin, GPIO_STATE state
 
     port = ATtiny861_GpioMap_GetPortRegister(pin);
     gpiomap_ret = ATtiny861_GpioMap_GetPortBit(pin, &port_bit);
+    if (gpiomap_ret < 0)
+    {
+        return gpiomap_ret;
+    }
 
     ret = set_gpio_state(port, port_bit, state);
     if (ret < 0)

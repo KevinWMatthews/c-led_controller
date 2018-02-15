@@ -123,7 +123,7 @@ TEST(ATtiny861_Gpio, set_port_b_pin_as_output)
     CHECK_TRUE( GPIO_READS_LOW(PORTB, PORTB0) );
 }
 
-TEST(ATtiny861_Gpio, set_two_port_a_pints_to_different_states)
+TEST(ATtiny861_Gpio, set_two_port_a_pins_to_different_states)
 {
     ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_LOW);
     ATtiny861_GpioSetAsOutput(ATTN861_PA1, GPIO_HIGH);
@@ -134,7 +134,7 @@ TEST(ATtiny861_Gpio, set_two_port_a_pints_to_different_states)
     CHECK_TRUE( GPIO_READS_HIGH(PORTA, PORTA1) );
 }
 
-TEST(ATtiny861_Gpio, set_two_port_b_pints_to_different_states)
+TEST(ATtiny861_Gpio, set_two_port_b_pins_to_different_states)
 {
     ATtiny861_GpioSetAsOutput(ATTN861_PB0, GPIO_LOW);
     ATtiny861_GpioSetAsOutput(ATTN861_PB1, GPIO_HIGH);
@@ -178,6 +178,13 @@ TEST(ATtiny861_Gpio, set_output_to_same_state)
 
     LONGS_EQUAL( ATTINY861_SUCCESS, ret );
     CHECK_TRUE( GPIO_READS_LOW(PORTA, PORTA0) );
+}
+
+TEST(ATtiny861_Gpio, will_not_set_state_of_invalid_pin)
+{
+    ret = ATtiny861_GpioSetState(255, GPIO_LOW);
+
+    LONGS_EQUAL( ATTINY861_GPIO_INVALID, ret );
 }
 
 
