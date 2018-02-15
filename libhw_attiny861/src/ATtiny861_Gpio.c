@@ -48,15 +48,20 @@ static ATTINY861_STATUS_CODE set_gpio_state(volatile uint8_t * port, int8_t bit,
 ATTINY861_STATUS_CODE ATtiny861_GpioSetAsOutput(ATTINY861_PIN pin, GPIO_STATE initial_state)
 {
     volatile uint8_t *ddr;
-    int8_t ddr_bit;
+    uint8_t ddr_bit;
 
     volatile uint8_t *port;
     int8_t port_bit;
 
     ATTINY861_STATUS_CODE ret;
+    ATTINY861_GPIOMAP_STATUS_CODE gpiomap_ret;
 
     ddr = ATtiny861_GpioMap_GetDdrRegister(pin);
-    ddr_bit = ATtiny861_GpioMap_GetDdrBit(pin);
+    gpiomap_ret = ATtiny861_GpioMap_GetDdrBit(pin, &ddr_bit);
+    if (gpiomap_ret < 0)
+    {
+        return gpiomap_ret;
+    }
 
     port = ATtiny861_GpioMap_GetPortRegister(pin);
     port_bit = ATtiny861_GpioMap_GetPortBit(pin);

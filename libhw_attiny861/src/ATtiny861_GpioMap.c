@@ -60,50 +60,6 @@ volatile uint8_t * ATtiny861_GpioMap_GetPortRegister(ATTINY861_PIN pin)
     return NULL;
 }
 
-int8_t ATtiny861_GpioMap_GetDdrBit(ATTINY861_PIN pin)
-{
-    switch (pin)
-    {
-        case ATTN861_PA0:
-            return DDA0;
-        case ATTN861_PA1:
-            return DDA1;
-        case ATTN861_PA2:
-            return DDA2;
-        case ATTN861_PA3:
-            return DDA3;
-        case ATTN861_PA4:
-            return DDA4;
-        case ATTN861_PA5:
-            return DDA5;
-        case ATTN861_PA6:
-            return DDA6;
-        case ATTN861_PA7:
-            return DDA7;
-
-        case ATTN861_PB0:
-            return DDB0;
-        case ATTN861_PB1:
-            return DDB1;
-        case ATTN861_PB2:
-            return DDB2;
-        case ATTN861_PB3:
-            return DDB3;
-        case ATTN861_PB4:
-            return DDB4;
-        case ATTN861_PB5:
-            return DDB5;
-        case ATTN861_PB6:
-            return DDB6;
-        case ATTN861_PB7:
-            return DDB7;
-
-        default:
-            return -1;
-    }
-    return -1;
-}
-
 // Returns < 0 on error.
 // You **MUST** check the return code!
 // If the pin is invalid, you *will* set an undefined bit in memory.
@@ -217,7 +173,7 @@ int8_t ATtiny861_GpioMap_GetPinBit(ATTINY861_PIN pin)
     return -1;
 }
 
-ATTINY861_GPIOMAP_STATUS_CODE ATtiny861_GpioMap_GetDdrBit2(ATTINY861_PIN pin, uint8_t * bit_number)
+ATTINY861_GPIOMAP_STATUS_CODE ATtiny861_GpioMap_GetDdrBit(ATTINY861_PIN pin, uint8_t * bit_number)
 {
     if (bit_number == NULL)
     {
