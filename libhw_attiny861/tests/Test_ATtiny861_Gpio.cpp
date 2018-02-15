@@ -259,12 +259,11 @@ TEST(ATtiny861_Gpio, get_state_of_port_B_output_high)
 
 TEST(ATtiny861_Gpio, will_not_get_state_of_invalid_gpio)
 {
-    GPIO_STATE state = GPIO_INVALID;
+    GPIO_STATE state;
 
     ret = ATtiny861_GpioGetState(66, &state);
 
     LONGS_EQUAL( ATTINY861_GPIO_INVALID, ret );
-    LONGS_EQUAL( GPIO_INVALID, state );     // Unmodified
 }
 
 TEST(ATtiny861_Gpio, will_not_fail_with_null_state_pointer)

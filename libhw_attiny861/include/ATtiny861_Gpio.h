@@ -5,7 +5,6 @@
 
 typedef enum
 {
-    GPIO_INVALID    = -1,
     GPIO_LOW        = 0,
     GPIO_HIGH       = 1
 } GPIO_STATE;
