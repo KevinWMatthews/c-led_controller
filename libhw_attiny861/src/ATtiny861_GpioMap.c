@@ -216,3 +216,9 @@ int8_t ATtiny861_GpioMap_GetPinBit(ATTINY861_PIN pin)
     }
     return -1;
 }
+
+int ATtiny861_GpioMap_GetDdrBit2(ATTINY861_PIN pin, uint8_t * bit_number)
+{
+    *bit_number = DDA0;
+    return 0;
+}

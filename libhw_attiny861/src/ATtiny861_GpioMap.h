@@ -30,6 +30,7 @@ volatile uint8_t * ATtiny861_GpioMap_GetDdrRegister(ATTINY861_PIN pin);
 // You **MUST** check the return code!
 // If the pin is invalid, you *will* set an undefined bit in memory.
 int8_t ATtiny861_GpioMap_GetDdrBit(ATTINY861_PIN pin);
+int ATtiny861_GpioMap_GetDdrBit2(ATTINY861_PIN pin, uint8_t * bit_number);
 
 // Returns a pointer to memory on success, NULL on failure.
 volatile uint8_t * ATtiny861_GpioMap_GetPortRegister(ATTINY861_PIN pin);
