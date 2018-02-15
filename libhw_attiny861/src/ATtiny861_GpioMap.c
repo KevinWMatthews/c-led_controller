@@ -217,47 +217,7 @@ volatile uint8_t * ATtiny861_GpioMap_GetPinRegister(ATTINY861_PIN pin)
     return NULL;
 }
 
-int8_t ATtiny861_GpioMap_GetPinBit(ATTINY861_PIN pin)
-{
-    switch (pin)
-    {
-        case ATTN861_PA0:
-            return PINA0;
-        case ATTN861_PA1:
-            return PINA1;
-        case ATTN861_PA2:
-            return PINA2;
-        case ATTN861_PA3:
-            return PINA3;
-        case ATTN861_PA4:
-            return PINA4;
-        case ATTN861_PA5:
-            return PINA5;
-        case ATTN861_PA6:
-            return PINA6;
-        case ATTN861_PA7:
-            return PINA7;
-        case ATTN861_PB0:
-            return PINB0;
-        case ATTN861_PB1:
-            return PINB1;
-        case ATTN861_PB2:
-            return PINB2;
-        case ATTN861_PB3:
-            return PINB3;
-        case ATTN861_PB4:
-            return PINB4;
-        case ATTN861_PB5:
-            return PINB5;
-        case ATTN861_PB6:
-            return PINB6;
-        case ATTN861_PB7:
-            return PINB7;
-    }
-    return -1;
-}
-
-ATTINY861_GPIOMAP_STATUS_CODE ATtiny861_GpioMap_GetPinBit2(ATTINY861_PIN pin, uint8_t * bit_number)
+ATTINY861_GPIOMAP_STATUS_CODE ATtiny861_GpioMap_GetPinBit(ATTINY861_PIN pin, uint8_t * bit_number)
 {
     if (bit_number == NULL)
     {
