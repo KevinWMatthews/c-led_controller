@@ -28,16 +28,15 @@ int main(void)
         .clock_source = ATTN861_TIMER0_INTERNAL_CLOCK_PRESCALER_1024,
         .match_value_A = 255
     };
-    ATTINY861_STATUS_CODE timer_ret;
     ATTINY861_STATUS_CODE ret;
 
-    timer_ret = ATtiny861_Timer0_Create(&timer0_params);
-    if (timer_ret != ATTINY861_SUCCESS)
+    ret = ATtiny861_Timer0_Create(&timer0_params);
+    if (ret != ATTINY861_SUCCESS)
     {
         return -1;
     }
-    timer_ret = ATtiny861_Timer0_Start();
-    if (timer_ret != ATTINY861_SUCCESS)
+    ret = ATtiny861_Timer0_Start();
+    if (ret != ATTINY861_SUCCESS)
     {
         return -1;
     }
@@ -54,8 +53,8 @@ int main(void)
         return -1;
     }
 
-    timer_ret = ATtiny861_Timer0_RegisterCallback_MatchA(toggle_led_state);
-    if (timer_ret != ATTINY861_SUCCESS)
+    ret = ATtiny861_Timer0_RegisterCallback_MatchA(toggle_led_state);
+    if (ret != ATTINY861_SUCCESS)
     {
         return -1;
     }
