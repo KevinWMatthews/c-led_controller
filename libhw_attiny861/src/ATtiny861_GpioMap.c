@@ -172,6 +172,72 @@ int8_t ATtiny861_GpioMap_GetPortBit(ATTINY861_PIN pin)
     return -1;
 }
 
+ATTINY861_GPIOMAP_STATUS_CODE ATtiny861_GpioMap_GetPortBit2(ATTINY861_PIN pin, uint8_t * bit_number)
+{
+    if (bit_number == NULL)
+    {
+        return ATTINY861_GPIOMAP_NULL_POINTER;
+    }
+
+    switch (pin)
+    {
+        case ATTN861_PA0:
+            *bit_number = PORTA0;
+            break;
+        case ATTN861_PA1:
+            *bit_number = PORTA1;
+            break;
+        case ATTN861_PA2:
+            *bit_number = PORTA2;
+            break;
+        case ATTN861_PA3:
+            *bit_number = PORTA3;
+            break;
+        case ATTN861_PA4:
+            *bit_number = PORTA4;
+            break;
+        case ATTN861_PA5:
+            *bit_number = PORTA5;
+            break;
+        case ATTN861_PA6:
+            *bit_number = PORTA6;
+            break;
+        case ATTN861_PA7:
+            *bit_number = PORTA7;
+            break;
+
+        case ATTN861_PB0:
+            *bit_number = PORTB0;
+            break;
+        case ATTN861_PB1:
+            *bit_number = PORTB1;
+            break;
+        case ATTN861_PB2:
+            *bit_number = PORTB2;
+            break;
+        case ATTN861_PB3:
+            *bit_number = PORTB3;
+            break;
+        case ATTN861_PB4:
+            *bit_number = PORTB4;
+            break;
+        case ATTN861_PB5:
+            *bit_number = PORTB5;
+            break;
+        case ATTN861_PB6:
+            *bit_number = PORTB6;
+            break;
+        case ATTN861_PB7:
+            *bit_number = PORTB7;
+            break;
+
+        default:
+            return ATTINY861_GPIOMAP_INVALID_PIN;
+    }
+
+    return ATTINY861_GPIOMAP_SUCCESS;
+}
+
 volatile uint8_t * ATtiny861_GpioMap_GetPinRegister(ATTINY861_PIN pin)
 {
     switch (pin)

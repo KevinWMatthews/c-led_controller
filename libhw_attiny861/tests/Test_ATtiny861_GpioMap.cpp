@@ -252,13 +252,13 @@ TEST(ATtiny861_GpioMap, get_DDR_bit_for_PB7)
 /*
  * DDR bit sanity checks
  */
-TEST(ATtiny861_GpioMap, do_not_fail_with_null_bit_number)
+TEST(ATtiny861_GpioMap, get_PIN_bit_do_not_fail_with_null_bit_number)
 {
     ret = ATtiny861_GpioMap_GetDdrBit(ATTN861_PA0, NULL);
     LONGS_EQUAL( ATTINY861_GPIOMAP_NULL_POINTER, ret );
 }
 
-TEST(ATtiny861_GpioMap, return_error_for_invalid_bit_number)
+TEST(ATtiny861_GpioMap, get_PIN_bit_return_error_for_invalid_bit_number)
 {
     ret = ATtiny861_GpioMap_GetDdrBit(255, &bit_number);
     LONGS_EQUAL( ATTINY861_GPIOMAP_INVALID_PIN, ret );
@@ -378,95 +378,132 @@ TEST(ATtiny861_GpioMap, get_PORT_register_for_PB7)
  */
 TEST(ATtiny861_GpioMap, get_PORT_bit_for_PA0)
 {
-    bit = ATtiny861_GpioMap_GetPortBit(ATTN861_PA0);
-    BYTES_EQUAL( PORTA0, bit );
+    ret = ATtiny861_GpioMap_GetPortBit2(ATTN861_PA0, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PORTA0, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PORT_bit_for_PA1)
 {
-    bit = ATtiny861_GpioMap_GetPortBit(ATTN861_PA1);
-    BYTES_EQUAL( PORTA1, bit );
+    ret = ATtiny861_GpioMap_GetPortBit2(ATTN861_PA1, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PORTA1, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PORT_bit_for_PA2)
 {
-    bit = ATtiny861_GpioMap_GetPortBit(ATTN861_PA2);
-    BYTES_EQUAL( PORTA2, bit );
+    ret = ATtiny861_GpioMap_GetPortBit2(ATTN861_PA2, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PORTA2, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PORT_bit_for_PA3)
 {
-    bit = ATtiny861_GpioMap_GetPortBit(ATTN861_PA3);
-    BYTES_EQUAL( PORTA3, bit );
+    ret = ATtiny861_GpioMap_GetPortBit2(ATTN861_PA3, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PORTA3, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PORT_bit_for_PA4)
 {
-    bit = ATtiny861_GpioMap_GetPortBit(ATTN861_PA4);
-    BYTES_EQUAL( PORTA4, bit );
+    ret = ATtiny861_GpioMap_GetPortBit2(ATTN861_PA4, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PORTA4, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PORT_bit_for_PA5)
 {
-    bit = ATtiny861_GpioMap_GetPortBit(ATTN861_PA5);
-    BYTES_EQUAL( PORTA5, bit );
+    ret = ATtiny861_GpioMap_GetPortBit2(ATTN861_PA5, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PORTA5, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PORT_bit_for_PA6)
 {
-    bit = ATtiny861_GpioMap_GetPortBit(ATTN861_PA6);
-    BYTES_EQUAL( PORTA6, bit );
+    ret = ATtiny861_GpioMap_GetPortBit2(ATTN861_PA6, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PORTA6, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PORT_bit_for_PA7)
 {
-    bit = ATtiny861_GpioMap_GetPortBit(ATTN861_PA7);
-    BYTES_EQUAL( PORTA7, bit );
+    ret = ATtiny861_GpioMap_GetPortBit2(ATTN861_PA6, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PORTA6, bit_number );
 }
 
 /*
  * PORTB bits
  */
+TEST(ATtiny861_GpioMap, get_PORT_bit_for_PB0)
+{
+    ret = ATtiny861_GpioMap_GetPortBit2(ATTN861_PB0, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PORTB0, bit_number );
+}
+
 TEST(ATtiny861_GpioMap, get_PORT_bit_for_PB1)
 {
-    bit = ATtiny861_GpioMap_GetPortBit(ATTN861_PB1);
-    BYTES_EQUAL( PORTB1, bit );
+    ret = ATtiny861_GpioMap_GetPortBit2(ATTN861_PB1, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PORTB1, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PORT_bit_for_PB2)
 {
-    bit = ATtiny861_GpioMap_GetPortBit(ATTN861_PB2);
-    BYTES_EQUAL( PORTB2, bit );
+    ret = ATtiny861_GpioMap_GetPortBit2(ATTN861_PB2, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PORTB2, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PORT_bit_for_PB3)
 {
-    bit = ATtiny861_GpioMap_GetPortBit(ATTN861_PB3);
-    BYTES_EQUAL( PORTB3, bit );
+    ret = ATtiny861_GpioMap_GetPortBit2(ATTN861_PB3, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PORTB3, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PORT_bit_for_PB4)
 {
-    bit = ATtiny861_GpioMap_GetPortBit(ATTN861_PB4);
-    BYTES_EQUAL( PORTB4, bit );
+    ret = ATtiny861_GpioMap_GetPortBit2(ATTN861_PB4, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PORTB4, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PORT_bit_for_PB5)
 {
-    bit = ATtiny861_GpioMap_GetPortBit(ATTN861_PB5);
-    BYTES_EQUAL( PORTB5, bit );
+    ret = ATtiny861_GpioMap_GetPortBit2(ATTN861_PB5, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PORTB5, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PORT_bit_for_PB6)
 {
-    bit = ATtiny861_GpioMap_GetPortBit(ATTN861_PB6);
-    BYTES_EQUAL( PORTB6, bit );
+    ret = ATtiny861_GpioMap_GetPortBit2(ATTN861_PB6, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PORTB6, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_PORT_bit_for_PB7)
 {
-    bit = ATtiny861_GpioMap_GetPortBit(ATTN861_PB7);
-    BYTES_EQUAL( PORTB7, bit );
+    ret = ATtiny861_GpioMap_GetPortBit2(ATTN861_PB7, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
+    BYTES_EQUAL( PORTB7, bit_number );
+}
+
+/*
+ * DDR bit sanity checks
+ */
+TEST(ATtiny861_GpioMap, get_PORT_bit_do_not_fail_with_null_bit_number)
+{
+    ret = ATtiny861_GpioMap_GetPortBit2(ATTN861_PB0, NULL);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_NULL_POINTER, ret );
+}
+
+TEST(ATtiny861_GpioMap, get_PORT_bit_return_error_for_invalid_bit_number)
+{
+    ret = ATtiny861_GpioMap_GetPortBit2(255, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_INVALID_PIN, ret );
 }
 
 
