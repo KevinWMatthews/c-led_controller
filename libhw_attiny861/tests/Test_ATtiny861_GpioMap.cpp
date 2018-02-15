@@ -11,6 +11,8 @@ TEST_GROUP(ATtiny861_GpioMap)
 {
     volatile uint8_t * reg;
     int8_t bit;
+    uint8_t bit_number;
+    int ret;
 
     void setup()
     {
@@ -134,17 +136,16 @@ TEST(ATtiny861_GpioMap, get_DDR_register_for_PB7)
  */
 TEST(ATtiny861_GpioMap, get_DDR_bit_for_PA0)
 {
-    uint8_t bit_number;
-    int ret;
     ret = ATtiny861_GpioMap_GetDdrBit2(ATTN861_PA0, &bit_number);
-    BYTES_EQUAL( DDA0, bit_number );
     LONGS_EQUAL( 0, ret );
+    BYTES_EQUAL( DDA0, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_DDR_bit_for_PA1)
 {
-    bit = ATtiny861_GpioMap_GetDdrBit(ATTN861_PA1);
-    BYTES_EQUAL( DDA1, bit );
+    ret = ATtiny861_GpioMap_GetDdrBit2(ATTN861_PA1, &bit_number);
+    LONGS_EQUAL( 0, ret );
+    BYTES_EQUAL( DDA1, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_DDR_bit_for_PA2)
