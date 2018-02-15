@@ -49,6 +49,12 @@ TEST(Led, can_destroy_a_null_led)
     Led_Destroy(NULL);
 }
 
+TEST(Led, will_not_create_invalid_led)
+{
+    Led led = Led_Create(42);
+    CHECK_TRUE(led == NULL);
+}
+
 TEST(Led, led_is_off_after_create)
 {
     ret = Led_GetState(led1, &state1);

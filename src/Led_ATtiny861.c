@@ -10,11 +10,18 @@ typedef struct LedStruct
 
 Led Led_Create(ATTINY861_PIN pin)
 {
+    ATTINY861_STATUS_CODE ret;
     Led self = NULL;
+
+    ret = ATtiny861_GpioSetAsOutput(pin, GPIO_LOW);
+    if (ret < 0)
+    {
+        return NULL;
+    }
+
     self = calloc( 1, sizeof(*self) );
     self->pin = pin;
-    ATtiny861_GpioSetAsOutput(self->pin, GPIO_LOW);
-    //TODO what if this fails?
+
     return self;
 }
 
