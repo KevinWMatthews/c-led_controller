@@ -64,7 +64,7 @@ ATTINY861_RETURN_CODE ATtiny861_GpioSetAsOutput(ATTINY861_PIN pin, GPIO_STATE in
     ddr = ATtiny861_GpioMap_GetDdrRegister(pin);
     if (ddr == NULL)
     {
-        return ATTINY861_GPIO_INVALID;
+        return ATTINY861_PIN_INVALID;
     }
 
     gpiomap_ret = ATtiny861_GpioMap_GetDdrBit(pin, &ddr_bit);
@@ -76,7 +76,7 @@ ATTINY861_RETURN_CODE ATtiny861_GpioSetAsOutput(ATTINY861_PIN pin, GPIO_STATE in
     port = ATtiny861_GpioMap_GetPortRegister(pin);
     if (port == NULL)
     {
-        return ATTINY861_GPIO_INVALID;
+        return ATTINY861_PIN_INVALID;
     }
 
     gpiomap_ret = ATtiny861_GpioMap_GetPortBit(pin, &port_bit);
@@ -138,7 +138,7 @@ ATTINY861_RETURN_CODE ATtiny861_GpioSetState(ATTINY861_PIN pin, GPIO_STATE state
     port = ATtiny861_GpioMap_GetPortRegister(pin);
     if (port == NULL)
     {
-        return ATTINY861_GPIO_INVALID;
+        return ATTINY861_PIN_INVALID;
     }
 
     gpiomap_ret = ATtiny861_GpioMap_GetPortBit(pin, &port_bit);
@@ -170,13 +170,13 @@ ATTINY861_RETURN_CODE ATtiny861_GpioGetState(ATTINY861_PIN pin, GPIO_STATE *stat
     pin_reg = ATtiny861_GpioMap_GetPinRegister(pin);
     if (pin_reg == NULL)
     {
-        return ATTINY861_GPIO_INVALID;
+        return ATTINY861_PIN_INVALID;
     }
 
     gpiomap_ret = ATtiny861_GpioMap_GetPinBit(pin, &pin_bit);
     if (gpiomap_ret < 0)
     {
-        return ATTINY861_GPIO_INVALID;
+        return ATTINY861_PIN_INVALID;
     }
 
     *state = IS_BIT_SET(*pin_reg, pin_bit);
@@ -192,13 +192,13 @@ ATTINY861_RETURN_CODE ATtiny861_GpioToggle(ATTINY861_PIN pin)
     pin_reg = ATtiny861_GpioMap_GetPinRegister(pin);
     if (pin_reg == NULL)
     {
-        return ATTINY861_GPIO_INVALID;
+        return ATTINY861_PIN_INVALID;
     }
 
     gpiomap_ret = ATtiny861_GpioMap_GetPinBit(pin, &pin_bit);
     if (gpiomap_ret < 0)
     {
-        return ATTINY861_GPIO_INVALID;
+        return ATTINY861_PIN_INVALID;
     }
 
     SET_BIT_INTERRUPT(*pin_reg, pin_bit);
