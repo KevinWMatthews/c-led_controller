@@ -233,6 +233,24 @@ TEST(ATtiny861_GpioMap, get_DDR_bit_for_PB7)
 
 
 /*
+ * DDR Bit sanity checks
+ */
+TEST(ATtiny861_GpioMap, do_not_fail_with_null_bit_number)
+{
+    ret = ATtiny861_GpioMap_GetDdrBit2(ATTN861_PA0, NULL);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_NULL_POINTER, ret );
+}
+
+TEST(ATtiny861_GpioMap, return_error_for_invalid_bit_number)
+{
+    ret = ATtiny861_GpioMap_GetDdrBit2(255, &bit_number);
+    LONGS_EQUAL( ATTINY861_GPIOMAP_INVALID_PIN, ret );
+}
+
+
+
+
+/*
  * PORTA register
  */
 TEST(ATtiny861_GpioMap, get_PORT_register_for_PA0)

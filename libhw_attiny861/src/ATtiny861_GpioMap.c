@@ -219,6 +219,11 @@ int8_t ATtiny861_GpioMap_GetPinBit(ATTINY861_PIN pin)
 
 ATTINY861_GPIOMAP_STATUS_CODE ATtiny861_GpioMap_GetDdrBit2(ATTINY861_PIN pin, uint8_t * bit_number)
 {
+    if (bit_number == NULL)
+    {
+        return ATTINY861_GPIOMAP_NULL_POINTER;
+    }
+
     switch (pin)
     {
         case ATTN861_PA0:
@@ -230,6 +235,8 @@ ATTINY861_GPIOMAP_STATUS_CODE ATtiny861_GpioMap_GetDdrBit2(ATTINY861_PIN pin, ui
         case ATTN861_PB1:
             *bit_number = DDB1;
             break;
+        default:
+            return ATTINY861_GPIOMAP_INVALID_PIN;
     }
     return ATTINY861_GPIOMAP_SUCCESS;
 }
