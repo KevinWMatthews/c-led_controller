@@ -8,13 +8,17 @@ CMake todo:
 
     Revisit CMAKE_PREFIX_PATH and CPPUTEST_HOME
 
+    Consider setting CPPUTEST_HOME as an environment variable rather than a preprocessor (-D) option.
+
     I am not sure if we would rather compile all LedController tests
     into a single executable or if we would rather have separate
     executables for each module.
 
 Should we write an abstract layer for Timers? I don't need to yet, so don't.
+    It is a shame to have two different abstraction levels in the production code.
+    Perhaps it is good to write a simple wrapper?
 
-_set() still lingers in production code. Leave this? Abstract it away?
+sei() still lingers in production code. Leave this? Abstract it away?
 If we switch processors/toolchains we will need to.
 
 A "button press" triggers multiple interrupts because the pin state change is not clean.
@@ -95,29 +99,11 @@ Learn about how strings are stored in memory.
 
 Do you need to specify the toolchain file first on the command line?
 
-Consider setting CPPUTEST_HOME as an environment variable rather than a preprocessor (-D) option.
-
 Holy crap! Check out the 'make help' target for CppUTest. I have much to learn.
 
-Create a second executable/new product that toggles multiple LEDs.
-
-Add Config.h file per project?
-
-Where should led/gpio mapping be defined? In Led.h or LedMapping.h?
-Similarly for GPIO.
-Led.h should have no hardware references.
+Add Config.h file per product??
 
 Move compiler flags out of toolchain file?
-
-Perhaps I should pull out the specific wiring details into a separate header file.
-Can we use macros?
-
-Add an LED toggle function. Doesn't the hardware specifically support this?
-
-Replace set_gpio_state() with a function pointer.
-This will allow us to set the PORT register on a production build and the PORT and PIN registers on a local/test build.
-
-Can we remove ATTN861_GPIO_MAX?
 
 I think stddef.h in the mock hw is defining NULL... or something?
 
@@ -154,8 +140,6 @@ See if I can use include-what-you-use:
     <lang> is either C or CXX.
     Each of those properties is initialzied with CMAKE_<property
 
-Fix status macros in gpio library. They are generic.
-
 Standardize module names....
 
 Rename Mock_ATtiny.h to something specific to GPIO.
@@ -177,7 +161,7 @@ Perhaps we could infer that only one bit is being set by setting multiple bits (
 
 We should probably test the gpio map separately and test only a few pins in the gpio library.
 
-Add quick tests for mock register?
+Add tests to verify mock registers?
     POINTERS_EQUAL( &PINA, &pina );
     BYTES_EQUAL( PINA, pina );
 
