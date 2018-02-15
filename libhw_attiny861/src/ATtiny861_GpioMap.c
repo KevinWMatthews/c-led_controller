@@ -217,7 +217,7 @@ int8_t ATtiny861_GpioMap_GetPinBit(ATTINY861_PIN pin)
     return -1;
 }
 
-int ATtiny861_GpioMap_GetDdrBit2(ATTINY861_PIN pin, uint8_t * bit_number)
+ATTINY861_GPIOMAP_STATUS_CODE ATtiny861_GpioMap_GetDdrBit2(ATTINY861_PIN pin, uint8_t * bit_number)
 {
     switch (pin)
     {
@@ -228,5 +228,5 @@ int ATtiny861_GpioMap_GetDdrBit2(ATTINY861_PIN pin, uint8_t * bit_number)
             *bit_number = DDA1;
             break;
     }
-    return 0;
+    return ATTINY861_GPIOMAP_SUCCESS;
 }

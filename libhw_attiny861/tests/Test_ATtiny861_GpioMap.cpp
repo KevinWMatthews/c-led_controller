@@ -137,14 +137,14 @@ TEST(ATtiny861_GpioMap, get_DDR_register_for_PB7)
 TEST(ATtiny861_GpioMap, get_DDR_bit_for_PA0)
 {
     ret = ATtiny861_GpioMap_GetDdrBit2(ATTN861_PA0, &bit_number);
-    LONGS_EQUAL( 0, ret );
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
     BYTES_EQUAL( DDA0, bit_number );
 }
 
 TEST(ATtiny861_GpioMap, get_DDR_bit_for_PA1)
 {
     ret = ATtiny861_GpioMap_GetDdrBit2(ATTN861_PA1, &bit_number);
-    LONGS_EQUAL( 0, ret );
+    LONGS_EQUAL( ATTINY861_GPIOMAP_SUCCESS, ret );
     BYTES_EQUAL( DDA1, bit_number );
 }
 
