@@ -1,3 +1,8 @@
+Toolchain stuff:
+	 set CMAKE_AR=ar, CMAKE_LINKER=ld, CMAKE_NM=nm, CMAKE_OBJCOPY=objcopy, CMAKE_OBJDUMP=objdump, CMAKE_STRIP=strip, CMAKE_RANLIB=ranlib.
+	 "set avr linker libs: -lc -lm -lgcc" ?
+	 make sure that we can find the toolchain - use find_path()? use find_program?
+
 Add tests for invalid gpio in the hw library.
 Revisit GpioMap tests.
     They are actually incomplete - as far as the tests are concerned,
