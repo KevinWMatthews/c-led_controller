@@ -6,7 +6,7 @@ The instructions provided are for CMake.
 
 ```bash
 cd led_controller
-# This directory is available and empty for this purpose
+# This directory has been left empty for this purpose
 git clone https://github.com/cpputest/cpputest.git CppUTest
 cd CppUTest
 git checkout v3.8
