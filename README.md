@@ -5,11 +5,11 @@ It is intended to be an example of unit tested design patterns as a simple proje
 ## Structure
 A variety of different products are provided. These typically are implemented using three different techniques:
 
-    * AVR libraries
+    * AVR
         - Directly reference AVR-specific tools, functions, and registers
-    * Hardware abstraction library
+    * Hardware abstraction
         - Wrap the direct AVR references in a library, libhw_attiny861
-    * Software abstraction layer
+    * Software abstraction
         - Create software structures that model specific end-user behavior
 
 Unsurprisingly, with each abstraction layer the size of the executable increases and the amount of interaction with chip-specific hardware (hopefully) decreases.
@@ -23,8 +23,8 @@ For instructions on how to build and run these tests, see the unit test README.
 
     * Cross compilation
         - AVR gcc
-        - AVRDUDE
         - CMake
+        - AVRDUDE
     * Local compilation
         - gcc
         - CMake

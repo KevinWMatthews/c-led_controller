@@ -20,7 +20,7 @@ If unit tests are not compiled, only libraries are created. I don't yet have an 
 ## Cross compilation
 
 ### Toolchain setup
-AVR provides [precompiled toolchains for download here](http://www.atmel.com/tools/atmelavrtoolchainforlinux.aspx).
+AVR provides precompiled toolchains for download here.
 Sign in (you need to create an account), locate, and download:
 
 	* avr8-gnu-toolchain-3.5.4.1709-linux.any.x86_64.tar.gz
@@ -40,19 +40,25 @@ It is possible to build this from source, but I found it sufficient to install i
 
 
 ### Build system setup
-To configure an out-of-tree build for cross-compilation, run
+To configure an out-of-tree build for cross-compilation,
 
-    * Edit the Toolchain-*.cmake.example file to be specific to your system, removing the example suffix.
+    * Locate Toolchain-*.cmake.example
+    * Edit it to be specific to your system
+    * Save as Toolchain-*.cmake
+
+Then run
+
     * mkdir build-<arch>
     * cd build-<arch>
     * cmake ..
         - -DCMAKE_TOOLCHAIN_FILE=Toolchain-*.cmake
         - -DCOMPILE_TESTS=no    # Unit tests are not currently supported on the target architecture.
 
+
 Verify that CMake located the correct C and C++ compilers.
 If it did not, you may need to delete the CMake files and re-generate the build system from scratch. Something in there is hanging on to an out-of-date reference....
 
-Again, various make commands can be run within build-arch/ and will not conflict with builds for the host system or other target architectures.
+Again, various make commands can be run within ```build-<arch>/``` and will not conflict with builds for the host system or other target architectures.
 
 ### Build and install
 To build all programs, simply run

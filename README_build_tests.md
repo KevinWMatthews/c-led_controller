@@ -6,13 +6,15 @@ The instructions provided are for CMake.
 
 ```bash
 cd led_controller
-git clone https://github.com/cpputest/cpputest.git CppUTest 		# This directory is available and empty for this purpose
+# This directory is available and empty for this purpose
+git clone https://github.com/cpputest/cpputest.git CppUTest
 cd CppUTest
 git checkout v3.8
-cd cpputest_build       											# CppUTest provides its own build directory.
+# CppUTest provides its own build directory.
+cd cpputest_build
 cmake .. -DCMAKE_INSTALL_PREFIX=/absolute/path/to/install/dir
 make
-make test															# Just to be sure
+make test	# Just to be sure
 make install
 ```
 
@@ -38,13 +40,15 @@ INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
 and the
 
 ## LedController setup
-Configure our project to harness the framework and build tests.
+Configure this project to link against the test framework and build tests.
 
+```bash
 	* cd led_controller
 	* mkdir build
 	* cd build
 	* cmake .. -DCOMPILE_TESTS=ON -DCPPUTEST_HOME=/absolute/path/to/install/dir
 	* make
+```
 
 Unit test executables are located in the bin/ directory. These can be run manually.
 
