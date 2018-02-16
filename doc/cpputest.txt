@@ -1,13 +1,17 @@
 CppUTest link error:
-    INTERFACE_INCLUDE_DIRECTORIES is getting set improperly in CppUTestTargets.cmake
-    If I shorten /include/CppUTest to /include, then the library will link properly using
-    find_package().
+    CppUTest appears to be configured incorrectly after it is installed.
+
+    See <your_install_dir>/lib/CppUTest/cmake/CppUTestTargets.cmake:
+        set_target_properties(CppUTest PROPERTIES
+          INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/CppUTest"
+        )
+
+    INTERFACE_INCLUDE_DIRECTORIES seems to be set improperly, or I don't know how to link properly.
+    Replace:
+        INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/CppUTest"
+    with:
+        INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
 
     I am not sure how this gets set during the CppUTest build.
     I am not sure if I am linking against the library properly.
     If I answer both of these questions I'd like to fix the error.
-
-    See install/lib/CppUTest/cmake/CppUTestTargets.cmake
-        set_target_properties(CppUTest PROPERTIES
-          INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/CppUTest"
-        )

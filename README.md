@@ -23,6 +23,7 @@ For instructions on how to build and run these tests, see the unit test README.
 
     * Cross compilation
         - AVR gcc
+        - AVRDUDE
         - CMake
     * Local compilation
         - gcc
