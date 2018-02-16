@@ -3,8 +3,8 @@ Welcome! This is a simple LED controller.
 It is intended to be an example of design patterns as a simple project grows to be complex.
 
 # Requirements
+gcc
 CMake
-cmake-gui
 CppUTest
 
 ## Build Setup
@@ -15,10 +15,10 @@ To configure an out-of-tree build, run
 
     * mkdir build
     * cd build
-    * cmake-gui ..
-        - Define CPPUTEST_HOME as location where CppUTest is installed
-        - Configure
-        - Generate
+    * cmake ..
+        - -DINSTALL_PREFIX=/path/to/install/dir
+        - -DCOMPILE_TESTS=<yes/no>
+        - -DCPPUTEST_HOME=/path/to/CppUTest/install/dir
 
 Various make commands can be run from within build/ and will not clutter up the source directory.
 

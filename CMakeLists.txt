@@ -17,11 +17,13 @@ configure_file (
     "${PROJECT_BINARY_DIR}/include/LedControllerConfig.h"
 )
 
+set(CPPUTEST_HOME /usr/local CACHE STRING "Location where CppUTest is installed")
 option(COMPILE_TESTS "Compile unit tests" OFF)
 
 if(COMPILE_TESTS)
     # If tests are compiled, the production code links against CppUTest.
     # Find the library before adding any production source code.
+    message(STATUS "Searching for CppUTest in CPPUTEST_HOME: ${CPPUTEST_HOME}")
     set(CMAKE_PREFIX_PATH "${CPPUTEST_HOME}")
     find_package(CppUTest 3.8 REQUIRED)
 
