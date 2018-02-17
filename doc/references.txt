@@ -9,3 +9,5 @@ References for cross-compilation:
 References for CMake and CppUTest:
     https://r4nd0m6uy.ch/cmake-and-cpputest.html
     http://cpputest.github.io/
+    https://crascit.com/2016/01/31/enhanced-source-file-handling-with-target_sources/
+    https://youtu.be/bsXLMQ6WgIk

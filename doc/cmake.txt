@@ -11,3 +11,8 @@ A double colon in a library forces the library to be a target.
 If the library is not found, CMake will throw an error during build system generation instead of during link time.
 See Daniel Pfeiffer's Effective CMake video about 26:20:
     https://youtu.be/bsXLMQ6WgIk
+
+When extending a targets list of sources using target_sources(),
+list .c files using the PRIVATE property of the target.
+If you populate PUBLIC, the .c file could/will be linked against twice.
+Header files can be PUBLIC, PRIVATE, or INTERFACE as needed.
