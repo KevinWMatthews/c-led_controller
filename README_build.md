@@ -45,11 +45,14 @@ sudo apt install avrdude-doc			# Just in case
 
 
 ### Build system setup
-To configure an out-of-tree build for cross-compilation,
+To configure an out-of-tree build for cross-compilation, first save a copy of ```Toolchain-*.cmake.example``` as ```Toolchain-*.cmake```.
+Then edit AVR_TOOLCHAIN_HOME to point to the newly extracted toolchain:
 
-    * Locate Toolchain-*.cmake.example
-    * Edit it to be specific to your system
-    * Save as Toolchain-*.cmake
+```cmake
+set(AVR_TOOLCHAIN_HOME /path/to/toolchain/dir/avr8-gnu-toolchain-*)
+```
+
+The new ```Toolchain-*.cmake``` file will not and should not be tracked.
 
 Then run
 
@@ -61,7 +64,8 @@ cmake .. -DCMAKE_TOOLCHAIN_FILE=Toolchain-*.cmake -DCOMPILE_TESTS=no
 ```
 
 Verify that CMake located the correct C and C++ compilers.
-If it did not, you may need to delete the CMake files and re-generate the build system from scratch. Something in there is hanging on to an out-of-date reference....
+If it did not, you may need to delete the CMake files and re-generate the build system from scratch. Something in CMake is hanging on to an out-of-date reference....
+Do not try to switch between local and cross-compiled builds in the same directory! It is safer to use different directories for different target architectures.
 
 Again, various make commands can be run within ```build-<arch>/``` and will not conflict with builds for the host system or other target architectures.
 
