@@ -16,3 +16,9 @@ When extending a targets list of sources using target_sources(),
 list .c files using the PRIVATE property of the target.
 If you populate PUBLIC, the .c file could/will be linked against twice.
 Header files can be PUBLIC, PRIVATE, or INTERFACE as needed.
+
+# Specify an alias library for other targets to link against.
+# This is not required but enables to CMake to throw an error while it
+# is generating the build system if the library is not found.
+# Otherwise, we must wait until the linker fails (after compilation).
+add_library(<library>::<alias> ALIAS <library>)

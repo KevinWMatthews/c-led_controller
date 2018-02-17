@@ -21,7 +21,9 @@ if(CMAKE_CROSSCOMPILING)
             LINK_FLAGS ${AVR_LINK_FLAGS}
     )
 else()
-    include(mock_avr/CMakeLists.txt)
+    # Create and link against mock AVR registers.
+    add_subdirectory(mock_avr)
+    target_link_libraries(ATtiny861 PRIVATE ATtiny861::MockRegisters)
 endif(CMAKE_CROSSCOMPILING)
 
 
@@ -32,14 +34,16 @@ if(COMPILE_TESTS)
     )
     target_link_libraries(ATtiny861 PRIVATE CppUTest)
 
-    target_link_libraries(Test_ATtiny861 CppUTest CppUTestExt ATtiny::861)
+    target_link_libraries(Test_ATtiny861
+        PRIVATE
+            CppUTest
+            CppUTestExt
+            ATtiny::861
+            ATtiny861::MockRegisters
+    )
 
     include(tests/CMakeLists.txt)
     include(mocks/CMakeLists.txt)
 endif(COMPILE_TESTS)
 
-# Specify an alias library for other targets to link against.
-# This is not required but enables to CMake to throw an error while it
-# is generating the build system if the library is not found.
-# Otherwise, we must wait until the linker fails (after compilation).
 add_library(ATtiny::861 ALIAS ATtiny861)

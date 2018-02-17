@@ -1,16 +1,17 @@
-target_sources(ATtiny861
+add_library(ATtiny861_MockRegisters "")
+
+target_sources(ATtiny861_MockRegisters
+    PUBLIC
+        "${CMAKE_CURRENT_LIST_DIR}/include/avr/io.h"
+        "${CMAKE_CURRENT_LIST_DIR}/include/avr/interrupt.h"
+        "${CMAKE_CURRENT_LIST_DIR}/include/MockHw_ATtiny861.h"
     PRIVATE
         "${CMAKE_CURRENT_LIST_DIR}/src/mock_io.c"
 )
 
-target_include_directories(ATtiny861
-    PRIVATE
+target_include_directories(ATtiny861_MockRegisters
+    PUBLIC
         "${CMAKE_CURRENT_LIST_DIR}/include"
 )
 
-if(COMPILE_TESTS)
-    target_include_directories(Test_ATtiny861
-        PRIVATE
-            "${CMAKE_CURRENT_LIST_DIR}/include"
-    )
-endif()
+add_library(ATtiny861::MockRegisters ALIAS ATtiny861_MockRegisters)
