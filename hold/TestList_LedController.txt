@@ -1,9 +1,0 @@
-Wire ButtonObserver to LED.
-
-Should this depend on the button HW? Try it and see.
-
-When button is not pressed, led is off.
-When observer detects button press, turn led on.
-When observer detects button release, turn led on.
-When observer detects failure, do nothing.
-    Are you sure?

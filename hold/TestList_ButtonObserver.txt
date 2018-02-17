@@ -1,7 +1,0 @@
-We should change this to be interrupt-driven,
-but reading the GPIO state was the fastest way forward for such a small project.
-
-Detect a state change and call a callback:
-    Different default state.
-
-Should we do anything if Button_GetState fails? We are not handling an invalid state...

@@ -1,1 +1,0 @@
-Want to return BUTTONHW_INVALID in some case. If the buttonhw # is not actually a button?
