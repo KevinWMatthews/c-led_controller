@@ -11,7 +11,7 @@ cd build
 cmake .. -DCOMPILE_TESTS=<yes/no> -DCPPUTEST_HOME=/path/to/CppUTest/install/dir
 ```
 
-That's it!
+For instructions on installing CppUTest and running unit tests, see the [unit test README](README_unit_tests.md).
 
 Various make commands can be run from within build/ and will not clutter up the source directory.
 Unit test executables are located in the build/bin/ directory.
