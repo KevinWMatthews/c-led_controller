@@ -1,8 +1,6 @@
 #ifndef BIT_MANIP_INCLUDED
 #define BIT_MANIP_INCLUDED
 
-
-
 /*
  * Convert a (0-indexed) bit number into a byte value.
  *
@@ -34,8 +32,6 @@
  */
 #define SET_BIT(byte, bit_number)     	(byte) |= BYTE_VALUE(bit_number)
 
-
-
 /*
  * Some registers, particularly interrupt enable registers, have special behavior:
  *  writing a 1 performs an operation, such as clearing a flag or toggling a bit.
@@ -60,12 +56,9 @@
  *          TIFR |= _BV(TOV0); // wrong!
  *      simply use
  *          TIFR = _BV(TOV0);
- *
  */
-// Do not use this on standard registers! It will clear all other bits.
+// Do not use this on normal registers or variables! It will clear all other bits.
 #define SET_BIT_INTERRUPT(byte, bit_number)         (byte) = BYTE_VALUE(bit_number)
-
-
 
 /*
  * Clear the given (0-indexed) bit in the byte.
