@@ -1,25 +1,85 @@
-libhw_ATtiny861:
-    Abstraction layer/library around the hardware.
-    Figure out all things hardware, then implement and document them in this library.
-    The goal is that all hardware interactions take place through this library, which
-    allows a single implementation to be designed and tested.
-    Ideally the user will not need to reference the chip's datasheet; everything
-    should be provided here.
+Brainstorming on what this program could do.
+
+Let's start simple: turn an LED on when a button is pushed. Turn the LED off when the button is released.
+We want to be able to test this independent of the hardware; use the mock interfaces.
+
+Push button             -> LED on
+Release button          -> LED off
+
+ButtonObserver:
+    Create a function that monitors a button press:
+        If button released,
+            check for button press.
+        If button pressed,
+            check for button release.
+
+    This requires knowledge of the button state!
+    Either that or if the existing state has already been processed, that is, have callbacks already been executed.
+
+    Rather than toggling the LED within this thread, provide a callback.
+        We could have one callback that provides state or have two callbacks, one for press and the other for release:
+            on_button_press(void)
+            on_button_release(void)
+
+LedController:
+    Register callbacks with ButtonObserver
+Drop this function within a thread.
+Should the LedController do this?
+
+Should the ButtonObserver have a thread? Possibly. This would mean that we would have a thread for each button.
+Hey, my hardware may not even support threads?
+Let's have the LedController specify the loop/thread/detection timing mechanism.
+It will use a loop.
+    Create Led
+    Create Button
+    Register callbacks
+
+    Every n milliseconds,
+        ButtonObserver_CheckState
+            This will check the button state and execute the appropriate callbacks.
+
+We will test the callbacks.
+We will not test the loop? I don't know how to test code that is in an infinite loop.
+This is to specifically check that the Button is wired to the LED.
+    When the button is not pressed, the LED is off.
+    When button is pressed, the LED turns on.
+    When button is released, the LED turns off.
+    And again.
 
 
-led_blink:
-    Blink an LED periodically.
 
-    Depends on:
-        libhw_ATtiny861GPIO
-        AVR's util/delay.h.
-            For _delay_ms(), but I'd like to convert it to use the chip's internal timers.
+Now let's get more complex: push a button and toggle the LED's state.
+We could drop this directly into main but then we can't test it except on the hardware.
+Create an abstraction layer so we can run tests.
 
-util/delay.h:
-    The easiest way to track time is with the AVR function _delay_ms().
-    This method is not easily viable for mocking.
-    See: http://www.nongnu.org/avr-libc/user-manual/group__util__delay.html
-    _delay_ms() requires:
-        its argument to be an integer constant that is known at compile-time
-        optimization to be enabled
-    They optimize away the floating point calculations during compilation.
+Push button             -> Detect GPIO input state changes.
+Change the LED state    -> Set gpio output
+
+There are already abstraction layers for the LED. We should be able to create it, set its initial state, and change its state:
+    Led_Create()
+    Led_TurnOn(led)
+    Led_TurnOff(led)
+
+There are not yet abstraction layers for a button. We need to create:
+    Buttton_Create()
+    Detect button press/release.
+    Input GPIO
+
+
+How to detect button state change? Must be real-time and track press/release:
+    Store button initial state (released?).
+    When a button press is detected,
+        Set a flag that this button press has been processed.
+            If the LED state change encounters an error, tough; the button press has been processed.
+        Change the LED state.
+    While the button is still pressed,
+        do nothing.
+    When a button release is detected,
+        Clear the flag that the button press has been processed.
+        Do not change the LED state.
+    While the button is released,
+        Do nothing.
+
+   Think about the logic that we use. What if a button press is missed? What if a release is missed?
+
+   Should this depend on a gpio abstraction layer? Yes, let's try this. There is a mock ATtiny861 interface.
