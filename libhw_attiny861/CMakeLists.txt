@@ -1,5 +1,9 @@
 add_library(ATtiny861 "")
 
+if(COMPILE_TESTS)
+    add_executable(Test_ATtiny861 "")
+endif()
+
 include(include/CMakeLists.txt)
 include(src/CMakeLists.txt)
 
@@ -17,7 +21,7 @@ if(CMAKE_CROSSCOMPILING)
             LINK_FLAGS ${AVR_LINK_FLAGS}
     )
 else()
-    include(mocks/CMakeLists.txt)
+    include(mock_avr/CMakeLists.txt)
 endif(CMAKE_CROSSCOMPILING)
 
 
@@ -28,7 +32,10 @@ if(COMPILE_TESTS)
     )
     target_link_libraries(ATtiny861 PRIVATE CppUTest)
 
-    add_subdirectory(tests)
+    target_link_libraries(Test_ATtiny861 CppUTest CppUTestExt ATtiny::861)
+
+    include(tests/CMakeLists.txt)
+    include(mocks/CMakeLists.txt)
 endif(COMPILE_TESTS)
 
 # Specify an alias library for other targets to link against.

@@ -1,18 +1,16 @@
 enable_language(CXX)
 
-add_executable(Test_ATtiny861
-    RunAllTests.cpp
-    Test_ATtiny861_Gpio.cpp
-    Test_ATtiny861_GpioMap.cpp
-    Test_ATtiny861_Timer0.cpp
-    "${CMAKE_CURRENT_SOURCE_DIR}/../mocks/src/MockHw_ATtiny861.c"
-    "${CMAKE_CURRENT_SOURCE_DIR}/../mocks/src/Mock_ATtiny861_Timer0.cpp"
-)
-target_include_directories(Test_ATtiny861
-    PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}"
-    PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../src"
-    PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../mocks/include"
-    PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}/../mocks/bit_manip"
+target_sources(Test_ATtiny861
+    PRIVATE
+        "${CMAKE_CURRENT_LIST_DIR}/RunAllTests.cpp"
+        "${CMAKE_CURRENT_LIST_DIR}/Test_ATtiny861_Gpio.cpp"
+        "${CMAKE_CURRENT_LIST_DIR}/Test_ATtiny861_GpioMap.cpp"
+        "${CMAKE_CURRENT_LIST_DIR}/Test_ATtiny861_Timer0.cpp"
 )
 
-target_link_libraries(Test_ATtiny861 CppUTest CppUTestExt ATtiny::861)
+target_include_directories(Test_ATtiny861
+    PRIVATE
+        "${CMAKE_CURRENT_SOURCE_DIR}/src"
+        "${CMAKE_CURRENT_SOURCE_DIR}/mocks/include"
+        "${CMAKE_CURRENT_SOURCE_DIR}/mocks/bit_manip"
+)
