@@ -1,14 +1,14 @@
 # Build Tests
 
+
 ## CppUTest setup
-I prefer to build from source and install it locally. It can be downloaded from zip and installed to the system, but local builds allow the unit test framework itself to be cross-compiled and run on the target.
-The instructions provided are for CMake.
+There are several methods of obtaining the CppUTest unit test framework. The most flexible is to build from source and install to a local directory (not to the system). This allows the unit test framework itself to be cross-compiled.
+The instructions provided are for CMake; Autotools is available.
 
 ```bash
 cd led_controller
-# This directory has been left empty for this purpose
-git clone https://github.com/cpputest/cpputest.git CppUTest
-cd CppUTest
+# The cpputest directory has been ignored for this purpose
+git clone https://github.com/cpputest/cpputest.git
 git checkout v3.8
 # CppUTest provides its own build directory.
 cd cpputest_build
@@ -18,7 +18,7 @@ make test	# Just to be sure
 make install
 ```
 
-There seems to be a bug in CppUTests CMake installation (or I don't know how to link to a CMake library). The library links properly but can not resolve includes.
+There seems to be a bug in CppUTest's CMake installation (or I don't know how to link to a CMake library). The library links properly but can not resolve CppUTest includes.
 
 See ```<your_install_dir>/lib/CppUTest/cmake/CppUTestTargets.cmake```:
 
@@ -37,23 +37,25 @@ with:
 ```cmake
 INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
 ```
-and the
+and CppUTest includes will be resolved.
+
 
 ## LedController setup
 Configure this project to link against the test framework and build tests.
 
 ```bash
-	* cd led_controller
-	* mkdir build
-	* cd build
-	* cmake .. -DCOMPILE_TESTS=ON -DCPPUTEST_HOME=/absolute/path/to/install/dir
-	* make
+cd led_controller
+mkdir build
+cd build
+cmake .. -DCOMPILE_TESTS=ON -DCPPUTEST_HOME=/absolute/path/to/install/dir
+make
 ```
 
-Unit test executables are located in the bin/ directory. These can be run manually.
+Unit test executables are automatically placed in the build/bin/ directory. These must be run manually.
+
 
 ## Unit test options
-CppUTest provides several useful options for running unit tests. Details are available in their documentation, but a few of my favorites are here:
+CppUTest provides several options for running unit tests. A few of useful ones are here:
 
 | Option      | Effect                                            |
 | ----------- |:-------------------------------------------------:|
@@ -61,3 +63,5 @@ CppUTest provides several useful options for running unit tests. Details are ava
 | -lg         | List all tests groups                             |
 | -sg <group> | Run specific test group                           |
 | -v          | Verbose (useful for seeing which test segfaulted) |
+
+Full details are available in their documentation.
