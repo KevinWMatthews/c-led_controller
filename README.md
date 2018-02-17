@@ -19,7 +19,7 @@ Unsurprisingly, with each abstraction layer the size of the executable increases
 ## Unit tests
 All modules were unit tested during their creation, with the exception of the high-level executables (I don't know how to test this).
 Unit tests leverage the [CppUTest](http://cpputest.github.io/) framework.
-For instructions on how to build and run these tests, see the [unit test README](README_unit_tests).
+For instructions on how to build and run these tests, see the [unit test README](README_unit_tests.md).
 
 
 ## Requirements
