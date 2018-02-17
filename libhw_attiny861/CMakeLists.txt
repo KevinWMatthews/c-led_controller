@@ -14,7 +14,6 @@ target_include_directories(ATtiny861
 )
 
 if(CMAKE_CROSSCOMPILING)
-    target_include_directories(ATtiny861 PRIVATE "${AVR_TOOLCHAIN_HOME}/avr")
     set_target_properties(ATtiny861
         PROPERTIES
             COMPILE_FLAGS ${AVR_COMPILE_FLAGS}
