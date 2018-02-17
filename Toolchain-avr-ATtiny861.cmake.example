@@ -4,24 +4,26 @@
 # For further details on cross compiling using CMake, see:
 #   https://cmake.org/Wiki/CMake_Cross_Compiling
 
-set (AVR_MCU "attiny861")
-set (AVR_TOOLCHAIN_HOME /path/to/toolchain/avr8-gnu-toolchain-linux_x86_64)
-set (AVR_COMPILE_FLAGS "-mmcu=${AVR_MCU} -Os -Wall -Wstrict-prototypes -funsigned-bitfields -funsigned-char -fpack-struct -fshort-enums")
-set (AVR_LINK_FLAGS "-mmcu=${AVR_MCU}")
+# Set this to be specific to your system.
+set(AVR_TOOLCHAIN_HOME /path/to/toolchain/avr8-gnu-toolchain-linux_x86_64)
 
-set (CMAKE_SYSTEM_NAME Generic)
-set (CMAKE_C_COMPILER ${AVR_TOOLCHAIN_HOME}/bin/avr-gcc)
-set (CMAKE_CXX_COMPILER ${AVR_TOOLCHAIN_HOME}/bin/avr-g++)
-set (AVR_SIZE ${AVR_TOOLCHAIN_HOME}/bin/avr-size)
+set(AVR_MCU "attiny861")
+set(AVR_COMPILE_FLAGS "-mmcu=${AVR_MCU} -Os -Wall -Wstrict-prototypes -funsigned-bitfields -funsigned-char -fpack-struct -fshort-enums")
+set(AVR_LINK_FLAGS "-mmcu=${AVR_MCU}")
+
+set(CMAKE_SYSTEM_NAME Generic)
+set(CMAKE_C_COMPILER ${AVR_TOOLCHAIN_HOME}/bin/avr-gcc)
+set(CMAKE_CXX_COMPILER ${AVR_TOOLCHAIN_HOME}/bin/avr-g++)
+set(AVR_SIZE ${AVR_TOOLCHAIN_HOME}/bin/avr-size)
 
 # Build and install setup
-set (CMAKE_FIND_ROOT_PATH ${AVR_TOOLCHAIN_HOME})
-set (CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
-set (CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
-set (CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
+set(CMAKE_FIND_ROOT_PATH ${AVR_TOOLCHAIN_HOME})
+set(CMAKE_FIND_ROOT_PATH_MODE_PROGRAM NEVER)
+set(CMAKE_FIND_ROOT_PATH_MODE_LIBRARY ONLY)
+set(CMAKE_FIND_ROOT_PATH_MODE_INCLUDE ONLY)
 
 # avrdude programming options
-set (AVRDUDE avrdude)
-set (AVRDUDE_PORT usb)
-set (AVRDUDE_MCU t861)
-set (AVRDUDE_PROGRAMMERID avrispmkII)
+set(AVRDUDE avrdude)
+set(AVRDUDE_PORT usb)
+set(AVRDUDE_MCU t861)
+set(AVRDUDE_PROGRAMMERID avrispmkII)
