@@ -45,7 +45,7 @@ sudo apt install avrdude-doc			# Just in case
 
 
 ### Build system setup
-To configure an out-of-tree build for cross-compilation, first save a copy of ```Toolchain-*.cmake.example``` as ```Toolchain-*.cmake```.
+To configure an out-of-tree build for cross-compilation, first save a copy of ```Toolchain-avr-*.cmake.example``` as ```Toolchain-avr-*.cmake```.
 Then edit AVR_TOOLCHAIN_HOME to point to the newly extracted toolchain:
 
 ```cmake
