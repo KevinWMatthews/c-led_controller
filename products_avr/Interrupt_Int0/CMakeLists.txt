@@ -3,21 +3,9 @@ if(NOT CMAKE_CROSSCOMPILING)
 endif()
 
 set(target Avr_Interrupt_Int0)
-set(target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
 
-add_executable(${target}.elf
+add_executable(${target}
     Interrupt_Int0.c
-)
-
-set_target_properties(${target}.elf
-    PROPERTIES
-        COMPILE_FLAGS ${AVR_COMPILE_FLAGS}
-        LINK_FLAGS "${AVR_LINK_FLAGS} -Wl,-Map,${target_path}.map"
-)
-
-set(avr_clean_files ${target_path}.map)
-set_directory_properties(PROPERTY
-    ADDITIONAL_MAKE_CLEAN_FILES "${avr_clean_files}"
 )
 
 include("${PROJECT_SOURCE_DIR}/AvrTargets.cmake")
