@@ -2,6 +2,15 @@ if(NOT CMAKE_CROSSCOMPILING)
     message(FATAL_ERROR "Products must be cross compiled!")
 endif()
 
+set(Avr_Led_BlinkTwo_VERSION_MAJOR 1)
+set(Avr_Led_BlinkTwo_VERSION_MINOR 0)
+set(Avr_Led_BlinkTwo_VERSION_PATCH 0)
+
+configure_file (
+    Avr_Led_BlinkTwo_Config.h.in
+    Avr_Led_BlinkTwo_Config.h
+)
+
 set(target Avr_Led_BlinkTwo)
 set(target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
 
@@ -16,9 +25,7 @@ target_link_libraries(${target}.elf
 
 target_include_directories(${target}.elf
     PRIVATE
-        "${PROJECT_SOURCE_DIR}/include"
-        "${PROJECT_BINARY_DIR}/include"
-        "${CMAKE_CURRENT_SOURCE_DIR}"
+        "${CMAKE_CURRENT_BINARY_DIR}"
 )
 
 set_target_properties(${target}.elf

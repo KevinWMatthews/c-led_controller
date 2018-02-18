@@ -1,2 +1,0 @@
-#define LedController_VERSION_MAJOR @LedController_VERSION_MAJOR@
-#define LedController_VERSION_MINOR @LedController_VERSION_MINOR@

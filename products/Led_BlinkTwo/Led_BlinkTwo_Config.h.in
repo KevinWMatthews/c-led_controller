@@ -1,0 +1,3 @@
+#define Led_BlinkTwo_VERSION_MAJOR @Led_BlinkTwo_VERSION_MAJOR@
+#define Led_BlinkTwo_VERSION_MINOR @Led_BlinkTwo_VERSION_MINOR@
+#define Led_BlinkTwo_VERSION_PATCH @Led_BlinkTwo_VERSION_PATCH@

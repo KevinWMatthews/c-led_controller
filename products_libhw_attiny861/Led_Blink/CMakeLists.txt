@@ -2,17 +2,31 @@ if(NOT CMAKE_CROSSCOMPILING)
     message(FATAL_ERROR "hw_attiny861 products must be cross compiled!")
 endif()
 
-set (target Libhw_Led_Blink)
-set (target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
+set(Libhw_ATtiny861_Led_Blink_VERSION_MAJOR 1)
+set(Libhw_ATtiny861_Led_Blink_VERSION_MINOR 0)
+set(Libhw_ATtiny861_Led_Blink_VERSION_PATCH 0)
+
+configure_file (
+    Libhw_ATtiny861_Led_Blink_Config.h.in
+    Libhw_ATtiny861_Led_Blink_Config.h
+)
+
+set(target Libhw_Led_Blink)
+set(target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
 
 add_executable(${target}.elf
     Led_Blink.c
 )
-target_link_libraries(${target}.elf PRIVATE ATtiny861::ATtiny861)
 
-#target_include_directories(${target}.elf
-#    "${PROJECT_BINARY_DIR}/include"         # Include generated Config.h file
-#)
+target_link_libraries(${target}.elf
+	PRIVATE
+		ATtiny861::ATtiny861
+)
+
+target_include_directories(${target}.elf
+	PRIVATE
+        "${CMAKE_CURRENT_BINARY_DIR}"
+)
 
 set_target_properties(${target}.elf
     PROPERTIES

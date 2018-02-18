@@ -5,17 +5,9 @@ project (LedController)
 #   CMP0028 - Double colon in target name means ALIAS or IMPORTED target.
 cmake_policy(VERSION 3.5)
 
-set (LedController_VERSION_MAJOR 0)
-set (LedController_VERSION_MINOR 1)
-
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/bin")
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${PROJECT_BINARY_DIR}/lib")
-
-configure_file (
-    "${PROJECT_SOURCE_DIR}/include/LedControllerConfig.h.in"
-    "${PROJECT_BINARY_DIR}/include/LedControllerConfig.h"
-)
 
 set(CPPUTEST_HOME /usr/local CACHE STRING "Location where CppUTest is installed")
 option(COMPILE_TESTS "Compile unit tests" OFF)

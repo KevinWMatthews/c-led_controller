@@ -1,0 +1,3 @@
+#define Avr_Led_Blink_VERSION_MAJOR @Avr_Led_Blink_VERSION_MAJOR@
+#define Avr_Led_Blink_VERSION_MINOR @Avr_Led_Blink_VERSION_MINOR@
+#define Avr_Led_Blink_VERSION_PATCH @Avr_Led_Blink_VERSION_PATCH@

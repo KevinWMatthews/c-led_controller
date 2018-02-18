@@ -2,6 +2,15 @@ if(NOT CMAKE_CROSSCOMPILING)
     message(FATAL_ERROR "Products must be cross compiled!")
 endif()
 
+set(Led_Blink_VERSION_MAJOR 1)
+set(Led_Blink_VERSION_MINOR 0)
+set(Led_Blink_VERSION_PATCH 0)
+
+configure_file (
+    Led_Blink_Config.h.in
+    Led_Blink_Config.h
+)
+
 set(target Led_Blink)
 set(target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
 
@@ -17,7 +26,7 @@ target_link_libraries(${target}.elf
 target_include_directories(${target}.elf
     PRIVATE
         "${PROJECT_SOURCE_DIR}/include"
-        "${PROJECT_BINARY_DIR}/include"
+        "${CMAKE_CURRENT_BINARY_DIR}"
 )
 
 set_target_properties(${target}.elf
