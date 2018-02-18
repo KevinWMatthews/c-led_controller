@@ -4,7 +4,7 @@ target_sources(ATtiny861_MockRegisters
     PUBLIC
         "${CMAKE_CURRENT_LIST_DIR}/include/avr/io.h"
         "${CMAKE_CURRENT_LIST_DIR}/include/avr/interrupt.h"
-        "${CMAKE_CURRENT_LIST_DIR}/include/MockHw_ATtiny861.h"
+        "${CMAKE_CURRENT_LIST_DIR}/include/Mock_ATtiny861_Registers.h"
     PRIVATE
         "${CMAKE_CURRENT_LIST_DIR}/src/mock_io.c"
 )

@@ -7,7 +7,7 @@ if(COMPILE_TESTS)
 
     target_sources(Test_ATtiny861
         PRIVATE
-            "${CMAKE_CURRENT_LIST_DIR}/MockHw_ATtiny861.c"
+            "${CMAKE_CURRENT_LIST_DIR}/Mock_ATtiny861_Registers.c"
             "${CMAKE_CURRENT_LIST_DIR}/Mock_ATtiny861_Timer0.cpp"
     )
 

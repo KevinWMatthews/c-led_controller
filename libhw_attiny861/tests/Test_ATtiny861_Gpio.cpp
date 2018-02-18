@@ -1,7 +1,7 @@
 extern "C"
 {
 #include "ATtiny861_Gpio.h"
-#include "MockHw_ATtiny861.h"
+#include "Mock_ATtiny861_Registers.h"
 #include <avr/io.h>
 #include "BitManip.h"
 }
@@ -15,7 +15,7 @@ TEST_GROUP(ATtiny861_Gpio)
 
     void setup()
     {
-        MockHw_ATtiny861_Reset();
+        Mock_ATtiny861_Registers_Reset();
         ATtiny861_GpioInit();
     }
 

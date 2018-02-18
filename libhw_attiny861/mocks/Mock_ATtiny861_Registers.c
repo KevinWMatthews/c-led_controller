@@ -1,7 +1,7 @@
-#include "MockHw_ATtiny861.h"
+#include "Mock_ATtiny861_Registers.h"
 #include <avr/io.h>
 
-void MockHw_ATtiny861_Reset(void)
+void Mock_ATtiny861_Registers_Reset(void)
 {
     DDRA = 0x00;
     PORTA = 0x00;
