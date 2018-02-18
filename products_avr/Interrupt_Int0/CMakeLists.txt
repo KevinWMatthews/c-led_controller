@@ -8,4 +8,4 @@ add_executable(Avr_Interrupt_Int0
     Interrupt_Int0.c
 )
 
-create_avr_targets(Avr_Interrupt_Int0)
+create_avr_targets(TARGET_NAME Avr_Interrupt_Int0)

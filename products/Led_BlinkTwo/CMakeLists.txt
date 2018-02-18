@@ -29,4 +29,4 @@ target_include_directories(Led_BlinkTwo
         "${CMAKE_CURRENT_BINARY_DIR}"
 )
 
-create_avr_targets(Led_BlinkTwo)
+create_avr_targets(TARGET_NAME Led_BlinkTwo)

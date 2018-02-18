@@ -9,4 +9,4 @@ add_executable(SetBit
 	bit_numbers.c
 )
 
-create_avr_targets(SetBit)
+create_avr_targets(TARGET_NAME SetBit)

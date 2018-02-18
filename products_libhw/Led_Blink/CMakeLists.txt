@@ -27,4 +27,4 @@ target_include_directories(Libhw_Led_Blink
         "${CMAKE_CURRENT_BINARY_DIR}"
 )
 
-create_avr_targets(Libhw_Led_Blink)
+create_avr_targets(TARGET_NAME Libhw_Led_Blink)

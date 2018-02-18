@@ -9,7 +9,14 @@
 # To customize compile or link flags, set these target properties after including this file.
 # This will overwrite whatever settings are defined here.
 
-function(create_avr_targets target)
+function(CREATE_AVR_TARGETS)
+    set(options "")
+    set(one_value_args TARGET_NAME)
+    set(multi_value_args "")
+    cmake_parse_arguments(CREATE_AVR_TARGETS "${options}" "${one_value_args}" "${multi_value_args}" ${ARGN})
+
+    set(target ${CREATE_AVR_TARGETS_TARGET_NAME})   # For convenience.
+
     # AVR commands need the full path in their arguments.
     # If only the filename is used, generated files will be placed in the current directory, build/<product>
     # You must specify the full path to place these files in build/bin/
