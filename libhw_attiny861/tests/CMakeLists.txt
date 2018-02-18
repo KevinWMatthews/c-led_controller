@@ -10,7 +10,5 @@ target_sources(Test_ATtiny861
 
 target_include_directories(Test_ATtiny861
     PRIVATE
-        "${CMAKE_CURRENT_SOURCE_DIR}/src"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mocks/include"
-        "${CMAKE_CURRENT_SOURCE_DIR}/mocks/bit_manip"
+        "${CMAKE_CURRENT_SOURCE_DIR}/src"   # Include for testing a private module
 )
