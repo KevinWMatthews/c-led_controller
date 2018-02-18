@@ -6,7 +6,7 @@ target_sources(ATtiny861_MockRegisters
         "${CMAKE_CURRENT_LIST_DIR}/include/avr/interrupt.h"
         "${CMAKE_CURRENT_LIST_DIR}/include/Mock_ATtiny861_Registers.h"
     PRIVATE
-        "${CMAKE_CURRENT_LIST_DIR}/src/mock_io.c"
+        "${CMAKE_CURRENT_LIST_DIR}/src/Mock_ATtiny861_Registers.c"
 )
 
 target_include_directories(ATtiny861_MockRegisters
