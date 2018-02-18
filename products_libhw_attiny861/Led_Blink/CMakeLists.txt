@@ -19,12 +19,12 @@ add_executable(${target}.elf
 )
 
 target_link_libraries(${target}.elf
-	PRIVATE
-		ATtiny861::ATtiny861
+    PRIVATE
+        ATtiny861::ATtiny861
 )
 
 target_include_directories(${target}.elf
-	PRIVATE
+    PRIVATE
         "${CMAKE_CURRENT_BINARY_DIR}"
 )
 

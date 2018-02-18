@@ -18,13 +18,13 @@ add_executable(${target}.elf
     Led_BlinkTwo.c
 )
 target_link_libraries(${target}.elf
-	PRIVATE
-		ATtiny861::ATtiny861
+    PRIVATE
+        ATtiny861::ATtiny861
 )
 
 target_include_directories(${target}.elf
-	PRIVATE
-		"${CMAKE_CURRENT_BINARY_DIR}"
+    PRIVATE
+        "${CMAKE_CURRENT_BINARY_DIR}"
 )
 
 set_target_properties(${target}.elf
