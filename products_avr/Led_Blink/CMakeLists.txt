@@ -2,6 +2,8 @@ if(NOT CMAKE_CROSSCOMPILING)
     message(FATAL_ERROR "hw_attiny861 products must be cross compiled!")
 endif()
 
+include("${PROJECT_SOURCE_DIR}/AvrTargets.cmake")
+
 set(Avr_Led_Blink_VERSION_MAJOR 1)
 set(Avr_Led_Blink_VERSION_MINOR 0)
 set(Avr_Led_Blink_VERSION_PATCH 0)
@@ -11,15 +13,13 @@ configure_file (
     Avr_Led_Blink_Config.h
 )
 
-set (target Avr_Led_Blink)
-
-add_executable(${target}
+add_executable(Avr_Led_Blink
     Led_Blink.c
 )
 
-target_include_directories(${target}
+target_include_directories(Avr_Led_Blink
     PRIVATE
         "${CMAKE_CURRENT_BINARY_DIR}"
 )
 
-include("${PROJECT_SOURCE_DIR}/AvrTargets.cmake")
+create_avr_targets(Avr_Led_Blink)
