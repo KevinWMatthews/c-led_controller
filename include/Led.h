@@ -16,7 +16,11 @@ typedef enum
  * Create an LED handle and initialize the underlying GPIO as output.
  * LEDs default to the off state.
  */
-Led Led_Create(ATTINY861_PIN pin);
+typedef struct LedParams
+{
+
+} LedParams;
+Led Led_Create(ATTINY861_PIN pin, LedParams *params);
 
 /*
  * Free all resources associated with the LED handle

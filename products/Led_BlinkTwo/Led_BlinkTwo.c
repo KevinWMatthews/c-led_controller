@@ -17,22 +17,24 @@ void timer_callback(void)
 
 int main(void)
 {
-    ATtiny861_Timer0_Params params = {
+    ATtiny861_Timer0_Params timer0_params = {
         .clock_source = ATTN861_TIMER0_INTERNAL_CLOCK_PRESCALER_1024,
         // 1 MHz / (1024*255) = 3.83 Hz
         .match_value_A = 255
     };
+    LedParams led1_params = {};
+    LedParams led2_params = {};
     LED_RETURN_CODE ret;
 
-    ATtiny861_Timer0_Create(&params);
+    ATtiny861_Timer0_Create(&timer0_params);
     ATtiny861_Timer0_RegisterCallback_MatchA(timer_callback);
 
-    led1 = Led_Create(ATTN861_PA6);
+    led1 = Led_Create(ATTN861_PA6, &led1_params);
     if (led1 == NULL)
     {
         return -1;
     }
-    led2 = Led_Create(ATTN861_PA7);
+    led2 = Led_Create(ATTN861_PA7, &led2_params);
     if (led2 == NULL)
     {
         return -1;

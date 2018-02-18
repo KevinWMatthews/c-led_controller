@@ -8,7 +8,7 @@ typedef struct LedStruct
     ATTINY861_PIN pin;
 } LedStruct;
 
-Led Led_Create(ATTINY861_PIN pin)
+Led Led_Create(ATTINY861_PIN pin, LedParams *params)
 {
     ATTINY861_RETURN_CODE ret;
     Led self = NULL;

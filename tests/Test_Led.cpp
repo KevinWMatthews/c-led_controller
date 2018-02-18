@@ -9,14 +9,15 @@ TEST_GROUP(Led)
 {
     Led led1;
     Led led2;
+    LedParams params;
     LED_RETURN_CODE ret;
     LED_STATE state1;
     LED_STATE state2;
 
     void setup()
     {
-        led1 = Led_Create(ATTN861_PA0);
-        led2 = Led_Create(ATTN861_PA1);
+        led1 = Led_Create(ATTN861_PA0, &params);
+        led2 = Led_Create(ATTN861_PA1,  &params);
         state1 = LED_OFF;
         state2 = LED_OFF;
     }
@@ -168,7 +169,7 @@ TEST(Led, will_not_get_state_if_state_pointer_is_null)
 
 TEST(Led, will_not_create_an_invalid_led)
 {
-    Led led = Led_Create(42);
+    Led led = Led_Create(42, &params);
     CHECK_TRUE(led == NULL);
 }
 
