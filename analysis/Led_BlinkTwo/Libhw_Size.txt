@@ -1,19 +1,19 @@
-[ 57%] Built target ATtiny861
-[ 85%] Built target Libhw_Led_BlinkTwo.elf
+[ 62%] Built target ATtiny861
+[ 87%] Built target Libhw_Led_BlinkTwo.elf
 [100%] Generating stats for Libhw_Led_BlinkTwo.elf
 /home/kevin/coding/c/led_controller/build_avr/bin/Libhw_Led_BlinkTwo.elf  :
 section    size      addr
-.text      1472         0
+.text      1476         0
 .bss          4   8388704
 .comment     48         0
-Total      1524
+Total      1528
 
 
 AVR Memory Usage
 ----------------
 Device: attiny861
 
-Program:    1472 bytes (18.0% Full)
+Program:    1476 bytes (18.0% Full)
 (.text + .data + .bootloader)
 
 Data:          4 bytes (0.8% Full)
