@@ -26,7 +26,7 @@ add_subdirectory(lib/bit_manip)
 add_subdirectory(lib/ATtiny861)
 add_subdirectory(src)
 add_subdirectory(products)
-add_subdirectory(products_libhw_attiny861)
+add_subdirectory(products_libhw)
 add_subdirectory(products_avr)
 
 message(STATUS "
