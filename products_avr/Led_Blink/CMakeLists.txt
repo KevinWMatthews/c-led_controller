@@ -8,11 +8,10 @@ set (target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
 add_executable(${target}.elf
     Led_Blink.c
 )
-target_link_libraries(${target}.elf PRIVATE ATtiny::861)
-
-#target_include_directories(${target}.elf
-#    "${PROJECT_BINARY_DIR}/include"         # Include generated Config.h file
-#)
+target_link_libraries(${target}.elf
+    PRIVATE
+        ATtiny::861
+)
 
 set_target_properties(${target}.elf
     PROPERTIES
@@ -21,10 +20,8 @@ set_target_properties(${target}.elf
 )
 
 set(avr_clean_files ${target_path}.map)
-
-set_directory_properties(
-    PROPERTY ADDITIONAL_MAKE_CLEAN_FILES
-        "${avr_clean_files}"
+set_directory_properties(PROPERTY
+    ADDITIONAL_MAKE_CLEAN_FILES "${avr_clean_files}"
 )
 
 include("${PROJECT_SOURCE_DIR}/AvrTargets.cmake")

@@ -8,9 +8,11 @@ include(include/CMakeLists.txt)
 include(src/CMakeLists.txt)
 
 target_include_directories(ATtiny861
-    PUBLIC "${CMAKE_CURRENT_SOURCE_DIR}/include"
-    PRIVATE "${PROJECT_BINARY_DIR}/include"
-    PRIVATE "${PROJECT_SOURCE_DIR}/bit_manip/include"
+    PUBLIC
+        "${CMAKE_CURRENT_SOURCE_DIR}/include"
+    PRIVATE
+        "${PROJECT_BINARY_DIR}/include"
+        "${PROJECT_SOURCE_DIR}/bit_manip/include"
 )
 
 if(CMAKE_CROSSCOMPILING)
@@ -28,10 +30,14 @@ endif(CMAKE_CROSSCOMPILING)
 
 if(COMPILE_TESTS)
     # Compile production code against CppUTest to enable memory leak detection
-    set_target_properties(ATtiny861 PROPERTIES
-        COMPILE_FLAGS "-include CppUTest/MemoryLeakDetectorMallocMacros.h"
+    set_target_properties(ATtiny861
+        PROPERTIES
+            COMPILE_FLAGS "-include CppUTest/MemoryLeakDetectorMallocMacros.h"
     )
-    target_link_libraries(ATtiny861 PRIVATE CppUTest)
+    target_link_libraries(ATtiny861
+        PRIVATE
+            CppUTest
+    )
 
     target_link_libraries(Test_ATtiny861
         PRIVATE

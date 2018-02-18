@@ -6,14 +6,23 @@ if(COMPILE_TESTS)
         Led_ATtiny861.c
     )
     target_include_directories(LedController
-        PRIVATE "${PROJECT_BINARY_DIR}/include"
-        PRIVATE "${PROJECT_SOURCE_DIR}/mocks"
-        PUBLIC "${PROJECT_SOURCE_DIR}/include"
+        PUBLIC
+            "${PROJECT_SOURCE_DIR}/include"
+        PRIVATE
+            "${PROJECT_BINARY_DIR}/include"
+            "${PROJECT_SOURCE_DIR}/mocks"
     )
-    target_link_libraries(LedController PRIVATE ATtiny::861)
+    target_link_libraries(LedController
+        PRIVATE
+            ATtiny::861
+    )
 
-	set_target_properties(LedController PROPERTIES
-	    COMPILE_FLAGS "-include CppUTest/MemoryLeakDetectorMallocMacros.h"
+	set_target_properties(LedController
+        PROPERTIES
+            COMPILE_FLAGS "-include CppUTest/MemoryLeakDetectorMallocMacros.h"
 	)
-	target_link_libraries(LedController PRIVATE CppUTest)
+	target_link_libraries(LedController
+        PRIVATE
+            CppUTest
+    )
 endif(COMPILE_TESTS)

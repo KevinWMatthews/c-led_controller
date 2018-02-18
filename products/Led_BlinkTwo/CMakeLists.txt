@@ -7,20 +7,24 @@ set(target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
 
 add_executable(${target}.elf
     Led_BlinkTwo.c
-    ${PROJECT_SOURCE_DIR}/src/Led_ATtiny861.c
+    "${PROJECT_SOURCE_DIR}/src/Led_ATtiny861.c"
 )
 
-target_link_libraries(${target}.elf PRIVATE ATtiny::861)
+target_link_libraries(${target}.elf
+    PRIVATE
+        ATtiny::861
+)
 
 target_include_directories(${target}.elf
-    PRIVATE "${PROJECT_SOURCE_DIR}/include"
-    PRIVATE "${PROJECT_BINARY_DIR}/include"
-    PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}"
+    PRIVATE
+        "${PROJECT_SOURCE_DIR}/include"
+        "${PROJECT_BINARY_DIR}/include"
 )
 
-set_target_properties(${target}.elf PROPERTIES
-    COMPILE_FLAGS ${AVR_COMPILE_FLAGS}
-    LINK_FLAGS "${AVR_LINK_FLAGS} -Wl,-Map,${target_path}.map"
+set_target_properties(${target}.elf
+    PROPERTIES
+        COMPILE_FLAGS ${AVR_COMPILE_FLAGS}
+        LINK_FLAGS "${AVR_LINK_FLAGS} -Wl,-Map,${target_path}.map"
 )
 
 set(avr_clean_files ${target_path}.map)

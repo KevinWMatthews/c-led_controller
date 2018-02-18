@@ -9,17 +9,22 @@ add_executable(${target}.elf
     Led_BlinkTwo.c
 )
 
-target_link_libraries(${target}.elf PRIVATE ATtiny::861)
-
-target_include_directories(${target}.elf
-    PRIVATE "${PROJECT_SOURCE_DIR}/include"
-    PRIVATE "${PROJECT_BINARY_DIR}/include"
-    PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}"
+target_link_libraries(${target}.elf
+    PRIVATE
+        ATtiny::861
 )
 
-set_target_properties(${target}.elf PROPERTIES
-    COMPILE_FLAGS ${AVR_COMPILE_FLAGS}
-    LINK_FLAGS "${AVR_LINK_FLAGS} -Wl,-Map,${target_path}.map"
+target_include_directories(${target}.elf
+    PRIVATE
+        "${PROJECT_SOURCE_DIR}/include"
+        "${PROJECT_BINARY_DIR}/include"
+        "${CMAKE_CURRENT_SOURCE_DIR}"
+)
+
+set_target_properties(${target}.elf
+    PROPERTIES
+        COMPILE_FLAGS ${AVR_COMPILE_FLAGS}
+        LINK_FLAGS "${AVR_LINK_FLAGS} -Wl,-Map,${target_path}.map"
 )
 
 set(avr_clean_files ${target_path}.map)
