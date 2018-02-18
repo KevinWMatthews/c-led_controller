@@ -17,3 +17,8 @@ AVR provides additional macros that could be useful:
     bit_is_clear
     loop_until_bit_is_set
     loop_until_bit_is_clear
+
+_delay_ms() requires a constant that is known at compile time;
+avr-gcc optimizes away the floating point calculations during compilation.
+Encapsulating this function in a library requires passing the sleep value as a variable,
+which is not viable in this case.
