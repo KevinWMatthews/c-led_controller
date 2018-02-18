@@ -20,7 +20,10 @@ int main(void)
         // 1 MHz / (1024*255) = 3.83 Hz
         .match_value_A = 255
     };
-    LedParams led_params = {};
+    LedParams led_params = {
+        .initial_state = LED_OFF,
+        .active_state = LED_ACTIVE_HIGH,
+    };
 
     ATtiny861_Timer0_Create(&timer0_params);
     ATtiny861_Timer0_RegisterCallback_MatchA(timer_callback);

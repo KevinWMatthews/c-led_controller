@@ -12,13 +12,26 @@ typedef enum
     LED_ERROR           = -2,
 } LED_RETURN_CODE;
 
+typedef enum
+{
+    LED_OFF = 0,
+    LED_ON  = 1
+} LED_STATE;
+
+typedef enum
+{
+    // LED_ACTIVE_LOW      = 0,
+    LED_ACTIVE_HIGH     = 1,
+} LED_ACTIVE_STATE;
+
 /*
  * Create an LED handle and initialize the underlying GPIO as output.
  * LEDs default to the off state.
  */
 typedef struct LedParams
 {
-
+    LED_STATE initial_state;
+    LED_ACTIVE_STATE active_state;
 } LedParams;
 Led Led_Create(ATTINY861_PIN pin, LedParams *params);
 
@@ -28,12 +41,6 @@ Led Led_Create(ATTINY861_PIN pin, LedParams *params);
  * TODO should this turn the LED off and tri-state the GPIO?
  */
 void Led_Destroy(Led * self);
-
-typedef enum
-{
-    LED_OFF = 0,
-    LED_ON  = 1
-} LED_STATE;
 
 /*
  * Get the state of the LED.

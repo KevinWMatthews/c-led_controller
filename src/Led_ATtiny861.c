@@ -13,6 +13,11 @@ Led Led_Create(ATTINY861_PIN pin, LedParams *params)
     ATTINY861_RETURN_CODE ret;
     Led self = NULL;
 
+    if (params == NULL)
+    {
+        return NULL;
+    }
+
     ret = ATtiny861_Gpio_SetAsOutput(pin, GPIO_LOW);
     if (ret < 0)
     {
