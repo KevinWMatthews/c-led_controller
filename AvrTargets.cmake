@@ -10,11 +10,18 @@
 # This will overwrite whatever settings are defined here.
 
 function(create_avr_targets target)
+    # AVR commands need the full path in their arguments.
+    # If only the filename is used, generated files will be placed in the current directory, build/<product>
+    # You must specify the full path to place these files in build/bin/
+    get_target_property(target_path ${target} RUNTIME_OUTPUT_DIRECTORY)
+
+
+
     #########################
     # Configure .elf target #
     #########################
     # The .elf file is the output of the CMake executable target.
-    get_target_property(target_path ${target} RUNTIME_OUTPUT_DIRECTORY)
+    # CMake runs the compilation command itself and directs the output to the correct location.
     set_target_properties(${target}
         PROPERTIES
             SUFFIX .elf
@@ -22,6 +29,7 @@ function(create_avr_targets target)
             LINK_FLAGS "${AVR_LINK_FLAGS} -Wl,-Map,${target_path}/${target}.map"
     )
 
+    # The .map file is extra output that CMake does not expect. Force it to be cleaned.
     set(avr_clean_files ${target_path}/${target}.map)
     set_directory_properties(PROPERTY
         ADDITIONAL_MAKE_CLEAN_FILES "${avr_clean_files}"

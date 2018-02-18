@@ -1,24 +1,12 @@
 if(NOT CMAKE_CROSSCOMPILING)
-    message(FATAL_ERROR "hw_attiny861 products must be cross compiled!")
+    message(FATAL_ERROR "Products must be cross compiled!")
 endif()
 
-set (target Avr_SetBit)
-set (target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
+include("${PROJECT_SOURCE_DIR}/AvrTargets.cmake")
 
-add_executable(${target}.elf
+add_executable(SetBit
     SetBit.c
 	bit_numbers.c
 )
 
-set_target_properties(${target}.elf
-    PROPERTIES
-        COMPILE_FLAGS ${AVR_COMPILE_FLAGS}
-        LINK_FLAGS "${AVR_LINK_FLAGS} -Wl,-Map,${target_path}.map"
-)
-
-set(avr_clean_files ${target_path}.map)
-set_directory_properties(PROPERTY
-    ADDITIONAL_MAKE_CLEAN_FILES "${avr_clean_files}"
-)
-
-include("${PROJECT_SOURCE_DIR}/AvrTargets.cmake")
+create_avr_targets(SetBit)

@@ -1,5 +1,5 @@
 if(NOT CMAKE_CROSSCOMPILING)
-    message(FATAL_ERROR "hw_attiny861 products must be cross compiled!")
+    message(FATAL_ERROR "Products must be cross compiled!")
 endif()
 
 include("${PROJECT_SOURCE_DIR}/AvrTargets.cmake")

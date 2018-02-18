@@ -22,8 +22,3 @@ Header files can be PUBLIC, PRIVATE, or INTERFACE as needed.
 # is generating the build system if the library is not found.
 # Otherwise, we must wait until the linker fails (after compilation).
 add_library(<library>::<alias> ALIAS <library>)
-
-
-AVR-specific custom commands need the full path in their commands.
-If only the filename is used, generated files will be placed in build/<product>
-You must specify the full path to place these files in build/bin/
