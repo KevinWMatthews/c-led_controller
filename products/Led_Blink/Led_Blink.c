@@ -1,8 +1,8 @@
 #include "Led_Blink_Config.h"
 #include "Led.h"
 #include "ATtiny861_Timer0.h"
+#include "ATtiny861_Interrupt.h"
 #include <stddef.h>
-#include <avr/interrupt.h>     // For global interrupts.
 
 // We are not (yet?) able to pass information to the callback,
 // so the LED must be file-scope.
@@ -30,7 +30,7 @@ int main(void)
     }
 
     ATtiny861_Timer0_Start();
-    sei();      // Enable global interrupts
+    ATtiny861_Interrupt_GlobalEnable();
 
     while (1)
     {

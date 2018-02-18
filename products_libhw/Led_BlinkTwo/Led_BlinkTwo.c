@@ -1,7 +1,7 @@
 #include "Libhw_ATtiny861_Led_BlinkTwo_Config.h"
 #include "ATtiny861_Gpio.h"
 #include "ATtiny861_Timer0.h"
-#include <avr/interrupt.h>
+#include "ATtiny861_Interrupt.h"
 
 static void toggle_led_state(void)
 {
@@ -60,8 +60,7 @@ int main(void)
         return -1;
     }
 
-    // Enable interrupts
-    sei();
+    ATtiny861_Interrupt_GlobalEnable();
 
     while (1)
         ;
