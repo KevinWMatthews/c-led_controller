@@ -8,7 +8,7 @@ set (target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
 add_executable(${target}.elf
     PinPort_AsOutput.c
 )
-target_link_libraries(${target}.elf PRIVATE ATtiny::861)
+target_link_libraries(${target}.elf PRIVATE ATtiny861::ATtiny861)
 
 #target_include_directories(${target}.elf
 #    "${PROJECT_BINARY_DIR}/include"         # Include generated Config.h file

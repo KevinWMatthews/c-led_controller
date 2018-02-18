@@ -43,7 +43,7 @@ if(COMPILE_TESTS)
         PRIVATE
             CppUTest
             CppUTestExt
-            ATtiny::861
+            ATtiny861::ATtiny861
             ATtiny861::MockRegisters
     )
 
@@ -51,4 +51,4 @@ if(COMPILE_TESTS)
     include(mocks/CMakeLists.txt)
 endif(COMPILE_TESTS)
 
-add_library(ATtiny::861 ALIAS ATtiny861)
+add_library(ATtiny861::ATtiny861 ALIAS ATtiny861)

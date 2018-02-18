@@ -14,7 +14,7 @@ if(COMPILE_TESTS)
     )
     target_link_libraries(LedController
         PRIVATE
-            ATtiny::861
+            ATtiny861::ATtiny861
     )
 
 	set_target_properties(LedController

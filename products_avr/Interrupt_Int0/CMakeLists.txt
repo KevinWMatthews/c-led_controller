@@ -10,7 +10,7 @@ add_executable(${target}.elf
 )
 target_link_libraries(${target}.elf
     PRIVATE
-        ATtiny::861
+        ATtiny861::ATtiny861
 )
 
 # Short-term hack for proof-of-concept.

@@ -14,7 +14,7 @@ set (target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
 add_executable(${target}.elf
     PinA0_High.c
 )
-target_link_libraries(${target}.elf PRIVATE ATtiny::861)
+target_link_libraries(${target}.elf PRIVATE ATtiny861::ATtiny861)
 
 #TODO Do we want the Config.h file here? Perhaps we need a config file per project.
 #target_include_directories(${target}.elf
