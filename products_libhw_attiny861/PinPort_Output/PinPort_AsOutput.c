@@ -17,24 +17,24 @@
 
 static void toggle_led_state(void)
 {
-    ATtiny861_GpioToggle(ATTN861_PA0);
+    ATtiny861_Gpio_Toggle(ATTN861_PA0);
 
     if ( bit_is_set(PINA, PINA0) )
     {
-        ATtiny861_GpioSetState(ATTN861_PA6, GPIO_HIGH);
+        ATtiny861_Gpio_SetState(ATTN861_PA6, GPIO_HIGH);
     }
     else
     {
-        ATtiny861_GpioSetState(ATTN861_PA6, GPIO_LOW);
+        ATtiny861_Gpio_SetState(ATTN861_PA6, GPIO_LOW);
     }
 
     if ( bit_is_set(PORTA, PORTA0) )
     {
-        ATtiny861_GpioSetState(ATTN861_PA7, GPIO_HIGH);
+        ATtiny861_Gpio_SetState(ATTN861_PA7, GPIO_HIGH);
     }
     else
     {
-        ATtiny861_GpioSetState(ATTN861_PA7, GPIO_LOW);
+        ATtiny861_Gpio_SetState(ATTN861_PA7, GPIO_LOW);
     }
 }
 
@@ -51,9 +51,9 @@ int main(void)
     ATtiny861_Timer0_Create(&timer0_params);
     ATtiny861_Timer0_Start();
 
-    ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_LOW);
-    ATtiny861_GpioSetAsOutput(ATTN861_PA6, GPIO_LOW);
-    ATtiny861_GpioSetAsOutput(ATTN861_PA7, GPIO_LOW);
+    ATtiny861_Gpio_SetAsOutput(ATTN861_PA0, GPIO_LOW);
+    ATtiny861_Gpio_SetAsOutput(ATTN861_PA6, GPIO_LOW);
+    ATtiny861_Gpio_SetAsOutput(ATTN861_PA7, GPIO_LOW);
 
     ATtiny861_Timer0_RegisterCallback_MatchA(toggle_led_state);
 

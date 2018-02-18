@@ -49,7 +49,7 @@ static ATTINY861_RETURN_CODE set_gpio_state(volatile uint8_t * port, uint8_t bit
     return ATTINY861_SUCCESS;
 }
 
-ATTINY861_RETURN_CODE ATtiny861_GpioSetAsOutput(ATTINY861_PIN pin, GPIO_STATE initial_state)
+ATTINY861_RETURN_CODE ATtiny861_Gpio_SetAsOutput(ATTINY861_PIN pin, GPIO_STATE initial_state)
 {
     volatile uint8_t *ddr, *port;
     uint8_t ddr_bit, port_bit;
@@ -100,7 +100,7 @@ ATTINY861_RETURN_CODE ATtiny861_GpioSetAsOutput(ATTINY861_PIN pin, GPIO_STATE in
     return ATTINY861_SUCCESS;
 }
 
-void ATtiny861_GpioInit(void)
+void ATtiny861_Gpio_Init(void)
 {
     volatile uint8_t * port_register;
 
@@ -123,7 +123,7 @@ void ATtiny861_GpioInit(void)
     }
 }
 
-ATTINY861_RETURN_CODE ATtiny861_GpioSetState(ATTINY861_PIN pin, GPIO_STATE state)
+ATTINY861_RETURN_CODE ATtiny861_Gpio_SetState(ATTINY861_PIN pin, GPIO_STATE state)
 {
     volatile uint8_t *port;
     uint8_t port_bit;
@@ -156,7 +156,7 @@ ATTINY861_RETURN_CODE ATtiny861_GpioSetState(ATTINY861_PIN pin, GPIO_STATE state
     return ATTINY861_SUCCESS;
 }
 
-ATTINY861_RETURN_CODE ATtiny861_GpioGetState(ATTINY861_PIN pin, GPIO_STATE *state)
+ATTINY861_RETURN_CODE ATtiny861_Gpio_GetState(ATTINY861_PIN pin, GPIO_STATE *state)
 {
     volatile uint8_t * pin_reg;
     uint8_t pin_bit;
@@ -183,7 +183,7 @@ ATTINY861_RETURN_CODE ATtiny861_GpioGetState(ATTINY861_PIN pin, GPIO_STATE *stat
     return ATTINY861_SUCCESS;
 }
 
-ATTINY861_RETURN_CODE ATtiny861_GpioToggle(ATTINY861_PIN pin)
+ATTINY861_RETURN_CODE ATtiny861_Gpio_Toggle(ATTINY861_PIN pin)
 {
     volatile uint8_t * pin_reg;
     uint8_t pin_bit;

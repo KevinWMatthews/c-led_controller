@@ -13,7 +13,7 @@ Led Led_Create(ATTINY861_PIN pin)
     ATTINY861_RETURN_CODE ret;
     Led self = NULL;
 
-    ret = ATtiny861_GpioSetAsOutput(pin, GPIO_LOW);
+    ret = ATtiny861_Gpio_SetAsOutput(pin, GPIO_LOW);
     if (ret < 0)
     {
         return NULL;
@@ -45,7 +45,7 @@ LED_RETURN_CODE Led_GetState(Led self, LED_STATE *state)
         return LED_NULL_POINTER;
     }
 
-    ret = ATtiny861_GpioGetState(self->pin, &gpio_state);
+    ret = ATtiny861_Gpio_GetState(self->pin, &gpio_state);
     if (ret < 0)
     {
         //TODO untested. Don't know how.
@@ -66,7 +66,7 @@ LED_RETURN_CODE Led_TurnOn(Led self)
         return LED_NULL_POINTER;
     }
 
-    ret = ATtiny861_GpioSetState(self->pin, GPIO_HIGH);
+    ret = ATtiny861_Gpio_SetState(self->pin, GPIO_HIGH);
     if (ret < 0)
     {
         //TODO untested. Don't know how.
@@ -85,7 +85,7 @@ LED_RETURN_CODE Led_TurnOff(Led self)
         return LED_NULL_POINTER;
     }
 
-    ret = ATtiny861_GpioSetState(self->pin, GPIO_LOW);
+    ret = ATtiny861_Gpio_SetState(self->pin, GPIO_LOW);
     if (ret < 0)
     {
         //TODO untested. Don't know how.
@@ -104,7 +104,7 @@ LED_RETURN_CODE Led_Toggle(Led self)
         return LED_NULL_POINTER;
     }
 
-    ret = ATtiny861_GpioToggle(self->pin);
+    ret = ATtiny861_Gpio_Toggle(self->pin);
     if (ret < 0)
     {
         //TODO untested. Don't know how.

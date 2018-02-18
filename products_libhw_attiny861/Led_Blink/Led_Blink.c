@@ -4,7 +4,7 @@
 
 static void toggle_led_state(void)
 {
-    ATtiny861_GpioToggle(ATTN861_PA0);
+    ATtiny861_Gpio_Toggle(ATTN861_PA0);
 }
 
 int main(void)
@@ -20,7 +20,7 @@ int main(void)
     ATtiny861_Timer0_Create(&timer0_params);
     ATtiny861_Timer0_Start();
 
-    ATtiny861_GpioSetAsOutput(ATTN861_PA0, GPIO_LOW);
+    ATtiny861_Gpio_SetAsOutput(ATTN861_PA0, GPIO_LOW);
 
     ATtiny861_Timer0_RegisterCallback_MatchA(toggle_led_state);
 

@@ -6,13 +6,13 @@ static void toggle_led_state(void)
 {
     ATTINY861_RETURN_CODE ret;
 
-    ret = ATtiny861_GpioToggle(ATTN861_PA6);
+    ret = ATtiny861_Gpio_Toggle(ATTN861_PA6);
     if (ret != ATTINY861_SUCCESS)
     {
         return;
     }
 
-    ret = ATtiny861_GpioToggle(ATTN861_PA7);
+    ret = ATtiny861_Gpio_Toggle(ATTN861_PA7);
     if (ret != ATTINY861_SUCCESS)
     {
         return;
@@ -41,13 +41,13 @@ int main(void)
         return -1;
     }
 
-    ret = ATtiny861_GpioSetAsOutput(ATTN861_PA6, GPIO_HIGH);
+    ret = ATtiny861_Gpio_SetAsOutput(ATTN861_PA6, GPIO_HIGH);
     if (ret != ATTINY861_SUCCESS)
     {
         return -1;
     }
 
-    ret = ATtiny861_GpioSetAsOutput(ATTN861_PA7, GPIO_LOW);
+    ret = ATtiny861_Gpio_SetAsOutput(ATTN861_PA7, GPIO_LOW);
     if (ret != ATTINY861_SUCCESS)
     {
         return -1;
