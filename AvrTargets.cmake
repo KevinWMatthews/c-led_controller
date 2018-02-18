@@ -15,7 +15,7 @@
 # Custom targets can be made directly from the command line.
 # They are always considered out-of-date, so any commands that they specify will always be run.
 # Custom targets can not build an OUTPUT file, though they can create BYPRODUCTS.
-add_custom_target(${target}-hex
+add_custom_target(${target}.hex
     DEPENDS
         ${target_path}.hex
 )
