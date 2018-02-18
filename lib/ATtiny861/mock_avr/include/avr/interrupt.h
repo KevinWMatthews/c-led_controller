@@ -24,5 +24,14 @@
     void vector(void); \
     void vector(void)
 
+/*
+ * From <avr/interrupt.h>
+ *      Enables interrupts by setting the global interrupt mask. This function
+ *          actually compiles into a single line of assembly
+ *      # define sei()  __asm__ __volatile__ ("sei" ::: "memory")
+ *
+ * Create a function that can be mocked to ensure that production code actually calls this macro.
+ */
+void sei(void);
 
 #endif

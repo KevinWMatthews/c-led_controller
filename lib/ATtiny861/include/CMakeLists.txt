@@ -4,4 +4,5 @@ target_sources(ATtiny861
         "${CMAKE_CURRENT_LIST_DIR}/ATtiny861_ReturnCodes.h"
         "${CMAKE_CURRENT_LIST_DIR}/ATtiny861_Gpio.h"
         "${CMAKE_CURRENT_LIST_DIR}/ATtiny861_Timer0.h"
+        "${CMAKE_CURRENT_LIST_DIR}/ATtiny861_Interrupt.h"
 )
