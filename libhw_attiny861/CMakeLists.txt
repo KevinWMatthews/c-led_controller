@@ -16,6 +16,13 @@ target_link_libraries(ATtiny861
         BitManip::BitManip
 )
 
+
+# Create library of mock AVR registers when compiling locally.
+if(NOT CMAKE_CROSSCOMPILING)
+    add_subdirectory(mock_avr)
+endif()
+
+
 # Create test executable
 if(COMPILE_TESTS)
     add_executable(Test_ATtiny861 "")
@@ -34,7 +41,6 @@ if(COMPILE_TESTS)
 endif()
 
 
-# Extend library if cross-compiling or compiling locally.
 if(CMAKE_CROSSCOMPILING)
     set_target_properties(ATtiny861
         PROPERTIES
@@ -42,9 +48,10 @@ if(CMAKE_CROSSCOMPILING)
             LINK_FLAGS ${AVR_LINK_FLAGS}
     )
 else()
-    # Create and link against mock AVR registers.
-    add_subdirectory(mock_avr)
-    target_link_libraries(ATtiny861 PRIVATE ATtiny861::MockRegisters)
+    target_link_libraries(ATtiny861
+        PRIVATE
+        ATtiny861::MockRegisters
+    )
 endif(CMAKE_CROSSCOMPILING)
 
 
