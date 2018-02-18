@@ -30,6 +30,7 @@ if(COMPILE_TESTS)
     add_subdirectory(tests)
 endif(COMPILE_TESTS)
 
+add_subdirectory(libbit_manip)
 add_subdirectory(libhw_attiny861)
 add_subdirectory(src)
 add_subdirectory(products)

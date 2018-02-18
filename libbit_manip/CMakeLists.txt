@@ -1,0 +1,6 @@
+add_library(BitManip INTERFACE)
+target_include_directories(BitManip
+	INTERFACE
+		"${CMAKE_CURRENT_SOURCE_DIR}/include"
+)
+add_library(BitManip::BitManip ALIAS BitManip)
