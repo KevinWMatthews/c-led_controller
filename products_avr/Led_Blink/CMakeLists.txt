@@ -17,10 +17,6 @@ set (target_path "${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${target}")
 add_executable(${target}.elf
     Led_Blink.c
 )
-target_link_libraries(${target}.elf
-    PRIVATE
-        ATtiny861::ATtiny861
-)
 
 target_include_directories(${target}.elf
     PRIVATE
