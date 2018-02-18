@@ -3,21 +3,21 @@
 [100%] Generating stats for Led_Blink.elf
 /home/kevin/coding/c/led_controller/build_avr/bin/Led_Blink.elf  :
 section    size      addr
-.text      1842         0
-.data        66   8388704
-.bss         10   8388770
+.text      2362         0
+.data         6   8388704
+.bss         10   8388710
 .comment     92         0
-Total      2010
+Total      2470
 
 
 AVR Memory Usage
 ----------------
 Device: attiny861
 
-Program:    1908 bytes (23.3% Full)
+Program:    2368 bytes (28.9% Full)
 (.text + .data + .bootloader)
 
-Data:         76 bytes (14.8% Full)
+Data:         16 bytes (3.1% Full)
 (.data + .bss + .noinit)
 
 

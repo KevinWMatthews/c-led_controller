@@ -3,21 +3,21 @@
 [100%] Generating stats for Led_BlinkTwo.elf
 /home/kevin/coding/c/led_controller/build_avr/bin/Led_BlinkTwo.elf  :
 section    size      addr
-.text      1882         0
-.data        66   8388704
-.bss         12   8388770
+.text      2402         0
+.data         6   8388704
+.bss         12   8388710
 .comment     92         0
-Total      2052
+Total      2512
 
 
 AVR Memory Usage
 ----------------
 Device: attiny861
 
-Program:    1948 bytes (23.8% Full)
+Program:    2408 bytes (29.4% Full)
 (.text + .data + .bootloader)
 
-Data:         78 bytes (15.2% Full)
+Data:         18 bytes (3.5% Full)
 (.data + .bss + .noinit)
 
 
