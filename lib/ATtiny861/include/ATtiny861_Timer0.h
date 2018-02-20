@@ -22,12 +22,15 @@ typedef enum
 typedef void (*TIMER0_CALLBACK)(void);
 
 /*
- * Create a Timer using the ATtiny's Timer/Counter0.
+ * Create a Timer using the ATtiny's Timer/Counter0 and
+ * enable Timer/Counter0 Output Compare Match A interrupts.
  *
  * Creating this timer a second time will change the settings of Timer0 -
  * there is only a single Timer0 available in hardware.
  *
  * match_value_A and clock_source must be set.
+ * Valid match values are 0-255.
+ *
  * Calculate the interrupt frequency of a match value:
  *      Hz = (internal_clock MHz) / (prescaler * match_value)
  * Calculate the match value of a interrupt frequency:
@@ -56,7 +59,10 @@ ATTINY861_RETURN_CODE ATtiny861_Timer0_Create(ATtiny861_Timer0_Params *params);
 /*
  * Start Timer0.
  *
- * Sets the clock source as specified during Create(), which starts the timer.
+ * Sets the clock source as specified during Create(), which starts the timer
+ * and enables Timer0
+ *
+ * Global interrupts must be enabled for the timer callback to hit.
  */
 ATTINY861_RETURN_CODE ATtiny861_Timer0_Start(void);
 
