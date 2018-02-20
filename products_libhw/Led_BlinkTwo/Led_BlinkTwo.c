@@ -36,11 +36,6 @@ int main(void)
     {
         return -1;
     }
-    ret = ATtiny861_Timer0_Start();
-    if (ret != ATTINY861_SUCCESS)
-    {
-        return -1;
-    }
 
     ret = ATtiny861_Gpio_SetAsOutput(ATTN861_PA6, GPIO_HIGH);
     if (ret != ATTINY861_SUCCESS)
@@ -60,6 +55,7 @@ int main(void)
         return -1;
     }
 
+    ATtiny861_Timer0_Start();
     ATtiny861_Interrupt_GlobalEnable();
 
     while (1)

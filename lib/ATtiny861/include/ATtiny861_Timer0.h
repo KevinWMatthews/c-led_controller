@@ -64,7 +64,7 @@ ATTINY861_RETURN_CODE ATtiny861_Timer0_Create(ATtiny861_Timer0_Params *params);
  *
  * Global interrupts must be enabled for the timer callback to hit.
  */
-ATTINY861_RETURN_CODE ATtiny861_Timer0_Start(void);
+void ATtiny861_Timer0_Start(void);
 
 /*
  * Stop Timer0.

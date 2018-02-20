@@ -71,11 +71,10 @@ ATTINY861_RETURN_CODE ATtiny861_Timer0_Create(ATtiny861_Timer0_Params *params)
     return ATTINY861_SUCCESS;
 }
 
-ATTINY861_RETURN_CODE ATtiny861_Timer0_Start(void)
+void ATtiny861_Timer0_Start(void)
 {
     // Setting the clock source starts the timer.
     set_clock_select_bits(timer0_clock_source);
-    return ATTINY861_SUCCESS;
 }
 
 ATTINY861_RETURN_CODE ATtiny861_Timer0_RegisterCallback_MatchA(TIMER0_CALLBACK callback)
