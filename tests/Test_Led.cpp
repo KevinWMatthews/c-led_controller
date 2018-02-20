@@ -93,8 +93,10 @@ TEST(Led, led_is_off_after_create)
 {
     ret = Led_GetState(led1, &led_state1);
 
+    ATtiny861_Gpio_GetState(pin1, &gpio_state1);
     LONGS_EQUAL(LED_SUCCESS, ret);
     LONGS_EQUAL(LED_OFF, led_state1);
+    LONGS_EQUAL(GPIO_LOW, gpio_state1);
 }
 
 TEST(Led, can_turn_led1_on)
@@ -102,8 +104,10 @@ TEST(Led, can_turn_led1_on)
     ret = Led_TurnOn(led1);
 
     Led_GetState(led1, &led_state1);
+    ATtiny861_Gpio_GetState(pin1, &gpio_state1);
     LONGS_EQUAL(LED_SUCCESS, ret);
     LONGS_EQUAL(LED_ON, led_state1);
+    LONGS_EQUAL(GPIO_HIGH, gpio_state1);
 }
 
 TEST(Led, can_turn_led1_off)
@@ -112,20 +116,26 @@ TEST(Led, can_turn_led1_off)
 
     ret = Led_TurnOff(led1);
 
+    ATtiny861_Gpio_GetState(pin1, &gpio_state1);
     Led_GetState(led1, &led_state1);
+
     LONGS_EQUAL(LED_SUCCESS, ret);
     LONGS_EQUAL(LED_OFF, led_state1);
+    LONGS_EQUAL(GPIO_LOW, gpio_state1);
 }
 
 TEST(Led, can_turn_led2_on)
 {
     Led_TurnOn(led2);
 
-    ret = Led_TurnOff(led2);
+    ret = Led_TurnOn(led2);
 
+    ATtiny861_Gpio_GetState(pin2, &gpio_state2);
     Led_GetState(led2, &led_state2);
+
     LONGS_EQUAL(LED_SUCCESS, ret);
-    LONGS_EQUAL(LED_OFF, led_state2);
+    LONGS_EQUAL(LED_ON, led_state2);
+    LONGS_EQUAL(GPIO_HIGH, gpio_state2);
 }
 
 TEST(Led, can_turn_led2_off)
@@ -134,9 +144,12 @@ TEST(Led, can_turn_led2_off)
 
     ret = Led_TurnOff(led2);
 
+    ATtiny861_Gpio_GetState(pin2, &gpio_state2);
     Led_GetState(led2, &led_state2);
+
     LONGS_EQUAL(LED_SUCCESS, ret);
     LONGS_EQUAL(LED_OFF, led_state2);
+    LONGS_EQUAL(GPIO_LOW, gpio_state1);
 }
 
 TEST(Led, can_turn_led1_on_and_led2_off)
@@ -144,18 +157,25 @@ TEST(Led, can_turn_led1_on_and_led2_off)
     Led_TurnOn(led1);
     Led_TurnOff(led2);
 
+    ATtiny861_Gpio_GetState(pin1, &gpio_state1);
+    ATtiny861_Gpio_GetState(pin2, &gpio_state2);
     Led_GetState(led1, &led_state1);
     Led_GetState(led2, &led_state2);
 
     LONGS_EQUAL(LED_ON, led_state1);
     LONGS_EQUAL(LED_OFF, led_state2);
+    LONGS_EQUAL(GPIO_HIGH, gpio_state1);
+    LONGS_EQUAL(GPIO_LOW, gpio_state2);
 }
 
 TEST(Led, can_toggle_an_led_on)
 {
     ret = Led_Toggle(led1);
 
+    ATtiny861_Gpio_GetState(pin1, &gpio_state1);
     Led_GetState(led1, &led_state1);
+
+    LONGS_EQUAL(GPIO_HIGH, gpio_state1);
     LONGS_EQUAL(LED_SUCCESS, ret);
     LONGS_EQUAL(LED_ON, led_state1);
 }
@@ -166,21 +186,28 @@ TEST(Led, can_toggle_an_led_on_and_off)
 
     ret = Led_Toggle(led1);
 
+    ATtiny861_Gpio_GetState(pin1, &gpio_state1);
     Led_GetState(led1, &led_state1);
+
+    LONGS_EQUAL(GPIO_LOW, gpio_state1);
     LONGS_EQUAL(LED_SUCCESS, ret);
     LONGS_EQUAL(LED_OFF, led_state1);
 }
 
-TEST(Led, can_toggle_two_leds)
+TEST(Led, can_toggle_two_leds_in_same_state)
 {
     Led_Toggle(led1);
     Led_Toggle(led2);
 
     Led_GetState(led1, &led_state1);
     Led_GetState(led2, &led_state2);
+    ATtiny861_Gpio_GetState(pin1, &gpio_state1);
+    ATtiny861_Gpio_GetState(pin2, &gpio_state2);
 
     LONGS_EQUAL(LED_ON, led_state1);
     LONGS_EQUAL(LED_ON, led_state2);
+    LONGS_EQUAL(GPIO_HIGH, gpio_state1);
+    LONGS_EQUAL(GPIO_HIGH, gpio_state2);
 }
 
 TEST(Led, can_toggle_two_leds_in_opposing_states)
@@ -190,10 +217,15 @@ TEST(Led, can_toggle_two_leds_in_opposing_states)
     Led_Toggle(led1);
     Led_Toggle(led2);
 
+    ATtiny861_Gpio_GetState(pin1, &gpio_state1);
+    ATtiny861_Gpio_GetState(pin2, &gpio_state2);
     Led_GetState(led1, &led_state1);
     Led_GetState(led2, &led_state2);
+
     LONGS_EQUAL(LED_OFF, led_state1);
     LONGS_EQUAL(LED_ON, led_state2);
+    LONGS_EQUAL(GPIO_LOW, gpio_state1);
+    LONGS_EQUAL(GPIO_HIGH, gpio_state2);
 }
 
 
