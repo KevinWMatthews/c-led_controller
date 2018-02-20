@@ -232,12 +232,12 @@ TEST(Led, do_not_toggle_a_null_led)
 /*
  * Active low Led
  */
-TEST(Led_ActiveLow, can_create_active_low_led)
+TEST(Led_ActiveLow, can_create_led)
 {
     CHECK_TRUE( led != NULL );
 }
 
-TEST(Led_ActiveLow, active_low_led_is_off_after_create)
+TEST(Led_ActiveLow, led_is_off_after_create)
 {
     ret = Led_GetState(led, &led_state);
 
