@@ -109,13 +109,15 @@ LED_RETURN_CODE Led_TurnOn(Led self)
 LED_RETURN_CODE Led_TurnOff(Led self)
 {
     ATTINY861_RETURN_CODE ret;
+    GPIO_STATE gpio_state;
 
     if (self == NULL)
     {
         return LED_NULL_POINTER;
     }
 
-    ret = ATtiny861_Gpio_SetState(self->pin, GPIO_LOW);
+    gpio_state = convert_led_state_to_gpio_state(self->active_state, LED_OFF);
+    ret = ATtiny861_Gpio_SetState(self->pin, gpio_state);
     if (ret < 0)
     {
         //TODO untested. Don't know how.
