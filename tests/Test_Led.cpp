@@ -1,6 +1,7 @@
 extern "C"
 {
 #include "Led.h"
+#include "ATtiny861_Gpio.h"
 }
 
 #include "CppUTest/TestHarness.h"
@@ -33,6 +34,30 @@ TEST_GROUP(Led)
     }
 };
 
+TEST_GROUP(Led_ActiveLow)
+{
+    Led led;
+    LedParams params;
+    LED_STATE led_state;
+    LED_RETURN_CODE ret;
+    ATTINY861_PIN pin;
+    GPIO_STATE gpio_state;
+
+    void setup()
+    {
+        params.initial_state = LED_OFF;
+        params.active_state = LED_ACTIVE_LOW;
+        pin = ATTN861_PB6;
+
+        led = Led_Create(pin, &params);
+    }
+
+    void teardown()
+    {
+        Led_Destroy(&led);
+    }
+};
+
 TEST(Led, can_create_led1)
 {
     CHECK_TRUE(led1 != NULL);
@@ -54,7 +79,7 @@ TEST(Led, can_destroy_a_null_led)
     Led_Destroy(NULL);
 }
 
-TEST(Led, led_is_off_after_create)
+TEST(Led, active_high_led_is_off_after_create)
 {
     ret = Led_GetState(led1, &state1);
 
@@ -199,4 +224,34 @@ TEST(Led, do_not_toggle_a_null_led)
 {
     ret = Led_Toggle(NULL);
     LONGS_EQUAL(LED_NULL_POINTER, ret);
+}
+
+
+
+
+/*
+ * Active low Led
+ */
+TEST(Led_ActiveLow, can_create_active_low_led)
+{
+    CHECK_TRUE( led != NULL );
+}
+
+TEST(Led_ActiveLow, active_low_led_is_off_after_create)
+{
+    ret = Led_GetState(led, &led_state);
+
+    ATtiny861_Gpio_GetState(ATTN861_PB6, &gpio_state);
+    LONGS_EQUAL( GPIO_HIGH, gpio_state );
+    LONGS_EQUAL( LED_OFF, led_state );
+}
+
+IGNORE_TEST(Led_ActiveLow, can_turn_led_on)
+{
+    Led_TurnOn(led);
+
+    ret = Led_GetState(led, &led_state);
+    ATtiny861_Gpio_GetState(ATTN861_PB6, &gpio_state);
+    LONGS_EQUAL( GPIO_LOW, gpio_state );
+    LONGS_EQUAL( LED_ON, led_state );
 }

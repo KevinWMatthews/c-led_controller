@@ -20,7 +20,7 @@ typedef enum
 
 typedef enum
 {
-    // LED_ACTIVE_LOW      = 0,
+    LED_ACTIVE_LOW      = 0,
     LED_ACTIVE_HIGH     = 1,
 } LED_ACTIVE_STATE;
 

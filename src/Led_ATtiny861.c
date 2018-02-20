@@ -6,26 +6,39 @@
 typedef struct LedStruct
 {
     ATTINY861_PIN pin;
+    LED_ACTIVE_STATE active_state;
 } LedStruct;
 
 Led Led_Create(ATTINY861_PIN pin, LedParams *params)
 {
     ATTINY861_RETURN_CODE ret;
     Led self = NULL;
+    GPIO_STATE gpio_state;
 
     if (params == NULL)
     {
         return NULL;
     }
 
-    ret = ATtiny861_Gpio_SetAsOutput(pin, GPIO_LOW);
+    if (params->active_state == GPIO_HIGH)
+    {
+        gpio_state = GPIO_LOW;
+    }
+    else if (params->active_state == GPIO_LOW)
+    {
+        gpio_state = GPIO_HIGH;
+    }
+
+    ret = ATtiny861_Gpio_SetAsOutput(pin, gpio_state);
     if (ret < 0)
     {
         return NULL;
     }
 
+
     self = calloc( 1, sizeof(*self) );
     self->pin = pin;
+    self->active_state = params->active_state;
 
     return self;
 }
@@ -57,8 +70,16 @@ LED_RETURN_CODE Led_GetState(Led self, LED_STATE *state)
         return LED_ERROR;
     }
 
-    // GPIO state is mapped directly to LED state, for now.
-    *state = gpio_state;
+    if (self->active_state == LED_ACTIVE_HIGH)
+    {
+        // GPIO state is mapped directly to LED state.
+        *state = gpio_state;
+    }
+    else
+    {
+        // This will fail if we ever change the GPIO_STATE macro.
+        *state = !gpio_state;
+    }
     return LED_SUCCESS;
 }
 
