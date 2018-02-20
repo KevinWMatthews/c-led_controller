@@ -250,8 +250,8 @@ IGNORE_TEST(Led_ActiveLow, can_turn_led_on)
 {
     Led_TurnOn(led);
 
-    ret = Led_GetState(led, &led_state);
     ATtiny861_Gpio_GetState(ATTN861_PB6, &gpio_state);
+    Led_GetState(led, &led_state);
     LONGS_EQUAL( GPIO_LOW, gpio_state );
     LONGS_EQUAL( LED_ON, led_state );
 }

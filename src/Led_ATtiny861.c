@@ -9,6 +9,26 @@ typedef struct LedStruct
     LED_ACTIVE_STATE active_state;
 } LedStruct;
 
+static LED_STATE convert_gpio_state_to_gpio_state(LED_ACTIVE_STATE active_state, GPIO_STATE gpio_state)
+{
+    if (active_state == LED_ACTIVE_LOW)
+    {
+        // This will fail if we change the GPIO_STATE and LED_STATE macros.
+        return !gpio_state;
+    }
+    return gpio_state;
+}
+
+static GPIO_STATE convert_led_state_to_gpio_state(LED_ACTIVE_STATE active_state, LED_STATE led_state)
+{
+    if (active_state == LED_ACTIVE_LOW)
+    {
+        // This will fail if we change the GPIO_STATE and LED_STATE macros.
+        return !led_state;
+    }
+    return led_state;
+}
+
 Led Led_Create(ATTINY861_PIN pin, LedParams *params)
 {
     ATTINY861_RETURN_CODE ret;
@@ -20,21 +40,12 @@ Led Led_Create(ATTINY861_PIN pin, LedParams *params)
         return NULL;
     }
 
-    if (params->active_state == GPIO_HIGH)
-    {
-        gpio_state = GPIO_LOW;
-    }
-    else if (params->active_state == GPIO_LOW)
-    {
-        gpio_state = GPIO_HIGH;
-    }
-
+    gpio_state = convert_led_state_to_gpio_state(params->active_state, params->initial_state);
     ret = ATtiny861_Gpio_SetAsOutput(pin, gpio_state);
     if (ret < 0)
     {
         return NULL;
     }
-
 
     self = calloc( 1, sizeof(*self) );
     self->pin = pin;
@@ -70,16 +81,7 @@ LED_RETURN_CODE Led_GetState(Led self, LED_STATE *state)
         return LED_ERROR;
     }
 
-    if (self->active_state == LED_ACTIVE_HIGH)
-    {
-        // GPIO state is mapped directly to LED state.
-        *state = gpio_state;
-    }
-    else
-    {
-        // This will fail if we ever change the GPIO_STATE macro.
-        *state = !gpio_state;
-    }
+    *state = convert_gpio_state_to_gpio_state(self->active_state, gpio_state);
     return LED_SUCCESS;
 }
 
