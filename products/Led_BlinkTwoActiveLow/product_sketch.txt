@@ -1,0 +1,7 @@
+Blink two leds periodically (as slow as possible with pre-scaling only).
+Blink two instead of one so the difference between active low and active high leds is obvious.
+
+Requires/responds to hardware change.
+
+SetState will need to know which GPIO state direction.
+GetState will need to know which GPIO state is active.

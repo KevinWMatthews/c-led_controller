@@ -1,9 +1,0 @@
-product sketch
-same as usual:
-	blink led periodically (as slow as possible with pre-scaling only)
-	configure to be active low instead of active high
-
-Requires/responds to hardware change.
-
-SetState will need to know which GPIO state direction.
-GetState will need to know which GPIO state is active.
