@@ -246,7 +246,7 @@ TEST(Led_ActiveLow, active_low_led_is_off_after_create)
     LONGS_EQUAL( LED_OFF, led_state );
 }
 
-IGNORE_TEST(Led_ActiveLow, can_turn_led_on)
+TEST(Led_ActiveLow, can_turn_led_on)
 {
     Led_TurnOn(led);
 
