@@ -9,21 +9,31 @@ extern "C"
 TEST_GROUP(Led)
 {
     Led led1;
-    Led led2;
-    LedParams params;
-    LED_RETURN_CODE ret;
+    LedParams params1;
     LED_STATE led_state1;
+    ATTINY861_PIN pin1;
+    GPIO_STATE gpio_state1;
+
+    Led led2;
+    LedParams params2;
     LED_STATE led_state2;
+    ATTINY861_PIN pin2;
+    GPIO_STATE gpio_state2;
+
+    LED_RETURN_CODE ret;
 
     void setup()
     {
-        params.active_state = LED_ACTIVE_HIGH;
-        params.initial_state = LED_OFF;
-        led1 = Led_Create(ATTN861_PA0, &params);
-        params.active_state = LED_ACTIVE_HIGH;
-        params.initial_state = LED_OFF;
-        led2 = Led_Create(ATTN861_PA1,  &params);
+        pin1 = ATTN861_PA0;
+        params1.active_state = LED_ACTIVE_HIGH;
+        params1.initial_state = LED_OFF;
+        led1 = Led_Create(pin1, &params1);
         led_state1 = LED_OFF;
+
+        pin2 = ATTN861_PA1;
+        params2.active_state = LED_ACTIVE_HIGH;
+        params2.initial_state = LED_OFF;
+        led2 = Led_Create(pin2, &params2);
         led_state2 = LED_OFF;
     }
 
@@ -79,7 +89,7 @@ TEST(Led, can_destroy_a_null_led)
     Led_Destroy(NULL);
 }
 
-TEST(Led, active_high_led_is_off_after_create)
+TEST(Led, led_is_off_after_create)
 {
     ret = Led_GetState(led1, &led_state1);
 
@@ -198,7 +208,7 @@ TEST(Led, will_not_get_state_if_state_pointer_is_null)
 
 TEST(Led, will_not_create_an_invalid_led)
 {
-    Led led = Led_Create(42, &params);
+    Led led = Led_Create(42, &params1);
     CHECK_TRUE(led == NULL);
 }
 
