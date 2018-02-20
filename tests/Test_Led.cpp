@@ -12,8 +12,8 @@ TEST_GROUP(Led)
     Led led2;
     LedParams params;
     LED_RETURN_CODE ret;
-    LED_STATE state1;
-    LED_STATE state2;
+    LED_STATE led_state1;
+    LED_STATE led_state2;
 
     void setup()
     {
@@ -23,8 +23,8 @@ TEST_GROUP(Led)
         params.active_state = LED_ACTIVE_HIGH;
         params.initial_state = LED_OFF;
         led2 = Led_Create(ATTN861_PA1,  &params);
-        state1 = LED_OFF;
-        state2 = LED_OFF;
+        led_state1 = LED_OFF;
+        led_state2 = LED_OFF;
     }
 
     void teardown()
@@ -81,19 +81,19 @@ TEST(Led, can_destroy_a_null_led)
 
 TEST(Led, active_high_led_is_off_after_create)
 {
-    ret = Led_GetState(led1, &state1);
+    ret = Led_GetState(led1, &led_state1);
 
     LONGS_EQUAL(LED_SUCCESS, ret);
-    LONGS_EQUAL(LED_OFF, state1);
+    LONGS_EQUAL(LED_OFF, led_state1);
 }
 
 TEST(Led, can_turn_led1_on)
 {
     ret = Led_TurnOn(led1);
 
-    Led_GetState(led1, &state1);
+    Led_GetState(led1, &led_state1);
     LONGS_EQUAL(LED_SUCCESS, ret);
-    LONGS_EQUAL(LED_ON, state1);
+    LONGS_EQUAL(LED_ON, led_state1);
 }
 
 TEST(Led, can_turn_led1_off)
@@ -102,9 +102,9 @@ TEST(Led, can_turn_led1_off)
 
     ret = Led_TurnOff(led1);
 
-    Led_GetState(led1, &state1);
+    Led_GetState(led1, &led_state1);
     LONGS_EQUAL(LED_SUCCESS, ret);
-    LONGS_EQUAL(LED_OFF, state1);
+    LONGS_EQUAL(LED_OFF, led_state1);
 }
 
 TEST(Led, can_turn_led2_on)
@@ -113,9 +113,9 @@ TEST(Led, can_turn_led2_on)
 
     ret = Led_TurnOff(led2);
 
-    Led_GetState(led2, &state2);
+    Led_GetState(led2, &led_state2);
     LONGS_EQUAL(LED_SUCCESS, ret);
-    LONGS_EQUAL(LED_OFF, state2);
+    LONGS_EQUAL(LED_OFF, led_state2);
 }
 
 TEST(Led, can_turn_led2_off)
@@ -124,9 +124,9 @@ TEST(Led, can_turn_led2_off)
 
     ret = Led_TurnOff(led2);
 
-    Led_GetState(led2, &state2);
+    Led_GetState(led2, &led_state2);
     LONGS_EQUAL(LED_SUCCESS, ret);
-    LONGS_EQUAL(LED_OFF, state2);
+    LONGS_EQUAL(LED_OFF, led_state2);
 }
 
 TEST(Led, can_turn_led1_on_and_led2_off)
@@ -134,20 +134,20 @@ TEST(Led, can_turn_led1_on_and_led2_off)
     Led_TurnOn(led1);
     Led_TurnOff(led2);
 
-    Led_GetState(led1, &state1);
-    Led_GetState(led2, &state2);
+    Led_GetState(led1, &led_state1);
+    Led_GetState(led2, &led_state2);
 
-    LONGS_EQUAL(LED_ON, state1);
-    LONGS_EQUAL(LED_OFF, state2);
+    LONGS_EQUAL(LED_ON, led_state1);
+    LONGS_EQUAL(LED_OFF, led_state2);
 }
 
 TEST(Led, can_toggle_an_led_on)
 {
     ret = Led_Toggle(led1);
 
-    Led_GetState(led1, &state1);
+    Led_GetState(led1, &led_state1);
     LONGS_EQUAL(LED_SUCCESS, ret);
-    LONGS_EQUAL(LED_ON, state1);
+    LONGS_EQUAL(LED_ON, led_state1);
 }
 
 TEST(Led, can_toggle_an_led_on_and_off)
@@ -156,9 +156,9 @@ TEST(Led, can_toggle_an_led_on_and_off)
 
     ret = Led_Toggle(led1);
 
-    Led_GetState(led1, &state1);
+    Led_GetState(led1, &led_state1);
     LONGS_EQUAL(LED_SUCCESS, ret);
-    LONGS_EQUAL(LED_OFF, state1);
+    LONGS_EQUAL(LED_OFF, led_state1);
 }
 
 TEST(Led, can_toggle_two_leds)
@@ -166,11 +166,11 @@ TEST(Led, can_toggle_two_leds)
     Led_Toggle(led1);
     Led_Toggle(led2);
 
-    Led_GetState(led1, &state1);
-    Led_GetState(led2, &state2);
+    Led_GetState(led1, &led_state1);
+    Led_GetState(led2, &led_state2);
 
-    LONGS_EQUAL(LED_ON, state1);
-    LONGS_EQUAL(LED_ON, state2);
+    LONGS_EQUAL(LED_ON, led_state1);
+    LONGS_EQUAL(LED_ON, led_state2);
 }
 
 TEST(Led, can_toggle_two_leds_in_opposing_states)
@@ -180,10 +180,10 @@ TEST(Led, can_toggle_two_leds_in_opposing_states)
     Led_Toggle(led1);
     Led_Toggle(led2);
 
-    Led_GetState(led1, &state1);
-    Led_GetState(led2, &state2);
-    LONGS_EQUAL(LED_OFF, state1);
-    LONGS_EQUAL(LED_ON, state2);
+    Led_GetState(led1, &led_state1);
+    Led_GetState(led2, &led_state2);
+    LONGS_EQUAL(LED_OFF, led_state1);
+    LONGS_EQUAL(LED_ON, led_state2);
 }
 
 
