@@ -21,13 +21,14 @@ int main(void)
         .match_value_A = 255
     };
     LedParams led_params = {
+        .pin = ATTN861_PA0,
         .initial_state = LED_OFF,
         .active_state = LED_ACTIVE_HIGH,
     };
 
     ATtiny861_Timer0_Create(&timer0_params);
     ATtiny861_Timer0_RegisterCallback_MatchA(timer_callback);
-    led = Led_Create(ATTN861_PA0, &led_params);
+    led = Led_Create(&led_params);
     if (led == NULL)
     {
         return -1;

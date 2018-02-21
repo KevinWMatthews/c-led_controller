@@ -23,10 +23,12 @@ int main(void)
         .match_value_A = 255
     };
     LedParams led1_params = {
+        .pin = ATTN861_PA6,
         .initial_state = LED_OFF,
         .active_state = LED_ACTIVE_HIGH,
     };
     LedParams led2_params = {
+        .pin = ATTN861_PA7,
         .initial_state = LED_OFF,
         .active_state = LED_ACTIVE_HIGH,
     };
@@ -35,12 +37,12 @@ int main(void)
     ATtiny861_Timer0_Create(&timer0_params);
     ATtiny861_Timer0_RegisterCallback_MatchA(timer_callback);
 
-    led1 = Led_Create(ATTN861_PA6, &led1_params);
+    led1 = Led_Create(&led1_params);
     if (led1 == NULL)
     {
         return -1;
     }
-    led2 = Led_Create(ATTN861_PA7, &led2_params);
+    led2 = Led_Create(&led2_params);
     if (led2 == NULL)
     {
         return -1;

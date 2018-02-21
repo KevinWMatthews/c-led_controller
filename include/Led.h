@@ -30,10 +30,11 @@ typedef enum
  */
 typedef struct LedParams
 {
+    ATTINY861_PIN pin;
     LED_STATE initial_state;
     LED_ACTIVE_STATE active_state;
 } LedParams;
-Led Led_Create(ATTINY861_PIN pin, LedParams *params);
+Led Led_Create(LedParams *params);
 
 /*
  * Free all resources associated with the LED handle

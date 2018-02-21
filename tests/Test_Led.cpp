@@ -25,15 +25,17 @@ TEST_GROUP(Led)
     void setup()
     {
         pin1 = ATTN861_PA0;
+        params1.pin = pin1;
         params1.active_state = LED_ACTIVE_HIGH;
         params1.initial_state = LED_OFF;
-        led1 = Led_Create(pin1, &params1);
+        led1 = Led_Create(&params1);
         led_state1 = LED_OFF;
 
         pin2 = ATTN861_PA1;
+        params2.pin = pin2;
         params2.active_state = LED_ACTIVE_HIGH;
         params2.initial_state = LED_OFF;
-        led2 = Led_Create(pin2, &params2);
+        led2 = Led_Create(&params2);
         led_state2 = LED_OFF;
     }
 
@@ -55,11 +57,12 @@ TEST_GROUP(Led_ActiveLow)
 
     void setup()
     {
+        pin = ATTN861_PB6;
+        params.pin = pin;
         params.initial_state = LED_OFF;
         params.active_state = LED_ACTIVE_LOW;
-        pin = ATTN861_PB6;
 
-        led = Led_Create(pin, &params);
+        led = Led_Create(&params);
     }
 
     void teardown()
@@ -240,13 +243,14 @@ TEST(Led, will_not_get_state_if_state_pointer_is_null)
 
 TEST(Led, will_not_create_an_invalid_led)
 {
-    Led led = Led_Create(42, &params1);
+    params1.pin = 42;
+    Led led = Led_Create(&params1);
     CHECK_TRUE(led == NULL);
 }
 
 TEST(Led, will_not_create_with_null_params)
 {
-    Led led = Led_Create(ATTN861_PA7, NULL);
+    Led led = Led_Create(NULL);
     CHECK_TRUE(led == NULL);
 }
 
@@ -283,7 +287,7 @@ TEST(Led_ActiveLow, led_is_off_after_create)
 {
     ret = Led_GetState(led, &led_state);
 
-    ATtiny861_Gpio_GetState(ATTN861_PB6, &gpio_state);
+    ATtiny861_Gpio_GetState(pin, &gpio_state);
     LONGS_EQUAL( GPIO_HIGH, gpio_state );
     LONGS_EQUAL( LED_OFF, led_state );
 }
@@ -292,7 +296,7 @@ TEST(Led_ActiveLow, can_turn_led_on)
 {
     Led_TurnOn(led);
 
-    ATtiny861_Gpio_GetState(ATTN861_PB6, &gpio_state);
+    ATtiny861_Gpio_GetState(pin, &gpio_state);
     Led_GetState(led, &led_state);
     LONGS_EQUAL( GPIO_LOW, gpio_state );
     LONGS_EQUAL( LED_ON, led_state );
@@ -303,7 +307,7 @@ TEST(Led_ActiveLow, can_turn_led_off)
     Led_TurnOn(led);
     Led_TurnOff(led);
 
-    ATtiny861_Gpio_GetState(ATTN861_PB6, &gpio_state);
+    ATtiny861_Gpio_GetState(pin, &gpio_state);
     Led_GetState(led, &led_state);
     LONGS_EQUAL( GPIO_HIGH, gpio_state );
     LONGS_EQUAL( LED_OFF, led_state );

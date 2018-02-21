@@ -29,7 +29,7 @@ static GPIO_STATE convert_led_state_to_gpio_state(LED_ACTIVE_STATE active_state,
     return led_state;
 }
 
-Led Led_Create(ATTINY861_PIN pin, LedParams *params)
+Led Led_Create(LedParams *params)
 {
     ATTINY861_RETURN_CODE ret;
     Led self = NULL;
@@ -41,14 +41,14 @@ Led Led_Create(ATTINY861_PIN pin, LedParams *params)
     }
 
     gpio_state = convert_led_state_to_gpio_state(params->active_state, params->initial_state);
-    ret = ATtiny861_Gpio_SetAsOutput(pin, gpio_state);
+    ret = ATtiny861_Gpio_SetAsOutput(params->pin, gpio_state);
     if (ret < 0)
     {
         return NULL;
     }
 
     self = calloc( 1, sizeof(*self) );
-    self->pin = pin;
+    self->pin = params->pin;
     self->active_state = params->active_state;
 
     return self;
