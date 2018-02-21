@@ -312,3 +312,43 @@ TEST(Led_ActiveLow, can_turn_led_off)
     LONGS_EQUAL( GPIO_HIGH, gpio_state );
     LONGS_EQUAL( LED_OFF, led_state );
 }
+
+TEST(Led, active_high_can_be_turned_on_after_create)
+{
+    ATTINY861_PIN pin = ATTN861_PA4;
+    LedParams params = {
+        .pin = pin,
+        .initial_state = LED_ON,
+        .active_state = LED_ACTIVE_HIGH,
+    };
+    LED_STATE led_state;
+    GPIO_STATE gpio_state;
+    Led led = Led_Create(&params);
+
+    ATtiny861_Gpio_GetState(pin, &gpio_state);
+    Led_GetState(led, &led_state);
+    LONGS_EQUAL( GPIO_HIGH, gpio_state );
+    LONGS_EQUAL( LED_ON, led_state );
+
+    Led_Destroy(&led);
+}
+
+TEST(Led, active_low_can_be_turned_on_after_create)
+{
+    ATTINY861_PIN pin = ATTN861_PA4;
+    LedParams params = {
+        .pin = pin,
+        .initial_state = LED_ON,
+        .active_state = LED_ACTIVE_LOW,
+    };
+    LED_STATE led_state;
+    GPIO_STATE gpio_state;
+    Led led = Led_Create(&params);
+
+    ATtiny861_Gpio_GetState(pin, &gpio_state);
+    Led_GetState(led, &led_state);
+    LONGS_EQUAL( GPIO_LOW, gpio_state );
+    LONGS_EQUAL( LED_ON, led_state );
+
+    Led_Destroy(&led);
+}
