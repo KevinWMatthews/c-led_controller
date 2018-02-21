@@ -1,0 +1,3 @@
+#define Led_TurnOnTwo_VERSION_MAJOR @Led_TurnOnTwo_VERSION_MAJOR@
+#define Led_TurnOnTwo_VERSION_MINOR @Led_TurnOnTwo_VERSION_MINOR@
+#define Led_TurnOnTwo_VERSION_PATCH @Led_TurnOnTwo_VERSION_PATCH@
