@@ -2,7 +2,7 @@ if(NOT CMAKE_CROSSCOMPILING)
     message(FATAL_ERROR "Products must be cross compiled!")
 endif()
 
-include("${PROJECT_SOURCE_DIR}/AvrTargets.cmake")
+include("${CMAKE_HOME_DIRECTORY}/AvrTargets.cmake")
 
 set(Led_Blink_VERSION_MAJOR 1)
 set(Led_Blink_VERSION_MINOR 0)
@@ -15,7 +15,7 @@ configure_file (
 
 add_executable(Led_Blink
     Led_Blink.c
-    "${PROJECT_SOURCE_DIR}/src/Led_ATtiny861.c"
+    "${CMAKE_HOME_DIRECTORY}/src/Led_ATtiny861.c"
 )
 
 target_link_libraries(Led_Blink
@@ -25,7 +25,7 @@ target_link_libraries(Led_Blink
 
 target_include_directories(Led_Blink
     PRIVATE
-        "${PROJECT_SOURCE_DIR}/include"
+        "${CMAKE_HOME_DIRECTORY}/include"
         "${CMAKE_CURRENT_BINARY_DIR}"
 )
 

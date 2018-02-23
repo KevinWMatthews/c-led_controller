@@ -7,10 +7,10 @@ if(COMPILE_TESTS)
     )
     target_include_directories(LedController
         PUBLIC
-            "${PROJECT_SOURCE_DIR}/include"
+            "${CMAKE_HOME_DIRECTORY}/include"
         PRIVATE
             "${PROJECT_BINARY_DIR}/include"
-            "${PROJECT_SOURCE_DIR}/mocks"
+            "${CMAKE_HOME_DIRECTORY}/mocks"
     )
     target_link_libraries(LedController
         PRIVATE
