@@ -5,13 +5,13 @@ target_include_directories(ATtiny861
         "${CMAKE_CURRENT_LIST_DIR}/include"
 )
 
-target_sources(Test_ATtiny861
+target_sources(TestApp_ATtiny861
     PRIVATE
         "${CMAKE_CURRENT_LIST_DIR}/Mock_ATtiny861_Timer0.cpp"
         "${CMAKE_CURRENT_LIST_DIR}/Mock_avr_interrupt.cpp"
 )
 
-target_include_directories(Test_ATtiny861
+target_include_directories(TestApp_ATtiny861
     PRIVATE
         "${CMAKE_CURRENT_LIST_DIR}"
         "${CMAKE_CURRENT_LIST_DIR}/include"

@@ -26,12 +26,12 @@ endif()
 
 # Create test executable
 if(COMPILE_TESTS)
-    add_executable(Test_ATtiny861 "")
+    add_executable(TestApp_ATtiny861 "")
 
     include(tests/CMakeLists.txt)
     include(mocks/CMakeLists.txt)
 
-    target_link_libraries(Test_ATtiny861
+    target_link_libraries(TestApp_ATtiny861
         PRIVATE
             CppUTest
             CppUTestExt

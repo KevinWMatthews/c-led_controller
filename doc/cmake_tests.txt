@@ -1,0 +1,25 @@
+# You must first enable tests:
+enable_testing()
+
+# To add a test,
+add_test(
+	NAME <test_name>
+	COMMAND <command_to_run>		# If an executable name, CMake handles paths for you!
+)
+
+# Run all tests with:
+make test                           # Does not accept options?
+                                    # Does *not* rebuild source code!
+# or
+ctest
+
+# Run individual tests with:
+ctest -R <test_name>
+
+# CTest suppresses test output. To show it, run
+ctest --output-on-failure
+# or
+ctest -V
+
+# If you to run the tests unfettered by CTest (say, while developing a module),
+# the executables are still located in the build/bin/ directory.

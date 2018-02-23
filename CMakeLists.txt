@@ -12,6 +12,8 @@ set(CPPUTEST_HOME /usr/local CACHE STRING "Location where CppUTest is installed"
 option(COMPILE_TESTS "Compile unit tests" OFF)
 
 if(COMPILE_TESTS)
+    enable_testing()
+
     # If tests are compiled, the production code links against CppUTest.
     # Find the library before adding any production source code.
     message(STATUS "Searching for CppUTest in CPPUTEST_HOME: ${CPPUTEST_HOME}")
