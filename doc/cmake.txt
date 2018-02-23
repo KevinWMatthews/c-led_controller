@@ -1,24 +1,32 @@
 add_library(<name> <STATIC | SHARED | MODULE> IMPORTED)
 
-set_property(TARGET <target> PROPERTY <property> <value>)
-TARGET means we will operate on a target, not a directory or source file.
+# TARGET means we will operate on a target, not a directory or source file.
+set_property(TARGET <target>
+    PROPERTY <property> <value>
+)
 
-CMake will search the install prefix for libraries!
-    "The installation prefix is also added to CMAKE_SYSTEM_PREFIX_PATH so that find_package(), find_program(), find_library(), find_path(), and find_file() will search the prefix for other software."
-
-
-A double colon in a library forces the library to be a target.
-If the library is not found, CMake will throw an error during build system generation instead of during link time.
-See Daniel Pfeiffer's Effective CMake video about 26:20:
-    https://youtu.be/bsXLMQ6WgIk
-
-When extending a targets list of sources using target_sources(),
-list .c files using the PRIVATE property of the target.
-If you populate PUBLIC, the .c file could/will be linked against twice.
-Header files can be PUBLIC, PRIVATE, or INTERFACE as needed.
+# When extending a targets list of sources using target_sources(),
+# list .c files using the PRIVATE property of the target.
+# If you populate PUBLIC, the .c file could/will be linked against twice.
+# Header files can be PUBLIC, PRIVATE, or INTERFACE as needed.
+target_sources(<target>
+    PUBLIC
+        <header files here>
+    PRIVATE
+        <source files here>
+)
 
 # Specify an alias library for other targets to link against.
 # This is not required but enables to CMake to throw an error while it
 # is generating the build system if the library is not found.
 # Otherwise, we must wait until the linker fails (after compilation).
+
+# The double colon does the trick.
+# If the library is not found, CMake will throw an error during build system generation instead of during link time.
+# See Daniel Pfeiffer's Effective CMake video about 26:20:
+#   https://youtu.be/bsXLMQ6WgIk
+
 add_library(<library>::<alias> ALIAS <library>)
+
+# CMake will search the install prefix for libraries!
+#   "The installation prefix is also added to CMAKE_SYSTEM_PREFIX_PATH so that find_package(), find_program(), find_library(), find_path(), and find_file() will search the prefix for other software."
