@@ -1,4 +1,5 @@
-# Create library
+project(ATtiny861 VERSION 1.0.0)
+
 add_library(ATtiny861 "")
 
 include(include/CMakeLists.txt)
@@ -8,7 +9,7 @@ target_include_directories(ATtiny861
     PUBLIC
         "${CMAKE_CURRENT_SOURCE_DIR}/include"
     PRIVATE
-        "${PROJECT_BINARY_DIR}/include"
+        "${CMAKE_CURRENT_BINARY_DIR}/include"
 )
 
 target_link_libraries(ATtiny861

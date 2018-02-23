@@ -1,12 +1,10 @@
+project(Libhw_ATtiny861_Led_Blink VERSION 1.0.0)
+
 if(NOT CMAKE_CROSSCOMPILING)
     message(FATAL_ERROR "Products must be cross compiled!")
 endif()
 
 include("${CMAKE_HOME_DIRECTORY}/AvrTargets.cmake")
-
-set(Libhw_ATtiny861_Led_Blink_VERSION_MAJOR 1)
-set(Libhw_ATtiny861_Led_Blink_VERSION_MINOR 0)
-set(Libhw_ATtiny861_Led_Blink_VERSION_PATCH 0)
 
 configure_file (
     Libhw_ATtiny861_Led_Blink_Config.h.in

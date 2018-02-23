@@ -1,12 +1,10 @@
+project(Led_BlinkTwo VERSION 1.0.0)
+
 if(NOT CMAKE_CROSSCOMPILING)
     message(FATAL_ERROR "Products must be cross compiled!")
 endif()
 
 include("${CMAKE_HOME_DIRECTORY}/AvrTargets.cmake")
-
-set(Led_BlinkTwo_VERSION_MAJOR 1)
-set(Led_BlinkTwo_VERSION_MINOR 0)
-set(Led_BlinkTwo_VERSION_PATCH 0)
 
 configure_file (
     Led_BlinkTwo_Config.h.in

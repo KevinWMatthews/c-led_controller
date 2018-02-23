@@ -1,3 +1,5 @@
+project(BitManip VERSION 1.0.0)
+
 add_library(BitManip INTERFACE)
 target_include_directories(BitManip
 	INTERFACE
