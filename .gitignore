@@ -1,21 +1,12 @@
-# Ignore Cmake files
-CMakeFiles/
-CMakeCache.txt
-cmake_install.cmake
-Config.h
-Makefile
-
 # Ignore CMake toolchain files
 # These are system-specific and should not be tracked.
 Toolchain-*.cmake
 
 # Ignore build output
-build/
-build_avr/
-build_bbb/
-install/
-install_bbb/
-install_avr/
+build*/
+
+# Ignore install directories
+install*/
 
 # Ignore directories used for CppUTest
 cpputest*/
