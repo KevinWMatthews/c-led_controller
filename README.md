@@ -4,8 +4,8 @@ The goal of this project is to take a very simple concept (blink an LED) and foc
 
 
 ## Details
-Rather than speculate, this project attempts to present and quantify the differences between various design decisions.
-Several end-user products are implemented using three different techniques:
+Rather than speculate, let's actively explore and quantify the differences between design decisions.
+This project implements several different end-user products using three different techniques:
 
     * AVR libraries
         - Directly reference AVR-specific tools, functions, and registers
@@ -14,7 +14,7 @@ Several end-user products are implemented using three different techniques:
     * Software abstraction library
         - Create software structures that model specific end-user behavior
 
-Unsurprisingly, with each abstraction layer the size of the executable increases and the amount of interaction with chip-specific hardware (hopefully) decreases.
+Unsurprisingly, with each abstraction layer the size of the executable increases and the amount of interaction with chip-specific hardware decreases.
 
 
 ## Structure
@@ -51,10 +51,10 @@ For instructions on how to build and run these tests, see the [unit test README]
 
 
 ## Local compilation
-This project can be compiled and tested on a PC without the need for target hardware emulation.
+This project can be compiled and tested on a PC.
 For specific build instructions, see the [build README](README_build.md).
 
 
 ## Cross compilation
-This project can be compiled and run on AVR hardware.
+Products are designed to run on AVR hardware.
 For specific build instructions, see the [build README](README_build.md).
