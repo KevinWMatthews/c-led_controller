@@ -2,8 +2,8 @@
 
 
 ## CppUTest setup
-There are several methods of obtaining the CppUTest unit test framework. The most flexible is to build from source and install to a local directory (not to the system). This allows the unit test framework itself to be cross-compiled.
-The instructions provided are for CMake; Autotools is available.
+There are several methods of obtaining the [CppUTest unit test framework](http://cpputest.github.io/). The most flexible is to build from source and install to a local directory (not to the system). This allows the test tools themselves to be cross-compiled.
+The instructions provided are for CMake. See CppUTest's documentation for Autotools instructions.
 
 ```bash
 cd c-led_controller
@@ -21,7 +21,7 @@ make install
 
 There seems to be a bug in CppUTest's CMake installation (or I don't know how to link to a CMake library). The library links properly but can not resolve CppUTest includes.
 
-Open ```</path/to/CppUTest/install/dir/>/lib/CppUTest/cmake/CppUTestTargets.cmake``` and find:
+To fix this, open ```</path/to/CppUTest/install/dir/>/lib/CppUTest/cmake/CppUTestTargets.cmake``` and find:
 
 INTERFACE_INCLUDE_DIRECTORIES seems to be set improperly or not set at all. Search for the lines:
 

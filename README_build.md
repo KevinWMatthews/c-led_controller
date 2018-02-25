@@ -8,7 +8,7 @@ To configure an out-of-tree build, run
 mkdir build
 cd build
 # Specify CPPUTEST_HOME only if compiling tests
-cmake .. -DCOMPILE_TESTS=<yes/no> -DCPPUTEST_HOME=/path/to/CppUTest/install/dir
+cmake .. -DCOMPILE_TESTS=<yes|no> -DCPPUTEST_HOME=/path/to/CppUTest/install/dir
 ```
 
 For instructions on installing CppUTest and running unit tests, see the [unit test README](README_unit_tests.md).
@@ -97,7 +97,7 @@ Some targets are AVR specific but very useful for embedded development:
 		- Generate an .lst file containing the assembly code of the target program
 
 
-## Install
+### Install
 The part is flashed using AVRDUDE. There is a special target for doing this:
 
 ```bash
