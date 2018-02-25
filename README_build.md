@@ -7,8 +7,10 @@ To configure an out-of-tree build, run
 ```bash
 mkdir build
 cd build
-# Specify CPPUTEST_HOME only if compiling tests
-cmake .. -DCOMPILE_TESTS=<yes|no> -DCPPUTEST_HOME=/path/to/CppUTest/install/dir
+# To compile source code libraries only (skipping main executables and unit tests)
+cmake .. -DCOMPILE_TESTS=no
+# To compile unit tests
+cmake .. -DCOMPILE_TESTS=yes -DCPPUTEST_HOME=/path/to/CppUTest/install/dir
 ```
 
 For instructions on installing CppUTest and running unit tests, see the [unit test README](README_unit_tests.md).
@@ -57,8 +59,8 @@ The new ```Toolchain-*.cmake``` file will not and should not be tracked.
 Then run
 
 ```bash
-mkdir build-<arch>
-cd build-<arch>
+mkdir build-avr
+cd build-avr
 # Unit tests are not currently supported on the target architecture
 cmake .. -DCMAKE_TOOLCHAIN_FILE=Toolchain-*.cmake -DCOMPILE_TESTS=no
 ```
@@ -72,28 +74,26 @@ Again, various make commands can be run within ```build-<arch>/``` and will not 
 
 ### Build
 To build all programs, simply run
-
 ```bash
 make
 ```
 
 List all products and targets with
-
 ```bash
 make help
 ```
 
-To build an individual product, specify the basic image format (.elf):
-
+To build an individual product, run
 ```bash
-make <product>.elf
+make <product>
 ```
+This creates an .elf file.
 
 Some targets are AVR specific but very useful for embedded development:
 
-	* make <target>-size
+	* make <product>-size
 		- List size and composition of the target program
-	* make <target>-disassemble
+	* make <product>-disassemble
 		- Generate an .lst file containing the assembly code of the target program
 
 
@@ -101,7 +101,7 @@ Some targets are AVR specific but very useful for embedded development:
 The part is flashed using AVRDUDE. There is a special target for doing this:
 
 ```bash
-make <target>-writeflash
+make <product>-writeflash
 ```
 
 

@@ -24,13 +24,11 @@ There seems to be a bug in CppUTest's CMake installation (or I don't know how to
 To fix this, open ```</path/to/CppUTest/install/dir/>/lib/CppUTest/cmake/CppUTestTargets.cmake``` and find:
 
 INTERFACE_INCLUDE_DIRECTORIES seems to be set improperly or not set at all. Search for the lines:
-
 ```cmake
 set_target_properties(CppUTest PROPERTIES
   INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/CppUTest"
 )
 ```
-
 and replace:
 ```cmake
 INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include/CppUTest"
@@ -41,14 +39,15 @@ INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
 ```
 
 If you can not find the above lines, then search for where the CppUTest library is created:
-
 ```cmake
 # Create imported target CppUTest
 add_library(CppUTest STATIC IMPORTED)
 ```
 and add
 ```cmake
-INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
+set_target_properties(CppUTest PROPERTIES
+  INTERFACE_INCLUDE_DIRECTORIES "${_IMPORT_PREFIX}/include"
+)
 ```
 just below.
 
@@ -64,12 +63,39 @@ mkdir build
 cd build
 cmake .. -DCOMPILE_TESTS=ON -DCPPUTEST_HOME=/absolute/path/to/CppUTest/install/dir
 make
+make test
 ```
 
-Unit test executables are automatically placed in the build/bin/ directory. These must be run manually.
 
 
 ## Unit test options
+### Run all tests
+Run unit tests using the make command
+```bash
+make test		# Does *not* rebuild source code!
+```
+or using CTest
+```bash
+ctest
+```
+
+Run individual CTest targets using
+```bash
+ctest -R <test_target> 			# Runs an individual test executable, not an individual unit test
+```
+
+CTest suppresses test output by default. To show the output of a failing test, run
+```bash
+# pass option
+ctest --output-on-failure
+# or set environment variable
+CTEST_OUTPUT_ON_FAILURE=yes ctest
+```
+
+
+### Run individual tests
+Individual unit test executables can be run manually, which is especially useful during development. Executables are automatically placed in the build/bin/ directory when they are compiled.
+
 CppUTest provides several options for running unit tests. A few of useful ones are here:
 
 | Option      | Effect                                            |
@@ -79,4 +105,4 @@ CppUTest provides several options for running unit tests. A few of useful ones a
 | -sg <group> | Run specific test group                           |
 | -v          | Verbose (useful for seeing which test segfaulted) |
 
-Full details are available in their documentation.
+Full details are available in the [CppUTest manual](http://cpputest.github.io/manual.html#command_line).

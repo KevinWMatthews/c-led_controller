@@ -40,14 +40,14 @@ For instructions on how to build and run these tests, see the [unit test README]
 
 ## Requirements
 
-    * Cross compilation
-        - AVR gcc
-        - CMake
-        - AVRDUDE
     * Local compilation
         - gcc
         - CMake
         - CppUTest
+    * Cross compilation
+        - AVR gcc
+        - CMake
+        - AVRDUDE
 
 
 ## Local compilation
