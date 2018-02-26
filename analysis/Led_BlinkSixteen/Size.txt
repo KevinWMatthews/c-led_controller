@@ -1,0 +1,22 @@
+[100%] Generating stats for Led_BlinkSixteen.elf
+/home/kevin/coding/c/led_controller/build_avr/bin/Led_BlinkSixteen.elf  :
+section    size      addr
+.text      2696         0
+.data         6   8388704
+.bss         40   8388710
+.comment     92         0
+Total      2834
+
+
+AVR Memory Usage
+----------------
+Device: attiny861
+
+Program:    2702 bytes (33.0% Full)
+(.text + .data + .bootloader)
+
+Data:         46 bytes (9.0% Full)
+(.data + .bss + .noinit)
+
+
+[100%] Built target Led_BlinkSixteen-size
