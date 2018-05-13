@@ -23,7 +23,7 @@ target_link_libraries(Led_Blink
 
 target_include_directories(Led_Blink
     PRIVATE
-        "${CMAKE_HOME_DIRECTORY}/include"
+        "${CMAKE_HOME_DIRECTORY}/include/Led"
         "${CMAKE_CURRENT_BINARY_DIR}"
 )
 

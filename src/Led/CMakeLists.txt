@@ -7,7 +7,7 @@ if(COMPILE_TESTS)
     )
     target_include_directories(LedController
         PUBLIC
-            "${CMAKE_HOME_DIRECTORY}/include"
+            "${CMAKE_HOME_DIRECTORY}/include/Led"
         PRIVATE
             "${PROJECT_BINARY_DIR}/include"
             "${CMAKE_HOME_DIRECTORY}/mocks"

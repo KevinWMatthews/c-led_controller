@@ -23,7 +23,7 @@ target_link_libraries(Led_BlinkTwoActiveLow
 
 target_include_directories(Led_BlinkTwoActiveLow
     PRIVATE
-        "${CMAKE_HOME_DIRECTORY}/include"
+        "${CMAKE_HOME_DIRECTORY}/include/Led"
         "${CMAKE_CURRENT_BINARY_DIR}"
 )
 
