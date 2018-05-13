@@ -24,7 +24,7 @@ if(COMPILE_TESTS)
 endif(COMPILE_TESTS)
 
 add_subdirectory(lib/BitManip)
-add_subdirectory(lib/ATtiny861)
+add_subdirectory(src/ATtiny861)
 add_subdirectory(src/Led)
 add_subdirectory(products)
 add_subdirectory(products_libhw)
