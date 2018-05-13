@@ -13,7 +13,7 @@ configure_file (
 
 add_executable(Led_BlinkTwo
     Led_BlinkTwo.c
-    "${CMAKE_HOME_DIRECTORY}/src/Led_ATtiny861.c"
+    "${CMAKE_HOME_DIRECTORY}/src/Led/Led_ATtiny861.c"
 )
 
 target_link_libraries(Led_BlinkTwo
