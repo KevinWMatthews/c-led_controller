@@ -23,7 +23,7 @@ if(COMPILE_TESTS)
     add_subdirectory(tests)
 endif(COMPILE_TESTS)
 
-add_subdirectory(lib/BitManip)
+add_subdirectory(src/BitManip)
 add_subdirectory(src/ATtiny861)
 add_subdirectory(src/Led)
 add_subdirectory(products)
