@@ -11,7 +11,7 @@ target_sources(TestApp_ATtiny861
 
 target_include_directories(TestApp_ATtiny861
     PRIVATE
-        "${CMAKE_CURRENT_SOURCE_DIR}/src"   # Include for testing a private module
+        "${CMAKE_HOME_DIRECTORY}/src/ATtiny861/src"   # Include for testing a private module
 )
 
 add_test(
