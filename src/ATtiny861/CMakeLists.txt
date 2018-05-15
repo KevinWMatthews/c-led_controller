@@ -16,11 +16,11 @@ target_include_directories(ATtiny861
         "${CMAKE_CURRENT_BINARY_DIR}/include"
 )
 if(COMPILE_TESTS)
-    # Override header files in production code!!
-    # This allows custom behavior for mocked registers.
+    # Override production header files !!
+    # This allows us to create macros that simulate chip behavior during bitwise operations.
     target_include_directories(ATtiny861
         BEFORE PRIVATE
-            "${CMAKE_HOME_DIRECTORY}/mocks/include"
+            "${CMAKE_HOME_DIRECTORY}/mocks/BitManip"
     )
 endif()
 
