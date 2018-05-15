@@ -6,8 +6,6 @@ add_executable(TestApp_ATtiny861
     Test_ATtiny861_GpioMap.cpp
     Test_ATtiny861_Timer0.cpp
     Test_ATtiny861_Interrupt.cpp
-    #TODO these belong in a library...
-    "${CMAKE_HOME_DIRECTORY}/mocks/Mock_avr_interrupt.cpp"
 )
 
 target_include_directories(TestApp_ATtiny861
@@ -22,7 +20,8 @@ target_link_libraries(TestApp_ATtiny861
         CppUTest
         ATtiny861::ATtiny861
         MockATtiny861::MockATtiny861
-        ATtiny861::MockRegisters
+        MockATtiny861Registers::MockATtiny861Registers
+        MockAvrInterrupt::MockAvrInterrupt
         # Regular or mock BitManip? This works but I don't trust it.
         BitManip::BitManip
 )
