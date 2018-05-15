@@ -43,12 +43,6 @@ if(COMPILE_TESTS)
 endif()
 
 
-# Create library of mock AVR registers when compiling locally.
-if(NOT CMAKE_CROSSCOMPILING)
-    include("${CMAKE_HOME_DIRECTORY}/mock_avr/CMakeLists.txt")
-endif()
-
-
 if(CMAKE_CROSSCOMPILING)
     # Add AVR-specific compiler and linker flags
     set_target_properties(ATtiny861

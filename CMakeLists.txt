@@ -19,9 +19,8 @@ if(COMPILE_TESTS)
     message(STATUS "Searching for CppUTest in CPPUTEST_HOME: ${CPPUTEST_HOME}")
     set(CMAKE_PREFIX_PATH "${CPPUTEST_HOME}")
     find_package(CppUTest 3.8 REQUIRED)
+endif()
 
-    add_subdirectory(tests)
-endif(COMPILE_TESTS)
 
 add_subdirectory(src/BitManip)
 add_subdirectory(src/ATtiny861)
@@ -29,6 +28,15 @@ add_subdirectory(src/Led)
 add_subdirectory(products)
 add_subdirectory(products_libhw)
 add_subdirectory(products_avr)
+
+# Create library of mock AVR registers when compiling locally.
+if(NOT CMAKE_CROSSCOMPILING)
+    add_subdirectory(mock_avr)
+endif()
+
+if(COMPILE_TESTS)
+    add_subdirectory(tests)
+endif()
 
 message(STATUS "
 -------------------------------------------------------
