@@ -1,13 +1,13 @@
-add_library(MockATtiny861Registers
+add_library(MockHw_ATtiny861
     src/Mock_ATtiny861_Registers.c
 )
 
-target_include_directories(MockATtiny861Registers
+target_include_directories(MockHw_ATtiny861
     PUBLIC
         include
 )
 
-add_library(MockATtiny861Registers::MockATtiny861Registers ALIAS MockATtiny861Registers)
+add_library(MockHw_ATtiny861::MockHw_ATtiny861 ALIAS MockHw_ATtiny861)
 
 
 

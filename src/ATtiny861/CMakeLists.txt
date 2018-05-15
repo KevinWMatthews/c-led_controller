@@ -33,7 +33,7 @@ endif()
 if(NOT CMAKE_CROSSCOMPILING)
     target_link_libraries(ATtiny861
         PRIVATE
-            MockATtiny861Registers::MockATtiny861Registers
+            MockHw_ATtiny861::MockHw_ATtiny861
     )
 endif()
 if(COMPILE_TESTS)

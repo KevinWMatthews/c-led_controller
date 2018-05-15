@@ -13,7 +13,7 @@ target_link_libraries(MockATtiny861
     PRIVATE
         CppUTest
         CppUTestExt
-        MockATtiny861Registers::MockATtiny861Registers
+        MockHw_ATtiny861::MockHw_ATtiny861
 )
 
 add_library(MockATtiny861::MockATtiny861 ALIAS MockATtiny861)
