@@ -31,7 +31,7 @@ add_subdirectory(products_avr)
 
 # Create library of mock AVR registers when compiling locally.
 if(NOT CMAKE_CROSSCOMPILING)
-    add_subdirectory(mocks/avr)
+    add_subdirectory(mock_hw)
 endif()
 
 if(COMPILE_TESTS)
