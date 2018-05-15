@@ -1,9 +1,13 @@
 project(ATtiny861 VERSION 1.0.0)
 
-add_library(ATtiny861 "")
-
-include("${CMAKE_HOME_DIRECTORY}/include/ATtiny861/CMakeLists.txt")
-include(src/CMakeLists.txt)
+# Some IDEs require listing header files here
+add_library(ATtiny861
+    ATtiny861_Gpio.c
+    ATtiny861_GpioMap.h
+    ATtiny861_GpioMap.c
+    ATtiny861_Timer0.c
+    ATtiny861_Interrupt.c
+)
 
 target_include_directories(ATtiny861
     PUBLIC
@@ -11,11 +15,32 @@ target_include_directories(ATtiny861
     PRIVATE
         "${CMAKE_CURRENT_BINARY_DIR}/include"
 )
+if(COMPILE_TESTS)
+    # Override header files in production code!!
+    # This allows custom behavior for mocked registers.
+    target_include_directories(ATtiny861
+        BEFORE PRIVATE
+            "${CMAKE_HOME_DIRECTORY}/mocks/include"
+    )
+endif()
+
 
 target_link_libraries(ATtiny861
     PRIVATE
         BitManip::BitManip
 )
+if(NOT CMAKE_CROSSCOMPILING)
+    target_link_libraries(ATtiny861
+        PRIVATE
+        ATtiny861::MockRegisters
+    )
+endif()
+if(COMPILE_TESTS)
+    target_link_libraries(ATtiny861
+        PRIVATE
+            CppUTest
+    )
+endif()
 
 
 # Create library of mock AVR registers when compiling locally.
@@ -24,47 +49,19 @@ if(NOT CMAKE_CROSSCOMPILING)
 endif()
 
 
-# Create test executable
-if(COMPILE_TESTS)
-    add_executable(TestApp_ATtiny861 "")
-
-    include("${CMAKE_HOME_DIRECTORY}/tests/ATtiny861/CMakeLists.txt")
-    include("${CMAKE_HOME_DIRECTORY}/mocks/CMakeLists.txt")
-
-    target_link_libraries(TestApp_ATtiny861
-        PRIVATE
-            CppUTest
-            CppUTestExt
-            ATtiny861::ATtiny861
-            ATtiny861::MockRegisters
-            BitManip::BitManip
-    )
-endif()
-
-
 if(CMAKE_CROSSCOMPILING)
+    # Add AVR-specific compiler and linker flags
     set_target_properties(ATtiny861
         PROPERTIES
             COMPILE_FLAGS ${AVR_COMPILE_FLAGS}
             LINK_FLAGS ${AVR_LINK_FLAGS}
     )
-else()
-    target_link_libraries(ATtiny861
-        PRIVATE
-        ATtiny861::MockRegisters
-    )
 endif(CMAKE_CROSSCOMPILING)
-
-
 if(COMPILE_TESTS)
-    # Compile production code against CppUTest to enable memory leak detection
+    # Set flag to enable CppUTest's memory leak detection
     set_target_properties(ATtiny861
         PROPERTIES
             COMPILE_FLAGS "-include CppUTest/MemoryLeakDetectorMallocMacros.h"
-    )
-    target_link_libraries(ATtiny861
-        PRIVATE
-            CppUTest
     )
 endif(COMPILE_TESTS)
 
