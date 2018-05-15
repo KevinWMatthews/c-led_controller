@@ -36,6 +36,7 @@ endif()
 
 if(COMPILE_TESTS)
     add_subdirectory(tests)
+    add_subdirectory(mocks)
 endif()
 
 message(STATUS "
