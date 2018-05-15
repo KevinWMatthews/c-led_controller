@@ -14,8 +14,6 @@ target_include_directories(TestApp_ATtiny861
     PRIVATE
         "${CMAKE_HOME_DIRECTORY}/src/ATtiny861"     # Include for testing a private module
         "${CMAKE_HOME_DIRECTORY}/mocks"
-        # Override BitManip macros to simulate chip behavior during bitwise operations
-        "${CMAKE_HOME_DIRECTORY}/mocks/BitManip"
 )
 
 target_link_libraries(TestApp_ATtiny861
@@ -24,6 +22,8 @@ target_link_libraries(TestApp_ATtiny861
         ATtiny861::ATtiny861
         MockATtiny861::MockATtiny861
         ATtiny861::MockRegisters
+        # Regular or mock BitManip? This works but I don't trust it.
+        BitManip::BitManip
 )
 
 add_test(

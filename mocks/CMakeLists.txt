@@ -1,3 +1,6 @@
+add_subdirectory(BitManip)
+
+
 enable_language(CXX)
 
 add_library(MockATtiny861

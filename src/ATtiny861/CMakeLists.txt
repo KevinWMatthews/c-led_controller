@@ -16,23 +16,24 @@ target_include_directories(ATtiny861
         "${CMAKE_CURRENT_BINARY_DIR}/include"
 )
 if(COMPILE_TESTS)
-    # Override production header files !!
+    # Override production header files!
     # This allows us to create macros that simulate chip behavior during bitwise operations.
-    target_include_directories(ATtiny861
-        BEFORE PRIVATE
-            "${CMAKE_HOME_DIRECTORY}/mocks/BitManip"
+    target_link_libraries(ATtiny861
+        PRIVATE
+            MockBitManip::MockBitManip
+    )
+else()
+    target_link_libraries(ATtiny861
+        PRIVATE
+            BitManip::BitManip
     )
 endif()
 
 
-target_link_libraries(ATtiny861
-    PRIVATE
-        BitManip::BitManip
-)
 if(NOT CMAKE_CROSSCOMPILING)
     target_link_libraries(ATtiny861
         PRIVATE
-        ATtiny861::MockRegisters
+            ATtiny861::MockRegisters
     )
 endif()
 if(COMPILE_TESTS)
