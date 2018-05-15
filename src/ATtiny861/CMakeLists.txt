@@ -29,7 +29,7 @@ if(COMPILE_TESTS)
     add_executable(TestApp_ATtiny861 "")
 
     include("${CMAKE_HOME_DIRECTORY}/tests/ATtiny861/CMakeLists.txt")
-    include(mocks/CMakeLists.txt)
+    include("${CMAKE_HOME_DIRECTORY}/mocks/CMakeLists.txt")
 
     target_link_libraries(TestApp_ATtiny861
         PRIVATE
