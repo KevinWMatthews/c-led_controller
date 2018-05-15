@@ -1,7 +1,12 @@
+# We could compile this into a library for individual products.
+# At the moment, let the products link against the specific files that they require.
+# To be rethought as the project expands...
+# when I look at this with fresh eyes I expect to see production code do something here.
+# If we make this a library we will have better luck tracking versions as the requirements grow.
+
 if(COMPILE_TESTS)
     # Create library of LedController code for testing.
     # This enables test code to use link-time substitution to swap in mock modules.
-    # Individual products specify their own requried source files.
     add_library(LedController
         Led_ATtiny861.c
     )
@@ -10,7 +15,6 @@ if(COMPILE_TESTS)
             "${CMAKE_HOME_DIRECTORY}/include/Led"
         PRIVATE
             "${PROJECT_BINARY_DIR}/include"
-            "${CMAKE_HOME_DIRECTORY}/mocks"
     )
     target_link_libraries(LedController
         PRIVATE
