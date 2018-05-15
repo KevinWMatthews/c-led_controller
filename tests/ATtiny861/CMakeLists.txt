@@ -13,7 +13,6 @@ add_executable(TestApp_ATtiny861
 target_include_directories(TestApp_ATtiny861
     PRIVATE
         "${CMAKE_HOME_DIRECTORY}/src/ATtiny861"     # Include for testing a private module
-        "${CMAKE_HOME_DIRECTORY}/mocks"
 )
 
 target_link_libraries(TestApp_ATtiny861
