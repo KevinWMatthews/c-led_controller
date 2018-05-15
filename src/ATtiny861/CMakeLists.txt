@@ -20,7 +20,7 @@ target_link_libraries(ATtiny861
 
 # Create library of mock AVR registers when compiling locally.
 if(NOT CMAKE_CROSSCOMPILING)
-    add_subdirectory(mock_avr)
+    include("${CMAKE_HOME_DIRECTORY}/mock_avr/CMakeLists.txt")
 endif()
 
 
