@@ -21,13 +21,10 @@ if(COMPILE_TESTS)
     find_package(CppUTest 3.8 REQUIRED)
 endif()
 
-
-add_subdirectory(src/BitManip)
-add_subdirectory(src/libATtiny861)
-add_subdirectory(src/Led)
+add_subdirectory(src)
 add_subdirectory(products)
 
-# Create library of mock AVR registers when compiling locally.
+# Create library of mock AVR registers and routines when compiling locally.
 if(NOT CMAKE_CROSSCOMPILING)
     add_subdirectory(mock_hw)
 endif()
