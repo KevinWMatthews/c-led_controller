@@ -1,2 +1,2 @@
 add_subdirectory(BitManip)
-add_subdirectory(ATtiny861)
+add_subdirectory(libATtiny861)
