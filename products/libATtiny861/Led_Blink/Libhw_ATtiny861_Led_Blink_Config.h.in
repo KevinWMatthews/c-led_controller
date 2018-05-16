@@ -1,3 +1,0 @@
-#define Libhw_ATtiny861_Led_Blink_VERSION_MAJOR @Libhw_ATtiny861_Led_Blink_VERSION_MAJOR@
-#define Libhw_ATtiny861_Led_Blink_VERSION_MINOR @Libhw_ATtiny861_Led_Blink_VERSION_MINOR@
-#define Libhw_ATtiny861_Led_Blink_VERSION_PATCH @Libhw_ATtiny861_Led_Blink_VERSION_PATCH@

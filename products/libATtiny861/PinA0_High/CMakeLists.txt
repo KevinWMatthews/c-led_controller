@@ -4,12 +4,12 @@ endif()
 
 include("${CMAKE_HOME_DIRECTORY}/AvrTargets.cmake")
 
-add_executable(Libhw_PinA0_High
+add_executable(LibATtiny861_PinA0_High
     PinA0_High.c
 )
-target_link_libraries(Libhw_PinA0_High
+target_link_libraries(LibATtiny861_PinA0_High
     PRIVATE
         ATtiny861::ATtiny861
 )
 
-create_avr_targets(TARGET_NAME Libhw_PinA0_High)
+create_avr_targets(TARGET_NAME LibATtiny861_PinA0_High)

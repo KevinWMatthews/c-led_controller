@@ -4,12 +4,12 @@ endif()
 
 include("${CMAKE_HOME_DIRECTORY}/AvrTargets.cmake")
 
-add_executable(Libhw_PinPort_AsOutput
+add_executable(LibATtiny861_PinPort_AsOutput
     PinPort_AsOutput.c
 )
-target_link_libraries(Libhw_PinPort_AsOutput
+target_link_libraries(LibATtiny861_PinPort_AsOutput
     PRIVATE
         ATtiny861::ATtiny861
 )
 
-create_avr_targets(TARGET_NAME Libhw_PinPort_AsOutput)
+create_avr_targets(TARGET_NAME LibATtiny861_PinPort_AsOutput)

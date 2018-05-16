@@ -1,0 +1,3 @@
+#define LibATtiny861_Led_Blink_VERSION_MAJOR @LibATtiny861_Led_Blink_VERSION_MAJOR@
+#define LibATtiny861_Led_Blink_VERSION_MINOR @LibATtiny861_Led_Blink_VERSION_MINOR@
+#define LibATtiny861_Led_Blink_VERSION_PATCH @LibATtiny861_Led_Blink_VERSION_PATCH@
