@@ -10,9 +10,9 @@ add_executable(Test_ATtiny861
 
 target_include_directories(Test_ATtiny861
     PRIVATE
-        # Include for testing a private module.
+        # Non-standard include for testing a private module.
         # This smells funny...
-        "${CMAKE_HOME_DIRECTORY}/src/ATtiny861"
+        "${CMAKE_HOME_DIRECTORY}/src/libATtiny861"
 )
 
 target_link_libraries(Test_ATtiny861

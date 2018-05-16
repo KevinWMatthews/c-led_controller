@@ -23,7 +23,7 @@ endif()
 
 
 add_subdirectory(src/BitManip)
-add_subdirectory(src/ATtiny861)
+add_subdirectory(src/libATtiny861)
 add_subdirectory(src/Led)
 add_subdirectory(products)
 
