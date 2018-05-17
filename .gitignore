@@ -3,7 +3,8 @@
 Toolchain-*.cmake
 
 # Ignore build output
-build*/
+build/
+build_avr/
 
 # Ignore install directories
 install*/
