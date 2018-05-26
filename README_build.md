@@ -1,6 +1,17 @@
 # Build Setup
 
 
+## Docker compilation
+For a demonstration of compiling and running unit tests, use the scripts in the project root to build and run a Docker image
+
+```bash
+$ ./docker_build_x86_test.sh
+$ ./docker_run_x86_test.sh
+```
+
+For more details on the container or for instructions on how to build the image and run the container manually, see the [Dockerfiles README](Dockerfiles/README.md).
+
+
 ## Local compilation
 To configure an out-of-tree build, run
 
