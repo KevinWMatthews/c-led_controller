@@ -22,7 +22,7 @@ if(COMPILE_TESTS)
 endif()
 
 add_subdirectory(src)
-add_subdirectory(products)
+add_subdirectory(examples)
 
 # Create library of mock AVR registers and routines when compiling locally.
 if(NOT CMAKE_CROSSCOMPILING)
