@@ -1,14 +1,14 @@
-FROM cpputest-3.8.1
+FROM kevinwmatthews/docker-cpputest:v3.8-bugfix-latest
 
-RUN useradd --create-home build
-USER build
+ARG user=builder
+RUN useradd --create-home $user
 
-WORKDIR /home/build
-#TODO should build from a tag
+WORKDIR /home/$user
+#TODO checkout a tag before building
 RUN git clone https://github.com/KevinWMatthews/c-led_controller.git \
     && mkdir c-led_controller_build \
     && cd c-led_controller_build \
     && cmake ../c-led_controller -DCOMPILE_TESTS=ON
 
-WORKDIR /home/build/c-led_controller_build
+WORKDIR /home/$user/c-led_controller_build
 CMD make && make test
