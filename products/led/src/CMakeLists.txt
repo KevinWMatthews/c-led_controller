@@ -12,7 +12,8 @@ if(COMPILE_TESTS)
     )
     target_include_directories(LedController
         PUBLIC
-            "${CMAKE_HOME_DIRECTORY}/include/Led"
+            "${CMAKE_CURRENT_LIST_DIR}/../include"
+        }
         PRIVATE
             "${PROJECT_BINARY_DIR}/include"
     )
