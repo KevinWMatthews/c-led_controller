@@ -200,4 +200,13 @@ extern volatile uint8_t timsk;
 // #define TIMER0_COMPA_vect	    	_VECTOR(14)
 // #define SIG_OUTPUT_COMPARE0A		_VECTOR(14)
 
+
+/*
+ * Expose the individual interrupts so that the Mock can execute them.
+ * See the mock <avr/io.h> for the convention for naming interrupts and
+ * <avr/interrupt.h> for the definition of ISR.
+ */
+void vector_14_TIMER0_COMPA(void);
+
+
 #endif

@@ -1,7 +1,6 @@
 extern "C"
 {
 #include "ATtiny861_Timer0.h"
-#include "Mock_ATtiny861_Timer0.h"
 #include <avr/io.h>
 #include "BitManip.h"
 }
@@ -25,6 +24,15 @@ TEST_GROUP(ATtiny861_Timer0)
     }
 };
 
+void hardware_timer_match(void)
+{
+    // This will execute the corresponding ISR.
+    // ISR will be declared in our mocked <avr/io.h>
+    // We'll need to define the corresponding interrupts somewhere...
+    // or can we inline them?
+    // AVR seems to both declare and define the functions in <avr/io.h>. Try this.
+    TIMER0_COMPA_vect();
+}
 
 TEST(ATtiny861_Timer0, can_create_timer)
 {
@@ -138,7 +146,7 @@ TEST(ATtiny861_Timer0, can_execute_callback_for_timer0_compare_A_interrupt)
     ATtiny861_Timer0_Start();
 
     mock().expectOneCall("match_a_callback");
-    Mock_ATtiny861_Timer0_CompareMatchA();
+    hardware_timer_match();
 }
 
 TEST(ATtiny861_Timer0, second_compare_A_callback_replaces_original)
@@ -153,7 +161,7 @@ TEST(ATtiny861_Timer0, second_compare_A_callback_replaces_original)
     ATtiny861_Timer0_Start();
 
     mock().expectOneCall("match_a_callback");
-    Mock_ATtiny861_Timer0_CompareMatchA();
+    hardware_timer_match();
 }
 
 TEST(ATtiny861_Timer0, will_not_execute_null_callback_for_timer0_compare_A_interrupt)
@@ -169,5 +177,5 @@ TEST(ATtiny861_Timer0, will_not_execute_null_callback_for_timer0_compare_A_inter
     ATtiny861_Timer0_Start();
 
     mock().expectOneCall("match_a_callback2");
-    Mock_ATtiny861_Timer0_CompareMatchA();
+    hardware_timer_match();
 }
