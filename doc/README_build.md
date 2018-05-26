@@ -1,27 +1,16 @@
 # Build Setup
 
 
-## Docker compilation
-For a demonstration of compiling and running unit tests, use the scripts in the project root to build and run a Docker image
-
-```bash
-$ ./docker_build_x86_test.sh
-$ ./docker_run_x86_test.sh
-```
-
-For more details on the container or for instructions on how to build the image and run the container manually, see the [Dockerfiles README](Dockerfiles/README.md).
-
-
 ## Local compilation
 To configure an out-of-tree build, run
 
 ```bash
-mkdir build
-cd build
+$ mkdir build
+$ cd build
 # To compile source code libraries only (skipping main executables and unit tests)
-cmake .. -DCOMPILE_TESTS=no
+$ cmake .. -DCOMPILE_TESTS=no
 # To compile unit tests
-cmake .. -DCOMPILE_TESTS=yes -DCPPUTEST_HOME=/path/to/CppUTest/install/dir
+$ cmake .. -DCOMPILE_TESTS=yes -DCPPUTEST_HOME=/path/to/CppUTest/install/dir
 ```
 
 For instructions on installing CppUTest and running unit tests, see the [unit test README](README_unit_tests.md).
@@ -42,8 +31,8 @@ Sign in (you need to create an account), locate, and download:
 Extract this to a directory of your choosing:
 
 ```bash
-cd /path/to/toolchain/dir
-tar -xvf avr8-gnu-toolchain-3.5.4.1709-linux.any.x86_64.tar.gz
+$ cd /path/to/toolchain/dir
+$ tar -xvf avr8-gnu-toolchain-3.5.4.1709-linux.any.x86_64.tar.gz
 ```
 
 
@@ -52,8 +41,8 @@ AVRDUDE makes it easy to flash a chip using an AVR ISP.
 It is possible to build this from source, but I found it sufficient to install it to system using a package manager:
 
 ```bash
-sudo apt install avrdude
-sudo apt install avrdude-doc			# Just in case
+$ sudo apt install avrdude
+$ sudo apt install avrdude-doc			# Just in case
 ```
 
 
@@ -70,10 +59,10 @@ The new ```Toolchain-*.cmake``` file will not and should not be tracked.
 Then run
 
 ```bash
-mkdir build-avr
-cd build-avr
+$ mkdir build-avr
+$ cd build-avr
 # Unit tests are not currently supported on the target architecture
-cmake .. -DCMAKE_TOOLCHAIN_FILE=Toolchain-*.cmake -DCOMPILE_TESTS=no
+$ cmake .. -DCMAKE_TOOLCHAIN_FILE=Toolchain-*.cmake -DCOMPILE_TESTS=no
 ```
 
 Verify that CMake located the correct C and C++ compilers.
@@ -86,17 +75,17 @@ Again, various make commands can be run within ```build-<arch>/``` and will not 
 ### Build
 To build all programs, simply run
 ```bash
-make
+$ make
 ```
 
 List all products and targets with
 ```bash
-make help
+$ make help
 ```
 
 To build an individual product, run
 ```bash
-make <product>
+$ make <product>
 ```
 This creates an .elf file.
 
@@ -112,7 +101,7 @@ Some targets are AVR specific but very useful for embedded development:
 The part is flashed using AVRDUDE. There is a special target for doing this:
 
 ```bash
-make <product>-writeflash
+$ make <product>-writeflash
 ```
 
 

@@ -29,9 +29,9 @@ Starting from a simple concept (blink an LED), design, implement, test, and evol
 
 
 ### Design
-Three different design paradigms are used:
+This project illustrates three different design:
 
-    * AVR libraries
+    * AVR library
         - Directly reference AVR-specific tools, functions, and registers
     * Hardware abstraction library
         - Wrap the direct AVR references in a library, libATtiny861
@@ -83,14 +83,14 @@ For specific build instructions, see the [Dockerfiles README](Dockerfiles/README
 
 ### Local Compilation
 This project can be compiled and tested on a PC.
-For specific build instructions, see the [build README](README_build.md).
+For specific build instructions, see the [build README](doc/README_build.md).
 
 
 ### Cross Compilation
 Examples are designed to run on AVR ATtiny861 hardware.
-For specific build instructions, see the [build README](README_build.md).
+For specific build instructions, see the [build README](doc/README_build.md).
 
 
 ### Unit Tests
 All modules are unit tested using [CppUTest](http://cpputest.github.io/) with the exception of the high-level executables.
-For instructions on how to build and run these tests, see the [unit test README](README_unit_tests.md) or the [Dockerfiles README](Dockerfiles/README.md).
+For instructions on how to build and run these tests, see the [unit test README](tests/README.md) or the [Dockerfiles README](Dockerfiles/README.md).

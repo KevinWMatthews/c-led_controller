@@ -10,12 +10,7 @@ Build results exist only within the container and do not persist on the host mac
 This image is designed for local compilation only.
 
 
-## Pull Image from DockerHub
-
-TODO I will push an image to DockerHub.
-
-
-## Build Image Locally
+## Build Image
 
 To build the Docker image for running unit tests on x86, use the provided shell script:
 ```
@@ -77,5 +72,5 @@ $ ./bin/Test_LedController -c
 
 To inspect the source code,
 ```
-cd ~/c-led_controller
+$ cd ~/c-led_controller
 ```
