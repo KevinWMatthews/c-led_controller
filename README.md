@@ -46,8 +46,7 @@ Unsurprisingly, with each abstraction layer the size of the executable increases
 Here is a high-level view of the project:
 ```bash
 .
-├── analysis            # Various dumps of image sizes and assembly code
-├── doc                 # Notes on individual moving parts
+├── doc
 ├── Dockerfiles
 ├── examples
 │   ├── avr             # AVR library
