@@ -4,7 +4,7 @@ if(NOT CMAKE_CROSSCOMPILING)
     message(FATAL_ERROR "Products must be cross compiled!")
 endif()
 
-include("${CMAKE_HOME_DIRECTORY}/AvrTargets.cmake")
+include("${CMAKE_HOME_DIRECTORY}/cmake/AvrTargets.cmake")
 
 configure_file (
     LibATtiny861_Led_BlinkTwo_Config.h.in

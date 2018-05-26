@@ -2,7 +2,7 @@ if(NOT CMAKE_CROSSCOMPILING)
     message(FATAL_ERROR "Products must be cross compiled!")
 endif()
 
-include("${CMAKE_HOME_DIRECTORY}/AvrTargets.cmake")
+include("${CMAKE_HOME_DIRECTORY}/cmake/AvrTargets.cmake")
 
 add_executable(LibATtiny861_PinPort_AsOutput
     PinPort_AsOutput.c
