@@ -13,18 +13,18 @@ configure_file (
 
 add_executable(Led_Blink
     Led_Blink.c
-    "${CMAKE_HOME_DIRECTORY}/src/Led/Led_ATtiny861.c"
 )
 
 target_link_libraries(Led_Blink
     PRIVATE
-        ATtiny861::ATtiny861
+        LedController::LedController
 )
 
 target_include_directories(Led_Blink
     PRIVATE
-        "${CMAKE_HOME_DIRECTORY}/include/Led"
         "${CMAKE_CURRENT_BINARY_DIR}"
 )
 
 create_avr_targets(TARGET_NAME Led_Blink)
+
+add_library(LedController::LedController ALIAS LedController)

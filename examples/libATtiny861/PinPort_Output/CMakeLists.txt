@@ -11,5 +11,9 @@ target_link_libraries(LibATtiny861_PinPort_AsOutput
     PRIVATE
         ATtiny861::ATtiny861
 )
+target_include_directories(LibATtiny861_PinPort_AsOutput
+    PRIVATE
+        "${CMAKE_CURRENT_BINARY_DIR}"
+)
 
 create_avr_targets(TARGET_NAME LibATtiny861_PinPort_AsOutput)

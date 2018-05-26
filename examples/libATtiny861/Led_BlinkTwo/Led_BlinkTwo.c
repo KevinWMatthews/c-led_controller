@@ -1,4 +1,4 @@
-#include "Libhw_ATtiny861_Led_BlinkTwo_Config.h"
+#include "LibATtiny861_Led_BlinkTwo_Config.h"
 #include "ATtiny861_Gpio.h"
 #include "ATtiny861_Timer0.h"
 #include "ATtiny861_Interrupt.h"

@@ -13,17 +13,15 @@ configure_file (
 
 add_executable(Led_BlinkTwoActiveLow
     Led_BlinkTwoActiveLow.c
-    "${CMAKE_HOME_DIRECTORY}/src/Led/Led_ATtiny861.c"
 )
 
 target_link_libraries(Led_BlinkTwoActiveLow
     PRIVATE
-        ATtiny861::ATtiny861
+        LedController::LedController
 )
 
 target_include_directories(Led_BlinkTwoActiveLow
     PRIVATE
-        "${CMAKE_HOME_DIRECTORY}/include/Led"
         "${CMAKE_CURRENT_BINARY_DIR}"
 )
 

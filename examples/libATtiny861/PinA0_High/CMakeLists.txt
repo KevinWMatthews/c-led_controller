@@ -11,5 +11,9 @@ target_link_libraries(LibATtiny861_PinA0_High
     PRIVATE
         ATtiny861::ATtiny861
 )
+target_include_directories(LibATtiny861_PinA0_High
+    PRIVATE
+        "${CMAKE_CURRENT_BINARY_DIR}"
+)
 
 create_avr_targets(TARGET_NAME LibATtiny861_PinA0_High)
