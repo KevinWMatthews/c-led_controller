@@ -54,7 +54,6 @@ Here is a high-level view of the project:
 │   ├── libATtiny861    # Hardware abstraction library 
 │   └── sw_abstraction  # Software abstraction library
 ├── include
-├── mock_hw
 ├── mocks
 ├── src
 └── tests
