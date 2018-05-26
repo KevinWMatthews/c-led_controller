@@ -19,8 +19,8 @@ target_link_libraries(Test_ATtiny861
     PRIVATE
         CppUTest
         ATtiny861::ATtiny861
-        MockHw_ATtiny861::MockHw_ATtiny861
-        MockAvrInterrupt::MockAvrInterrupt
+        MockATtiny861Registers::MockATtiny861Registers
+        MockATtiny861Interrupt::MockATtiny861Interrupt
         # Regular or mock BitManip? This works but I don't trust it.
         BitManip::BitManip
 )

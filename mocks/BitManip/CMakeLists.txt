@@ -9,7 +9,7 @@ target_include_directories(MockBitManip
 
 target_link_libraries(MockBitManip
     INTERFACE
-        MockHw_ATtiny861::MockHw_ATtiny861
+        MockATtiny861Registers::MockATtiny861Registers
 )
 
 add_library(MockBitManip::MockBitManip ALIAS MockBitManip)
