@@ -2,6 +2,7 @@ FROM kevinwmatthews/docker-cpputest:v3.8-bugfix-latest
 
 ARG user=builder
 RUN useradd --create-home $user
+USER $user
 
 WORKDIR /home/$user
 #TODO checkout a tag before building
