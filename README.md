@@ -21,7 +21,8 @@ To see an example of compiling and testing the library, execute the scripts to b
 $ ./docker_build_x86_test.sh
 $ ./docker_run_x86_test.sh
 ```
-This, of course, requries Docker to be installed on your system.
+This container will build the project for x86 and run all unit tests.
+Of course, this requries that Docker is installed on your system.
 
 
 ## Background
