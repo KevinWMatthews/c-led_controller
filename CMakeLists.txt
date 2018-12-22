@@ -10,6 +10,13 @@ set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib")
 
 set(CPPUTEST_HOME /usr/local CACHE STRING "Location where CppUTest is installed")
 option(COMPILE_TESTS "Compile unit tests" OFF)
+option(COVERAGE "Compile with test coverage" OFF)
+
+if(COVERAGE)
+    # Quick and dirty for proof-of-concept.
+    # clang? gcc?
+    set(CMAKE_CXX_FLAGS "-coverage")
+endif()
 
 if(COMPILE_TESTS)
     enable_testing()

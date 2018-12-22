@@ -10,6 +10,6 @@ before_install:
 install:
   - sudo apt install -y cpputest
 script:
-  - cmake . -DCOMPILE_TESTS=ON -DCPPUTEST_HOME=/usr
+  - cmake . -DCOMPILE_TESTS=ON -DCPPUTEST_HOME=/usr -DCOVERAGE=ON
   - make
   - make test
