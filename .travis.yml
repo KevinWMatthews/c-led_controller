@@ -13,4 +13,8 @@ script:
   - cmake . -DCOMPILE_TESTS=ON -DCPPUTEST_HOME=/usr -DCOVERAGE=ON
   - make
   - make test
-  - gcov tests/libATtiny861/CMakeFiles/Test_ATtiny861.dir/*.cpp
+  - gcov ./tests/libATtiny861/CMakeFiles/Test_ATtiny861.dir/RunAllTests.cpp.gcno
+  - gcov ./tests/libATtiny861/CMakeFiles/Test_ATtiny861.dir/Test_ATtiny861_Interrupt.cpp.gcno
+  - gcov ./tests/libATtiny861/CMakeFiles/Test_ATtiny861.dir/Test_ATtiny861_Timer0.cpp.gcno
+  - gcov ./tests/libATtiny861/CMakeFiles/Test_ATtiny861.dir/Test_ATtiny861_GpioMap.cpp.gcno
+  - gcov ./tests/libATtiny861/CMakeFiles/Test_ATtiny861.dir/Test_ATtiny861_Gpio.cpp.gcno
