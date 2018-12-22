@@ -13,4 +13,4 @@ script:
   - cmake . -DCOMPILE_TESTS=ON -DCPPUTEST_HOME=/usr -DCOVERAGE=ON
   - make
   - make test
-  - gcov src/libATtiny861/*.c
+  - gcov tests/libATtiny861/CMakeFiles/Test_ATtiny861.dir/*.cpp
