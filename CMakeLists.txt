@@ -18,7 +18,12 @@ if(COMPILE_TESTS)
     # Find the library before adding any production source code.
     message(STATUS "Searching for CppUTest in CPPUTEST_HOME: ${CPPUTEST_HOME}")
     set(CMAKE_PREFIX_PATH "${CPPUTEST_HOME}")
-    find_package(CppUTest 3.8 REQUIRED)
+
+    find_library(CppUTest
+        NAMES cpputest
+        DOC "The libcpputest library"
+    )
+    # find_package(CppUTest 3.8 REQUIRED)
 endif()
 
 add_subdirectory(src)
